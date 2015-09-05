@@ -29,5 +29,8 @@ as
     p_val in boolean)
     return varchar2;
 
+  function is_number(p_str in varchar2)
+    return boolean;
+
 end oos_util;
 /

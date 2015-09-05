@@ -104,6 +104,33 @@ as
     return case when p_val then 'TRUE' else 'FALSE' end;
   end tochar;
 
+  /**
+   * Checks if string is numeric
+   *
+   * Notes:
+   *  -
+   *
+   * Related Tickets:
+   *  - #15
+   *
+   * @author Trent Schafer
+   * @created 05-Sep-2015
+   * @param p_str String to validate
+   * @return True of p_str is number
+   */
+  function is_number(p_str in varchar2)
+    return boolean
+  as
+    l_num number;
+  begin
+    l_num := to_number(p_str);
+    return true;
+  exception
+    when value_error then
+      return false;
+  end is_number;
+
+
 
 
 
