@@ -5,6 +5,8 @@ as
   gc_timestamp_format constant varchar2(255) := gc_date_format || ':FF';
   gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';
 
+  gc_assert_error_number pls_integer := -20000;
+
 
   -- ******** PRIVATE ********
 
@@ -161,6 +163,30 @@ as
   end is_date;
 
 
+  /**
+   * Validates assertion.
+   * Will raise an application error if assertion is false
+   *
+   * Notes:
+   *
+   *
+   * Related Tickets:
+   *  - #19
+   *
+   * @author Martin D'Souza
+   * @created 05-Sep-2015
+   * @param p_condition Boolean condition to validate
+   * @param p_msg Message to include in application error if p_condition fails
+   */
+  procedure assert(
+    p_condition in boolean,
+    p_msg in varchar2)
+  as
+  begin
+    if not p_condition or p_condition is null then
+      raise_application_error(gc_assert_error_number, p_msg);
+    end if;
+  end assert;
 
 end oos_util;
 /

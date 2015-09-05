@@ -37,5 +37,9 @@ as
     p_date_format in varchar2)
     return boolean;
 
+  procedure assert(
+    p_condition in boolean,
+    p_msg in varchar2);
+
 end oos_util;
 /
