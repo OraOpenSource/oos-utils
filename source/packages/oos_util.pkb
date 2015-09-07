@@ -27,15 +27,12 @@ as
    * @return TODO
    */
   procedure log(
-    p_mesage in varchar2)
+    p_text in varchar2,
+    p_scope in varchar2)
   as
-    $if $$oos_util_debug $then
-      l_scope logger_logs.scope%type := gc_scope_prefix || 'log';
-    $end
-
   begin
     $if $$oos_util_debug $then
-      logger.log(p_message, l_scope);
+      logger.log(p_text, p_scope);
     $else
       null;
     $end
@@ -187,6 +184,81 @@ as
       raise_application_error(gc_assert_error_number, p_msg);
     end if;
   end assert;
+
+
+  /**
+   * Truncates a string to ensure that it is not longer than p_length
+   * If string is > than p_length then an ellipsis (...) will be appended to string
+   *
+   * Supports following mode:
+   *  - By length (default): Will perform a hard parse at p_length
+   *  - By word: Will truncate at logical word break
+   *
+   * Notes:
+   *  -
+   *
+   * Related Tickets:
+   *  - #5
+   *
+   * @author Martin D'Souza
+   * @created 05-Sep-2015
+   * @param TODO
+   * @return Trimmed string
+   */
+   -- TODO mdsouza: need a better name for this
+   -- TODO mdsouza: ellipsize??
+  function truncate_string(
+    p_str in varchar2,
+    p_length in pls_integer,
+    -- TODO mdsouza: do we have this called "p_options" to pass in various options?
+    -- TODO mdsouza: we may have this more than just "by word"
+    p_by_word in varchar2 default 'N'
+    -- TODO mdsouza: have p_elipsis as a variable?
+  )
+    return varchar2
+  as
+    l_stop_position pls_integer;
+    l_str varchar2(32767) := trim(p_str);
+    l_ellipsis varchar2(3) := '...';
+    l_by_word boolean := false;
+
+    l_scope varchar2(255) := 'oos_util.truncate_string';
+  begin
+    assert(upper(nvl(p_by_word, 'N')) in ('Y', 'N'), 'Invalid p_by_word. Must be Y/N');
+    assert(p_length > 0, 'p_length must be a postive number');
+
+    if upper(nvl(p_by_word, 'N')) = 'Y' then
+      l_by_word := true;
+    end if;
+
+
+    if length(l_str) <= p_length then
+      l_str := l_str;
+    elsif not l_by_word then
+      -- Truncate by length
+      l_str := trim(substr(l_str, 1, p_length - length(l_ellipsis))) || l_ellipsis;
+    elsif l_by_word then
+      log('l_by_word', l_scope);
+
+      -- Truncate by word
+      l_str := trim(substr(l_str, 1, p_length - length(l_ellipsis)));
+      log('l_str: ' || l_str, l_scope);
+
+      -- Find the position of the last word
+      -- Need to go back one postion since the regexp will file the begining of the last word)
+      l_stop_position := greatest(regexp_instr(l_str, '\w+\W*$')-1, 0);
+      log('l_stop_position: ' || l_stop_position, l_scope);
+
+      if l_stop_position = 0 then
+        -- Could not find a "last word" so just append ellipsis
+        l_str := l_str || l_ellipsis;
+      else
+        l_str := trim(substr(l_str, 1, l_stop_position)) || l_ellipsis;
+      end if;
+    end if;
+
+    return l_str;
+  end truncate_string;
 
 end oos_util;
 /

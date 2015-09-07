@@ -41,5 +41,11 @@ as
     p_condition in boolean,
     p_msg in varchar2);
 
+  function truncate_string(
+    p_str in varchar2,
+    p_length in pls_integer,
+    p_by_word in varchar2 default 'N')
+    return varchar2;
+
 end oos_util;
 /
