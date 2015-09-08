@@ -12,5 +12,12 @@ as
     p_condition in boolean,
     p_msg in varchar2);
 
+  function clob2blob(
+    p_clob in clob)
+    return blob;
+    
+  function blob2clob(
+    p_blob in blob)
+    return clob;
 end oos_util;
 /
