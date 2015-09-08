@@ -163,5 +163,80 @@ as
     return l_str;
   end truncate_string;
 
+
+  /**
+   * Does string replacement similar to C's sprintf
+   *
+   * Notes:
+   *  - Uses the following replacement algorithm (in following order)
+   *    - Replaces %s<n> with p_s<n>
+   *    - Occurrences of %s (no number) are replaced with p_s1..p_s10 in order that they appear in text
+   *    - %% is escaped to %
+   *  - As this function could be useful for non-logging purposes will not apply a NO_OP to it for conditional compilation
+   *
+   * Related Tickets:
+   *  - #8
+   *
+   * @author Martin D'Souza
+   * @created 15-Jun-2014
+   * @param p_str Messsage to format using %s and %d replacement strings
+   * @param p_s1
+   * @param p_s2
+   * @param p_s3
+   * @param p_s4
+   * @param p_s5
+   * @param p_s6
+   * @param p_s7
+   * @param p_s8
+   * @param p_s9
+   * @param p_s10
+   * @return p_msg with strings replaced
+   */
+  function sprintf(
+    p_str in varchar2,
+    p_s1 in varchar2 default null,
+    p_s2 in varchar2 default null,
+    p_s3 in varchar2 default null,
+    p_s4 in varchar2 default null,
+    p_s5 in varchar2 default null,
+    p_s6 in varchar2 default null,
+    p_s7 in varchar2 default null,
+    p_s8 in varchar2 default null,
+    p_s9 in varchar2 default null,
+    p_s10 in varchar2 default null)
+    return varchar2
+  as
+    l_return varchar2(4000);
+    c_substring_regexp constant varchar2(10) := '%s';
+
+  begin
+    l_return := p_str;
+
+    -- Replace %s<n> with p_s<n>``
+    for i in 1..10 loop
+      l_return := regexp_replace(l_return, c_substring_regexp || i,
+        case
+          when i = 1 then p_s1
+          when i = 2 then p_s2
+          when i = 3 then p_s3
+          when i = 4 then p_s4
+          when i = 5 then p_s5
+          when i = 6 then p_s6
+          when i = 7 then p_s7
+          when i = 8 then p_s8
+          when i = 9 then p_s9
+          when i = 10 then p_s10
+          else null
+        end,
+        1,0,'c');
+    end loop;
+
+    -- Replace any occurences of %s with p_s<n> (in order) and escape %% to %
+    l_return := sys.utl_lms.format_message(l_return,p_s1, p_s2, p_s3, p_s4, p_s5, p_s6, p_s7, p_s8, p_s9, p_s10);
+
+    return l_return;
+
+  end sprintf;
+
 end oos_util_string;
 /

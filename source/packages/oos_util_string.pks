@@ -31,5 +31,18 @@ as
     p_by_word in varchar2 default 'N')
     return varchar2;
 
+  function sprintf(
+    p_str in varchar2,
+    p_s1 in varchar2 default null,
+    p_s2 in varchar2 default null,
+    p_s3 in varchar2 default null,
+    p_s4 in varchar2 default null,
+    p_s5 in varchar2 default null,
+    p_s6 in varchar2 default null,
+    p_s7 in varchar2 default null,
+    p_s8 in varchar2 default null,
+    p_s9 in varchar2 default null,
+    p_s10 in varchar2 default null)
+    return varchar2;
 end oos_util_string;
 /
