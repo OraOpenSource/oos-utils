@@ -86,5 +86,94 @@ as
     return l_clob;
   end blob2clob;
 
+
+
+  /**
+   * Returns human readable file size
+   *
+   * Notes:
+   *  -
+   *
+   * Related Tickets:
+   *  - #6
+   *
+   * @author Martin D'Souza
+   * @created 07-Sep-2015
+   * @param p_file_size size of file in bytes
+   * @return Human readable file size
+   */
+  -- TODO mdsouza: rename to get_h_file_size?
+  function get_file_size(
+    p_file_size in number,
+    p_units in varchar2 default null)
+    return varchar2
+  as
+    l_units varchar2(255);
+  begin
+    -- List of formats: http://www.gnu.org/software/coreutils/manual/coreutils
+    l_units := nvl(p_units,
+      case
+        when p_file_size < 1024 then oos_util_lob.gc_unit_b
+        when p_file_size < power(1024,2) then oos_util_lob.gc_unit_kb
+        when p_file_size < power(1024,3) then oos_util_lob.gc_unit_mb
+        when p_file_size < power(1024,4) then oos_util_lob.gc_unit_gb
+        when p_file_size < power(1024,5) then oos_util_lob.gc_unit_tb
+        when p_file_size < power(1024,6) then oos_util_lob.gc_unit_pb
+        when p_file_size < power(1024,7) then oos_util_lob.gc_unit_eb
+        when p_file_size < power(1024,8) then oos_util_lob.gc_unit_zb
+        else
+          oos_util_lob.gc_unit_yb
+      end
+    );
+
+    return to_char(
+      round(
+        case
+          when l_units = oos_util_lob.gc_unit_b then p_file_size
+          when l_units = oos_util_lob.gc_unit_kb then p_file_size/1024
+          when l_units = oos_util_lob.gc_unit_mb then p_file_size/power(1024,2)
+          when l_units = oos_util_lob.gc_unit_gb then p_file_size/power(1024,3)
+          when l_units = oos_util_lob.gc_unit_tb then p_file_size/power(1024,4)
+          when l_units = oos_util_lob.gc_unit_pb then p_file_size/power(1024,5)
+          when l_units = oos_util_lob.gc_unit_eb then p_file_size/power(1024,6)
+          when l_units = oos_util_lob.gc_unit_zb then p_file_size/power(1024,7)
+          else
+            -- oos_util_lob.gc_unit_yb
+            p_file_size/power(1024,8)
+        end, 1)
+      ,
+      -- Number format
+      '999G999G999G999G999G999G999G999G999' ||
+        case
+          when l_units != oos_util_lob.gc_unit_b then 'D9'
+          else null
+        end
+    ) || ' ' || l_units;
+  end get_file_size;
+
+  function get_file_size(
+    p_clob in clob,
+    p_units in varchar2 default null)
+    return varchar2
+  as
+  begin
+    return get_file_size(
+      p_file_size => dbms_lob.getlength(p_clob),
+      p_units => p_units
+    );
+  end get_file_size;
+
+  function get_file_size(
+    p_blob in blob,
+    p_units in varchar2 default null)
+    return varchar2
+  as
+  begin
+    return get_file_size(
+      p_file_size => dbms_lob.getlength(p_blob),
+      p_units => p_units
+    );
+  end get_file_size;
+
 end oos_util_lob;
 /
