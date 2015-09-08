@@ -223,7 +223,9 @@ as
     l_by_word boolean := false;
 
     l_scope varchar2(255) := 'oos_util.truncate_string';
+    l_max_length pls_integer := p_length - length(l_ellipsis); -- This is the max that the string can be without an ellipsis appended to it.
   begin
+    -- TODO mdsouza: look at the cost of doing these checks
     assert(upper(nvl(p_by_word, 'N')) in ('Y', 'N'), 'Invalid p_by_word. Must be Y/N');
     assert(p_length > 0, 'p_length must be a postive number');
 
@@ -231,30 +233,50 @@ as
       l_by_word := true;
     end if;
 
-
     if length(l_str) <= p_length then
       l_str := l_str;
+    elsif length(l_ellipsis) > p_length or l_max_length = 0 then
+      -- Can't replace string with ellipsis if it'll return a larger string.
+      l_str := substr(l_str, 1, p_length);
     elsif not l_by_word then
       -- Truncate by length
-      l_str := trim(substr(l_str, 1, p_length - length(l_ellipsis))) || l_ellipsis;
+      l_str := trim(substr(l_str, 1, l_max_length)) || l_ellipsis;
     elsif l_by_word then
-      log('l_by_word', l_scope);
+      -- If string at [max string(length) - ellipsis] and next characters belong to same word
+      -- Then need to go back and find last non-word
+      if regexp_instr(l_str, '\w{2,}', l_max_length, 1, 0) = l_max_length then
+        l_str := substr(
+            l_str,
+            1,
+            -- Find the last non-word and go back one character
+            regexp_instr(substr(l_str,1, p_length - length(l_ellipsis)), '\W+\w*$') -1);
 
-      -- Truncate by word
-      l_str := trim(substr(l_str, 1, p_length - length(l_ellipsis)));
-      log('l_str: ' || l_str, l_scope);
+        if l_str is null then
+          -- This will happen if the length is just slightly greater than the elipsis and first word is long
+          l_str := substr(trim(p_str), 1, l_max_length);
+        end if;
 
-      -- Find the position of the last word
-      -- Need to go back one postion since the regexp will file the begining of the last word)
-      l_stop_position := greatest(regexp_instr(l_str, '\w+\W*$')-1, 0);
-      log('l_stop_position: ' || l_stop_position, l_scope);
-
-      if l_stop_position = 0 then
-        -- Could not find a "last word" so just append ellipsis
-        l_str := l_str || l_ellipsis;
       else
-        l_str := trim(substr(l_str, 1, l_stop_position)) || l_ellipsis;
+        -- Find last non-word. Need to reverse the string since Oracle regexp doesn't support lookbehind assertions
+        -- Need to do the reverse in a select statement since it's not a PL/SQL function
+        with rev_str as (
+          select reverse(substr(l_str,1, l_max_length)) str from sys.dual
+        )
+        select
+          -- Unreverse string
+          reverse(
+            -- Cut the string from the first word char to the end in the reveresed string
+            -- Since this is a reversed string, the first word char, is really the last word char
+            substr(rev_str.str, regexp_instr(rev_str.str, '\w'))
+          )
+        into l_str
+        from rev_str;
+
       end if;
+
+      l_str := l_str || l_ellipsis;
+
+      -- end l_by_word
     end if;
 
     return l_str;
