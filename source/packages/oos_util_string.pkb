@@ -212,8 +212,9 @@ as
   begin
     l_return := p_str;
 
-    -- Replace %s<n> with p_s<n>``
-    for i in 1..10 loop
+    -- Replace %s<n> with p_s<n>
+    -- #23: Need to do in reverse so 10 processes before 1
+    for i in reverse 1..10 loop
       l_return := regexp_replace(l_return, c_substring_regexp || i,
         case
           when i = 1 then p_s1
