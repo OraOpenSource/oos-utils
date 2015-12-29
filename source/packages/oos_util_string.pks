@@ -1,6 +1,10 @@
 create or replace package oos_util_string
 as
 
+  -- TYPES
+  type tab_vc2 is table of varchar2 (32767);
+
+
   function tochar(
     p_val in number)
     return varchar2;
@@ -44,5 +48,15 @@ as
     p_s9 in varchar2 default null,
     p_s10 in varchar2 default null)
     return varchar2;
+
+  function string_to_table(
+    p_string in varchar2,
+    p_delimiter in varchar2 default ',')
+    return tab_vc2 pipelined;
+
+  function string_to_table(
+    p_clob in clob,
+    p_delimiter in varchar2 default ',')
+    return tab_vc2 pipelined;
 end oos_util_string;
 /
