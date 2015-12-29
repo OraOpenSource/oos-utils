@@ -16,5 +16,11 @@ as
     p_content_disposition in varchar2 default oos_util_apex.gc_content_disposition_attach,
     p_clob in clob);
 
+  function is_developer
+    return boolean;
+
+  function is_developer_yn
+    return varchar2;
+
 end oos_util_apex;
 /

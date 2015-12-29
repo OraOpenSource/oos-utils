@@ -91,5 +91,57 @@ as
   end download_file;
 
 
+  /**
+   * Returns true/false if APEX developer is enable
+   * Supports both APEX 4 and 5 formats
+   *
+   * Notes:
+   *  -
+   *
+   * Related Tickets:
+   *  - #25
+   *
+   * @author Martin Giffy D'Souza
+   * @created 29-Dec-2015
+   * @return true/false
+   */
+  function is_developer
+    return boolean
+  as
+  begin
+    if coalesce(apex_application.g_edit_cookie_session_id, v('APP_BUILDER_SESSION')) is null then
+      return false;
+    else
+      return true;
+    end if;
+  end is_developer;
+
+  /**
+   * Returns Y/N if APEX developer is enable
+   *
+   * Notes:
+   *  -
+   *
+   * Related Tickets:
+   *  - #25
+   *
+   * @author Martin Giffy D'Souza
+   * @created 29-Dec-2015
+   * @return Y or N
+   */
+  function is_developer_yn
+    return varchar2
+  as
+    $if dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
+  begin
+    if is_developer then
+      return 'Y';
+    else
+      return 'N';
+    end if;
+  end is_developer_yn;
+
 end oos_util_apex;
 /
