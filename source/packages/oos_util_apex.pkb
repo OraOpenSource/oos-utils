@@ -28,7 +28,7 @@ as
   as
 
     l_mime_type varchar2(255);
-    l_blob blob := p_blob; -- Need to use l_blob since download is an in out
+    l_blob blob := p_blob; -- Need to use l_blob since download is an in out for wpg_docload
 
   begin
 
