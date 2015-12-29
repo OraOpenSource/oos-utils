@@ -22,5 +22,12 @@ as
   function is_developer_yn
     return varchar2;
 
+  function is_session_valid(
+    p_session_id in apex_workspace_sessions.apex_session_id%type)
+    return boolean;
+
+  function is_session_valid_yn(
+    p_session_id in apex_workspace_sessions.apex_session_id%type)
+    return varchar2;
 end oos_util_apex;
 /

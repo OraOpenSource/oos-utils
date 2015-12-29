@@ -143,5 +143,74 @@ as
     end if;
   end is_developer_yn;
 
+
+  /**
+   * Checks if session is still active
+   *
+   * Notes:
+   *  -
+   *
+   * Related Tickets:
+   *  - #9
+   *
+   * @author Martin Giffy D'Souza
+   * @created 29-Dec-2015
+   * @param p_session_id APEX session ID
+   * @return true/false
+   */
+  function is_session_valid(
+    p_session_id in apex_workspace_sessions.apex_session_id%type)
+    return boolean
+  as
+    l_count pls_integer;
+  begin
+    oos_util.assert(p_session_id is not null, 'p_session_id must contain value');
+
+    select count(1)
+    into l_count
+    from apex_workspace_sessions aws
+    where 1=1
+      and aws.apex_session_id = p_session_id
+      and sysdate <= aws.session_idle_timeout_on
+      and sysdate <= aws.session_life_timeout_on;
+
+    if l_count = 0 then
+      return false;
+    else
+      return true;
+    end if;
+  end is_session_valid;
+
+
+  /**
+   * Checks if session is still active
+   *
+   * Notes:
+   *  -
+   *
+   * Related Tickets:
+   *  - #9
+   *
+   * @author Martin Giffy D'Souza
+   * @created 29-Dec-2015
+   * @param p_session_id APEX session ID
+   * @return Y/N
+   */
+  function is_session_valid_yn(
+    p_session_id in apex_workspace_sessions.apex_session_id%type)
+    return varchar2
+  as
+    $if dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
+  begin
+    if is_session_valid(p_session_id => p_session_id) then
+      return 'Y';
+    else
+      return 'N';
+    end if;
+
+  end is_session_valid_yn;
+
 end oos_util_apex;
 /
