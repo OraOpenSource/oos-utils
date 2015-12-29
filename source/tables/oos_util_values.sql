@@ -3,7 +3,7 @@ declare
   l_table_name user_tables.table_name%type;
   l_sql varchar2(4000);
 begin
-  l_table_name := lower('oos_util_vals');
+  l_table_name := lower('oos_util_values');
 
   select count(1)
   into l_count
