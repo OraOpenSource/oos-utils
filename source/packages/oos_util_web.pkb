@@ -19,9 +19,9 @@ as
    */
   function get_mime_type(
     p_filename in varchar2)
-    return oos_util_vals.value%type
+    return oos_util_values.value%type
   as
-    l_return oos_util_vals.value%type;
+    l_return oos_util_values.value%type;
     l_file_ext varchar2(10);
   begin
 
@@ -30,7 +30,7 @@ as
     begin
       select value
       into l_return
-      from oos_util_vals ouv
+      from oos_util_values ouv
       where 1=1
         and ouv.cat = oos_util.gc_vals_cat_mime_type
         and ouv.name = l_file_ext;

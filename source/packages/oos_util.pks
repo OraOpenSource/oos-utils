@@ -6,7 +6,7 @@ as
   gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';
 
   -- OOS Util Val Cats
-  gc_vals_cat_mime_type constant oos_util_vals.cat%type := 'mime-type';
+  gc_vals_cat_mime_type constant oos_util_values.cat%type := 'mime-type';
 
   -- TODO mdsouza: Think about better way to do this so can do coniditional comp
   gc_version constant varchar2(10) := '1.0.0';

@@ -3,7 +3,7 @@ as
 
   function get_mime_type(
     p_filename in varchar2)
-    return oos_util_vals.value%type;
+    return oos_util_values.value%type;
     
 end oos_util_web;
 /
