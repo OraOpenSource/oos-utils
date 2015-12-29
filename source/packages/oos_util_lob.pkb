@@ -103,10 +103,8 @@ as
    * @param p_units See gc_size_... variables for options. If not provided, most significant one automatically chosen.
    * @return Human readable file size
    */
-  -- TODO mdsouza: rename to get_h_file_size?
-  -- TODO mdsouza: rename to get_lob_size? since they're lobs?
   function get_file_size(
-    p_file_size in number, -- TODO mdsouza: use simple_integer:
+    p_file_size in number,
     p_units in varchar2 default null)
     return varchar2
   as
