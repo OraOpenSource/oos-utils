@@ -240,14 +240,93 @@ as
 
 
   /**
-   * Converts delimited string to table
+   * Converts delimited string to array
+   *
+   * Notes:
+   *  - Similar to apex_util.string_to_table but handles clobs
+   *
+   *
+   * Related Tickets:
+   *  - #32
+   *
+   * @author Martin Giffy D'Souza
+   * @created 28-Dec-2015
+   * @param p_string String containing delimited text
+   * @param p_delimiter Delimiter
+   * @return Array of string
+   */
+  function string_to_table(
+    p_string in clob,
+    p_delimiter in varchar2 default gc_default_delimiter)
+    return tab_vc2_arr
+  is
+    l_occurrence pls_integer;
+    l_last_pos pls_integer;
+    l_pos pls_integer;
+    l_length pls_integer;
+
+    l_return tab_vc2_arr;
+  begin
+
+    if p_string is not null then
+      l_occurrence := 1;
+      l_last_pos := 0;
+      l_pos := 1;
+      l_length := dbms_lob.getlength(p_string);
+
+      while l_pos > 0 loop
+        l_pos := instr(p_string, p_delimiter, 1, l_occurrence);
+
+        if l_pos = 0 then
+          l_return(l_return.count + 1) := substr(p_string, l_last_pos + 1, l_length);
+        else
+          l_return(l_return.count + 1) := substr(p_string, l_last_pos + 1, l_pos - (l_last_pos+1));
+        end if; -- l_pos = 0
+
+        l_last_pos := l_pos;
+        l_occurrence := l_occurrence + 1;
+      end loop;
+    end if; -- p_string is not null
+
+    return l_return;
+  end string_to_table;
+
+  /**
+   * See string_to_table (p_string clob) for notes
+   *
+   * Notes:
+   *
+   * Related Tickets:
+   *  - #32
+   *
+   * @author Martin Giffy D'Souza
+   * @created 28-Dec-2015
+   * @param p_string String containing delimited text
+   * @param p_delimiter Delimiter
+   * @return Array of string
+   */
+  function string_to_table(
+    p_string in varchar2,
+    p_delimiter in varchar2 default gc_default_delimiter)
+    return tab_vc2_arr
+  is
+    l_clob clob;
+    l_return tab_vc2_arr;
+  begin
+    l_clob := p_string;
+    return string_to_table(p_string => l_clob, p_delimiter => p_delimiter);
+  end string_to_table;
+
+
+  /**
+   * Converts delimited string to queriable table
    *
    * Notes:
    *  - Text between delimiters must be <= 4000 characters
    *
    * Example:
    *  select rownum, column_value
-   *  from table(oos_util_string.string_to_table('abc,def'));
+   *  from table(oos_util_string.listunagg('abc,def'));
    *
    * Related Tickets:
    *  - #4
@@ -258,30 +337,30 @@ as
    * @param p_delimiter Delimiter
    * @return pipelined table
    */
-  function string_to_table(
+  function listunagg(
     p_string in varchar2,
-    p_delimiter in varchar2 default ',')
+    p_delimiter in varchar2 default gc_default_delimiter)
     return tab_vc2 pipelined
   is
-    l_temp apex_application_global.vc_arr2;
+    l_arr oos_util_string.tab_vc2_arr;
   begin
-    l_temp := apex_util.string_to_table(p_string => p_string, p_separator => p_delimiter);
+    l_arr := string_to_table(p_string => p_string, p_delimiter => p_delimiter);
 
-    for i in 1 .. l_temp.count loop
-      pipe row (l_temp(i));
+    for i in 1 .. l_arr.count loop
+      pipe row (l_arr(i));
     end loop;
-  end string_to_table;
+  end listunagg;
 
 
   /**
-   * Converts delimited string to table
+   * Converts delimited string to queriable table
    *
    * Notes:
    *  - Text between delimiters must be <= 4000 characters
    *
    * Example:
    *  select rownum, column_value
-   *  from table(oos_util_string.string_to_table('abc,def'));
+   *  from table(oos_util_string.listunagg('abc,def'));
    *
    * Related Tickets:
    *  - #4
@@ -292,37 +371,19 @@ as
    * @param p_delimiter Delimiter
    * @return pipelined table
    */
-  function string_to_table(
-    p_clob in clob,
-    p_delimiter in varchar2 default ',')
+  function listunagg(
+    p_string in clob,
+    p_delimiter in varchar2 default gc_default_delimiter)
     return tab_vc2 pipelined
   is
-    l_occurrence pls_integer;
-    l_last_pos pls_integer;
-    l_pos pls_integer;
-    l_length pls_integer;
+    l_arr tab_vc2_arr;
   begin
+    l_arr := string_to_table(p_string => p_string, p_delimiter => p_delimiter);
 
-    if p_clob is not null then
-      l_occurrence := 1;
-      l_last_pos := 0;
-      l_pos := 1;
-      l_length := dbms_lob.getlength(p_clob);
-
-      while l_pos > 0 loop
-        l_pos := instr(p_clob, p_delimiter, 1, l_occurrence);
-
-        if l_pos = 0 then
-          pipe row (substr(p_clob, l_last_pos + 1, l_length));
-        else
-          pipe row (substr(p_clob, l_last_pos + 1, l_pos - (l_last_pos+1)));
-        end if; -- l_pos = 0
-
-        l_last_pos := l_pos;
-        l_occurrence := l_occurrence + 1;
-      end loop;
-    end if; -- p_clob is not null
-  end string_to_table;
+    for i in 1 .. l_arr.count loop
+     pipe row (l_arr(i));
+    end loop;
+  end listunagg;
 
 end oos_util_string;
 /

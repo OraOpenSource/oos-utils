@@ -2,8 +2,11 @@ create or replace package oos_util_string
 as
 
   -- TYPES
-  type tab_vc2 is table of varchar2 (32767);
+  type tab_vc2 is table of varchar2(32767);
+  type tab_vc2_arr is table of varchar2(32767) index by pls_integer;
 
+  -- CONSTANTS
+  gc_default_delimiter varchar2(1) := ',';
 
   function tochar(
     p_val in number)
@@ -50,13 +53,24 @@ as
     return varchar2;
 
   function string_to_table(
-    p_string in varchar2,
-    p_delimiter in varchar2 default ',')
-    return tab_vc2 pipelined;
+    p_string in clob,
+    p_delimiter in varchar2 default gc_default_delimiter)
+    return tab_vc2_arr;
 
   function string_to_table(
-    p_clob in clob,
-    p_delimiter in varchar2 default ',')
+    p_string in varchar2,
+    p_delimiter in varchar2 default gc_default_delimiter)
+    return tab_vc2_arr;
+
+  function listunagg(
+    p_string in varchar2,
+    p_delimiter in varchar2 default gc_default_delimiter)
     return tab_vc2 pipelined;
+
+  function listunagg(
+    p_string in clob,
+    p_delimiter in varchar2 default gc_default_delimiter)
+    return tab_vc2 pipelined;
+
 end oos_util_string;
 /
