@@ -11,6 +11,16 @@ as
   gc_unit_zb constant varchar2(2) := 'ZB';
   gc_unit_yb constant varchar2(2) := 'YB';
 
+  gc_size_b constant simple_integer := 1024;
+  gc_size_kb constant simple_integer := power(1024, 2);
+  gc_size_mb constant simple_integer := power(1024, 3);
+  gc_size_gb constant simple_integer := power(1024, 4);
+  gc_size_tb constant simple_integer := power(1024, 5);
+  gc_size_pb constant simple_integer := power(1024, 6);
+  gc_size_eb constant simple_integer := power(1024, 7);
+  gc_size_zb constant simple_integer := power(1024, 8);
+  gc_size_yb constant simple_integer := power(1024, 9);
+
 
   -- METHODS
   function clob2blob(
@@ -26,13 +36,13 @@ as
     p_units in varchar2 default null)
     return varchar2;
 
-  function get_file_size(
-    p_clob in clob,
+  function get_lob_size(
+    p_lob in clob,
     p_units in varchar2 default null)
     return varchar2;
 
-  function get_file_size(
-    p_blob in blob,
+  function get_lob_size(
+    p_lob in blob,
     p_units in varchar2 default null)
     return varchar2;
 end oos_util_lob;

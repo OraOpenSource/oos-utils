@@ -100,27 +100,33 @@ as
    * @author Martin D'Souza
    * @created 07-Sep-2015
    * @param p_file_size size of file in bytes
+   * @param p_units See gc_size_... variables for options. If not provided, most significant one automatically chosen.
    * @return Human readable file size
    */
   -- TODO mdsouza: rename to get_h_file_size?
+  -- TODO mdsouza: rename to get_lob_size? since they're lobs?
   function get_file_size(
-    p_file_size in number,
+    p_file_size in number, -- TODO mdsouza: use simple_integer:
     p_units in varchar2 default null)
     return varchar2
   as
     l_units varchar2(255);
   begin
+    if p_file_size is null then
+      return null;
+    end if;
+
     -- List of formats: http://www.gnu.org/software/coreutils/manual/coreutils
     l_units := nvl(p_units,
       case
-        when p_file_size < 1024 then oos_util_lob.gc_unit_b
-        when p_file_size < power(1024,2) then oos_util_lob.gc_unit_kb
-        when p_file_size < power(1024,3) then oos_util_lob.gc_unit_mb
-        when p_file_size < power(1024,4) then oos_util_lob.gc_unit_gb
-        when p_file_size < power(1024,5) then oos_util_lob.gc_unit_tb
-        when p_file_size < power(1024,6) then oos_util_lob.gc_unit_pb
-        when p_file_size < power(1024,7) then oos_util_lob.gc_unit_eb
-        when p_file_size < power(1024,8) then oos_util_lob.gc_unit_zb
+        when p_file_size < gc_size_b then oos_util_lob.gc_unit_b
+        when p_file_size < gc_size_kb then oos_util_lob.gc_unit_kb
+        when p_file_size < gc_size_mb then oos_util_lob.gc_unit_mb
+        when p_file_size < gc_size_gb then oos_util_lob.gc_unit_gb
+        when p_file_size < gc_size_tb then oos_util_lob.gc_unit_tb
+        when p_file_size < gc_size_pb then oos_util_lob.gc_unit_pb
+        when p_file_size < gc_size_eb then oos_util_lob.gc_unit_eb
+        when p_file_size < gc_size_zb then oos_util_lob.gc_unit_zb
         else
           oos_util_lob.gc_unit_yb
       end
@@ -129,17 +135,16 @@ as
     return to_char(
       round(
         case
-          when l_units = oos_util_lob.gc_unit_b then p_file_size
-          when l_units = oos_util_lob.gc_unit_kb then p_file_size/1024
-          when l_units = oos_util_lob.gc_unit_mb then p_file_size/power(1024,2)
-          when l_units = oos_util_lob.gc_unit_gb then p_file_size/power(1024,3)
-          when l_units = oos_util_lob.gc_unit_tb then p_file_size/power(1024,4)
-          when l_units = oos_util_lob.gc_unit_pb then p_file_size/power(1024,5)
-          when l_units = oos_util_lob.gc_unit_eb then p_file_size/power(1024,6)
-          when l_units = oos_util_lob.gc_unit_zb then p_file_size/power(1024,7)
+          when l_units = oos_util_lob.gc_unit_b then p_file_size/(gc_size_b/gc_size_b)
+          when l_units = oos_util_lob.gc_unit_kb then p_file_size/(gc_size_kb/gc_size_b)
+          when l_units = oos_util_lob.gc_unit_mb then p_file_size/(gc_size_mb/gc_size_b)
+          when l_units = oos_util_lob.gc_unit_gb then p_file_size/(gc_size_gb/gc_size_b)
+          when l_units = oos_util_lob.gc_unit_tb then p_file_size/(gc_size_tb/gc_size_b)
+          when l_units = oos_util_lob.gc_unit_pb then p_file_size/(gc_size_pb/gc_size_b)
+          when l_units = oos_util_lob.gc_unit_eb then p_file_size/(gc_size_eb/gc_size_b)
+          when l_units = oos_util_lob.gc_unit_zb then p_file_size/(gc_size_zb/gc_size_b)
           else
-            -- oos_util_lob.gc_unit_yb
-            p_file_size/power(1024,8)
+            p_file_size/(gc_size_yb/gc_size_b)
         end, 1)
       ,
       -- Number format
@@ -147,33 +152,63 @@ as
         case
           when l_units != oos_util_lob.gc_unit_b then 'D9'
           else null
-        end
-    ) || ' ' || l_units;
+        end)
+      || ' ' || l_units;
   end get_file_size;
 
-  function get_file_size(
-    p_clob in clob,
+  /**
+   * See get_file_size
+   *
+   * Notes:
+   *  -
+   *
+   * Related Tickets:
+   *  -
+   *
+   * @author Martin D'Souza
+   * @created 07-Sep-2015
+   * @param p_lob
+   * @param p_units
+   * @return
+   */
+  function get_lob_size(
+    p_lob in clob,
     p_units in varchar2 default null)
     return varchar2
   as
   begin
     return get_file_size(
-      p_file_size => dbms_lob.getlength(p_clob),
+      p_file_size => dbms_lob.getlength(p_lob),
       p_units => p_units
     );
-  end get_file_size;
+  end get_lob_size;
 
-  function get_file_size(
-    p_blob in blob,
+  /**
+   * See get_file_size
+   *
+   * Notes:
+   *  -
+   *
+   * Related Tickets:
+   *  -
+   *
+   * @author Martin D'Souza
+   * @created 07-Sep-2015
+   * @param p_lob
+   * @param p_units
+   * @return
+   */
+  function get_lob_size(
+    p_lob in blob,
     p_units in varchar2 default null)
     return varchar2
   as
   begin
     return get_file_size(
-      p_file_size => dbms_lob.getlength(p_blob),
+      p_file_size => dbms_lob.getlength(p_lob),
       p_units => p_units
     );
-  end get_file_size;
+  end get_lob_size;
 
 end oos_util_lob;
 /
