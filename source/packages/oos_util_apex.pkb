@@ -212,5 +212,148 @@ as
 
   end is_session_valid_yn;
 
+
+  /**
+   * Creates a new APEX session.
+   * Useful when testing APEX functionality in PL/SQL or using apex_mail etc
+   *
+   * Notes:
+   *  - Content taken from:
+   *    - http://www.talkapex.com/2012/08/how-to-create-apex-session-in-plsql.html
+   *    - http://apextips.blogspot.com.au/2014/10/debugging-parameterised-views-outside.html
+   *
+   * Related Tickets:
+   *  - #7
+   *
+   * @author Martin Giffy D'Souza
+   * @created 29-Dec-2015
+   * @param p_app_id
+   * @param p_user_name
+   * @param p_page_id Page to try and register for post login. Recommended to leave null
+   * @param p_session_id Session to re-join. Recommended leave null
+   */
+  procedure create_session(
+    p_app_id in apex_applications.application_id%type,
+    p_user_name in apex_workspace_sessions.user_name%type,
+    p_page_id in apex_application_pages.page_id%type default null,
+    p_session_id in apex_workspace_sessions.apex_session_id%type default null)
+  as
+    l_workspace_id apex_applications.workspace_id%TYPE;
+    l_cgivar_name owa.vc_arr;
+    l_cgivar_val owa.vc_arr;
+
+    l_page_id apex_application_pages.page_id%type := p_page_id;
+    l_home_link apex_applications.home_link%type;
+    l_url_arr apex_application_global.vc_arr2;
+  begin
+
+    htp.init;
+
+    l_cgivar_name(1) := 'REQUEST_PROTOCOL';
+    l_cgivar_val(1) := 'HTTP';
+
+    owa.init_cgi_env(
+      num_params => 1,
+      param_name => l_cgivar_name,
+      param_val => l_cgivar_val );
+
+    select workspace_id
+    into l_workspace_id
+    from apex_applications
+    where application_id = p_app_id;
+
+    wwv_flow_api.set_security_group_id(l_workspace_id);
+
+    if l_page_id is null then
+      -- Try to get the page_id from home link
+      select aa.home_link
+      into l_home_link
+      from apex_applications aa
+      where 1=1
+        and aa.application_id = p_app_id;
+
+      if l_home_link is not null then
+        l_url_arr := apex_util.string_to_table(l_home_link, ':');
+
+        if l_url_arr.count >= 2 then
+          l_page_id := l_url_arr(2);
+        end if;
+      end if;
+
+      if l_page_id is null then
+        l_page_id := 1;
+      end if;
+
+    end if; -- l_page_id is null
+
+    apex_application.g_instance := 1;
+    apex_application.g_flow_id := p_app_id;
+    apex_application.g_flow_step_id := l_page_id;
+
+    apex_custom_auth.post_login(
+      p_uname => p_user_name,
+      p_session_id => null, -- could use APEX_CUSTOM_AUTH.GET_NEXT_SESSION_ID
+      p_app_page => apex_application.g_flow_id || ':' || l_page_id);
+
+    -- Rejoin session
+    if p_session_id is not null then
+      apex_custom_auth.set_session_id(p_session_id => p_session_id);
+    end if;
+
+
+  end create_session;
+
+
+  /**
+   * Reinitializes APEX session
+   *
+   * Notes:
+   *  - v('P1_X') won't work. Use apex_util.get_session_state('P1_X') instead
+   *
+   * Related Tickets:
+   *  - #7
+   *
+   * @author Martin Giffy D'Souza
+   * @created 29-Dec-2015
+   * @param p_session_id
+   * @param p_app_id Use if multiple applications are linked to the same session. If null, last used application will be used.
+   */
+  procedure join_session(
+    p_session_id in apex_workspace_sessions.apex_session_id%type,
+    p_app_id in apex_applications.application_id%type default null)
+  as
+    l_app_id apex_applications.application_id%type := p_app_id;
+    l_user_name apex_workspace_sessions.user_name%type;
+
+  begin
+    oos_util.assert(p_session_id is not null, 'p_session_id is required');
+
+    if l_app_id is null then
+      select max(application_id)
+      into l_app_id
+      from (
+        select application_id, row_number() over (order by view_date desc) rn
+        from apex_workspace_activity_log
+        where 1=1
+          and apex_session_id = p_session_id)
+      where 1=1
+        and rn = 1;
+    end if;
+
+    oos_util.assert(l_app_id is not null, 'Can not find matching app_id for session: ' || p_session_id);
+
+
+    select user_name
+    into l_user_name
+    from apex_workspace_sessions
+    where apex_session_id = p_session_id;
+
+    create_session(
+      p_app_id => l_app_id,
+      p_user_name => l_user_name,
+      p_session_id => p_session_id);
+
+  end join_session;
+
 end oos_util_apex;
 /
