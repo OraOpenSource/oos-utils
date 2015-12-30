@@ -208,5 +208,43 @@ as
     );
   end get_lob_size;
 
+
+  /**
+   * Replaces p_search with p_replace
+   *
+   * Oracle's replace function does handle clobs but runs into 32k issues
+   *
+   * Notes:
+   *  - Source: http://dbaora.com/ora-22828-input-pattern-or-replacement-parameters-exceed-32k-size-limit/
+   *
+   * Related Tickets:
+   *  - #29
+   *
+   * @author Martin Giffy D'Souza
+   * @created 29-Dec-2015
+   * @param p_str
+   * @param p_search
+   * @param p_replace
+   * @return Replaced string
+   */
+  function replace_clob(
+    p_str in clob,
+    p_search in varchar2,
+    p_replace in clob)
+    return clob
+  as
+    l_pos pls_integer;
+  begin
+    l_pos := instr(p_str, p_search);
+
+    if l_pos > 0 then
+      return substr(p_str, 1, l_pos-1)
+          || p_replace
+          || substr(p_str, l_pos+length(p_search));
+    end if;
+
+    return p_str;
+  end replace_clob;
+
 end oos_util_lob;
 /

@@ -45,5 +45,12 @@ as
     p_lob in blob,
     p_units in varchar2 default null)
     return varchar2;
+
+  function replace_clob(
+    p_str in clob,
+    p_search in varchar2,
+    p_replace in clob)
+    return clob;
+    
 end oos_util_lob;
 /
