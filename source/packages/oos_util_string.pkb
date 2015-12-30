@@ -83,28 +83,28 @@ as
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
-   * @param TODO
+   * @param p_str String to truncate
+   * @param p_length Max length of final string
+   * @param p_by_word Y/N. If Y then will truncate to last word possible
+   * @param p_ellipsis ellipsis "..." default
    * @return Trimmed string
    */
-   -- TODO mdsouza: need a better name for this
-   -- TODO mdsouza: ellipsize??
   function truncate_string(
     p_str in varchar2,
     p_length in pls_integer,
-    -- TODO mdsouza: do we have this called "p_options" to pass in various options?
-    -- TODO mdsouza: we may have this more than just "by word"
-    p_by_word in varchar2 default 'N'
-    -- TODO mdsouza: have p_elipsis as a variable?
-  )
+    p_by_word in varchar2 default 'N',
+    p_ellipsis in varchar2 default '...')
     return varchar2
   as
     l_stop_position pls_integer;
     l_str varchar2(32767) := trim(p_str);
-    l_ellipsis varchar2(3) := '...';
     l_by_word boolean := false;
 
-    l_scope varchar2(255) := 'oos_util_string.truncate_string';
-    l_max_length pls_integer := p_length - length(l_ellipsis); -- This is the max that the string can be without an ellipsis appended to it.
+    l_max_length pls_integer := p_length - length(p_ellipsis); -- This is the max that the string can be without an ellipsis appended to it.
+
+    $if dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
   begin
     -- TODO mdsouza: look at the cost of doing these checks
     oos_util.assert(upper(nvl(p_by_word, 'N')) in ('Y', 'N'), 'Invalid p_by_word. Must be Y/N');
@@ -116,12 +116,12 @@ as
 
     if length(l_str) <= p_length then
       l_str := l_str;
-    elsif length(l_ellipsis) > p_length or l_max_length = 0 then
+    elsif length(p_ellipsis) > p_length or l_max_length = 0 then
       -- Can't replace string with ellipsis if it'll return a larger string.
       l_str := substr(l_str, 1, p_length);
     elsif not l_by_word then
       -- Truncate by length
-      l_str := trim(substr(l_str, 1, l_max_length)) || l_ellipsis;
+      l_str := trim(substr(l_str, 1, l_max_length)) || p_ellipsis;
     elsif l_by_word then
       -- If string at [max string(length) - ellipsis] and next characters belong to same word
       -- Then need to go back and find last non-word
@@ -130,7 +130,7 @@ as
             l_str,
             1,
             -- Find the last non-word and go back one character
-            regexp_instr(substr(l_str,1, p_length - length(l_ellipsis)), '\W+\w*$') -1);
+            regexp_instr(substr(l_str,1, p_length - length(p_ellipsis)), '\W+\w*$') -1);
 
         if l_str is null then
           -- This will happen if the length is just slightly greater than the elipsis and first word is long
@@ -155,7 +155,7 @@ as
 
       end if;
 
-      l_str := l_str || l_ellipsis;
+      l_str := l_str || p_ellipsis;
 
       -- end l_by_word
     end if;

@@ -35,7 +35,8 @@ as
   function truncate_string(
     p_str in varchar2,
     p_length in pls_integer,
-    p_by_word in varchar2 default 'N')
+    p_by_word in varchar2 default 'N',
+    p_ellipsis in varchar2 default '...')
     return varchar2;
 
   function sprintf(
