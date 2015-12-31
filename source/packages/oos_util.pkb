@@ -64,6 +64,38 @@ as
   end assert;
 
 
+  /**
+   * Sleep procedure for n seconds
+   *
+   * Notes:
+   *  - It is recommended that you use Oracle's lock procedures: http://psoug.org/reference/sleep.html
+   *  - However in some instances you may not have access to them
+   *  - This implementation may tie up CPU so only use for development purposes
+   *  - If calling in SQLDeveloper may get "IO Error: Socket read timed out". This is a JDBC driver setting, not a bug in this code.
+   *
+   * Related Tickets:
+   *  - #13
+   *
+   * @author Martin Giffy D'Souza
+   * @created 31-Dec-2015
+   * @param p_seconds Number of seconds to sleep for
+   */
+  procedure sleep(
+    p_seconds in simple_integer)
+  as
+    l_now timestamp := systimestamp;
+    l_end_time timestamp;
+
+  begin
+    l_end_time := l_now + numtodsinterval (p_seconds, 'second');
+
+    -- Note: Can't use systimestamp in loop since it doesn't seem to calculate a new timestamp each iteration.
+    while(l_end_time > l_now) loop
+      l_now := systimestamp;
+    end loop;
+  end sleep;
+
+
 
 end oos_util;
 /

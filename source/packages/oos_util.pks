@@ -15,5 +15,8 @@ as
     p_condition in boolean,
     p_msg in varchar2);
 
+  procedure sleep(
+    p_seconds in simple_integer);
+
 end oos_util;
 /
