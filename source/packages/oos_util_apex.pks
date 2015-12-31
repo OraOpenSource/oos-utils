@@ -30,15 +30,15 @@ as
     p_session_id in apex_workspace_sessions.apex_session_id%type)
     return varchar2;
 
-    procedure create_session(
-      p_app_id in apex_applications.application_id%type,
-      p_user_name in apex_workspace_sessions.user_name%type,
-      p_page_id in apex_application_pages.page_id%type default null,
-      p_session_id in apex_workspace_sessions.apex_session_id%type default null);
+  procedure create_session(
+    p_app_id in apex_applications.application_id%type,
+    p_user_name in apex_workspace_sessions.user_name%type,
+    p_page_id in apex_application_pages.page_id%type default null,
+    p_session_id in apex_workspace_sessions.apex_session_id%type default null);
 
-    procedure join_session(
-      p_session_id in apex_workspace_sessions.apex_session_id%type,
-      p_app_id in apex_applications.application_id%type default null);
+  procedure join_session(
+    p_session_id in apex_workspace_sessions.apex_session_id%type,
+    p_app_id in apex_applications.application_id%type default null);
 
 end oos_util_apex;
 /
