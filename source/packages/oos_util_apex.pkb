@@ -355,5 +355,65 @@ as
 
   end join_session;
 
+
+  /**
+   * Trims whitespace APEX page items (before and after).
+   * Useful when submitting a page to trim all items.
+   *
+   * Notes:
+   *  - Suggested to run submit page process application wide
+   *  - Excludes inputs that users shouldn't modify and password fields
+   *    - Ex: select list, hidden values, files
+   *
+   * Related Tickets:
+   *  - #24
+   *
+   * @author Martin Giffy D'Souza
+   * @created 31-Dec-2015
+   * @param p_page_id Items on this page will be trimmed.
+   */
+  procedure trim_page_items(
+    p_page_id in apex_application_pages.page_id%type default apex_application.g_flow_step_id)
+  as
+  begin
+    oos_util.assert(p_page_id is not null, 'p_page_id is required');
+
+    for x in (
+      select item_name, item_value_trim
+      from (
+        select
+          x.item_name,
+          x.item_value,
+          regexp_replace(x.item_value, '(^[[:space:]]*|[[:space:]]*$)') item_value_trim
+        from (
+          select pi.item_name, v(pi.item_name) item_value
+          from apex_application_page_items pi
+          where 1=1
+            and pi.page_id = p_page_id
+            and pi.display_as_code not in (
+              'NATIVE_HIDDEN', 'NATIVE_CHECKBOX',
+              'NATIVE_RADIOGROUP', 'NATIVE_DISPLAY_ONLY',
+              'NATIVE_PASSWORD', 'NATIVE_SELECT_LIST',
+              'NATIVE_SHUTTLE', 'NATIVE_FILE')
+        ) x
+      ) x
+      where 1=1
+        and x.item_value is not null
+        and (1=2
+          or x.item_value != x.item_value_trim
+          or x.item_value_trim is null) -- If item value is just white spaces then item_value_trim will be null
+    ) loop
+
+      apex_util.set_session_state(
+        p_name => x.item_name,
+        p_value => x.item_value_trim
+        -- FUTURE mdsouza: make this an apex 5 compilation Optional
+        -- ,p_commit => false
+      );
+
+    end loop;
+
+  end trim_page_items;
+
 end oos_util_apex;
 /

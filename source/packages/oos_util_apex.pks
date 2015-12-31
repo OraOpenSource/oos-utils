@@ -40,5 +40,8 @@ as
     p_session_id in apex_workspace_sessions.apex_session_id%type,
     p_app_id in apex_applications.application_id%type default null);
 
+  procedure trim_page_items(
+    p_page_id in apex_application_pages.page_id%type default apex_application.g_flow_step_id);
+
 end oos_util_apex;
 /
