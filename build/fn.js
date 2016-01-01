@@ -1,10 +1,11 @@
+var
+  db = require('mime-db'),
+  path = require('path'),
+  fs = require('fs');
+
+
 module.exports = {
   generateDataOosUtilValues: function(){
-    var
-      db = require('mime-db'),
-      path = require('path'),
-      fs = require('fs');
-
     console.log('*** generateDataOosUtilValues ***');
 
     var
@@ -86,12 +87,20 @@ module.exports = {
       sqlStmt += temp;
     }//
 
-
-    sqlStmt = 'begin\n  delete oos_util_values;\n' + sqlStmt + '\nend;\n/\n';
+    sqlStmt = '-- This file is generated, do not modify.\n\n';
+    sqlStmt += 'begin\n  delete oos_util_values;\n' + sqlStmt + '\nend;\n/\n';
     sqlStmt += 'commit;';
 
 
     fs.writeFileSync(path.resolve(__dirname,'../data/oos_util_values.sql'), sqlStmt);
 
-  }//generateDataOosUtilValues
+  },//generateDataOosUtilValues
+
+  appendFile : function (pFile, pContent){
+    fs.appendFileSync(path.resolve(__dirname,pFile), pContent + '\n');
+  },// appendFile
+
+  readFile : function (pFile){
+    return fs.readFileSync(path.resolve(__dirname,pFile),'utf8');
+  }// readFile
 };// module.exports

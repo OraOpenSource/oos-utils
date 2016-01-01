@@ -1,6 +1,15 @@
 # OOS-Utils
 
-[![Analytics](https://ga-beacon.appspot.com/UA-59573016-4/oos-utils/README.md?pixel)](https://github.com/igrigorik/ga-beacon)This will be the future home for utility packages built and managed by OraOpenSource.
+OOS Utils is a set of commonly used PL/SQL utility methods.
 
-We're currently looking for recommendations of scripts you'd like to see. Please add your ideas and/or snippet examples as an [issue](https://github.com/OraOpenSource/oos-utils/issues).
+## Install
 
+Go to the [Install](/install) folder for instructions and installation file(s).
+
+## Development
+
+### Recommendations
+If you have a recommendations, please add your idea and/or snippet examples as an [issue](https://github.com/OraOpenSource/oos-utils/issues).
+
+### Build
+If you are working on OOS Utils and want to test your build go to the [build](/build) folder for instructions. The build processes uses Node.js.

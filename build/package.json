@@ -1,0 +1,14 @@
+{
+  "name": "oos-utils",
+  "author": "Martin Giffy D'Souza",
+  "version": "1.0.0",
+  "description": "OOS Utils",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OraOpenSource/oos-utils.git"
+  },
+  "devDependencies": {
+    "mime-db": "*"
+  }
+}
