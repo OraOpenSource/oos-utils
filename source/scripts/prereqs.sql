@@ -2,7 +2,7 @@
 whenever sqlerror exit
 set serveroutput on
 
--- SESSION PRIVILEGES
+-- SESSION PRIVILEGES (#34)
 declare
     type t_sess_privs is table of pls_integer index by varchar2(50);
     l_sess_privs t_sess_privs;
@@ -44,6 +44,11 @@ begin
 
     if l_priv_error then
       raise_application_error (-20000, 'One or more required privileges are missing.');
+    end if;
+
+    -- Check that user is NOT oos_util (#35)
+    if upper(user) = 'OOS_UTIL' then
+      raise_application_error(-20001, 'Can not install in user OOS_UTIL due to naming conflicts. Chose another user');
     end if;
 end;
 /
