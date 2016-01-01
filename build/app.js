@@ -19,6 +19,15 @@ for (file in config.files){
 
 
 console.log('*** Generating Install File ***');
+
+fn.appendFile(config.files.install,'prompt *** OOS_UTILS ***\n\n\n');
+
+fn.appendFile(config.files.install,'prompt *** Prereqs OOS_UTILS ***\n');
+for (script in config.preInstall){
+  fn.appendFile(files.install, fn.readFile(config.preInstall[script]));
+}//config.objects.preInstall
+
+fn.appendFile(config.files.install,'\n');
 fn.appendFile(config.files.install,'prompt *** Installing OOS_UTILS ***\n\n\n');
 fn.appendFile(config.files.install,'prompt *** TABLES ***\n');
 

@@ -6,8 +6,11 @@ var
 var
   objects = {}
   files = {
-    install : '../install/oos_util_install.sql',
-    uninstall : '../install/oos_util_uninstall.sql'
+    install : '../install/oos_utils_install.sql',
+    uninstall : '../install/oos_utils_uninstall.sql'
+  },
+  preInstall = {
+    prereqs : '../source/scripts/prereqs.sql'
   },
   postInstall = {
     recompile : '../source/scripts/recompile.sql'
@@ -51,4 +54,5 @@ for (var i = 0; i < packages.length; i++){
 
 module.exports.objects = objects;
 module.exports.files = files;
+module.exports.preInstall = preInstall;
 module.exports.postInstall = postInstall;
