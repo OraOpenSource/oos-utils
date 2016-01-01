@@ -1,8 +1,8 @@
-# OOS Util Install scripts
+# OOS Utils Install scripts
 
 Both the install and uninstall scripts are stand alone scripts and do not reference any other files. You can copy them and use them outside of the project folder.
 
-The install script acts both as a install and an upgrade script. 
+The install script acts both as a install and an upgrade script.
 
 ## Install/Upgrade
 
