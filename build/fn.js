@@ -87,9 +87,9 @@ module.exports = {
       sqlStmt += temp;
     }//
 
-    sqlStmt = '-- This file is generated, do not modify.\n\n';
-    sqlStmt += 'begin\n  delete oos_util_values;\n' + sqlStmt + '\nend;\n/\n';
+    sqlStmt = 'begin\n  delete oos_util_values;\n' + sqlStmt + '\nend;\n/\n';
     sqlStmt += 'commit;';
+    sqlStmt = '-- This file is generated, do not modify.\n\n' + sqlStmt;
 
 
     fs.writeFileSync(path.resolve(__dirname,'../data/oos_util_values.sql'), sqlStmt);

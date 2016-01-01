@@ -1,3 +1,5 @@
+-- This file is generated, do not modify.
+
 begin
   delete oos_util_values;
   insert into oos_util_values(cat, name, value) values('mime-type', '123','application/vnd.lotus-1-2-3');
