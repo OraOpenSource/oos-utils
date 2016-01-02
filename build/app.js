@@ -13,9 +13,17 @@ fn.validatePackages(config.objects.packages);
 fn.generateDataOosUtilValues();
 
 
+// Create Synonyms Script
+fn.createSynonymScript(config);
+fn.createGrantScript(config);
+
+
+
 // Clear files
 for (file in config.files){
-  fs.writeFileSync(path.resolve(__dirname,config.files[file]), '');
+  if (file !== 'createSynonyms' && file !== 'createGrants'){
+    fn.writeFile(config.files[file], '');
+  }
 }
 
 

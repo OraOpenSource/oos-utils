@@ -7,7 +7,9 @@ var
   objects = {}
   files = {
     install : '../install/oos_utils_install.sql',
-    uninstall : '../install/oos_utils_uninstall.sql'
+    uninstall : '../install/oos_utils_uninstall.sql',
+    createSynonyms : '../install/create_synonyms.sql',
+    createGrants : '../install/grant_to_oos_utils.sql'
   },
   preInstall = {
     prereqs : '../source/scripts/prereqs.sql'

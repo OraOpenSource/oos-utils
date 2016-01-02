@@ -1,3 +1,10 @@
+// Find index at end of param string (not at start)
+String.prototype.indexOfEnd = function(string) {
+  var io = this.indexOf(string);
+  return io == -1 ? -1 : io + string.length;
+}
+
+
 var
   db = require('mime-db'),
   path = require('path'),
@@ -104,6 +111,9 @@ var functions = {
     return fs.readFileSync(path.resolve(__dirname,pFile),'utf8');
   },// readFile
 
+  writeFile : function (pFile, pContent){
+    fs.writeFileSync(path.resolve(__dirname,pFile), pContent);
+  },// writeFile
 
   /**
    * Checks that package files all contain a "/" at EOF so it will compile properly in SQL*Plus
@@ -121,7 +131,7 @@ var functions = {
 
     for (var packageName in pPackages){
       for (var fileExt in pPackages[packageName]){
-        contents = functions.readFile(pPackages[packageName][fileExt]);
+        contents = this.readFile(pPackages[packageName][fileExt]);
 
         // #37
         if (contents.search(/\/\n*$/) === -1){
@@ -135,7 +145,51 @@ var functions = {
       process.exit(1);
     }
 
-  }//validatePackages
+  },//validatePackages
+
+  /**
+   * Creates Synonym script
+   *
+   */
+  createSynonymScript : function (pConfig){
+    var template = 'create or replace synonym %OBJECT% for &from_user..%OBJECT%;\n';
+
+    var temp = this.readFile(pConfig.files.createSynonyms);
+
+    temp = temp.slice(0,temp.indexOfEnd('-- AUTOREPLACE_START'));
+    temp += '\n\n';
+
+    // Don't do tables since tables aren't officially supported or necessary yet
+    for (var package in pConfig.objects.packages){
+      temp += template.replace(/%OBJECT%/g, package);
+    }//package
+
+    this.writeFile(pConfig.files.createSynonyms, temp);
+
+  },//createSynonymScript
+
+  /**
+   * Creates Grant script
+   *
+   */
+  createGrantScript : function (pConfig){
+    var template = {
+      execute : 'grant execute on %OBJECT% to &to_user;\n'
+    };
+
+    var temp = this.readFile(pConfig.files.createGrants);
+
+    temp = temp.slice(0,temp.indexOfEnd('-- AUTOREPLACE_START'));
+    temp += '\n\n';
+
+    // Don't do tables since tables aren't officially supported or necessary yet
+    for (var package in pConfig.objects.packages){
+      temp += template.execute.replace(/%OBJECT%/g, package);
+    }//package
+
+    this.writeFile(pConfig.files.createGrants, temp);
+
+  }//createGrantScript
 };// functions
 
 
