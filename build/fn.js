@@ -4,7 +4,7 @@ var
   fs = require('fs');
 
 
-module.exports = {
+var functions = {
   generateDataOosUtilValues: function(){
     console.log('*** generateDataOosUtilValues ***');
 
@@ -102,5 +102,41 @@ module.exports = {
 
   readFile : function (pFile){
     return fs.readFileSync(path.resolve(__dirname,pFile),'utf8');
-  }// readFile
-};// module.exports
+  },// readFile
+
+
+  /**
+   * Checks that package files all contain a "/" at EOF so it will compile properly in SQL*Plus
+   *
+   *
+   * Related Tickets:
+   *  - #37
+   *
+   * @param pPackages JSON object of packages (use config.objects.packages)
+   */
+  validatePackages : function(pPackages){
+    var
+      contents,
+      error = false;
+
+    for (var packageName in pPackages){
+      for (var fileExt in pPackages[packageName]){
+        contents = functions.readFile(pPackages[packageName][fileExt]);
+
+        // #37
+        if (contents.search(/\/\n*$/) === -1){
+          console.log('File missing "/" at end: ' + pPackages[packageName][fileExt]);
+          error = true;
+        }
+      }// fileExt
+    }//packageName
+
+    if (error){
+      process.exit(1);
+    }
+
+  }//validatePackages
+};// functions
+
+
+module.exports = functions;

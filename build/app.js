@@ -5,11 +5,12 @@ var
   fn = require('./fn.js')
 ;
 
+// Validations
+fn.validatePackages(config.objects.packages);
+
 
 // Generate Data
 fn.generateDataOosUtilValues();
-
-
 
 
 // Clear files
