@@ -15,7 +15,13 @@ as
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
-   * @param p_filename Filename
+   * @example
+   *  ```plsql
+   *    select todo from dual
+   *    where 1=1
+   *    from dual
+   *  ```
+   * @param {number=} p_filename Filename
    * @param p_mime_type mime-type of file. If null will be resolved via p_filename
    * @param p_content_disposition inline or attachment
    * @param p_blob File to be downloaded
@@ -297,9 +303,13 @@ as
 
     -- Rejoin session
     if p_session_id is not null then
-      apex_custom_auth.set_session_id(p_session_id => p_session_id);
+      -- This will only set the session but doesn't register the items
+      -- apex_custom_auth.set_session_id(p_session_id => p_session_id);
+      -- #42 Seems a second login is required to fully join session
+      apex_custom_auth.post_login(
+        p_uname => p_user_name,
+        p_session_id => p_session_id);
     end if;
-
 
   end create_session;
 
