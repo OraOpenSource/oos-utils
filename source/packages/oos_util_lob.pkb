@@ -130,27 +130,30 @@ as
       end
     );
 
-    return to_char(
-      round(
-        case
-          when l_units = oos_util_lob.gc_unit_b then p_file_size/(gc_size_b/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_kb then p_file_size/(gc_size_kb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_mb then p_file_size/(gc_size_mb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_gb then p_file_size/(gc_size_gb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_tb then p_file_size/(gc_size_tb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_pb then p_file_size/(gc_size_pb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_eb then p_file_size/(gc_size_eb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_zb then p_file_size/(gc_size_zb/gc_size_b)
-          else
-            p_file_size/(gc_size_yb/gc_size_b)
-        end, 1)
-      ,
-      -- Number format
-      '999G999G999G999G999G999G999G999G999' ||
-        case
-          when l_units != oos_util_lob.gc_unit_b then 'D9'
-          else null
-        end)
+    return
+      trim(
+        to_char(
+        round(
+          case
+            when l_units = oos_util_lob.gc_unit_b then p_file_size/(gc_size_b/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_kb then p_file_size/(gc_size_kb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_mb then p_file_size/(gc_size_mb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_gb then p_file_size/(gc_size_gb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_tb then p_file_size/(gc_size_tb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_pb then p_file_size/(gc_size_pb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_eb then p_file_size/(gc_size_eb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_zb then p_file_size/(gc_size_zb/gc_size_b)
+            else
+              p_file_size/(gc_size_yb/gc_size_b)
+          end, 1)
+        ,
+        -- Number format
+        '999G999G999G999G999G999G999G999G999' ||
+          case
+            when l_units != oos_util_lob.gc_unit_b then 'D9'
+            else null
+          end)
+        )
       || ' ' || l_units;
   end get_file_size;
 
