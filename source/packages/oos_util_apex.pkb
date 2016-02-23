@@ -41,7 +41,7 @@ as
     l_mime_type := coalesce(p_mime_type,oos_util_web.get_mime_type(p_filename => p_filename));
 
     -- Set Header
-    owa_util.mime_header(
+    sys.owa_util.mime_header(
       ccontent_type => l_mime_type,
       bclose_header => false );
 
@@ -53,10 +53,10 @@ as
         p_content_disposition,
         p_filename));
 
-    owa_util.http_header_close;
+    sys.owa_util.http_header_close;
 
     -- download the BLOB
-    wpg_docload.download_file(p_blob => l_blob);
+    sys.wpg_docload.download_file(p_blob => l_blob);
 
     apex_application.stop_apex_engine;
   end download_file;
