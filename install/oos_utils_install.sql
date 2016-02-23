@@ -1,5 +1,6 @@
-prompt *** OOS_UTILS ***
+-- DO NOT MODIFY THIS FILE. IT IS AUTO GENERATED
 
+prompt *** OOS_UTILS ***
 
 
 prompt *** Prereqs OOS_UTILS ***
@@ -296,7 +297,13 @@ as
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
-   * @param p_filename Filename
+   * @example
+   *  ```plsql
+   *    select todo from dual
+   *    where 1=1
+   *    from dual
+   *  ```
+   * @param {number=} p_filename Filename
    * @param p_mime_type mime-type of file. If null will be resolved via p_filename
    * @param p_content_disposition inline or attachment
    * @param p_blob File to be downloaded
@@ -578,9 +585,13 @@ as
 
     -- Rejoin session
     if p_session_id is not null then
-      apex_custom_auth.set_session_id(p_session_id => p_session_id);
+      -- This will only set the session but doesn't register the items
+      -- apex_custom_auth.set_session_id(p_session_id => p_session_id);
+      -- #42 Seems a second login is required to fully join session
+      apex_custom_auth.post_login(
+        p_uname => p_user_name,
+        p_session_id => p_session_id);
     end if;
-
 
   end create_session;
 
@@ -966,27 +977,30 @@ as
       end
     );
 
-    return to_char(
-      round(
-        case
-          when l_units = oos_util_lob.gc_unit_b then p_file_size/(gc_size_b/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_kb then p_file_size/(gc_size_kb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_mb then p_file_size/(gc_size_mb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_gb then p_file_size/(gc_size_gb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_tb then p_file_size/(gc_size_tb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_pb then p_file_size/(gc_size_pb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_eb then p_file_size/(gc_size_eb/gc_size_b)
-          when l_units = oos_util_lob.gc_unit_zb then p_file_size/(gc_size_zb/gc_size_b)
-          else
-            p_file_size/(gc_size_yb/gc_size_b)
-        end, 1)
-      ,
-      -- Number format
-      '999G999G999G999G999G999G999G999G999' ||
-        case
-          when l_units != oos_util_lob.gc_unit_b then 'D9'
-          else null
-        end)
+    return
+      trim(
+        to_char(
+        round(
+          case
+            when l_units = oos_util_lob.gc_unit_b then p_file_size/(gc_size_b/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_kb then p_file_size/(gc_size_kb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_mb then p_file_size/(gc_size_mb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_gb then p_file_size/(gc_size_gb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_tb then p_file_size/(gc_size_tb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_pb then p_file_size/(gc_size_pb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_eb then p_file_size/(gc_size_eb/gc_size_b)
+            when l_units = oos_util_lob.gc_unit_zb then p_file_size/(gc_size_zb/gc_size_b)
+            else
+              p_file_size/(gc_size_yb/gc_size_b)
+          end, 1)
+        ,
+        -- Number format
+        '999G999G999G999G999G999G999G999G999' ||
+          case
+            when l_units != oos_util_lob.gc_unit_b then 'D9'
+            else null
+          end)
+        )
       || ' ' || l_units;
   end get_file_size;
 
@@ -1716,6 +1730,7 @@ prompt *** Post Install ***
 -- This is a post installation script
 -- It is used to recompile any invalid oos_util packages
 -- Note: can use dbms_utility.compile_schema but only want to modify oos_util objects
+-- As such try to manually recompile these objects until they are all valid.
 declare
   l_count pls_integer;
   l_loop_counter pls_integer := 1;

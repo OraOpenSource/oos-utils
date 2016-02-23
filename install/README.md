@@ -1,4 +1,4 @@
-# OOS Utils Install scripts
+# OOS Utils Install Scripts
 
 Both the install and uninstall scripts are stand alone scripts and do not reference any other files. You can copy them and use them outside of the project folder.
 

@@ -1,6 +1,7 @@
 -- This is a post installation script
 -- It is used to recompile any invalid oos_util packages
 -- Note: can use dbms_utility.compile_schema but only want to modify oos_util objects
+-- As such try to manually recompile these objects until they are all valid.
 declare
   l_count pls_integer;
   l_loop_counter pls_integer := 1;
