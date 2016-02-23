@@ -45,9 +45,9 @@ as
       ccontent_type => l_mime_type,
       bclose_header => false );
 
-    htp.p('Content-length: ' || dbms_lob.getlength(p_blob));
+    sys.htp.p('Content-length: ' || dbms_lob.getlength(p_blob));
 
-    htp.p(
+    sys.htp.p(
       oos_util_string.sprintf(
         'Content-Disposition: %s; filename="%s"',
         p_content_disposition,
