@@ -10,16 +10,16 @@ as
   gc_unit_eb constant varchar2(2) := 'EB';
   gc_unit_zb constant varchar2(2) := 'ZB';
   gc_unit_yb constant varchar2(2) := 'YB';
-
-  gc_size_b constant simple_integer := 1024;
-  gc_size_kb constant simple_integer := power(1024, 2);
-  gc_size_mb constant simple_integer := power(1024, 3);
-  gc_size_gb constant simple_integer := power(1024, 4);
-  gc_size_tb constant simple_integer := power(1024, 5);
-  gc_size_pb constant simple_integer := power(1024, 6);
-  gc_size_eb constant simple_integer := power(1024, 7);
-  gc_size_zb constant simple_integer := power(1024, 8);
-  gc_size_yb constant simple_integer := power(1024, 9);
+  --
+  gc_size_b constant number := 1024;
+  gc_size_kb constant number := power(1024, 2);
+  gc_size_mb constant number := power(1024, 3);
+  gc_size_gb constant number := power(1024, 4);
+  gc_size_tb constant number := power(1024, 5);
+  gc_size_pb constant number := power(1024, 6);
+  gc_size_eb constant number := power(1024, 7);
+  gc_size_zb constant number := power(1024, 8);
+  gc_size_yb constant number := power(1024, 9);
 
 
   -- METHODS
@@ -51,6 +51,6 @@ as
     p_search in varchar2,
     p_replace in clob)
     return clob;
-    
+
 end oos_util_lob;
 /
