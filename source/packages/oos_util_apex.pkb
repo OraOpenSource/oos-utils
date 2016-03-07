@@ -12,6 +12,7 @@ as
    *
    * Related Tickets:
    *  - #2
+   *  - #47: cache support
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -24,13 +25,16 @@ as
    * @param {number=} p_filename Filename
    * @param p_mime_type mime-type of file. If null will be resolved via p_filename
    * @param p_content_disposition inline or attachment
+   * @param p_cache_control options to pass to the Cache-Control attribute. Examples include max-age=3600, no-cache, etc. See https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en for examples
    * @param p_blob File to be downloaded
    */
   procedure download_file(
     p_filename in varchar2,
     p_mime_type in varchar2 default null,
     p_content_disposition in varchar2 default oos_util_apex.gc_content_disposition_attach,
-    p_blob in blob)
+    p_cache_control in varchar2 default null,
+    p_blob in blob
+    )
   as
 
     l_mime_type varchar2(255);
@@ -52,6 +56,10 @@ as
         'Content-Disposition: %s; filename="%s"',
         p_content_disposition,
         p_filename));
+
+    if p_cache_control is not null then
+      sys.htp.p(oos_util_string.sprintf('Cache-Control: %s', p_cache_control));
+    end if;
 
     sys.owa_util.http_header_close;
 
@@ -76,12 +84,14 @@ as
    * @param p_filename
    * @param p_mime_type
    * @param p_content_disposition
+   * @param p_cache_control See download_file (blob) for documentation
    * @param p_clob
    */
   procedure download_file(
     p_filename in varchar2,
     p_mime_type in varchar2 default null,
     p_content_disposition in varchar2 default oos_util_apex.gc_content_disposition_attach,
+    p_cache_control in varchar2 default null,
     p_clob in clob)
   as
     l_blob blob;
@@ -93,6 +103,7 @@ as
       p_filename => p_filename,
       p_mime_type => p_mime_type,
       p_content_disposition => p_content_disposition,
+      p_cache_control => p_cache_control,
       p_blob => l_blob);
   end download_file;
 
