@@ -382,7 +382,7 @@ as
     l_arr := string_to_table(p_string => p_string, p_delimiter => p_delimiter);
 
     for i in 1 .. l_arr.count loop
-     pipe row (l_arr(i));
+      pipe row (l_arr(i));
     end loop;
   end listunagg;
 
