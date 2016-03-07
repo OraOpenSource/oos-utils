@@ -230,6 +230,7 @@ as
    *
    * Related Tickets:
    *  - #7
+   *  - #49: ensure page and user exist
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -251,6 +252,8 @@ as
     l_page_id apex_application_pages.page_id%type := p_page_id;
     l_home_link apex_applications.home_link%type;
     l_url_arr apex_application_global.vc_arr2;
+
+    l_count pls_integer;
   begin
 
     htp.init;
@@ -291,6 +294,17 @@ as
       end if;
 
     end if; -- l_page_id is null
+
+    -- #49 Ensure that page exists
+    select count(1)
+    into l_count
+    from apex_application_pages aap
+    where 1=1
+      and aap.application_id = p_app_id
+      and aap.page_id = l_page_id
+      and l_page_id is not null;
+
+    oos_util.assert(l_count = 1, 'Page must exist in the application');
 
     apex_application.g_instance := 1;
     apex_application.g_flow_id := p_app_id;
