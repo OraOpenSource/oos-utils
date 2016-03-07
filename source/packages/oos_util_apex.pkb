@@ -346,5 +346,60 @@ as
 
   end trim_page_items;
 
+
+  /**
+   * Returns true/false if page item was rendered
+   *
+   * Notes:
+   *  - This should only run on a page submit process otherwise it won't work. An error is raised otherwise
+   *
+   * Related Tickets:
+   *  - #39
+   *
+   * @author Daniel Hochleitner
+   * @created 06-Mar-2016
+   * @return true/false
+   */
+  function is_page_item_rendered(
+    p_item_name in apex_application_page_items.item_name%type)
+    return boolean
+  as
+    l_item_id apex_application_page_items.item_id%type;
+    l_return boolean := false;
+  begin
+
+    -- Ensure that this is only done on page submit (otherwise it doesn't make sense)
+    oos_util.assert(
+      sys.owa_util.get_cgi_env('PATH_INFO') = '/wwv_flow.accept',
+      lower($$plsql_unit) || '.is_page_item_rendered can only be run on a page submit process');
+
+    select item_id
+    into l_item_id
+    from apex_application_page_items
+    where 1=1
+      and application_id = apex_application.g_flow_id
+      and page_id = apex_application.g_flow_step_id
+      and item_name = upper(p_item_name);
+
+    -- If a page item is rendered the internal id is stored in a hidden field
+    -- called p_arg_names. During submit the values are stored into the
+    -- g_arg_names array by the WWV_Flow.accept procedure.
+    -- By checking for existence of the page item id in the array, we are able
+    -- to determine if APEX has rendered the item as "Saves state".
+    -- Note: A item which is normally enterable but which is rendered
+    --       "Read Only" is also considered rendered, because it still saves state
+
+    if apex_application.g_arg_names.count > 0 then
+      for i in 1 .. apex_application.g_arg_names.count loop
+        if apex_application.g_arg_names(i) = l_item_id then
+          l_return := true;
+          exit;
+        end if;
+      end loop;
+    end if;
+
+    return l_return;
+  end is_page_item_rendered;
+
 end oos_util_apex;
 /

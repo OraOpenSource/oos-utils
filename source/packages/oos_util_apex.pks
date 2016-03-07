@@ -31,5 +31,9 @@ as
   procedure trim_page_items(
     p_page_id in apex_application_pages.page_id%type default apex_application.g_flow_step_id);
 
+  function is_page_item_rendered(
+    p_item_name in apex_application_page_items.item_name%type)
+    return boolean;
+
 end oos_util_apex;
 /
