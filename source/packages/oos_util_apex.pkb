@@ -246,8 +246,8 @@ as
     p_session_id in apex_workspace_sessions.apex_session_id%type default null)
   as
     l_workspace_id apex_applications.workspace_id%TYPE;
-    l_cgivar_name owa.vc_arr;
-    l_cgivar_val owa.vc_arr;
+    l_cgivar_name sys.owa.vc_arr;
+    l_cgivar_val sys.owa.vc_arr;
 
     l_page_id apex_application_pages.page_id%type := p_page_id;
     l_home_link apex_applications.home_link%type;
@@ -256,12 +256,12 @@ as
     l_count pls_integer;
   begin
 
-    htp.init;
+    sys.htp.init;
 
     l_cgivar_name(1) := 'REQUEST_PROTOCOL';
     l_cgivar_val(1) := 'HTTP';
 
-    owa.init_cgi_env(
+    sys.owa.init_cgi_env(
       num_params => 1,
       param_name => l_cgivar_name,
       param_val => l_cgivar_val );
