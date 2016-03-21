@@ -212,16 +212,7 @@ as
    * @author Martin D'Souza
    * @created 15-Jun-2014
    * @param p_str Messsage to format using %s and %d replacement strings
-   * @param p_s1
-   * @param p_s2
-   * @param p_s3
-   * @param p_s4
-   * @param p_s5
-   * @param p_s6
-   * @param p_s7
-   * @param p_s8
-   * @param p_s9
-   * @param p_s10
+   * @param p_s1..10 Replacement strings
    * @return p_msg with strings replaced
    */
   function sprintf(

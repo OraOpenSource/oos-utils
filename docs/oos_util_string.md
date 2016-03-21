@@ -255,16 +255,7 @@ function sprintf(
 Name | Description
 --- | ---
 `p_str` | Messsage to format using %s and %d replacement strings
-`p_s1` | 
-`p_s2` | 
-`p_s3` | 
-`p_s4` | 
-`p_s5` | 
-`p_s6` | 
-`p_s7` | 
-`p_s8` | 
-`p_s9` | 
-`p_s10` | 
+`p_s1..10` | Replacement strings
 *return* | p_msg with strings replaced
  
  
