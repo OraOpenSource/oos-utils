@@ -29,7 +29,6 @@
 </ul>
 
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -38,13 +37,10 @@ function tochar(
   return varchar2
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_value | 
+`p_value` | 
 *return* | varchar2 value for p_value
  
  
@@ -67,7 +63,6 @@ p_value |
 </ul>
 
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -79,16 +74,13 @@ function truncate_string(
   return varchar2
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_str | String to truncate
-p_length | Max length of final string
-p_by_word | Y/N. If Y then will truncate to last word possible
-p_ellipsis | ellipsis &quot;...&quot; default
+`p_str` | String to truncate
+`p_length` | Max length of final string
+`p_by_word` | Y/N. If Y then will truncate to last word possible
+`p_ellipsis` | ellipsis &quot;...&quot; default
 *return* | Trimmed string
  
  
@@ -116,7 +108,6 @@ p_ellipsis | ellipsis &quot;...&quot; default
 </ul>
 
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -135,23 +126,20 @@ function sprintf(
   return varchar2
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_str | Messsage to format using %s and %d replacement strings
-p_s1 | 
-p_s2 | 
-p_s3 | 
-p_s4 | 
-p_s5 | 
-p_s6 | 
-p_s7 | 
-p_s8 | 
-p_s9 | 
-p_s10 | 
+`p_str` | Messsage to format using %s and %d replacement strings
+`p_s1` | 
+`p_s2` | 
+`p_s3` | 
+`p_s4` | 
+`p_s5` | 
+`p_s6` | 
+`p_s7` | 
+`p_s8` | 
+`p_s9` | 
+`p_s10` | 
 *return* | p_msg with strings replaced
  
  
@@ -173,7 +161,6 @@ p_s10 |
 </ul>
 
 </p>
-Author: Martin Giffy D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -183,14 +170,11 @@ function string_to_table(
   return tab_vc2_arr
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_string | String containing delimited text
-p_delimiter | Delimiter
+`p_string` | String containing delimited text
+`p_delimiter` | Delimiter
 *return* | Array of string
  
  
@@ -209,7 +193,6 @@ p_delimiter | Delimiter
 </ul>
 
 </p>
-Author: Martin Giffy D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -219,14 +202,11 @@ function string_to_table(
   return tab_vc2_arr
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_string | String containing delimited text
-p_delimiter | Delimiter
+`p_string` | String containing delimited text
+`p_delimiter` | Delimiter
 *return* | Array of string
  
  
@@ -248,7 +228,6 @@ p_delimiter | Delimiter
 </ul>
 
 </p>
-Author: Martin Giffy D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -258,14 +237,11 @@ function listunagg(
   return tab_vc2 pipelined
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_string | String containing delimited text
-p_delimiter | Delimiter
+`p_string` | String containing delimited text
+`p_delimiter` | Delimiter
 *return* | pipelined table
  
  
@@ -287,7 +263,6 @@ p_delimiter | Delimiter
 </ul>
 
 </p>
-Author: Martin Giffy D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -297,14 +272,11 @@ function listunagg(
   return tab_vc2 pipelined
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_string | String (clob) containing delimited text
-p_delimiter | Delimiter
+`p_string` | String (clob) containing delimited text
+`p_delimiter` | Delimiter
 *return* | pipelined table
  
  

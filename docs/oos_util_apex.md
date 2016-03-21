@@ -84,7 +84,7 @@ function is_session_valid(
 ### Parameters
 Name | Description
 --- | ---
-p_session_id | APEX session ID
+`p_session_id` | APEX session ID
 *return* | true/false
  
  
@@ -111,7 +111,7 @@ function is_session_valid_yn(
 ### Parameters
 Name | Description
 --- | ---
-p_session_id | APEX session ID
+`p_session_id` | APEX session ID
 *return* | Y/N
  
  
@@ -147,10 +147,10 @@ procedure create_session(
 ### Parameters
 Name | Description
 --- | ---
-p_app_id | 
-p_user_name | 
-p_page_id | Page to try and register for post login. Recommended to leave null
-p_session_id | Session to re-join. Recommended leave null
+`p_app_id` | 
+`p_user_name` | 
+`p_page_id` | Page to try and register for post login. Recommended to leave null
+`p_session_id` | Session to re-join. Recommended leave null
  
  
 
@@ -179,8 +179,8 @@ procedure join_session(
 ### Parameters
 Name | Description
 --- | ---
-p_session_id | 
-p_app_id | Use if multiple applications are linked to the same session. If null, last used application will be used.
+`p_session_id` | 
+`p_app_id` | Use if multiple applications are linked to the same session. If null, last used application will be used.
  
  
 
@@ -212,7 +212,7 @@ procedure trim_page_items(
 ### Parameters
 Name | Description
 --- | ---
-p_page_id | Items on this page will be trimmed.
+`p_page_id` | Items on this page will be trimmed.
  
  
 

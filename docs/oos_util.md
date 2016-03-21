@@ -18,7 +18,6 @@
 <p>
 <p>Internal logging procedure.<br />Requires Logger to be installed only while developing.<br />-- TODO mdsouza: conditional compilation notes</p><p>Notes:<br /> -</p><p>Related Tickets:<br /> -</p>
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -27,13 +26,10 @@ procedure log(
   p_scope in varchar2)
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_message | Item to log
+`p_message` | Item to log
 *return* | TODO
  
  
@@ -52,7 +48,6 @@ p_message | Item to log
 </ul>
 
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -61,14 +56,11 @@ procedure assert(
   p_msg in varchar2)
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_condition | Boolean condition to validate
-p_msg | Message to include in application error if p_condition fails
+`p_condition` | Boolean condition to validate
+`p_msg` | Message to include in application error if p_condition fails
  
  
 
@@ -92,7 +84,6 @@ p_msg | Message to include in application error if p_condition fails
 </ul>
 
 </p>
-Author: Martin Giffy D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -100,13 +91,10 @@ procedure sleep(
   p_seconds in simple_integer)
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_seconds | Number of seconds to sleep for
+`p_seconds` | Number of seconds to sleep for
  
  
 

@@ -20,7 +20,6 @@
 </ul>
 
 </p>
-Author: Martin Giffy D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -29,13 +28,10 @@ function date2epoch(
   return number
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_date | Date to convert to Epoch format
+`p_date` | Date to convert to Epoch format
 *return* | Unix Epoch time
  
  
@@ -54,7 +50,6 @@ p_date | Date to convert to Epoch format
 </ul>
 
 </p>
-Author: Martin Giffy D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -63,13 +58,10 @@ function epoch2date(
   return date
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_epoch | Epoch Unix date (number)
+`p_epoch` | Epoch Unix date (number)
 *return* | date
  
  

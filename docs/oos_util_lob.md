@@ -24,7 +24,6 @@
 </ul>
 
 </p>
-Author: Moritz Klein (https://github.com/commi235)
 
 ### Syntax
 ```plsql
@@ -33,13 +32,10 @@ function clob2blob(
   return blob
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_clob | Clob to conver to blob
+`p_clob` | Clob to conver to blob
 *return* | blob
  
  
@@ -61,7 +57,6 @@ p_clob | Clob to conver to blob
 </ul>
 
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -70,13 +65,10 @@ function blob2clob(
   return clob
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_blob | blob to be converted to clob
+`p_blob` | blob to be converted to clob
 *return* | clob
  
  
@@ -95,7 +87,6 @@ p_blob | blob to be converted to clob
 </ul>
 
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -105,14 +96,11 @@ function get_file_size(
   return varchar2
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_file_size | size of file in bytes
-p_units | See gc<em>size</em>... variables for options. If not provided, most significant one automatically chosen.
+`p_file_size` | size of file in bytes
+`p_units` | See gc<em>size</em>... variables for options. If not provided, most significant one automatically chosen.
 *return* | Human readable file size
  
  
@@ -128,7 +116,6 @@ p_units | See gc<em>size</em>... variables for options. If not provided, most si
 <p>
 <p>See get_file_size</p><p>Notes:<br /> -</p><p>Related Tickets:<br /> -</p>
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -138,14 +125,11 @@ function get_lob_size(
   return varchar2
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_lob | 
-p_units | 
+`p_lob` | 
+`p_units` | 
  
  
 
@@ -160,7 +144,6 @@ p_units |
 <p>
 <p>See get_file_size</p><p>Notes:<br /> -</p><p>Related Tickets:<br /> -</p>
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -170,14 +153,11 @@ function get_lob_size(
   return varchar2
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_lob | 
-p_units | 
+`p_lob` | 
+`p_units` | 
  
  
 
@@ -198,7 +178,6 @@ p_units |
 </ul>
 
 </p>
-Author: Martin Giffy D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -209,15 +188,12 @@ function replace_clob(
   return clob
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_str | 
-p_search | 
-p_replace | 
+`p_str` | 
+`p_search` | 
+`p_replace` | 
 *return* | Replaced string
  
  

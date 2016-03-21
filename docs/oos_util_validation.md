@@ -20,7 +20,6 @@
 </ul>
 
 </p>
-Author: Trent Schafer
 
 ### Syntax
 ```plsql
@@ -28,13 +27,10 @@ function is_number(p_str in varchar2)
   return boolean
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_str | String to validate
+`p_str` | String to validate
 *return* | True of p_str is number
  
  
@@ -53,7 +49,6 @@ p_str | String to validate
 </ul>
 
 </p>
-Author: Martin D&#x27;Souza
 
 ### Syntax
 ```plsql
@@ -63,14 +58,11 @@ function is_date(
   return boolean
 ```
 
- 
-
-
 ### Parameters
 Name | Description
 --- | ---
-p_str | 
-p_date_format | 
+`p_str` | 
+`p_date_format` | 
 *return* | True if date is valid
  
  
