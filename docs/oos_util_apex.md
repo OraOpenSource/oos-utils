@@ -16,7 +16,7 @@
 
 
 
-
+ 
 ## <a name="is_developer"></a>IS_DEVELOPER Function
 
 
@@ -34,14 +34,14 @@ function is_developer
 Name | Description
 --- | ---
 *return* | true/false
+ 
+ 
 
 
 
 
 
-
-
-
+ 
 ## <a name="is_developer_yn"></a>IS_DEVELOPER_YN Function
 
 
@@ -59,14 +59,14 @@ function is_developer_yn
 Name | Description
 --- | ---
 *return* | Y or N
+ 
+ 
 
 
 
 
 
-
-
-
+ 
 ## <a name="is_session_valid"></a>IS_SESSION_VALID Function
 
 
@@ -86,14 +86,14 @@ Name | Description
 --- | ---
 `p_session_id` | APEX session ID
 *return* | true/false
+ 
+ 
 
 
 
 
 
-
-
-
+ 
 ## <a name="is_session_valid_yn"></a>IS_SESSION_VALID_YN Function
 
 
@@ -113,14 +113,14 @@ Name | Description
 --- | ---
 `p_session_id` | APEX session ID
 *return* | Y/N
+ 
+ 
 
 
 
 
 
-
-
-
+ 
 ## <a name="create_session"></a>CREATE_SESSION Procedure
 
 
@@ -147,24 +147,24 @@ procedure create_session(
 ### Parameters
 Name | Description
 --- | ---
-`p_app_id` |
-`p_user_name` |
+`p_app_id` | 
+`p_user_name` | 
 `p_page_id` | Page to try and register for post login. Recommended to leave null
 `p_session_id` | Session to re-join. Recommended leave null
+ 
+ 
 
 
 
 
 
-
-
-
+ 
 ## <a name="join_session"></a>JOIN_SESSION Procedure
 
 
 <p>
 <p>Join an existing APEX session</p><p>Notes:</p><ul>
-<li><code>v(&#39;P1_X&#39;)`` won&#39;t work. Use</code>apex_util.get_session_state(&#39;P1_X&#39;)` instead</li>
+<li><code>v(&#39;P1_X&#39;)</code> won&#39;t work. Use <code>apex_util.get_session_state(&#39;P1_X&#39;)</code> instead</li>
 </ul>
 
 </p>
@@ -179,16 +179,16 @@ procedure join_session(
 ### Parameters
 Name | Description
 --- | ---
-`p_session_id` |
+`p_session_id` | 
 `p_app_id` | Use if multiple applications are linked to the same session. If null, last used application will be used.
+ 
+ 
 
 
 
 
 
-
-
-
+ 
 ## <a name="trim_page_items"></a>TRIM_PAGE_ITEMS Procedure
 
 
@@ -213,14 +213,14 @@ procedure trim_page_items(
 Name | Description
 --- | ---
 `p_page_id` | Items on this page will be trimmed.
+ 
+ 
 
 
 
 
 
-
-
-
+ 
 ## <a name="is_page_item_rendered"></a>IS_PAGE_ITEM_RENDERED Function
 
 
@@ -242,3 +242,11 @@ function is_page_item_rendered(
 Name | Description
 --- | ---
 *return* | true/false
+ 
+ 
+
+
+
+
+
+ 
