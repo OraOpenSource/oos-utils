@@ -1,8 +1,6 @@
 create or replace package body oos_util_string
 as
 
-  -- ******** PUBLIC ********
-
   /**
    * Converts parameter to varchar2
    *
@@ -10,8 +8,7 @@ as
    *  - Need to call this tochar instead of to_char since there will be a conflict when calling it
    *  - Code copied from Logger: https://github.com/OraOpenSource/Logger
    *
-   * Related Tickets:
-   *  - #11
+   * @issue 11
    *
    * @author Martin D'Souza
    * @created 07-Jun-2014
@@ -26,6 +23,11 @@ as
     return to_char(p_val);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Date
+   */
   function tochar(
     p_val in date)
     return varchar2
@@ -34,6 +36,11 @@ as
     return to_char(p_val, oos_util.gc_date_format);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Timestamp
+   */
   function tochar(
     p_val in timestamp)
     return varchar2
@@ -42,6 +49,11 @@ as
     return to_char(p_val, oos_util.gc_timestamp_format);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Timestamp with TZ
+   */
   function tochar(
     p_val in timestamp with time zone)
     return varchar2
@@ -50,6 +62,11 @@ as
     return to_char(p_val, oos_util.gc_timestamp_tz_format);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Timestamp with local TZ
+   */
   function tochar(
     p_val in timestamp with local time zone)
     return varchar2
@@ -58,6 +75,11 @@ as
     return to_char(p_val, oos_util.gc_timestamp_tz_format);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Boolean
+   */
   function tochar(
     p_val in boolean)
     return varchar2
@@ -68,18 +90,15 @@ as
 
 
   /**
-   * Truncates a string to ensure that it is not longer than p_length
-   * If string is > than p_length then an ellipsis (...) will be appended to string
+   * Truncates a string to ensure that it is not longer than `p_length`
+   * If string is > than `p_length` then an ellipsis (...) will be appended to string
    *
    * Supports following modes:
-   *  - By length (default): Will perform a hard parse at p_length
+   *  - By length (default): Will perform a hard parse at `p_length`
    *  - By word: Will truncate at logical word break
    *
-   * Notes:
-   *  -
    *
-   * Related Tickets:
-   *  - #5
+   * @issue #5
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
@@ -169,13 +188,11 @@ as
    *
    * Notes:
    *  - Uses the following replacement algorithm (in following order)
-   *    - Replaces %s<n> with p_s<n>
-   *    - Occurrences of %s (no number) are replaced with p_s1..p_s10 in order that they appear in text
-   *    - %% is escaped to %
-   *  - As this function could be useful for non-logging purposes will not apply a NO_OP to it for conditional compilation
+   *    - Replaces `%s<n>` with `p_s<n>`
+   *    - Occurrences of `%s` (no number) are replaced with `p_s1..p_s10` in order that they appear in text
+   *    - `%%` is escaped to `%`
    *
-   * Related Tickets:
-   *  - #8
+   * @issue #8
    *
    * @author Martin D'Souza
    * @created 15-Jun-2014
@@ -244,11 +261,9 @@ as
    * Converts delimited string to array
    *
    * Notes:
-   *  - Similar to apex_util.string_to_table but handles clobs
+   *  - Similar to `apex_util.string_to_table` but handles clobs
    *
-   *
-   * Related Tickets:
-   *  - #32
+   * @issue #32
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -293,12 +308,9 @@ as
   end string_to_table;
 
   /**
-   * See string_to_table (p_string clob) for notes
+   * See `string_to_table (p_string clob)` for notes
    *
-   * Notes:
-   *
-   * Related Tickets:
-   *  - #32
+   * @issue  #32
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -323,14 +335,13 @@ as
    * Converts delimited string to queriable table
    *
    * Notes:
-   *  - Text between delimiters must be <= 4000 characters
+   *  - Text between delimiters must be `<= 4000` characters
    *
-   * Example:
+   * @example
    *  select rownum, column_value
    *  from table(oos_util_string.listunagg('abc,def'));
    *
-   * Related Tickets:
-   *  - #4
+   * @issue #4
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -357,14 +368,13 @@ as
    * Converts delimited string to queriable table
    *
    * Notes:
-   *  - Text between delimiters must be <= 4000 characters
+   *  - Text between delimiters must be `<= 4000` characters
    *
-   * Example:
+   * @example
    *  select rownum, column_value
    *  from table(oos_util_string.listunagg('abc,def'));
    *
-   * Related Tickets:
-   *  - #4
+   * @issue #4
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015

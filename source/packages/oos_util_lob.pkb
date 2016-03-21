@@ -1,16 +1,10 @@
 create or replace package body oos_util_lob
 as
 
-  -- ******** PUBLIC ********
-
   /**
    * Convers clob to blob
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #12
+   * @issue #12
    *
    * @author Moritz Klein (https://github.com/commi235)
    * @created 07-Sep-2015
@@ -46,8 +40,7 @@ as
    * Notes:
    *  - Copied from http://stackoverflow.com/questions/12849025/convert-blob-to-clob
    *
-   * Related Tickets:
-   *  - #1
+   * @issue #1
    *
    * @author Martin D'Souza
    * @created 02-Mar-2014
@@ -91,16 +84,12 @@ as
   /**
    * Returns human readable file size
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #6
+   * @issue #6
    *
    * @author Martin D'Souza
    * @created 07-Sep-2015
    * @param p_file_size size of file in bytes
-   * @param p_units See gc_size_... variables for options. If not provided, most significant one automatically chosen.
+   * @param p_units See `gc_size_...` consants for options. If not provided, most significant one automatically chosen.
    * @return Human readable file size
    */
   function get_file_size(
@@ -160,12 +149,6 @@ as
   /**
    * See get_file_size
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  -
-   *
    * @author Martin D'Souza
    * @created 07-Sep-2015
    * @param p_lob
@@ -186,12 +169,6 @@ as
 
   /**
    * See get_file_size
-   *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  -
    *
    * @author Martin D'Souza
    * @created 07-Sep-2015
@@ -220,8 +197,7 @@ as
    * Notes:
    *  - Source: http://dbaora.com/ora-22828-input-pattern-or-replacement-parameters-exceed-32k-size-limit/
    *
-   * Related Tickets:
-   *  - #29
+   * @issue #29
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015

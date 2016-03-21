@@ -5,11 +5,7 @@ as
   /**
    * Coverts date to Unix Epoch time
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #18
+   * @issue #18
    *
    * @author Martin Giffy D'Souza
    * @created 30-Dec-2015
@@ -35,11 +31,7 @@ as
   /**
    * Converts Unix linux time to Oracle date
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #18
+   * @issue 18
    *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015

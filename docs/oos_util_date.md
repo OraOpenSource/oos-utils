@@ -15,10 +15,7 @@
 
 
 <p>
-<p>Coverts date to Unix Epoch time</p><p>Notes:<br /> -</p><p>Related Tickets:</p><ul>
-<li>#18</li>
-</ul>
-
+<p>Coverts date to Unix Epoch time</p>
 </p>
 
 ### Syntax
@@ -45,10 +42,7 @@ Name | Description
 
 
 <p>
-<p>Converts Unix linux time to Oracle date</p><p>Notes:<br /> -</p><p>Related Tickets:</p><ul>
-<li>#18</li>
-</ul>
-
+<p>Converts Unix linux time to Oracle date</p>
 </p>
 
 ### Syntax

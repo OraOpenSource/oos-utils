@@ -1,18 +1,13 @@
 create or replace package body oos_util_apex
 as
 
-  -- CONSTANTS
-
-
   /**
    * Returns true/false if APEX developer is enable
-   * Supports both APEX 4 and 5 formats
+   * Supports both APEX 4 and 5
    *
-   * Notes:
-   *  -
+   * Can be used in APEX to declaratively determine if in development mode
    *
-   * Related Tickets:
-   *  - #25
+   * @issue 25
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -29,14 +24,12 @@ as
     end if;
   end is_developer;
 
+
   /**
    * Returns Y/N if APEX developer is enable
+   * See `is_developer` for details
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #25
+   * @issue #25
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -58,13 +51,9 @@ as
 
 
   /**
-   * Checks if session is still active
+   * Checks if APEX session is still active/valid
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #9
+   * @issue #9
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -98,11 +87,7 @@ as
   /**
    * Checks if session is still active
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #9
+   * @issue 9
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -130,14 +115,17 @@ as
    * Creates a new APEX session.
    * Useful when testing APEX functionality in PL/SQL or using apex_mail etc
    *
+   * Can only create one per Oracle session. To connect to a different APEX session, reconnect the Oracle session
+   *
+   *
    * Notes:
    *  - Content taken from:
    *    - http://www.talkapex.com/2012/08/how-to-create-apex-session-in-plsql.html
    *    - http://apextips.blogspot.com.au/2014/10/debugging-parameterised-views-outside.html
    *
-   * Related Tickets:
-   *  - #7
-   *  - #49: ensure page and user exist
+   *
+   * @issue #7
+   * @issue #49 ensure page and user exist
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -236,17 +224,16 @@ as
 
 
   /**
-   * Reinitializes APEX session
+   * Join an existing APEX session
    *
    * Notes:
-   *  - v('P1_X') won't work. Use apex_util.get_session_state('P1_X') instead
+   *  - `v('P1_X')` won't work. Use `apex_util.get_session_state('P1_X')` instead
    *
-   * Related Tickets:
-   *  - #7
+   * @issue #7
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
-   * @param p_session_id
+   * @param p_session_id The session you want to join. Must be an existing active session.
    * @param p_app_id Use if multiple applications are linked to the same session. If null, last used application will be used.
    */
   procedure join_session(
@@ -296,8 +283,7 @@ as
    *  - Excludes inputs that users shouldn't modify and password fields
    *    - Ex: select list, hidden values, files
    *
-   * Related Tickets:
-   *  - #24
+   * @issue 24
    *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015
@@ -353,8 +339,7 @@ as
    * Notes:
    *  - This should only run on a page submit process otherwise it won't work. An error is raised otherwise
    *
-   * Related Tickets:
-   *  - #39
+   * @issue #39
    *
    * @author Daniel Hochleitner
    * @created 06-Mar-2016

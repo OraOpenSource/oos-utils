@@ -1,6 +1,17 @@
 create or replace package oos_util_lob
 as
   -- CONSTANTS
+  /**
+   * gc_unit_b B
+   * gc_unit_kb KB
+   * gc_unit_mb MB
+   * gc_unit_gb GB
+   * gc_unit_tb TB
+   * gc_unit_pb PB
+   * gc_unit_eb EB
+   * gc_unit_zb ZB
+   * gc_unit_yb YB
+   */
   gc_unit_b constant varchar2(1) := 'B';
   gc_unit_kb constant varchar2(2) := 'KB';
   gc_unit_mb constant varchar2(2) := 'MB';

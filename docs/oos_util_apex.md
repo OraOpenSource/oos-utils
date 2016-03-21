@@ -21,7 +21,7 @@
 
 
 <p>
-<p>Returns true/false if APEX developer is enable<br />Supports both APEX 4 and 5</p><p>Can be used in APEX to declaritvely determine if in development mode</p>
+<p>Returns true/false if APEX developer is enable<br />Supports both APEX 4 and 5</p><p>Can be used in APEX to declaratively determine if in development mode</p>
 </p>
 
 ### Syntax
@@ -179,7 +179,7 @@ procedure join_session(
 ### Parameters
 Name | Description
 --- | ---
-`p_session_id` | 
+`p_session_id` | The session you want to join. Must be an existing active session.
 `p_app_id` | Use if multiple applications are linked to the same session. If null, last used application will be used.
  
  

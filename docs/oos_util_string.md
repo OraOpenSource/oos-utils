@@ -1,6 +1,11 @@
 # OOS_UTIL_STRING
 
 - [TOCHAR Function](#tochar)
+- [TOCHAR Function](#tochar)
+- [TOCHAR Function](#tochar)
+- [TOCHAR Function](#tochar)
+- [TOCHAR Function](#tochar)
+- [TOCHAR Function](#tochar)
 - [TRUNCATE_STRING Function](#truncate_string)
 - [SPRINTF Function](#sprintf)
 - [STRING_TO_TABLE Function](#string_to_table)
@@ -23,9 +28,6 @@
 <p>Converts parameter to varchar2</p><p>Notes:</p><ul>
 <li>Need to call this tochar instead of to_char since there will be a conflict when calling it</li>
 <li>Code copied from Logger: <a href="https://github.com/OraOpenSource/Logger">https://github.com/OraOpenSource/Logger</a></li>
-</ul>
-<p>Related Tickets:</p><ul>
-<li>#11</li>
 </ul>
 
 </p>
@@ -50,16 +52,143 @@ Name | Description
 
 
  
+## <a name="tochar"></a>TOCHAR Function
+
+
+<p>
+<p>See first <code>tochar</code></p>
+</p>
+
+### Syntax
+```plsql
+function tochar(
+  p_val in date)
+  return varchar2
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_val` | Date
+ 
+ 
+
+
+
+
+
+ 
+## <a name="tochar"></a>TOCHAR Function
+
+
+<p>
+<p>See first <code>tochar</code></p>
+</p>
+
+### Syntax
+```plsql
+function tochar(
+  p_val in timestamp)
+  return varchar2
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_val` | Timestamp
+ 
+ 
+
+
+
+
+
+ 
+## <a name="tochar"></a>TOCHAR Function
+
+
+<p>
+<p>See first <code>tochar</code></p>
+</p>
+
+### Syntax
+```plsql
+function tochar(
+  p_val in timestamp with time zone)
+  return varchar2
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_val` | Timestamp with TZ
+ 
+ 
+
+
+
+
+
+ 
+## <a name="tochar"></a>TOCHAR Function
+
+
+<p>
+<p>See first <code>tochar</code></p>
+</p>
+
+### Syntax
+```plsql
+function tochar(
+  p_val in timestamp with local time zone)
+  return varchar2
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_val` | Timestamp with local TZ
+ 
+ 
+
+
+
+
+
+ 
+## <a name="tochar"></a>TOCHAR Function
+
+
+<p>
+<p>See first <code>tochar</code></p>
+</p>
+
+### Syntax
+```plsql
+function tochar(
+  p_val in boolean)
+  return varchar2
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_val` | Boolean
+ 
+ 
+
+
+
+
+
+ 
 ## <a name="truncate_string"></a>TRUNCATE_STRING Function
 
 
 <p>
-<p>Truncates a string to ensure that it is not longer than p_length<br />If string is &gt; than p_length then an ellipsis (...) will be appended to string</p><p>Supports following modes:</p><ul>
-<li>By length (default): Will perform a hard parse at p_length</li>
+<p>Truncates a string to ensure that it is not longer than <code>p_length</code><br />If string is &gt; than <code>p_length</code> then an ellipsis (...) will be appended to string</p><p>Supports following modes:</p><ul>
+<li>By length (default): Will perform a hard parse at <code>p_length</code></li>
 <li>By word: Will truncate at logical word break</li>
-</ul>
-<p>Notes:<br /> -</p><p>Related Tickets:</p><ul>
-<li>#5</li>
 </ul>
 
 </p>
@@ -96,15 +225,11 @@ Name | Description
 <p>
 <p>Does string replacement similar to C&#39;s sprintf</p><p>Notes:</p><ul>
 <li>Uses the following replacement algorithm (in following order)<ul>
-<li>Replaces %s<n> with p_s<n></li>
-<li>Occurrences of %s (no number) are replaced with p_s1..p_s10 in order that they appear in text</li>
-<li>%% is escaped to %</li>
+<li>Replaces <code>%s&lt;n&gt;</code> with <code>p_s&lt;n&gt;</code></li>
+<li>Occurrences of <code>%s</code> (no number) are replaced with <code>p_s1..p_s10</code> in order that they appear in text</li>
+<li><code>%%</code> is escaped to <code>%</code></li>
 </ul>
 </li>
-<li>As this function could be useful for non-logging purposes will not apply a NO_OP to it for conditional compilation</li>
-</ul>
-<p>Related Tickets:</p><ul>
-<li>#8</li>
 </ul>
 
 </p>
@@ -154,10 +279,7 @@ Name | Description
 
 <p>
 <p>Converts delimited string to array</p><p>Notes:</p><ul>
-<li>Similar to apex_util.string_to_table but handles clobs</li>
-</ul>
-<p>Related Tickets:</p><ul>
-<li>#32</li>
+<li>Similar to <code>apex_util.string_to_table</code> but handles clobs</li>
 </ul>
 
 </p>
@@ -188,10 +310,7 @@ Name | Description
 
 
 <p>
-<p>See string_to_table (p_string clob) for notes</p><p>Notes:</p><p>Related Tickets:</p><ul>
-<li>#32</li>
-</ul>
-
+<p>See <code>string_to_table (p_string clob)</code> for notes</p>
 </p>
 
 ### Syntax
@@ -221,10 +340,7 @@ Name | Description
 
 <p>
 <p>Converts delimited string to queriable table</p><p>Notes:</p><ul>
-<li>Text between delimiters must be &lt;= 4000 characters</li>
-</ul>
-<p>Example:<br /> select rownum, column_value<br /> from table(oos_util_string.listunagg(&#39;abc,def&#39;));</p><p>Related Tickets:</p><ul>
-<li>#4</li>
+<li>Text between delimiters must be <code>&lt;= 4000</code> characters</li>
 </ul>
 
 </p>
@@ -247,6 +363,11 @@ Name | Description
  
 
 
+### Example
+```plsql
+ select rownum, column_value
+ from table(oos_util_string.listunagg('abc,def'));
+```
 
 
 
@@ -256,10 +377,7 @@ Name | Description
 
 <p>
 <p>Converts delimited string to queriable table</p><p>Notes:</p><ul>
-<li>Text between delimiters must be &lt;= 4000 characters</li>
-</ul>
-<p>Example:<br /> select rownum, column_value<br /> from table(oos_util_string.listunagg(&#39;abc,def&#39;));</p><p>Related Tickets:</p><ul>
-<li>#4</li>
+<li>Text between delimiters must be <code>&lt;= 4000</code> characters</li>
 </ul>
 
 </p>
@@ -282,6 +400,11 @@ Name | Description
  
 
 
+### Example
+```plsql
+ select rownum, column_value
+ from table(oos_util_string.listunagg('abc,def'));
+```
 
 
 
