@@ -1,8 +1,5 @@
 create or replace package oos_util_apex
 as
-  -- CONSTANTS
-  gc_content_disposition_inline constant varchar2(20) := 'inline';
-  gc_content_disposition_attach constant varchar2(20) := 'attachment';
 
   function is_developer
     return boolean;
