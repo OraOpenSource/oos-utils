@@ -270,6 +270,22 @@ Name | Description
  
 
 
+### Example
+```plsql
+select oos_util_string.sprintf('hello %s', 'martin') demo
+from dual;
+
+DEMO
+------------------------------
+hello martin
+
+select oos_util_string.sprintf('%s2, %s1', 'Firstname', 'Lastname') demo
+from dual;
+
+DEMO
+------------------------------
+Lastname, Firstname
+```
 
 
 
@@ -367,6 +383,11 @@ Name | Description
 ```plsql
  select rownum, column_value
  from table(oos_util_string.listunagg('abc,def'));
+
+     ROWNUM COLUMN_VAL
+---------- ----------
+         1 abc
+         2 def
 ```
 
 
@@ -376,10 +397,7 @@ Name | Description
 
 
 <p>
-<p>Converts delimited string to queriable table</p><p>Notes:</p><ul>
-<li>Text between delimiters must be <code>&lt;= 4000</code> characters</li>
-</ul>
-
+<p>Converts delimited string to queriable table</p><p>See above for example</p>
 </p>
 
 ### Syntax
@@ -400,11 +418,6 @@ Name | Description
  
 
 
-### Example
-```plsql
- select rownum, column_value
- from table(oos_util_string.listunagg('abc,def'));
-```
 
 
 

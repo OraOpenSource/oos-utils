@@ -192,6 +192,21 @@ as
    *    - Occurrences of `%s` (no number) are replaced with `p_s1..p_s10` in order that they appear in text
    *    - `%%` is escaped to `%`
    *
+   * @example
+   * select oos_util_string.sprintf('hello %s', 'martin') demo
+   * from dual;
+   *
+   * DEMO
+   * ------------------------------
+   * hello martin
+   *
+   * select oos_util_string.sprintf('%s2, %s1', 'Firstname', 'Lastname') demo
+   * from dual;
+   *
+   * DEMO
+   * ------------------------------
+   * Lastname, Firstname
+   *
    * @issue #8
    *
    * @author Martin D'Souza
@@ -341,6 +356,11 @@ as
    *  select rownum, column_value
    *  from table(oos_util_string.listunagg('abc,def'));
    *
+   *      ROWNUM COLUMN_VAL
+   * ---------- ----------
+   *          1 abc
+   *          2 def
+   *
    * @issue #4
    *
    * @author Martin Giffy D'Souza
@@ -367,12 +387,8 @@ as
   /**
    * Converts delimited string to queriable table
    *
-   * Notes:
-   *  - Text between delimiters must be `<= 4000` characters
+   * See above for example
    *
-   * @example
-   *  select rownum, column_value
-   *  from table(oos_util_string.listunagg('abc,def'));
    *
    * @issue #4
    *
