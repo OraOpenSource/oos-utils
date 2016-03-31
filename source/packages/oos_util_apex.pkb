@@ -71,8 +71,7 @@ as
     select count(1)
     into l_count
     from apex_workspace_sessions aws
-    where 1=1
-      and aws.apex_session_id = p_session_id
+    where aws.apex_session_id = p_session_id
       and sysdate <= aws.session_idle_timeout_on
       and sysdate <= aws.session_life_timeout_on;
 
@@ -173,8 +172,7 @@ as
       select aa.home_link
       into l_home_link
       from apex_applications aa
-      where 1=1
-        and aa.application_id = p_app_id;
+      where aa.application_id = p_app_id;
 
       if l_home_link is not null then
         l_url_arr := apex_util.string_to_table(l_home_link, ':');
@@ -194,8 +192,7 @@ as
     select count(1)
     into l_count
     from apex_application_pages aap
-    where 1=1
-      and aap.application_id = p_app_id
+    where aap.application_id = p_app_id
       and aap.page_id = l_page_id
       and l_page_id is not null;
 
@@ -252,10 +249,8 @@ as
       from (
         select application_id, row_number() over (order by view_date desc) rn
         from apex_workspace_activity_log
-        where 1=1
-          and apex_session_id = p_session_id)
-      where 1=1
-        and rn = 1;
+        where apex_session_id = p_session_id)
+      where rn = 1;
     end if;
 
     oos_util.assert(l_app_id is not null, 'Can not find matching app_id for session: ' || p_session_id);
@@ -305,8 +300,7 @@ as
         from (
           select pi.item_name, v(pi.item_name) item_value
           from apex_application_page_items pi
-          where 1=1
-            and pi.page_id = p_page_id
+          where pi.page_id = p_page_id
             and pi.display_as_code not in (
               'NATIVE_HIDDEN', 'NATIVE_CHECKBOX',
               'NATIVE_RADIOGROUP', 'NATIVE_DISPLAY_ONLY',
@@ -314,10 +308,8 @@ as
               'NATIVE_SHUTTLE', 'NATIVE_FILE')
         ) x
       ) x
-      where 1=1
-        and x.item_value is not null
-        and (1=2
-          or x.item_value != x.item_value_trim
+      where x.item_value is not null
+        and (x.item_value != x.item_value_trim
           or x.item_value_trim is null) -- If item value is just white spaces then item_value_trim will be null
     ) loop
 
@@ -361,8 +353,7 @@ as
     select item_id
     into l_item_id
     from apex_application_page_items
-    where 1=1
-      and application_id = apex_application.g_flow_id
+    where application_id = apex_application.g_flow_id
       and page_id = apex_application.g_flow_step_id
       and item_name = upper(p_item_name);
 

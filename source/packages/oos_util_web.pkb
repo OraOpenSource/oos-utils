@@ -31,8 +31,7 @@ as
       select value
       into l_return
       from oos_util_values ouv
-      where 1=1
-        and ouv.cat = oos_util.gc_vals_cat_mime_type
+      where ouv.cat = oos_util.gc_vals_cat_mime_type
         and ouv.name = l_file_ext;
 
     exception
