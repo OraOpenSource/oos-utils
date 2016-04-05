@@ -6,11 +6,7 @@ as
   /**
    * Returns the mime-type for a filename
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #27
+   * @issue #27
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -60,12 +56,8 @@ as
   /**
    * Download file
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #2
-   *  - #47: cache support
+   * @issue #2
+   * @issue #47: cache support
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -129,8 +121,7 @@ as
    * Notes:
    *  - See download_file (blob) for full documentation
    *
-   * Related Tickets:
-   *  - #2
+   * @issue #2
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015

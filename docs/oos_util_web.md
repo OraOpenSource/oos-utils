@@ -22,10 +22,7 @@ gc_content_disposition_attach | `gc_content_disposition_attach constant varchar2
 
 
 <p>
-<p>Returns the mime-type for a filename</p><p>Notes:<br /> -</p><p>Related Tickets:</p><ul>
-<li>#27</li>
-</ul>
-
+<p>Returns the mime-type for a filename</p>
 </p>
 
 ### Syntax
@@ -52,11 +49,7 @@ Name | Description
 
 
 <p>
-<p>Download file</p><p>Notes:<br /> -</p><p>Related Tickets:</p><ul>
-<li>#2</li>
-<li>#47: cache support</li>
-</ul>
-
+<p>Download file</p>
 </p>
 
 ### Syntax
@@ -100,9 +93,6 @@ Name | Description
 <p>
 <p>Download clob file</p><p>Notes:</p><ul>
 <li>See download_file (blob) for full documentation</li>
-</ul>
-<p>Related Tickets:</p><ul>
-<li>#2</li>
 </ul>
 
 </p>

@@ -5,7 +5,7 @@ as
    * Converts parameter to varchar2
    *
    * Notes:
-   *  - Need to call this tochar instead of to_char since there will be a conflict when calling it
+   *  - Needed to call this function `tochar` instead of `to_char` since there will be a conflict when calling it
    *  - Code copied from Logger: https://github.com/OraOpenSource/Logger
    *
    * @issue 11
@@ -13,7 +13,7 @@ as
    * @author Martin D'Souza
    * @created 07-Jun-2014
    * @param p_value
-   * @return varchar2 value for p_value
+   * @return string value for p_value
    */
   function tochar(
     p_val in number)
@@ -27,6 +27,7 @@ as
    * See first `tochar`
    *
    * @param p_val Date
+   * @return string value for p_value
    */
   function tochar(
     p_val in date)
@@ -40,6 +41,7 @@ as
    * See first `tochar`
    *
    * @param p_val Timestamp
+   * @return string value for p_value
    */
   function tochar(
     p_val in timestamp)
@@ -53,6 +55,7 @@ as
    * See first `tochar`
    *
    * @param p_val Timestamp with TZ
+   * @return string value for p_value
    */
   function tochar(
     p_val in timestamp with time zone)
@@ -66,6 +69,7 @@ as
    * See first `tochar`
    *
    * @param p_val Timestamp with local TZ
+   * @return string value for p_value
    */
   function tochar(
     p_val in timestamp with local time zone)
@@ -79,6 +83,7 @@ as
    * See first `tochar`
    *
    * @param p_val Boolean
+   * @return string value for p_value
    */
   function tochar(
     p_val in boolean)

@@ -1,11 +1,19 @@
 # OOS_UTIL
 
+- [Constants](#constants)
 - [LOG Procedure](#log)
 - [ASSERT Procedure](#assert)
 - [SLEEP Procedure](#sleep)
 
 
+## <a name="constants"></a>Constants
 
+Name | Code | Description
+--- | --- | ---
+gc_date_format | `gc_date_format constant varchar2(255) := 'DD-MON-YYYY HH24:MI:SS';` | default date format
+gc_timestamp_format | `gc_timestamp_format constant varchar2(255) := gc_date_format || ':FF';` | default timestamp format
+gc_timestamp_tz_format | `gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';` | default timestamp (with TZ) format
+gc_version | `gc_version constant varchar2(10) := '1.0.0';` | 
 
 
 
@@ -16,7 +24,7 @@
 
 
 <p>
-<p>Internal logging procedure.<br />Requires Logger to be installed only while developing.<br />-- TODO mdsouza: conditional compilation notes</p><p>Notes:<br /> -</p><p>Related Tickets:<br /> -</p>
+<p>Internal logging procedure.<br />Requires Logger to be installed only while developing.<br />-- TODO mdsouza: conditional compilation notes</p>
 </p>
 
 ### Syntax
@@ -30,7 +38,7 @@ procedure log(
 Name | Description
 --- | ---
 `p_message` | Item to log
-*return* | TODO
+`p_scope` | Logger scope
  
  
 
@@ -43,10 +51,7 @@ Name | Description
 
 
 <p>
-<p>Validates assertion.<br />Will raise an application error if assertion is false</p><p>Notes:</p><p>Related Tickets:</p><ul>
-<li>#19</li>
-</ul>
-
+<p>Validates assertion.<br />Will raise an application error if assertion is false</p>
 </p>
 
 ### Syntax
@@ -78,9 +83,6 @@ Name | Description
 <li>However in some instances you may not have access to them</li>
 <li>This implementation may tie up CPU so only use for development purposes</li>
 <li>If calling in SQLDeveloper may get &quot;IO Error: Socket read timed out&quot;. This is a JDBC driver setting, not a bug in this code.</li>
-</ul>
-<p>Related Tickets:</p><ul>
-<li>#13</li>
 </ul>
 
 </p>

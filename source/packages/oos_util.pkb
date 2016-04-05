@@ -12,16 +12,11 @@ as
    * Requires Logger to be installed only while developing.
    * -- TODO mdsouza: conditional compilation notes
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  -
    *
    * @author Martin D'Souza
    * @created 17-Aug-2015
    * @param p_message Item to log
-   * @return TODO
+   * @param p_scope Logger scope
    */
   procedure log(
     p_text in varchar2,
@@ -42,11 +37,7 @@ as
    * Validates assertion.
    * Will raise an application error if assertion is false
    *
-   * Notes:
-   *
-   *
-   * Related Tickets:
-   *  - #19
+   * @issue #19
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
@@ -73,8 +64,7 @@ as
    *  - This implementation may tie up CPU so only use for development purposes
    *  - If calling in SQLDeveloper may get "IO Error: Socket read timed out". This is a JDBC driver setting, not a bug in this code.
    *
-   * Related Tickets:
-   *  - #13
+   * @issue #13
    *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015

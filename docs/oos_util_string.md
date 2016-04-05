@@ -32,7 +32,7 @@ tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_int
 
 <p>
 <p>Converts parameter to varchar2</p><p>Notes:</p><ul>
-<li>Need to call this tochar instead of to_char since there will be a conflict when calling it</li>
+<li>Needed to call this function <code>tochar</code> instead of <code>to_char</code> since there will be a conflict when calling it</li>
 <li>Code copied from Logger: <a href="https://github.com/OraOpenSource/Logger">https://github.com/OraOpenSource/Logger</a></li>
 </ul>
 
@@ -49,7 +49,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_value` | 
-*return* | varchar2 value for p_value
+*return* | string value for p_value
  
  
 
@@ -76,6 +76,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Date
+*return* | string value for p_value
  
  
 
@@ -102,6 +103,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Timestamp
+*return* | string value for p_value
  
  
 
@@ -128,6 +130,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Timestamp with TZ
+*return* | string value for p_value
  
  
 
@@ -154,6 +157,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Timestamp with local TZ
+*return* | string value for p_value
  
  
 
@@ -180,6 +184,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Boolean
+*return* | string value for p_value
  
  
 
@@ -204,8 +209,8 @@ Name | Description
 function truncate_string(
   p_str in varchar2,
   p_length in pls_integer,
-  p_by_word in varchar2 default &#x27;N&#x27;,
-  p_ellipsis in varchar2 default &#x27;...&#x27;)
+  p_by_word in varchar2 default 'N',
+  p_ellipsis in varchar2 default '...')
   return varchar2
 ```
 
