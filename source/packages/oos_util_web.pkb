@@ -111,7 +111,15 @@ as
     -- download the BLOB
     sys.wpg_docload.download_file(p_blob => l_blob);
 
-    apex_application.stop_apex_engine;
+    -- Only call stop if in an APEX application
+    if apex_application.g_flow_id is not null then
+      apex_application.stop_apex_engine;
+    end if;
+    
+  exception
+    -- Not necessarily required but leaving in as a demo of how to handle stop_apex_engine
+    when apex_application.e_stop_apex_engine then
+       raise;
   end download_file;
 
 
