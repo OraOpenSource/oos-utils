@@ -60,7 +60,11 @@ for (script in config.postInstall){
 }//config.objects.postInstall
 
 
-
+fn.appendFile(config.files.install,'\n\nprompt *** Data ***\n');
+for (myData in config.objects.data){
+  fn.appendFile(config.files.install,'prompt ' + myData);
+  fn.appendFile(files.install, fn.readFile(config.objects.data[myData].src));
+}
 
 
 console.log('*** Generating Uninstall File ***');

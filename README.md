@@ -2,7 +2,7 @@
 
 OOS Utils is a set of commonly used PL/SQL utility methods.
 
-NOTE: OOS Utils is currently in Alpha release. Do not install in production.*
+NOTE: OOS Utils is currently in Beta. **Do not install in production.**s
 
 ## Documentation
 
