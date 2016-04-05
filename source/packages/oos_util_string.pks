@@ -2,10 +2,17 @@ create or replace package oos_util_string
 as
 
   -- TYPES
+  /**
+   * @type tab_vc2
+   * @type tab_vc2_arr
+   */
   type tab_vc2 is table of varchar2(32767);
   type tab_vc2_arr is table of varchar2(32767) index by pls_integer;
 
   -- CONSTANTS
+  /**
+   * @constant gc_default_delimiter Default delimiter for delimited strings
+   */
   gc_default_delimiter varchar2(1) := ',';
 
   function tochar(

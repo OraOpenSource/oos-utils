@@ -15,10 +15,7 @@
 
 
 <p>
-<p>Checks if string is numeric</p><p>Notes:<br /> -</p><p>Related Tickets:</p><ul>
-<li>#15</li>
-</ul>
-
+<p>Checks if string is numeric</p>
 </p>
 
 ### Syntax
@@ -44,10 +41,7 @@ Name | Description
 
 
 <p>
-<p>Checks if string is a valid date</p><p>Notes:<br /> -</p><p>Related Tickets:</p><ul>
-<li>#20</li>
-</ul>
-
+<p>Checks if string is a valid date</p>
 </p>
 
 ### Syntax

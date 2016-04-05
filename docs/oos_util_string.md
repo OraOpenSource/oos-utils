@@ -1,5 +1,6 @@
 # OOS_UTIL_STRING
 
+- [Data Types](#dataTypes)
 - [TOCHAR Function](#tochar)
 - [TOCHAR Function](#tochar)
 - [TOCHAR Function](#tochar)
@@ -17,7 +18,12 @@
 
 
 
+## <a name="types"></a>Types
 
+Name | Code | Description
+--- | --- | ---
+tab_vc2 | <pre>type tab_vc2 is table of varchar2(32767);</pre> | 
+tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_integer;</pre> | 
 
 
  
@@ -186,7 +192,7 @@ Name | Description
 
 
 <p>
-<p>Truncates a string to ensure that it is not longer than <code>p_length</code><br />If string is &gt; than <code>p_length</code> then an ellipsis (...) will be appended to string</p><p>Supports following modes:</p><ul>
+<p>Truncates a string to ensure that it is not longer than <code>p_length</code><br />If length of <code>p_str</code> is greater than <code>p_length</code> then an ellipsis (<code>...</code>) will be appended to string</p><p>Supports following modes:</p><ul>
 <li>By length (default): Will perform a hard parse at <code>p_length</code></li>
 <li>By word: Will truncate at logical word break</li>
 </ul>

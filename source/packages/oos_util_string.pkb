@@ -91,7 +91,7 @@ as
 
   /**
    * Truncates a string to ensure that it is not longer than `p_length`
-   * If string is > than `p_length` then an ellipsis (...) will be appended to string
+   * If length of `p_str` is greater than `p_length` then an ellipsis (`...`) will be appended to string
    *
    * Supports following modes:
    *  - By length (default): Will perform a hard parse at `p_length`

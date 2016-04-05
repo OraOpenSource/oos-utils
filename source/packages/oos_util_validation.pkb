@@ -7,11 +7,7 @@ as
   /**
    * Checks if string is numeric
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #15
+   * @issue #15
    *
    * @author Trent Schafer
    * @created 05-Sep-2015
@@ -34,11 +30,7 @@ as
   /**
    * Checks if string is a valid date
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #20
+   * @issue #20
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
