@@ -163,19 +163,14 @@ as
 
       else
         -- Find last non-word. Need to reverse the string since Oracle regexp doesn't support lookbehind assertions
-        -- Need to do the reverse in a select statement since it's not a PL/SQL function
-        with rev_str as (
-          select reverse(substr(l_str,1, l_max_length)) str from sys.dual
-        )
-        select
+        l_str := reverse(substr(l_str,1, l_max_length));
+        l_str :=
           -- Unreverse string
           reverse(
             -- Cut the string from the first word char to the end in the reveresed string
             -- Since this is a reversed string, the first word char, is really the last word char
-            substr(rev_str.str, regexp_instr(rev_str.str, '\w'))
-          )
-        into l_str
-        from rev_str;
+            substr(l_str, regexp_instr(l_str, '\w'))
+          );
 
       end if;
 
@@ -407,6 +402,32 @@ as
       pipe row (l_arr(i));
     end loop;
   end listunagg;
+
+
+  /**
+   * Returns the input string in its reverse order
+   *
+   * @issue #55
+   *
+   * @author Tim Nanos
+   * @created 31-Mar-2016
+   * @param p_string String
+   * @return String
+   */
+  function reverse(
+    p_string in varchar2)
+    return varchar2
+  is
+    l_string varchar2(32767);
+  begin
+    if p_string is not null then
+      for i in 1..length(p_string) loop
+        l_string := substr(p_string, i, 1) || l_string;
+      end loop;
+    end if;
+    
+    return l_string;
+  end reverse;
 
 end oos_util_string;
 /

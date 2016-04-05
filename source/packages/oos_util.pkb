@@ -2,7 +2,7 @@ create or replace package body oos_util
 as
   -- CONSTANTS
 
-  gc_assert_error_number pls_integer := -20000;
+  gc_assert_error_number constant pls_integer := -20000;
 
 
   -- ******** PRIVATE ********

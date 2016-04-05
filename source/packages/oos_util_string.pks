@@ -13,7 +13,7 @@ as
   /**
    * @constant gc_default_delimiter Default delimiter for delimited strings
    */
-  gc_default_delimiter varchar2(1) := ',';
+  gc_default_delimiter constant varchar2(1) := ',';
 
   function tochar(
     p_val in number)
@@ -79,6 +79,10 @@ as
     p_string in clob,
     p_delimiter in varchar2 default gc_default_delimiter)
     return tab_vc2 pipelined;
+
+  function reverse(
+    p_string in varchar2)
+    return varchar2;
 
 end oos_util_string;
 /
