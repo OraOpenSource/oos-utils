@@ -1,6 +1,7 @@
 # OOS_UTIL_STRING
 
 - [Data Types](#dataTypes)
+- [Constants](#constants)
 - [TOCHAR Function](#tochar)
 - [TOCHAR Function](#tochar)
 - [TOCHAR Function](#tochar)
@@ -13,9 +14,14 @@
 - [STRING_TO_TABLE Function](#string_to_table)
 - [LISTUNAGG Function](#listunagg)
 - [LISTUNAGG Function](#listunagg)
+- [REVERSE Function](#reverse)
 
 
+## <a name="constants"></a>Constants
 
+Name | Code | Description
+--- | --- | ---
+gc_default_delimiter | `gc_default_delimiter constant varchar2(1) := ',';` | Default delimiter for delimited strings
 
 
 ## <a name="types"></a>Types
@@ -416,6 +422,33 @@ Name | Description
 `p_string` | String (clob) containing delimited text
 `p_delimiter` | Delimiter
 *return* | pipelined table
+ 
+ 
+
+
+
+
+
+ 
+## <a name="reverse"></a>REVERSE Function
+
+
+<p>
+<p>Returns the input string in its reverse order</p>
+</p>
+
+### Syntax
+```plsql
+function reverse(
+  p_string in varchar2)
+  return varchar2
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_string` | String
+*return* | String
  
  
 
