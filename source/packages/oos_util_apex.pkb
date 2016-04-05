@@ -252,10 +252,8 @@ as
       from (
         select application_id, row_number() over (order by view_date desc) rn
         from apex_workspace_activity_log
-        where 1=1
-          and apex_session_id = p_session_id)
-      where 1=1
-        and rn = 1;
+        where apex_session_id = p_session_id)
+      where rn = 1;
     end if;
 
     oos_util.assert(l_app_id is not null, 'Can not find matching app_id for session: ' || p_session_id);
