@@ -109,6 +109,11 @@ prompt oos_util
 create or replace package oos_util
 as
   -- CONSTANTS
+  /**
+   * @constant gc_date_format default date format
+   * @constant gc_timestamp_format default timestamp format
+   * @constant gc_timestamp_tz_format default timestamp (with TZ) format
+   */
   gc_date_format constant varchar2(255) := 'DD-MON-YYYY HH24:MI:SS';
   gc_timestamp_format constant varchar2(255) := gc_date_format || ':FF';
   gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';
@@ -116,7 +121,6 @@ as
   -- OOS Util Val Cats
   gc_vals_cat_mime_type constant oos_util_values.cat%type := 'mime-type';
 
-  -- TODO mdsouza: Think about better way to do this so can do coniditional comp
   gc_version constant varchar2(10) := '1.0.0';
 
   procedure assert(
@@ -143,16 +147,11 @@ as
    * Requires Logger to be installed only while developing.
    * -- TODO mdsouza: conditional compilation notes
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  -
    *
    * @author Martin D'Souza
    * @created 17-Aug-2015
    * @param p_message Item to log
-   * @return TODO
+   * @param p_scope Logger scope
    */
   procedure log(
     p_text in varchar2,
@@ -173,11 +172,7 @@ as
    * Validates assertion.
    * Will raise an application error if assertion is false
    *
-   * Notes:
-   *
-   *
-   * Related Tickets:
-   *  - #19
+   * @issue #19
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
@@ -204,8 +199,7 @@ as
    *  - This implementation may tie up CPU so only use for development purposes
    *  - If calling in SQLDeveloper may get "IO Error: Socket read timed out". This is a JDBC driver setting, not a bug in this code.
    *
-   * Related Tickets:
-   *  - #13
+   * @issue #13
    *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015
@@ -234,21 +228,6 @@ end oos_util;
 prompt oos_util_apex
 create or replace package oos_util_apex
 as
-  -- CONSTANTS
-  gc_content_disposition_inline constant varchar2(20) := 'inline';
-  gc_content_disposition_attach constant varchar2(20) := 'attachment';
-
-  procedure download_file(
-    p_filename in varchar2,
-    p_mime_type in varchar2 default null,
-    p_content_disposition in varchar2 default oos_util_apex.gc_content_disposition_attach,
-    p_blob in blob);
-
-  procedure download_file(
-    p_filename in varchar2,
-    p_mime_type in varchar2 default null,
-    p_content_disposition in varchar2 default oos_util_apex.gc_content_disposition_attach,
-    p_clob in clob);
 
   function is_developer
     return boolean;
@@ -277,117 +256,23 @@ as
   procedure trim_page_items(
     p_page_id in apex_application_pages.page_id%type default apex_application.g_flow_step_id);
 
+  function is_page_item_rendered(
+    p_item_name in apex_application_page_items.item_name%type)
+    return boolean;
+
 end oos_util_apex;
 /
 
 create or replace package body oos_util_apex
 as
 
-  -- CONSTANTS
-
-
-  /**
-   * Download file
-   *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #2
-   *
-   * @author Martin Giffy D'Souza
-   * @created 28-Dec-2015
-   * @example
-   *  ```plsql
-   *    select todo from dual
-   *    where 1=1
-   *    from dual
-   *  ```
-   * @param {number=} p_filename Filename
-   * @param p_mime_type mime-type of file. If null will be resolved via p_filename
-   * @param p_content_disposition inline or attachment
-   * @param p_blob File to be downloaded
-   */
-  procedure download_file(
-    p_filename in varchar2,
-    p_mime_type in varchar2 default null,
-    p_content_disposition in varchar2 default oos_util_apex.gc_content_disposition_attach,
-    p_blob in blob)
-  as
-
-    l_mime_type varchar2(255);
-    l_blob blob := p_blob; -- Need to use l_blob since download is an in out for wpg_docload
-
-  begin
-
-    l_mime_type := coalesce(p_mime_type,oos_util_web.get_mime_type(p_filename => p_filename));
-
-    -- Set Header
-    owa_util.mime_header(
-      ccontent_type => l_mime_type,
-      bclose_header => false );
-
-    htp.p('Content-length: ' || dbms_lob.getlength(p_blob));
-
-    htp.p(
-      oos_util_string.sprintf(
-        'Content-Disposition: %s; filename="%s"',
-        p_content_disposition,
-        p_filename));
-
-    owa_util.http_header_close;
-
-    -- download the BLOB
-    wpg_docload.download_file(p_blob => l_blob);
-
-    apex_application.stop_apex_engine;
-  end download_file;
-
-
-  /**
-   * Download clob file
-   *
-   * Notes:
-   *  - See download_file (blob) for full documentation
-   *
-   * Related Tickets:
-   *  - #2
-   *
-   * @author Martin Giffy D'Souza
-   * @created 28-Dec-2015
-   * @param p_filename
-   * @param p_mime_type
-   * @param p_content_disposition
-   * @param p_clob
-   */
-  procedure download_file(
-    p_filename in varchar2,
-    p_mime_type in varchar2 default null,
-    p_content_disposition in varchar2 default oos_util_apex.gc_content_disposition_attach,
-    p_clob in clob)
-  as
-    l_blob blob;
-  begin
-
-    l_blob := oos_util_lob.clob2blob(p_clob);
-
-    download_file(
-      p_filename => p_filename,
-      p_mime_type => p_mime_type,
-      p_content_disposition => p_content_disposition,
-      p_blob => l_blob);
-  end download_file;
-
-
   /**
    * Returns true/false if APEX developer is enable
-   * Supports both APEX 4 and 5 formats
+   * Supports both APEX 4 and 5
    *
-   * Notes:
-   *  -
+   * Can be used in APEX to declaratively determine if in development mode
    *
-   * Related Tickets:
-   *  - #25
+   * @issue 25
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -404,14 +289,12 @@ as
     end if;
   end is_developer;
 
+
   /**
    * Returns Y/N if APEX developer is enable
+   * See `is_developer` for details
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #25
+   * @issue #25
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -433,13 +316,9 @@ as
 
 
   /**
-   * Checks if session is still active
+   * Checks if APEX session is still active/valid
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #9
+   * @issue #9
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -473,11 +352,7 @@ as
   /**
    * Checks if session is still active
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #9
+   * @issue 9
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -505,13 +380,17 @@ as
    * Creates a new APEX session.
    * Useful when testing APEX functionality in PL/SQL or using apex_mail etc
    *
+   * Can only create one per Oracle session. To connect to a different APEX session, reconnect the Oracle session
+   *
+   *
    * Notes:
    *  - Content taken from:
    *    - http://www.talkapex.com/2012/08/how-to-create-apex-session-in-plsql.html
    *    - http://apextips.blogspot.com.au/2014/10/debugging-parameterised-views-outside.html
    *
-   * Related Tickets:
-   *  - #7
+   *
+   * @issue #7
+   * @issue #49 ensure page and user exist
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -527,20 +406,22 @@ as
     p_session_id in apex_workspace_sessions.apex_session_id%type default null)
   as
     l_workspace_id apex_applications.workspace_id%TYPE;
-    l_cgivar_name owa.vc_arr;
-    l_cgivar_val owa.vc_arr;
+    l_cgivar_name sys.owa.vc_arr;
+    l_cgivar_val sys.owa.vc_arr;
 
     l_page_id apex_application_pages.page_id%type := p_page_id;
     l_home_link apex_applications.home_link%type;
     l_url_arr apex_application_global.vc_arr2;
+
+    l_count pls_integer;
   begin
 
-    htp.init;
+    sys.htp.init;
 
     l_cgivar_name(1) := 'REQUEST_PROTOCOL';
     l_cgivar_val(1) := 'HTTP';
 
-    owa.init_cgi_env(
+    sys.owa.init_cgi_env(
       num_params => 1,
       param_name => l_cgivar_name,
       param_val => l_cgivar_val );
@@ -574,6 +455,17 @@ as
 
     end if; -- l_page_id is null
 
+    -- #49 Ensure that page exists
+    select count(1)
+    into l_count
+    from apex_application_pages aap
+    where 1=1
+      and aap.application_id = p_app_id
+      and aap.page_id = l_page_id
+      and l_page_id is not null;
+
+    oos_util.assert(l_count = 1, 'Page must exist in the application');
+
     apex_application.g_instance := 1;
     apex_application.g_flow_id := p_app_id;
     apex_application.g_flow_step_id := l_page_id;
@@ -597,17 +489,16 @@ as
 
 
   /**
-   * Reinitializes APEX session
+   * Join an existing APEX session
    *
    * Notes:
-   *  - v('P1_X') won't work. Use apex_util.get_session_state('P1_X') instead
+   *  - `v('P1_X')` won't work. Use `apex_util.get_session_state('P1_X')` instead
    *
-   * Related Tickets:
-   *  - #7
+   * @issue #7
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
-   * @param p_session_id
+   * @param p_session_id The session you want to join. Must be an existing active session.
    * @param p_app_id Use if multiple applications are linked to the same session. If null, last used application will be used.
    */
   procedure join_session(
@@ -657,8 +548,7 @@ as
    *  - Excludes inputs that users shouldn't modify and password fields
    *    - Ex: select list, hidden values, files
    *
-   * Related Tickets:
-   *  - #24
+   * @issue 24
    *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015
@@ -707,6 +597,60 @@ as
 
   end trim_page_items;
 
+
+  /**
+   * Returns true/false if page item was rendered
+   *
+   * Notes:
+   *  - This should only run on a page submit process otherwise it won't work. An error is raised otherwise
+   *
+   * @issue #39
+   *
+   * @author Daniel Hochleitner
+   * @created 06-Mar-2016
+   * @return true/false
+   */
+  function is_page_item_rendered(
+    p_item_name in apex_application_page_items.item_name%type)
+    return boolean
+  as
+    l_item_id apex_application_page_items.item_id%type;
+    l_return boolean := false;
+  begin
+
+    -- Ensure that this is only done on page submit (otherwise it doesn't make sense)
+    oos_util.assert(
+      sys.owa_util.get_cgi_env('PATH_INFO') = '/wwv_flow.accept',
+      lower($$plsql_unit) || '.is_page_item_rendered can only be run on a page submit process');
+
+    select item_id
+    into l_item_id
+    from apex_application_page_items
+    where 1=1
+      and application_id = apex_application.g_flow_id
+      and page_id = apex_application.g_flow_step_id
+      and item_name = upper(p_item_name);
+
+    -- If a page item is rendered the internal id is stored in a hidden field
+    -- called p_arg_names. During submit the values are stored into the
+    -- g_arg_names array by the WWV_Flow.accept procedure.
+    -- By checking for existence of the page item id in the array, we are able
+    -- to determine if APEX has rendered the item as "Saves state".
+    -- Note: A item which is normally enterable but which is rendered
+    --       "Read Only" is also considered rendered, because it still saves state
+
+    if apex_application.g_arg_names.count > 0 then
+      for i in 1 .. apex_application.g_arg_names.count loop
+        if apex_application.g_arg_names(i) = l_item_id then
+          l_return := true;
+          exit;
+        end if;
+      end loop;
+    end if;
+
+    return l_return;
+  end is_page_item_rendered;
+
 end oos_util_apex;
 /
 
@@ -732,11 +676,7 @@ as
   /**
    * Coverts date to Unix Epoch time
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #18
+   * @issue #18
    *
    * @author Martin Giffy D'Souza
    * @created 30-Dec-2015
@@ -762,11 +702,7 @@ as
   /**
    * Converts Unix linux time to Oracle date
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #18
+   * @issue 18
    *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015
@@ -791,6 +727,17 @@ prompt oos_util_lob
 create or replace package oos_util_lob
 as
   -- CONSTANTS
+  /**
+   * gc_unit_b B
+   * gc_unit_kb KB
+   * gc_unit_mb MB
+   * gc_unit_gb GB
+   * gc_unit_tb TB
+   * gc_unit_pb PB
+   * gc_unit_eb EB
+   * gc_unit_zb ZB
+   * gc_unit_yb YB
+   */
   gc_unit_b constant varchar2(1) := 'B';
   gc_unit_kb constant varchar2(2) := 'KB';
   gc_unit_mb constant varchar2(2) := 'MB';
@@ -800,16 +747,16 @@ as
   gc_unit_eb constant varchar2(2) := 'EB';
   gc_unit_zb constant varchar2(2) := 'ZB';
   gc_unit_yb constant varchar2(2) := 'YB';
-
-  gc_size_b constant simple_integer := 1024;
-  gc_size_kb constant simple_integer := power(1024, 2);
-  gc_size_mb constant simple_integer := power(1024, 3);
-  gc_size_gb constant simple_integer := power(1024, 4);
-  gc_size_tb constant simple_integer := power(1024, 5);
-  gc_size_pb constant simple_integer := power(1024, 6);
-  gc_size_eb constant simple_integer := power(1024, 7);
-  gc_size_zb constant simple_integer := power(1024, 8);
-  gc_size_yb constant simple_integer := power(1024, 9);
+  --
+  gc_size_b constant number := 1024;
+  gc_size_kb constant number := power(1024, 2);
+  gc_size_mb constant number := power(1024, 3);
+  gc_size_gb constant number := power(1024, 4);
+  gc_size_tb constant number := power(1024, 5);
+  gc_size_pb constant number := power(1024, 6);
+  gc_size_eb constant number := power(1024, 7);
+  gc_size_zb constant number := power(1024, 8);
+  gc_size_yb constant number := power(1024, 9);
 
 
   -- METHODS
@@ -841,23 +788,17 @@ as
     p_search in varchar2,
     p_replace in clob)
     return clob;
-    
+
 end oos_util_lob;
 /
 
 create or replace package body oos_util_lob
 as
 
-  -- ******** PUBLIC ********
-
   /**
    * Convers clob to blob
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #12
+   * @issue #12
    *
    * @author Moritz Klein (https://github.com/commi235)
    * @created 07-Sep-2015
@@ -893,8 +834,7 @@ as
    * Notes:
    *  - Copied from http://stackoverflow.com/questions/12849025/convert-blob-to-clob
    *
-   * Related Tickets:
-   *  - #1
+   * @issue #1
    *
    * @author Martin D'Souza
    * @created 02-Mar-2014
@@ -938,16 +878,12 @@ as
   /**
    * Returns human readable file size
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #6
+   * @issue #6
    *
    * @author Martin D'Souza
    * @created 07-Sep-2015
    * @param p_file_size size of file in bytes
-   * @param p_units See gc_size_... variables for options. If not provided, most significant one automatically chosen.
+   * @param p_units See `gc_size_...` consants for options. If not provided, most significant one automatically chosen.
    * @return Human readable file size
    */
   function get_file_size(
@@ -1007,12 +943,6 @@ as
   /**
    * See get_file_size
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  -
-   *
    * @author Martin D'Souza
    * @created 07-Sep-2015
    * @param p_lob
@@ -1033,12 +963,6 @@ as
 
   /**
    * See get_file_size
-   *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  -
    *
    * @author Martin D'Souza
    * @created 07-Sep-2015
@@ -1067,8 +991,7 @@ as
    * Notes:
    *  - Source: http://dbaora.com/ora-22828-input-pattern-or-replacement-parameters-exceed-32k-size-limit/
    *
-   * Related Tickets:
-   *  - #29
+   * @issue #29
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -1104,10 +1027,17 @@ create or replace package oos_util_string
 as
 
   -- TYPES
+  /**
+   * @type tab_vc2
+   * @type tab_vc2_arr
+   */
   type tab_vc2 is table of varchar2(32767);
   type tab_vc2_arr is table of varchar2(32767) index by pls_integer;
 
   -- CONSTANTS
+  /**
+   * @constant gc_default_delimiter Default delimiter for delimited strings
+   */
   gc_default_delimiter varchar2(1) := ',';
 
   function tochar(
@@ -1181,22 +1111,19 @@ end oos_util_string;
 create or replace package body oos_util_string
 as
 
-  -- ******** PUBLIC ********
-
   /**
    * Converts parameter to varchar2
    *
    * Notes:
-   *  - Need to call this tochar instead of to_char since there will be a conflict when calling it
+   *  - Needed to call this function `tochar` instead of `to_char` since there will be a conflict when calling it
    *  - Code copied from Logger: https://github.com/OraOpenSource/Logger
    *
-   * Related Tickets:
-   *  - #11
+   * @issue 11
    *
    * @author Martin D'Souza
    * @created 07-Jun-2014
    * @param p_value
-   * @return varchar2 value for p_value
+   * @return string value for p_value
    */
   function tochar(
     p_val in number)
@@ -1206,6 +1133,12 @@ as
     return to_char(p_val);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Date
+   * @return string value for p_value
+   */
   function tochar(
     p_val in date)
     return varchar2
@@ -1214,6 +1147,12 @@ as
     return to_char(p_val, oos_util.gc_date_format);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Timestamp
+   * @return string value for p_value
+   */
   function tochar(
     p_val in timestamp)
     return varchar2
@@ -1222,6 +1161,12 @@ as
     return to_char(p_val, oos_util.gc_timestamp_format);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Timestamp with TZ
+   * @return string value for p_value
+   */
   function tochar(
     p_val in timestamp with time zone)
     return varchar2
@@ -1230,6 +1175,12 @@ as
     return to_char(p_val, oos_util.gc_timestamp_tz_format);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Timestamp with local TZ
+   * @return string value for p_value
+   */
   function tochar(
     p_val in timestamp with local time zone)
     return varchar2
@@ -1238,6 +1189,12 @@ as
     return to_char(p_val, oos_util.gc_timestamp_tz_format);
   end tochar;
 
+  /**
+   * See first `tochar`
+   *
+   * @param p_val Boolean
+   * @return string value for p_value
+   */
   function tochar(
     p_val in boolean)
     return varchar2
@@ -1248,18 +1205,15 @@ as
 
 
   /**
-   * Truncates a string to ensure that it is not longer than p_length
-   * If string is > than p_length then an ellipsis (...) will be appended to string
+   * Truncates a string to ensure that it is not longer than `p_length`
+   * If length of `p_str` is greater than `p_length` then an ellipsis (`...`) will be appended to string
    *
    * Supports following modes:
-   *  - By length (default): Will perform a hard parse at p_length
+   *  - By length (default): Will perform a hard parse at `p_length`
    *  - By word: Will truncate at logical word break
    *
-   * Notes:
-   *  -
    *
-   * Related Tickets:
-   *  - #5
+   * @issue #5
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
@@ -1349,27 +1303,31 @@ as
    *
    * Notes:
    *  - Uses the following replacement algorithm (in following order)
-   *    - Replaces %s<n> with p_s<n>
-   *    - Occurrences of %s (no number) are replaced with p_s1..p_s10 in order that they appear in text
-   *    - %% is escaped to %
-   *  - As this function could be useful for non-logging purposes will not apply a NO_OP to it for conditional compilation
+   *    - Replaces `%s<n>` with `p_s<n>`
+   *    - Occurrences of `%s` (no number) are replaced with `p_s1..p_s10` in order that they appear in text
+   *    - `%%` is escaped to `%`
    *
-   * Related Tickets:
-   *  - #8
+   * @example
+   * select oos_util_string.sprintf('hello %s', 'martin') demo
+   * from dual;
+   *
+   * DEMO
+   * ------------------------------
+   * hello martin
+   *
+   * select oos_util_string.sprintf('%s2, %s1', 'Firstname', 'Lastname') demo
+   * from dual;
+   *
+   * DEMO
+   * ------------------------------
+   * Lastname, Firstname
+   *
+   * @issue #8
    *
    * @author Martin D'Souza
    * @created 15-Jun-2014
    * @param p_str Messsage to format using %s and %d replacement strings
-   * @param p_s1
-   * @param p_s2
-   * @param p_s3
-   * @param p_s4
-   * @param p_s5
-   * @param p_s6
-   * @param p_s7
-   * @param p_s8
-   * @param p_s9
-   * @param p_s10
+   * @param p_s1..10 Replacement strings
    * @return p_msg with strings replaced
    */
   function sprintf(
@@ -1424,11 +1382,9 @@ as
    * Converts delimited string to array
    *
    * Notes:
-   *  - Similar to apex_util.string_to_table but handles clobs
+   *  - Similar to `apex_util.string_to_table` but handles clobs
    *
-   *
-   * Related Tickets:
-   *  - #32
+   * @issue #32
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -1473,12 +1429,9 @@ as
   end string_to_table;
 
   /**
-   * See string_to_table (p_string clob) for notes
+   * See `string_to_table (p_string clob)` for notes
    *
-   * Notes:
-   *
-   * Related Tickets:
-   *  - #32
+   * @issue  #32
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -1503,14 +1456,18 @@ as
    * Converts delimited string to queriable table
    *
    * Notes:
-   *  - Text between delimiters must be <= 4000 characters
+   *  - Text between delimiters must be `<= 4000` characters
    *
-   * Example:
+   * @example
    *  select rownum, column_value
    *  from table(oos_util_string.listunagg('abc,def'));
    *
-   * Related Tickets:
-   *  - #4
+   *      ROWNUM COLUMN_VAL
+   * ---------- ----------
+   *          1 abc
+   *          2 def
+   *
+   * @issue #4
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -1536,15 +1493,10 @@ as
   /**
    * Converts delimited string to queriable table
    *
-   * Notes:
-   *  - Text between delimiters must be <= 4000 characters
+   * See above for example
    *
-   * Example:
-   *  select rownum, column_value
-   *  from table(oos_util_string.listunagg('abc,def'));
    *
-   * Related Tickets:
-   *  - #4
+   * @issue #4
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -1562,7 +1514,7 @@ as
     l_arr := string_to_table(p_string => p_string, p_delimiter => p_delimiter);
 
     for i in 1 .. l_arr.count loop
-     pipe row (l_arr(i));
+      pipe row (l_arr(i));
     end loop;
   end listunagg;
 
@@ -1594,11 +1546,7 @@ as
   /**
    * Checks if string is numeric
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #15
+   * @issue #15
    *
    * @author Trent Schafer
    * @created 05-Sep-2015
@@ -1621,11 +1569,7 @@ as
   /**
    * Checks if string is a valid date
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #20
+   * @issue #20
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
@@ -1654,11 +1598,33 @@ end oos_util_validation;
 prompt oos_util_web
 create or replace package oos_util_web
 as
+  -- CONSTANTS
+  /**
+   * @constant gc_content_disposition_inline For downloading file and viewing inline
+   * @constant gc_content_disposition_attach For downloading file as attachment
+   */
+  gc_content_disposition_inline constant varchar2(20) := 'inline';
+  gc_content_disposition_attach constant varchar2(20) := 'attachment';
 
   function get_mime_type(
     p_filename in varchar2)
     return oos_util_values.value%type;
-    
+
+  procedure download_file(
+    p_filename in varchar2,
+    p_mime_type in varchar2 default null,
+    p_content_disposition in varchar2 default oos_util_web.gc_content_disposition_attach,
+    p_cache_control in varchar2 default null,
+    p_blob in blob);
+
+  procedure download_file(
+    p_filename in varchar2,
+    p_mime_type in varchar2 default null,
+    p_content_disposition in varchar2 default oos_util_web.gc_content_disposition_attach,
+    p_cache_control in varchar2 default null,
+    p_clob in clob);
+
+
 end oos_util_web;
 /
 
@@ -1670,11 +1636,7 @@ as
   /**
    * Returns the mime-type for a filename
    *
-   * Notes:
-   *  -
-   *
-   * Related Tickets:
-   *  - #27
+   * @issue #27
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -1719,6 +1681,106 @@ as
 
 
   end get_mime_type;
+
+
+  /**
+   * Download file
+   *
+   * @issue #2
+   * @issue #47: cache support
+   *
+   * @author Martin Giffy D'Souza
+   * @created 28-Dec-2015
+   * @example
+   *  ```plsql
+   *    select todo from dual
+   *    where 1=1
+   *    from dual
+   *  ```
+   * @param {number=} p_filename Filename
+   * @param p_mime_type mime-type of file. If null will be resolved via p_filename
+   * @param p_content_disposition inline or attachment
+   * @param p_cache_control options to pass to the Cache-Control attribute. Examples include max-age=3600, no-cache, etc. See https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en for examples
+   * @param p_blob File to be downloaded
+   */
+  procedure download_file(
+    p_filename in varchar2,
+    p_mime_type in varchar2 default null,
+    p_content_disposition in varchar2 default oos_util_web.gc_content_disposition_attach,
+    p_cache_control in varchar2 default null,
+    p_blob in blob
+    )
+  as
+
+    l_mime_type varchar2(255);
+    l_blob blob := p_blob; -- Need to use l_blob since download is an in out for wpg_docload
+
+  begin
+
+    l_mime_type := coalesce(p_mime_type,oos_util_web.get_mime_type(p_filename => p_filename));
+
+    -- Set Header
+    sys.owa_util.mime_header(
+      ccontent_type => l_mime_type,
+      bclose_header => false );
+
+    sys.htp.p('Content-length: ' || dbms_lob.getlength(p_blob));
+
+    sys.htp.p(
+      oos_util_string.sprintf(
+        'Content-Disposition: %s; filename="%s"',
+        p_content_disposition,
+        p_filename));
+
+    if p_cache_control is not null then
+      sys.htp.p(oos_util_string.sprintf('Cache-Control: %s', p_cache_control));
+    end if;
+
+    sys.owa_util.http_header_close;
+
+    -- download the BLOB
+    sys.wpg_docload.download_file(p_blob => l_blob);
+
+    apex_application.stop_apex_engine;
+  end download_file;
+
+
+  /**
+   * Download clob file
+   *
+   * Notes:
+   *  - See download_file (blob) for full documentation
+   *
+   * @issue #2
+   *
+   * @author Martin Giffy D'Souza
+   * @created 28-Dec-2015
+   * @param p_filename
+   * @param p_mime_type
+   * @param p_content_disposition
+   * @param p_cache_control See download_file (blob) for documentation
+   * @param p_clob
+   */
+  procedure download_file(
+    p_filename in varchar2,
+    p_mime_type in varchar2 default null,
+    p_content_disposition in varchar2 default oos_util_web.gc_content_disposition_attach,
+    p_cache_control in varchar2 default null,
+    p_clob in clob)
+  as
+    l_blob blob;
+  begin
+
+    l_blob := oos_util_lob.clob2blob(p_clob);
+
+    download_file(
+      p_filename => p_filename,
+      p_mime_type => p_mime_type,
+      p_content_disposition => p_content_disposition,
+      p_cache_control => p_cache_control,
+      p_blob => l_blob);
+  end download_file;
+
 
 end oos_util_web;
 /
