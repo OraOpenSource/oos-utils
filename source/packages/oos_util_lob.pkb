@@ -225,5 +225,141 @@ as
     return p_str;
   end replace_clob;
 
+  /**
+   *
+   * Write a clob (p_text) into a file (p_filename) located in a database
+   * server file system directory (p_path). p_path is an Oracle directory
+   * object.
+   *
+   * @issue #56
+   *
+   * @author Jani Hur <webmaster@jani-hur.net>
+   * @created 05-Apr-2016
+   * @param p_text
+   * @param p_path
+   * @param p_filename
+   */
+  procedure write_to_file(
+    p_text in clob,
+    p_path in varchar2,
+    p_filename in varchar2)
+  as
+   l_tmp_lob blob;
+  begin
+    --
+    -- exit if any parameter is null
+    --
+    if    p_text     is null
+       or p_path     is null
+       or p_filename is null
+    then
+      return;
+    end if;
+
+    --
+    -- convert a clob to a blob
+    --
+    l_tmp_lob := clob2blob(p_text);
+
+    --
+    -- write a blob to a file
+    --
+    declare
+      l_lob_len pls_integer;
+      l_fh utl_file.file_type;
+      l_pos pls_integer := 1;
+      l_buffer raw(32767);
+      l_amount pls_integer := 32767;
+    begin
+      l_fh := utl_file.fopen(location     => p_path,
+                             filename     => p_filename,
+                             open_mode    =>'wb',
+                             max_linesize => 32767);
+
+      l_lob_len := dbms_lob.getlength(l_tmp_lob);
+
+      while l_pos < l_lob_len
+      loop
+        dbms_lob.read(lob_loc => l_tmp_lob,
+                      amount  => l_amount,
+                      offset  => l_pos,
+                      buffer  => l_buffer);
+
+        utl_file.put_raw(file      => l_fh,
+                         buffer    => l_buffer,
+                         autoflush => false);
+
+        l_pos := l_pos + l_amount;
+      end loop;
+
+      utl_file.fclose(l_fh);
+      dbms_lob.freetemporary(l_tmp_lob);
+    end;
+
+  end;
+
+  /**
+   *
+   * Read a content of a file (p_filename) from a database server file system
+   * directory (p_path) and return it as a temporary clob. The caller is
+   * responsible to free the clob (dbms_lob.freetemporary()). p_path is an
+   * Oracle directory object.
+   *
+   * The implementation is based on UTL_FILE so the following constraints apply:
+   *
+   * A line size can't exceed 32767 bytes.
+   *
+   * Because UTL_FILE.get_line ignores line terminator it has to be added
+   * implicitly. Currently the line terminator is hardcoded to char(10)
+   * (unix), so if in the original file the terminator is different then a
+   * conversion will take place.
+   *
+   * TODO: consider DBMS_LOB.LOADCLOBFROMFILE instead.
+   *
+   * @issue #56
+   *
+   * @author Jani Hur <webmaster@jani-hur.net>
+   * @created 05-Apr-2016
+   * @param p_path
+   * @param p_filename
+   * @return clob
+   */
+  function read_from_file(
+    p_path in varchar2,
+    p_filename in varchar2)
+    return clob
+  as
+    l_fh utl_file.file_type;
+    l_tmp_lob clob;
+  begin
+    l_fh := utl_file.fopen(location     => p_path,
+                           filename     => p_filename,
+                           open_mode    => 'r',
+                           max_linesize => 32767);
+
+    dbms_lob.createtemporary(lob_loc => l_tmp_lob,
+                             cache   => false,
+                             dur     => dbms_lob.session);
+
+    declare
+      l_lt constant varchar2(1) := chr(10); -- unix line terminator
+      l_buf varchar2(32767);
+    begin
+      loop
+        utl_file.get_line(l_fh, l_buf);
+        dbms_lob.writeappend(l_tmp_lob, length(l_buf), l_buf);
+        -- get_line ignores line terminator so it is explicitly included
+        dbms_lob.writeappend(l_tmp_lob, length(l_lt), l_lt);
+      end loop;
+    exception
+      when no_data_found then
+        utl_file.fclose(l_fh);
+    end;
+
+    utl_file.fclose(l_fh);
+
+    return l_tmp_lob;
+  end;
+
 end oos_util_lob;
 /

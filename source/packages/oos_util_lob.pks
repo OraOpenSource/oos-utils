@@ -63,5 +63,15 @@ as
     p_replace in clob)
     return clob;
 
+  procedure write_to_file(
+    p_text in clob,
+    p_path in varchar2,
+    p_filename in varchar2);
+
+  function read_from_file(
+    p_path in varchar2,
+    p_filename in varchar2)
+    return clob;
+
 end oos_util_lob;
 /
