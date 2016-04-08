@@ -39,6 +39,11 @@ as
       lang_context => l_lang_ctx,
       warning      => l_warning);
 
+    if l_warning <> dbms_lob.no_warning then
+      raise_application_error(-20000,
+                              'failed to convert clob to blob: ' || l_warning);
+    end if;
+
     return l_blob;
   end clob2blob;
 
@@ -82,6 +87,11 @@ as
       blob_csid    => dbms_lob.default_csid,
       lang_context => l_lang_context,
       warning      => l_warning);
+
+    if l_warning <> dbms_lob.no_warning then
+      raise_application_error(-20000,
+                              'failed to convert blob to clob: ' || l_warning);
+    end if;
 
     return l_clob;
   end blob2clob;
