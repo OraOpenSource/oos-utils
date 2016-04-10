@@ -9,7 +9,7 @@
 - [REPLACE_CLOB Function](#replace_clob)
 
 
-## <a name="constants"></a>Constants
+## Constants<a name="constants"></a>
 
 Name | Code | Description
 --- | --- | ---

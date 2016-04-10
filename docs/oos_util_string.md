@@ -17,14 +17,14 @@
 - [REVERSE Function](#reverse)
 
 
-## <a name="constants"></a>Constants
+## Constants<a name="constants"></a>
 
 Name | Code | Description
 --- | --- | ---
 gc_default_delimiter | `gc_default_delimiter constant varchar2(1) := ',';` | Default delimiter for delimited strings
 
 
-## <a name="types"></a>Types
+## Types<a name="types"></a>
 
 Name | Code | Description
 --- | --- | ---
