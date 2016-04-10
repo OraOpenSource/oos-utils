@@ -37,6 +37,23 @@ as
    * Validates assertion.
    * Will raise an application error if assertion is false
    *
+   * @example
+   *
+   * oos_util.assert(1=2, 'this assertion did not pass');
+   *
+   * -- Results in
+   *
+   * Error starting at line : 1 in command -
+   * exec oos_util.assert(1=2, 'this assertion did not pass')
+   * Error report -
+   * ORA-06550: line 1, column 7:
+   * PLS-00306: wrong number or types of arguments in call to 'ASSERT'
+   * ORA-06550: line 1, column 7:
+   * PL/SQL: Statement ignored
+   * 06550. 00000 -  "line %s, column %s:\n%s"
+   * *Cause:    Usually a PL/SQL compilation error.
+   * *Action:
+
    * @issue #19
    *
    * @author Martin D'Souza
