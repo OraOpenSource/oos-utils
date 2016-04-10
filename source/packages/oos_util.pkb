@@ -60,8 +60,9 @@ as
    *
    * Notes:
    *  - It is recommended that you use Oracle's lock procedures: http://psoug.org/reference/sleep.html
-   *  - However in some instances you may not have access to them
+   *    - In instances where you do not have access use this sleep method instead
    *  - This implementation may tie up CPU so only use for development purposes
+   *  - This is a custom implementation of sleep and as a result the times are not 100% accurate
    *  - If calling in SQLDeveloper may get "IO Error: Socket read timed out". This is a JDBC driver setting, not a bug in this code.
    *
    * @issue #13
