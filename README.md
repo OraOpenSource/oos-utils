@@ -6,7 +6,8 @@ NOTE: OOS Utils is currently in Beta. **Do not install in production.**s
 
 ## Documentation
 
-The complete API is in the [docs](/docs) folder. Can also view on [Read The Docs](http://oos-utils.readthedocs.org/en/latest/README/) which displays it in a much nicer and searchable format.
+- [Read The Docs](http://oos-utils.readthedocs.org/en/latest/README/) which displays it in a nice, searchable format
+- MD files in the [docs](/docs) folder
 
 ## Install
 
