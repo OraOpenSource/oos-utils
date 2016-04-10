@@ -17,7 +17,7 @@
 
 
  
-## <a name="is_developer"></a>IS_DEVELOPER Function
+## IS_DEVELOPER Function<a name="is_developer"></a>
 
 
 <p>
@@ -42,7 +42,7 @@ Name | Description
 
 
  
-## <a name="is_developer_yn"></a>IS_DEVELOPER_YN Function
+## IS_DEVELOPER_YN Function<a name="is_developer_yn"></a>
 
 
 <p>
@@ -67,7 +67,7 @@ Name | Description
 
 
  
-## <a name="is_session_valid"></a>IS_SESSION_VALID Function
+## IS_SESSION_VALID Function<a name="is_session_valid"></a>
 
 
 <p>
@@ -94,7 +94,7 @@ Name | Description
 
 
  
-## <a name="is_session_valid_yn"></a>IS_SESSION_VALID_YN Function
+## IS_SESSION_VALID_YN Function<a name="is_session_valid_yn"></a>
 
 
 <p>
@@ -121,7 +121,7 @@ Name | Description
 
 
  
-## <a name="create_session"></a>CREATE_SESSION Procedure
+## CREATE_SESSION Procedure<a name="create_session"></a>
 
 
 <p>
@@ -159,7 +159,7 @@ Name | Description
 
 
  
-## <a name="join_session"></a>JOIN_SESSION Procedure
+## JOIN_SESSION Procedure<a name="join_session"></a>
 
 
 <p>
@@ -189,7 +189,7 @@ Name | Description
 
 
  
-## <a name="trim_page_items"></a>TRIM_PAGE_ITEMS Procedure
+## TRIM_PAGE_ITEMS Procedure<a name="trim_page_items"></a>
 
 
 <p>
@@ -221,7 +221,7 @@ Name | Description
 
 
  
-## <a name="is_page_item_rendered"></a>IS_PAGE_ITEM_RENDERED Function
+## IS_PAGE_ITEM_RENDERED Function<a name="is_page_item_rendered"></a>
 
 
 <p>

@@ -33,7 +33,7 @@ tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_int
 
 
  
-## <a name="tochar"></a>TOCHAR Function
+## TOCHAR Function<a name="tochar"></a>
 
 
 <p>
@@ -64,7 +64,7 @@ Name | Description
 
 
  
-## <a name="tochar"></a>TOCHAR Function
+## TOCHAR Function<a name="tochar"></a>
 
 
 <p>
@@ -91,7 +91,7 @@ Name | Description
 
 
  
-## <a name="tochar"></a>TOCHAR Function
+## TOCHAR Function<a name="tochar"></a>
 
 
 <p>
@@ -118,7 +118,7 @@ Name | Description
 
 
  
-## <a name="tochar"></a>TOCHAR Function
+## TOCHAR Function<a name="tochar"></a>
 
 
 <p>
@@ -145,7 +145,7 @@ Name | Description
 
 
  
-## <a name="tochar"></a>TOCHAR Function
+## TOCHAR Function<a name="tochar"></a>
 
 
 <p>
@@ -172,7 +172,7 @@ Name | Description
 
 
  
-## <a name="tochar"></a>TOCHAR Function
+## TOCHAR Function<a name="tochar"></a>
 
 
 <p>
@@ -199,7 +199,7 @@ Name | Description
 
 
  
-## <a name="truncate_string"></a>TRUNCATE_STRING Function
+## TRUNCATE_STRING Function<a name="truncate_string"></a>
 
 
 <p>
@@ -236,7 +236,7 @@ Name | Description
 
 
  
-## <a name="sprintf"></a>SPRINTF Function
+## SPRINTF Function<a name="sprintf"></a>
 
 
 <p>
@@ -298,7 +298,7 @@ Lastname, Firstname
 
 
  
-## <a name="string_to_table"></a>STRING_TO_TABLE Function
+## STRING_TO_TABLE Function<a name="string_to_table"></a>
 
 
 <p>
@@ -330,7 +330,7 @@ Name | Description
 
 
  
-## <a name="string_to_table"></a>STRING_TO_TABLE Function
+## STRING_TO_TABLE Function<a name="string_to_table"></a>
 
 
 <p>
@@ -359,7 +359,7 @@ Name | Description
 
 
  
-## <a name="listunagg"></a>LISTUNAGG Function
+## LISTUNAGG Function<a name="listunagg"></a>
 
 
 <p>
@@ -401,7 +401,7 @@ Name | Description
 
 
  
-## <a name="listunagg"></a>LISTUNAGG Function
+## LISTUNAGG Function<a name="listunagg"></a>
 
 
 <p>
@@ -430,7 +430,7 @@ Name | Description
 
 
  
-## <a name="reverse"></a>REVERSE Function
+## REVERSE Function<a name="reverse"></a>
 
 
 <p>

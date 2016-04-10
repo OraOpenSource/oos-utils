@@ -20,7 +20,7 @@ gc_version | `gc_version constant varchar2(10) := '1.0.0';` |
 
 
  
-## <a name="log"></a>LOG Procedure
+## LOG Procedure<a name="log"></a>
 
 
 <p>
@@ -47,7 +47,7 @@ Name | Description
 
 
  
-## <a name="assert"></a>ASSERT Procedure
+## ASSERT Procedure<a name="assert"></a>
 
 
 <p>
@@ -74,14 +74,17 @@ Name | Description
 
 
  
-## <a name="sleep"></a>SLEEP Procedure
+## SLEEP Procedure<a name="sleep"></a>
 
 
 <p>
 <p>Sleep procedure for n seconds</p><p>Notes:</p><ul>
-<li>It is recommended that you use Oracle&#39;s lock procedures: <a href="http://psoug.org/reference/sleep.html">http://psoug.org/reference/sleep.html</a></li>
-<li>However in some instances you may not have access to them</li>
+<li>It is recommended that you use Oracle&#39;s lock procedures: <a href="http://psoug.org/reference/sleep.html">http://psoug.org/reference/sleep.html</a><ul>
+<li>In instances where you do not have access use this sleep method instead</li>
+</ul>
+</li>
 <li>This implementation may tie up CPU so only use for development purposes</li>
+<li>This is a custom implementation of sleep and as a result the times are not 100% accurate</li>
 <li>If calling in SQLDeveloper may get &quot;IO Error: Socket read timed out&quot;. This is a JDBC driver setting, not a bug in this code.</li>
 </ul>
 

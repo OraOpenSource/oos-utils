@@ -36,7 +36,7 @@ gc_size_yb | `gc_size_yb constant number := power(1024, 9);` |
 
 
  
-## <a name="clob2blob"></a>CLOB2BLOB Function
+## CLOB2BLOB Function<a name="clob2blob"></a>
 
 
 <p>
@@ -63,7 +63,7 @@ Name | Description
 
 
  
-## <a name="blob2clob"></a>BLOB2CLOB Function
+## BLOB2CLOB Function<a name="blob2clob"></a>
 
 
 <p>
@@ -93,7 +93,7 @@ Name | Description
 
 
  
-## <a name="get_file_size"></a>GET_FILE_SIZE Function
+## GET_FILE_SIZE Function<a name="get_file_size"></a>
 
 
 <p>
@@ -122,7 +122,7 @@ Name | Description
 
 
  
-## <a name="get_lob_size"></a>GET_LOB_SIZE Function
+## GET_LOB_SIZE Function<a name="get_lob_size"></a>
 
 
 <p>
@@ -150,7 +150,7 @@ Name | Description
 
 
  
-## <a name="get_lob_size"></a>GET_LOB_SIZE Function
+## GET_LOB_SIZE Function<a name="get_lob_size"></a>
 
 
 <p>
@@ -178,7 +178,7 @@ Name | Description
 
 
  
-## <a name="replace_clob"></a>REPLACE_CLOB Function
+## REPLACE_CLOB Function<a name="replace_clob"></a>
 
 
 <p>

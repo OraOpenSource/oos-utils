@@ -11,7 +11,7 @@
 
 
  
-## <a name="is_number"></a>IS_NUMBER Function
+## IS_NUMBER Function<a name="is_number"></a>
 
 
 <p>
@@ -37,7 +37,7 @@ Name | Description
 
 
  
-## <a name="is_date"></a>IS_DATE Function
+## IS_DATE Function<a name="is_date"></a>
 
 
 <p>

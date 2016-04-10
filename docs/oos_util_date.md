@@ -11,7 +11,7 @@
 
 
  
-## <a name="date2epoch"></a>DATE2EPOCH Function
+## DATE2EPOCH Function<a name="date2epoch"></a>
 
 
 <p>
@@ -38,7 +38,7 @@ Name | Description
 
 
  
-## <a name="epoch2date"></a>EPOCH2DATE Function
+## EPOCH2DATE Function<a name="epoch2date"></a>
 
 
 <p>

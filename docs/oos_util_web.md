@@ -18,7 +18,7 @@ gc_content_disposition_attach | `gc_content_disposition_attach constant varchar2
 
 
  
-## <a name="get_mime_type"></a>GET_MIME_TYPE Function
+## GET_MIME_TYPE Function<a name="get_mime_type"></a>
 
 
 <p>
@@ -45,7 +45,7 @@ Name | Description
 
 
  
-## <a name="download_file"></a>DOWNLOAD_FILE Procedure
+## DOWNLOAD_FILE Procedure<a name="download_file"></a>
 
 
 <p>
@@ -87,7 +87,7 @@ Name | Description
 
 
  
-## <a name="download_file"></a>DOWNLOAD_FILE Procedure
+## DOWNLOAD_FILE Procedure<a name="download_file"></a>
 
 
 <p>
