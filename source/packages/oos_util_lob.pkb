@@ -30,19 +30,16 @@ as
       cache => false);
 
     dbms_lob.converttoblob(
-      dest_lob    => l_blob,
-      src_clob     => p_clob,
-      amount       => dbms_lob.lobmaxsize,
-      dest_offset  => l_dest_offset,
-      src_offset   => l_src_offset,
-      blob_csid    => dbms_lob.default_csid,
+      dest_lob => l_blob,
+      src_clob => p_clob,
+      amount => dbms_lob.lobmaxsize,
+      dest_offset => l_dest_offset,
+      src_offset => l_src_offset,
+      blob_csid => dbms_lob.default_csid,
       lang_context => l_lang_ctx,
-      warning      => l_warning);
+      warning => l_warning);
 
-    if l_warning <> dbms_lob.no_warning then
-      raise_application_error(-20000,
-                              'failed to convert clob to blob: ' || l_warning);
-    end if;
+    oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to convert clob to blob: ' || l_warning);
 
     return l_blob;
   end clob2blob;
@@ -79,19 +76,16 @@ as
       cache => false);
 
     dbms_lob.converttoclob(
-      dest_lob     => l_clob,
-      src_blob     => p_blob,
-      amount       => dbms_lob.lobmaxsize,
-      dest_offset  => l_dest_offset,
-      src_offset   => l_src_offset,
-      blob_csid    => dbms_lob.default_csid,
+      dest_lob => l_clob,
+      src_blob => p_blob,
+      amount => dbms_lob.lobmaxsize,
+      dest_offset => l_dest_offset,
+      src_offset => l_src_offset,
+      blob_csid => dbms_lob.default_csid,
       lang_context => l_lang_context,
-      warning      => l_warning);
+      warning => l_warning);
 
-    if l_warning <> dbms_lob.no_warning then
-      raise_application_error(-20000,
-                              'failed to convert blob to clob: ' || l_warning);
-    end if;
+    oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to convert blob to clob: ' || l_warning);
 
     return l_clob;
   end blob2clob;
