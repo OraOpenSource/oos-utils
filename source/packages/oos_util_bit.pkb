@@ -2,15 +2,23 @@ create or replace package body oos_util_bit
 as
 
   /**
-   * Bit OR
+   * [bitwise OR](https://en.wikipedia.org/wiki/Bitwise_operation#OR)
    *
-   * Copied from http://www.orafaq.com/wiki/Bit
+   * Copied from [http://www.orafaq.com/wiki/Bit](http://www.orafaq.com/wiki/Bit)
    *
-   * The function signature is similar to PL/SQL version of Oracle native
-   * implemented bitand: https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612
+   * The function signature is similar to [`bitand`](https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612)
    *
    * The arguments must be in the range -(2^(32-1)) .. ((2^(32-1))-1). If an
    * argument is out of this range, the result is undefined.
+   *
+   * @example
+   *
+   * select oos_util_bit.bitor(1,3)
+   * from dual;
+   *
+   * OOS_UTIL_BIT.BITXOR(1,3)
+   * ------------------------
+   *                       3
    *
    * @issue #44
    *
@@ -27,18 +35,26 @@ as
   as
   begin
     return x + y - bitand(x, y);
-  end;
+  end bitor;
 
   /**
-   * Bit XOR
+   * [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)
    *
-   * Copied from http://www.orafaq.com/wiki/Bit
+   * Copied from [http://www.orafaq.com/wiki/Bit](http://www.orafaq.com/wiki/Bit)
    *
-   * The function signature is similar to PL/SQL version of Oracle native
-   * implemented bitand: https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612
+   * The function signature is similar to [`bitand`](https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612)
    *
    * The arguments must be in the range -(2^(32-1)) .. ((2^(32-1))-1). If an
    * argument is out of this range, the result is undefined.
+   *
+   * @example
+   *
+   * select oos_util_bit.bitor(1,3)
+   * from dual;
+   *
+   * OOS_UTIL_BIT.BITXOR(1,3)
+   * ------------------------
+   *                       2
    *
    * @issue #44
    *
@@ -55,18 +71,26 @@ as
   as
   begin
     return bitor(x, y) - bitand(x, y);
-  end;
+  end bitxor;
 
   /**
-   * Bit NOT
+   * [bitwise NOT](https://en.wikipedia.org/wiki/Bitwise_operation#NOT)
    *
-   * Copied from http://www.orafaq.com/wiki/Bit
+   * Copied from [http://www.orafaq.com/wiki/Bit](http://www.orafaq.com/wiki/Bit)
    *
-   * The function signature is similar to PL/SQL version of Oracle native
-   * implemented bitand: https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612
+   * The function signature is similar to [`bitand`](https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612)
    *
    * The arguments must be in the range -(2^(32-1)) .. ((2^(32-1))-1). If an
    * argument is out of this range, the result is undefined.
+   *
+   * @example
+   *
+   * select oos_util_bit.bitnot(7)
+   * from dual;
+   *
+   * OOS_UTIL_BIT.BITNOT(7)
+   * ----------------------
+   *                     -8
    *
    * @issue #44
    *
@@ -81,7 +105,7 @@ as
   as
   begin
     return (0 - x) - 1;
-  end;
+  end bitnot;
 
 end;
 /

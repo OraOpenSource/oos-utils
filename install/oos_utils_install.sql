@@ -172,6 +172,23 @@ as
    * Validates assertion.
    * Will raise an application error if assertion is false
    *
+   * @example
+   *
+   * oos_util.assert(1=2, 'this assertion did not pass');
+   *
+   * -- Results in
+   *
+   * Error starting at line : 1 in command -
+   * exec oos_util.assert(1=2, 'this assertion did not pass')
+   * Error report -
+   * ORA-06550: line 1, column 7:
+   * PLS-00306: wrong number or types of arguments in call to 'ASSERT'
+   * ORA-06550: line 1, column 7:
+   * PL/SQL: Statement ignored
+   * 06550. 00000 -  "line %s, column %s:\n%s"
+   * *Cause:    Usually a PL/SQL compilation error.
+   * *Action:
+
    * @issue #19
    *
    * @author Martin D'Souza
@@ -195,8 +212,9 @@ as
    *
    * Notes:
    *  - It is recommended that you use Oracle's lock procedures: http://psoug.org/reference/sleep.html
-   *  - However in some instances you may not have access to them
+   *    - In instances where you do not have access use this sleep method instead
    *  - This implementation may tie up CPU so only use for development purposes
+   *  - This is a custom implementation of sleep and as a result the times are not 100% accurate
    *  - If calling in SQLDeveloper may get "IO Error: Socket read timed out". This is a JDBC driver setting, not a bug in this code.
    *
    * @issue #13
@@ -652,6 +670,139 @@ as
 end oos_util_apex;
 /
 
+prompt oos_util_bit
+create or replace package oos_util_bit
+as
+
+  function bitor(
+    x in binary_integer,
+    y in binary_integer)
+    return binary_integer;
+
+  function bitxor(
+    x in binary_integer,
+    y in binary_integer)
+    return binary_integer;
+
+  function bitnot(
+    x in binary_integer)
+    return binary_integer;
+
+end;
+/
+
+create or replace package body oos_util_bit
+as
+
+  /**
+   * [bitwise OR](https://en.wikipedia.org/wiki/Bitwise_operation#OR)
+   *
+   * Copied from [http://www.orafaq.com/wiki/Bit](http://www.orafaq.com/wiki/Bit)
+   *
+   * The function signature is similar to [`bitand`](https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612)
+   *
+   * The arguments must be in the range -(2^(32-1)) .. ((2^(32-1))-1). If an
+   * argument is out of this range, the result is undefined.
+   *
+   * @example
+   *
+   * select oos_util_bit.bitor(1,3)
+   * from dual;
+   *
+   * OOS_UTIL_BIT.BITXOR(1,3)
+   * ------------------------
+   *                       3
+   *
+   * @issue #44
+   *
+   * @author Jani Hur <webmaster@jani-hur.net>
+   * @created 06-Apr-2016
+   * @param x binary_integer
+   * @param y binary_integer
+   * @return binary_integer
+   */
+  function bitor(
+    x in binary_integer,
+    y in binary_integer)
+    return binary_integer
+  as
+  begin
+    return x + y - bitand(x, y);
+  end bitor;
+
+  /**
+   * [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)
+   *
+   * Copied from [http://www.orafaq.com/wiki/Bit](http://www.orafaq.com/wiki/Bit)
+   *
+   * The function signature is similar to [`bitand`](https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612)
+   *
+   * The arguments must be in the range -(2^(32-1)) .. ((2^(32-1))-1). If an
+   * argument is out of this range, the result is undefined.
+   *
+   * @example
+   *
+   * select oos_util_bit.bitor(1,3)
+   * from dual;
+   *
+   * OOS_UTIL_BIT.BITXOR(1,3)
+   * ------------------------
+   *                       2
+   *
+   * @issue #44
+   *
+   * @author Jani Hur <webmaster@jani-hur.net>
+   * @created 06-Apr-2016
+   * @param x binary_integer
+   * @param y binary_integer
+   * @return binary_integer
+   */
+  function bitxor(
+    x in binary_integer,
+    y in binary_integer)
+    return binary_integer
+  as
+  begin
+    return bitor(x, y) - bitand(x, y);
+  end bitxor;
+
+  /**
+   * [bitwise NOT](https://en.wikipedia.org/wiki/Bitwise_operation#NOT)
+   *
+   * Copied from [http://www.orafaq.com/wiki/Bit](http://www.orafaq.com/wiki/Bit)
+   *
+   * The function signature is similar to [`bitand`](https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612)
+   *
+   * The arguments must be in the range -(2^(32-1)) .. ((2^(32-1))-1). If an
+   * argument is out of this range, the result is undefined.
+   *
+   * @example
+   *
+   * select oos_util_bit.bitnot(7)
+   * from dual;
+   *
+   * OOS_UTIL_BIT.BITNOT(7)
+   * ----------------------
+   *                     -8
+   *
+   * @issue #44
+   *
+   * @author Jani Hur <webmaster@jani-hur.net>
+   * @created 06-Apr-2016
+   * @param x binary_integer
+   * @return binary_integer
+   */
+  function bitnot(
+    x in binary_integer)
+    return binary_integer
+  as
+  begin
+    return (0 - x) - 1;
+  end bitnot;
+
+end;
+/
+
 prompt oos_util_date
 create or replace package oos_util_date
 as
@@ -810,19 +961,29 @@ as
     l_blob blob;
     l_dest_offset integer := 1;
     l_src_offset integer := 1;
-    l_warning integer;
     l_lang_ctx integer := dbms_lob.default_lang_ctx;
+    l_warning integer;
   begin
-    dbms_lob.createtemporary(l_blob, false, dbms_lob.session );
+    if p_clob is null then
+      return null;
+    end if;
+
+    dbms_lob.createtemporary(
+      lob_loc => l_blob,
+      cache => false);
+
     dbms_lob.converttoblob(
-      l_blob,
-      p_clob,
-      dbms_lob.lobmaxsize,
-      l_dest_offset,
-      l_src_offset,
-      dbms_lob.default_csid,
-      l_lang_ctx,
-      l_warning);
+      dest_lob => l_blob,
+      src_clob => p_clob,
+      amount => dbms_lob.lobmaxsize,
+      dest_offset => l_dest_offset,
+      src_offset => l_src_offset,
+      blob_csid => dbms_lob.default_csid,
+      lang_context => l_lang_ctx,
+      warning => l_warning);
+
+    oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to convert clob to blob: ' || l_warning);
+
     return l_blob;
   end clob2blob;
 
@@ -844,17 +1005,16 @@ as
     return clob
   as
     l_clob clob;
-    l_dest_offsset integer := 1;
-    l_src_offsset integer := 1;
+    l_dest_offset integer := 1;
+    l_src_offset integer := 1;
     l_lang_context integer := dbms_lob.default_lang_ctx;
     l_warning integer;
-
   begin
     if p_blob is null then
       return null;
     end if;
 
-    dbms_lob.createTemporary(
+    dbms_lob.createtemporary(
       lob_loc => l_clob,
       cache => false);
 
@@ -862,16 +1022,16 @@ as
       dest_lob => l_clob,
       src_blob => p_blob,
       amount => dbms_lob.lobmaxsize,
-      dest_offset => l_dest_offsset,
-      src_offset => l_src_offsset,
+      dest_offset => l_dest_offset,
+      src_offset => l_src_offset,
       blob_csid => dbms_lob.default_csid,
       lang_context => l_lang_context,
       warning => l_warning);
 
+    oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to convert blob to clob: ' || l_warning);
+
     return l_clob;
   end blob2clob;
-
-
 
   /**
    * Returns human readable file size

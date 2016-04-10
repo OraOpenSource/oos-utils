@@ -12,6 +12,7 @@ whenever sqlerror exit sql.sqlcode
 
 create or replace synonym oos_util for &from_user..oos_util;
 create or replace synonym oos_util_apex for &from_user..oos_util_apex;
+create or replace synonym oos_util_bit for &from_user..oos_util_bit;
 create or replace synonym oos_util_date for &from_user..oos_util_date;
 create or replace synonym oos_util_lob for &from_user..oos_util_lob;
 create or replace synonym oos_util_string for &from_user..oos_util_string;

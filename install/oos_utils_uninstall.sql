@@ -16,6 +16,9 @@ drop package oos_util;
 prompt oos_util_apex
 drop package oos_util_apex;
 
+prompt oos_util_bit
+drop package oos_util_bit;
+
 prompt oos_util_date
 drop package oos_util_date;
 
