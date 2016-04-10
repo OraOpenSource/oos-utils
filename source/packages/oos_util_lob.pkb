@@ -18,19 +18,32 @@ as
     l_blob blob;
     l_dest_offset integer := 1;
     l_src_offset integer := 1;
-    l_warning integer;
     l_lang_ctx integer := dbms_lob.default_lang_ctx;
+    l_warning integer;
   begin
-    dbms_lob.createtemporary(l_blob, false, dbms_lob.session );
+    if p_clob is null then
+      return null;
+    end if;
+
+    dbms_lob.createtemporary(
+      lob_loc => l_blob,
+      cache => false);
+
     dbms_lob.converttoblob(
-      l_blob,
-      p_clob,
-      dbms_lob.lobmaxsize,
-      l_dest_offset,
-      l_src_offset,
-      dbms_lob.default_csid,
-      l_lang_ctx,
-      l_warning);
+      dest_lob    => l_blob,
+      src_clob     => p_clob,
+      amount       => dbms_lob.lobmaxsize,
+      dest_offset  => l_dest_offset,
+      src_offset   => l_src_offset,
+      blob_csid    => dbms_lob.default_csid,
+      lang_context => l_lang_ctx,
+      warning      => l_warning);
+
+    if l_warning <> dbms_lob.no_warning then
+      raise_application_error(-20000,
+                              'failed to convert clob to blob: ' || l_warning);
+    end if;
+
     return l_blob;
   end clob2blob;
 
@@ -52,34 +65,36 @@ as
     return clob
   as
     l_clob clob;
-    l_dest_offsset integer := 1;
-    l_src_offsset integer := 1;
+    l_dest_offset integer := 1;
+    l_src_offset integer := 1;
     l_lang_context integer := dbms_lob.default_lang_ctx;
     l_warning integer;
-
   begin
     if p_blob is null then
       return null;
     end if;
 
-    dbms_lob.createTemporary(
+    dbms_lob.createtemporary(
       lob_loc => l_clob,
       cache => false);
 
     dbms_lob.converttoclob(
-      dest_lob => l_clob,
-      src_blob => p_blob,
-      amount => dbms_lob.lobmaxsize,
-      dest_offset => l_dest_offsset,
-      src_offset => l_src_offsset,
-      blob_csid => dbms_lob.default_csid,
+      dest_lob     => l_clob,
+      src_blob     => p_blob,
+      amount       => dbms_lob.lobmaxsize,
+      dest_offset  => l_dest_offset,
+      src_offset   => l_src_offset,
+      blob_csid    => dbms_lob.default_csid,
       lang_context => l_lang_context,
-      warning => l_warning);
+      warning      => l_warning);
+
+    if l_warning <> dbms_lob.no_warning then
+      raise_application_error(-20000,
+                              'failed to convert blob to clob: ' || l_warning);
+    end if;
 
     return l_clob;
   end blob2clob;
-
-
 
   /**
    * Returns human readable file size
