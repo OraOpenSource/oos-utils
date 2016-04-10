@@ -1,6 +1,6 @@
 # OOS_UTIL_STRING
 
-- [Data Types](#dataTypes)
+- [Data Types](#types)
 - [Constants](#constants)
 - [TOCHAR Function](#tochar)
 - [TOCHAR Function](#tochar)
