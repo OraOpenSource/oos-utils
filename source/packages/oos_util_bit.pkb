@@ -2,6 +2,41 @@ create or replace package body oos_util_bit
 as
 
   /**
+   * [bitwise AND](https://en.wikipedia.org/wiki/Bitwise_operation#AND)
+   *
+   * The function signature is similar to [`bitand`](https://docs.oracle.com/cd/E11882_01/server.112/e41084/functions021.htm#SQLRF00612)
+   *
+   * The arguments must be in the range -(2^(32-1)) .. ((2^(32-1))-1). If an
+   * argument is out of this range, the result is undefined.
+   *
+   * @example
+   *
+   * select oos_util_bit.bitand(1,3)
+   * from dual;
+   *
+   * OOS_UTIL_BIT.BITAND(1,3)
+   * ------------------------
+   *                       1
+   *
+   * @issue #69
+   *
+   * @author Jani Hur <webmaster@jani-hur.net>
+   * @created 11-Apr-2016
+   * @param p_x binary_integer
+   * @param p_y binary_integer
+   * @return binary_integer
+   */
+
+  function bitand(
+    p_x in binary_integer,
+    p_y in binary_integer)
+    return binary_integer
+  as
+  begin
+    return standard.bitand(p_x, p_y);
+  end;
+
+  /**
    * [bitwise OR](https://en.wikipedia.org/wiki/Bitwise_operation#OR)
    *
    * Copied from [http://www.orafaq.com/wiki/Bit](http://www.orafaq.com/wiki/Bit)
