@@ -51,8 +51,8 @@ as
    * select oos_util_bit.bitor(1,3)
    * from dual;
    *
-   * OOS_UTIL_BIT.BITXOR(1,3)
-   * ------------------------
+   * OOS_UTIL_BIT.BITOR(1,3)
+   * -----------------------
    *                       3
    *
    * @issue #44
@@ -84,12 +84,12 @@ as
    *
    * @example
    *
-   * select oos_util_bit.bitor(1,3)
+   * select oos_util_bit.bitxor(1,3)
    * from dual;
    *
    * OOS_UTIL_BIT.BITXOR(1,3)
    * ------------------------
-   *                       2
+   *                        2
    *
    * @issue #44
    *
