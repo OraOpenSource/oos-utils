@@ -24,17 +24,17 @@ as
    *
    * @author Jani Hur <webmaster@jani-hur.net>
    * @created 06-Apr-2016
-   * @param x binary_integer
-   * @param y binary_integer
+   * @param p_x binary_integer
+   * @param p_y binary_integer
    * @return binary_integer
    */
   function bitor(
-    x in binary_integer,
-    y in binary_integer)
+    p_x in binary_integer,
+    p_y in binary_integer)
     return binary_integer
   as
   begin
-    return x + y - bitand(x, y);
+    return p_x + p_y - bitand(p_x, p_y);
   end bitor;
 
   /**
@@ -60,17 +60,17 @@ as
    *
    * @author Jani Hur <webmaster@jani-hur.net>
    * @created 06-Apr-2016
-   * @param x binary_integer
-   * @param y binary_integer
+   * @param p_x binary_integer
+   * @param p_y binary_integer
    * @return binary_integer
    */
   function bitxor(
-    x in binary_integer,
-    y in binary_integer)
+    p_x in binary_integer,
+    p_y in binary_integer)
     return binary_integer
   as
   begin
-    return bitor(x, y) - bitand(x, y);
+    return bitor(p_x, p_y) - bitand(p_x, p_y);
   end bitxor;
 
   /**
@@ -96,15 +96,15 @@ as
    *
    * @author Jani Hur <webmaster@jani-hur.net>
    * @created 06-Apr-2016
-   * @param x binary_integer
+   * @param p_x binary_integer
    * @return binary_integer
    */
   function bitnot(
-    x in binary_integer)
+    p_x in binary_integer)
     return binary_integer
   as
   begin
-    return (0 - x) - 1;
+    return (0 - p_x) - 1;
   end bitnot;
 
 end;
