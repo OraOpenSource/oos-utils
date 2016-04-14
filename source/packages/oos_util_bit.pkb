@@ -26,15 +26,14 @@ as
    * @param p_y binary_integer
    * @return binary_integer
    */
-
   function bitand(
     p_x in binary_integer,
     p_y in binary_integer)
     return binary_integer
   as
   begin
-    return standard.bitand(p_x, p_y);
-  end;
+    return sys.standard.bitand(p_x, p_y);
+  end bitand;
 
   /**
    * [bitwise OR](https://en.wikipedia.org/wiki/Bitwise_operation#OR)
