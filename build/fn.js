@@ -91,7 +91,7 @@ var functions = {
     sqlStmt += 'begin\n  delete oos_util_values;\n';
     sqlStmt += '  insert all\n';
     for(var ext in extensions){
-      temp = '  into oos_util_values(cat, name, value) values('mime-type', '%name%','%value%');\n';
+      temp = "  into oos_util_values(cat, name, value) values('mime-type', '%name%','%value%');\n";
       temp = temp.replace(/\%name\%/g, ext);
       temp = temp.replace(/\%value\%/g, extensions[ext][0]);
       sqlStmt += temp;
