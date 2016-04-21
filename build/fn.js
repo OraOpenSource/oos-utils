@@ -85,19 +85,21 @@ var functions = {
 
     }//for duplicates
 
-    console.log('Creating insert statements');
+    console.log('Creating insert statement');
     //Create insert statement
+    sqlStmt  = '-- This file is generated, do not modify.\n\n';
+    sqlStmt += 'begin\n  delete oos_util_values;\n';
+    sqlStmt += '  insert all\n';
     for(var ext in extensions){
-      temp = "  insert into oos_util_values(cat, name, value) values('mime-type', '%name%','%value%');\n";
+      temp = '  into oos_util_values(cat, name, value) values('mime-type', '%name%','%value%');\n';
       temp = temp.replace(/\%name\%/g, ext);
       temp = temp.replace(/\%value\%/g, extensions[ext][0]);
       sqlStmt += temp;
-    }//
-
-    sqlStmt = 'begin\n  delete oos_util_values;\n' + sqlStmt + '\nend;\n/\n';
-    sqlStmt += 'commit;';
-    sqlStmt = '-- This file is generated, do not modify.\n\n' + sqlStmt;
-
+    }
+    sqlStmt += '  select 1 from dual;\n';
+    sqlStmt += 'end;\n'
+    sqlStmt += '/\n';
+    sqlStmt += 'commit;\n';
 
     fs.writeFileSync(path.resolve(__dirname,'../data/oos_util_values.sql'), sqlStmt);
 
