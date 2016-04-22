@@ -5,94 +5,92 @@ as
    * Converts parameter to varchar2
    *
    * Notes:
-   *  - Needed to call this function `tochar` instead of `to_char` since there will be a conflict when calling it
    *  - Code copied from Logger: https://github.com/OraOpenSource/Logger
    *
    * @issue 11
    *
    * @author Martin D'Souza
    * @created 07-Jun-2014
-   * @param p_value
-   * @return string value for p_value
+   * @param p_val Number
+   * @return string value for p_val
    */
-  function tochar(
+  function to_char(
     p_val in number)
     return varchar2
   as
   begin
-    return to_char(p_val);
-  end tochar;
+    return sys.standard.to_char(p_val);
+  end to_char;
 
   /**
-   * See first `tochar`
+   * See first `to_char`
    *
    * @param p_val Date
-   * @return string value for p_value
+   * @return string value for p_val
    */
-  function tochar(
+  function to_char(
     p_val in date)
     return varchar2
   as
   begin
-    return to_char(p_val, oos_util.gc_date_format);
-  end tochar;
+    return sys.standard.to_char(p_val, oos_util.gc_date_format);
+  end to_char;
 
   /**
-   * See first `tochar`
+   * See first `to_char`
    *
    * @param p_val Timestamp
-   * @return string value for p_value
+   * @return string value for p_val
    */
-  function tochar(
+  function to_char(
     p_val in timestamp)
     return varchar2
   as
   begin
-    return to_char(p_val, oos_util.gc_timestamp_format);
-  end tochar;
+    return sys.standard.to_char(p_val, oos_util.gc_timestamp_format);
+  end to_char;
 
   /**
-   * See first `tochar`
+   * See first `to_char`
    *
    * @param p_val Timestamp with TZ
-   * @return string value for p_value
+   * @return string value for p_val
    */
-  function tochar(
+  function to_char(
     p_val in timestamp with time zone)
     return varchar2
   as
   begin
-    return to_char(p_val, oos_util.gc_timestamp_tz_format);
-  end tochar;
+    return sys.standard.to_char(p_val, oos_util.gc_timestamp_tz_format);
+  end to_char;
 
   /**
-   * See first `tochar`
+   * See first `to_char`
    *
    * @param p_val Timestamp with local TZ
-   * @return string value for p_value
+   * @return string value for p_val
    */
-  function tochar(
+  function to_char(
     p_val in timestamp with local time zone)
     return varchar2
   as
   begin
-    return to_char(p_val, oos_util.gc_timestamp_tz_format);
-  end tochar;
+    return sys.standard.to_char(p_val, oos_util.gc_timestamp_tz_format);
+  end to_char;
 
   /**
-   * See first `tochar`
+   * See first `to_char`
    *
    * @param p_val Boolean
-   * @return string value for p_value
+   * @return string value for p_val
    */
-  function tochar(
+  function to_char(
     p_val in boolean)
     return varchar2
   as
   begin
     return case when p_val then 'TRUE' else 'FALSE' end;
-  end tochar;
-
+  end to_char;
 
   /**
    * Truncates a string to ensure that it is not longer than `p_length`
