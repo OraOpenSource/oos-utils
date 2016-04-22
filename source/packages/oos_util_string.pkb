@@ -113,7 +113,7 @@ as
    * @param p_ellipsis ellipsis "..." default
    * @return Trimmed string
    */
-  function truncate_string(
+  function truncate(
     p_str in varchar2,
     p_length in pls_integer,
     p_by_word in varchar2 default 'N',
@@ -180,8 +180,7 @@ as
     end if;
 
     return l_str;
-  end truncate_string;
-
+  end truncate;
 
   /**
    * Does string replacement similar to C's sprintf

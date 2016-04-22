@@ -39,7 +39,7 @@ as
     p_val in boolean)
     return varchar2;
 
-  function truncate_string(
+  function truncate(
     p_str in varchar2,
     p_length in pls_integer,
     p_by_word in varchar2 default 'N',
