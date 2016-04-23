@@ -2,1047 +2,1048 @@
 
 begin
   delete oos_util_values;
-  insert into oos_util_values(cat, name, value) values('mime-type', '123','application/vnd.lotus-1-2-3');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ez','application/andrew-inset');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aw','application/applixware');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'atom','application/atom+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'atomcat','application/atomcat+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'atomsvc','application/atomsvc+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bdoc','application/bdoc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ccxml','application/ccxml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdmia','application/cdmi-capability');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdmic','application/cdmi-container');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdmid','application/cdmi-domain');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdmio','application/cdmi-object');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdmiq','application/cdmi-queue');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cu','application/cu-seeme');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mdp','application/dash+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'davmount','application/davmount+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dbk','application/docbook+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dssc','application/dssc+der');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xdssc','application/dssc+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ecma','application/ecmascript');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'emma','application/emma+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'epub','application/epub+zip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'exi','application/exi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pfr','application/font-tdpfr');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'woff','application/font-woff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'woff2','application/font-woff2');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gml','application/gml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gpx','application/gpx+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gxf','application/gxf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'stk','application/hyperstudio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ink','application/inkml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'inkml','application/inkml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ipfix','application/ipfix');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jar','application/java-archive');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'war','application/java-archive');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ear','application/java-archive');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ser','application/java-serialized-object');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'class','application/java-vm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'js','application/javascript');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'json','application/json');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'map','application/json');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'json5','application/json5');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jsonml','application/jsonml+json');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jsonld','application/ld+json');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lostxml','application/lost+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hqx','application/mac-binhex40');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cpt','application/mac-compactpro');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mads','application/mads+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'webmanifest','application/manifest+json');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mrc','application/marc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mrcx','application/marcxml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ma','application/mathematica');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nb','application/mathematica');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mb','application/mathematica');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mathml','application/mathml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mbox','application/mbox');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mscml','application/mediaservercontrol+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'metalink','application/metalink+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'meta4','application/metalink4+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mets','application/mets+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mods','application/mods+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm21','application/mp21');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mp21','application/mp21');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mp4s','application/mp4');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm4p','application/mp4');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'doc','application/msword');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dot','application/msword');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mxf','application/mxf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bin','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dms','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lrf','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mar','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'so','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dist','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'distz','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pkg','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bpk','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dump','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'elc','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'deploy','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'exe','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dll','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'deb','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dmg','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'iso','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'img','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'msi','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'msp','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'msm','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'buffer','application/octet-stream');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oda','application/oda');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'opf','application/oebps-package+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ogx','application/ogg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'omdoc','application/omdoc+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'onetoc','application/onenote');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'onetoc2','application/onenote');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'onetmp','application/onenote');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'onepkg','application/onenote');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oxps','application/oxps');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xer','application/patch-ops-error+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pdf','application/pdf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pgp','application/pgp-encrypted');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'asc','application/pgp-signature');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sig','application/pgp-signature');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'prf','application/pics-rules');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'p10','application/pkcs10');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'p7m','application/pkcs7-mime');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'p7c','application/pkcs7-mime');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'p7s','application/pkcs7-signature');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'p8','application/pkcs8');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ac','application/pkix-attr-cert');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cer','application/pkix-cert');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'crl','application/pkix-crl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pkipath','application/pkix-pkipath');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pki','application/pkixcmp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pls','application/pls+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ai','application/postscript');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'eps','application/postscript');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ps','application/postscript');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cww','application/prs.cww');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pskcxml','application/pskc+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rdf','application/rdf+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rif','application/reginfo+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rnc','application/relax-ng-compact-syntax');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rl','application/resource-lists+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rld','application/resource-lists-diff+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rs','application/rls-services+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gbr','application/rpki-ghostbusters');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mft','application/rpki-manifest');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'roa','application/rpki-roa');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rsd','application/rsd+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rss','application/rss+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rtf','text/rtf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sbml','application/sbml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'scq','application/scvp-cv-request');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'scs','application/scvp-cv-response');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'spq','application/scvp-vp-request');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'spp','application/scvp-vp-response');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sdp','application/sdp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'setpay','application/set-payment-initiation');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'setreg','application/set-registration-initiation');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'shf','application/shf+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'smi','application/smil+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'smil','application/smil+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rq','application/sparql-query');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'srx','application/sparql-results+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gram','application/srgs');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'grxml','application/srgs+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sru','application/sru+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ssdl','application/ssdl+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ssml','application/ssml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tei','application/tei+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'teicorpus','application/tei+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tfi','application/thraud+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tsd','application/timestamped-data');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'plb','application/vnd.3gpp.pic-bw-large');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'psb','application/vnd.3gpp.pic-bw-small');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pvb','application/vnd.3gpp.pic-bw-var');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tcap','application/vnd.3gpp2.tcap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pwn','application/vnd.3m.post-it-notes');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aso','application/vnd.accpac.simply.aso');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'imp','application/vnd.accpac.simply.imp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'acu','application/vnd.acucobol');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'atc','application/vnd.acucorp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'acutc','application/vnd.acucorp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'air','application/vnd.adobe.air-application-installer-package+zip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fcdt','application/vnd.adobe.formscentral.fcdt');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fxp','application/vnd.adobe.fxp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fxpl','application/vnd.adobe.fxp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xdp','application/vnd.adobe.xdp+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xfdf','application/vnd.adobe.xfdf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ahead','application/vnd.ahead.space');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'azf','application/vnd.airzip.filesecure.azf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'azs','application/vnd.airzip.filesecure.azs');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'azw','application/vnd.amazon.ebook');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'acc','application/vnd.americandynamics.acc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ami','application/vnd.amiga.ami');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'apk','application/vnd.android.package-archive');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cii','application/vnd.anser-web-certificate-issue-initiation');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fti','application/vnd.anser-web-funds-transfer-initiation');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'atx','application/vnd.antix.game-component');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpkg','application/vnd.apple.installer+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm3u8','application/vnd.apple.mpegurl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pkpass','application/vnd.apple.pkpass');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'swi','application/vnd.aristanetworks.swi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'iota','application/vnd.astraea-software.iota');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aep','application/vnd.audiograph');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpm','application/vnd.blueice.multipass');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bmi','application/vnd.bmi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rep','application/vnd.businessobjects');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdxml','application/vnd.chemdraw+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mmd','application/vnd.chipnuts.karaoke-mmd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdy','application/vnd.cinderella');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cla','application/vnd.claymore');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rp9','application/vnd.cloanto.rp9');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'c4g','application/vnd.clonk.c4group');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'c4d','application/vnd.clonk.c4group');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'c4f','application/vnd.clonk.c4group');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'c4p','application/vnd.clonk.c4group');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'c4u','application/vnd.clonk.c4group');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'c11amc','application/vnd.cluetrust.cartomobile-config');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'c11amz','application/vnd.cluetrust.cartomobile-config-pkg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'csp','application/vnd.commonspace');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdbcmsg','application/vnd.contact.cmsg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cmc','application/vnd.cosmocaller');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'clkx','application/vnd.crick.clicker');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'clkk','application/vnd.crick.clicker.keyboard');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'clkp','application/vnd.crick.clicker.palette');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'clkt','application/vnd.crick.clicker.template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'clkw','application/vnd.crick.clicker.wordbank');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wbs','application/vnd.criticaltools.wbs+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pml','application/vnd.ctc-posml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ppd','application/vnd.cups-ppd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'car','application/vnd.curl.car');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pcurl','application/vnd.curl.pcurl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dart','application/vnd.dart');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rdz','application/vnd.data-vision.rdz');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvf','application/vnd.dece.data');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvf','application/vnd.dece.data');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvd','application/vnd.dece.data');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvd','application/vnd.dece.data');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvt','application/vnd.dece.ttml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvt','application/vnd.dece.ttml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvx','application/vnd.dece.unspecified');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvx','application/vnd.dece.unspecified');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvz','application/vnd.dece.zip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvz','application/vnd.dece.zip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fe_launch','application/vnd.denovo.fcselayout-link');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dna','application/vnd.dna');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mlp','application/vnd.dolby.mlp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dpg','application/vnd.dpgraph');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dfac','application/vnd.dreamfactory');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kpxx','application/vnd.ds-keypoint');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ait','application/vnd.dvb.ait');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'svc','application/vnd.dvb.service');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'geo','application/vnd.dynageo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mag','application/vnd.ecowin.chart');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nml','application/vnd.enliven');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'esf','application/vnd.epson.esf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'msf','application/vnd.epson.msf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qam','application/vnd.epson.quickanime');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'slt','application/vnd.epson.salt');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ssf','application/vnd.epson.ssf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'es3','application/vnd.eszigno3+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'et3','application/vnd.eszigno3+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ez2','application/vnd.ezpix-album');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ez3','application/vnd.ezpix-package');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fdf','application/vnd.fdf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mseed','application/vnd.fdsn.mseed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'seed','application/vnd.fdsn.seed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dataless','application/vnd.fdsn.seed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gph','application/vnd.flographit');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ftc','application/vnd.fluxtime.clip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fm','application/vnd.framemaker');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'frame','application/vnd.framemaker');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'maker','application/vnd.framemaker');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'book','application/vnd.framemaker');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fnc','application/vnd.frogans.fnc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ltf','application/vnd.frogans.ltf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fsc','application/vnd.fsc.weblaunch');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oas','application/vnd.fujitsu.oasys');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oa2','application/vnd.fujitsu.oasys2');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oa3','application/vnd.fujitsu.oasys3');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fg5','application/vnd.fujitsu.oasysgp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bh2','application/vnd.fujitsu.oasysprs');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ddd','application/vnd.fujixerox.ddd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xdw','application/vnd.fujixerox.docuworks');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xbd','application/vnd.fujixerox.docuworks.binder');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fzs','application/vnd.fuzzysheet');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'txd','application/vnd.genomatix.tuxedo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ggb','application/vnd.geogebra.file');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ggt','application/vnd.geogebra.tool');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gex','application/vnd.geometry-explorer');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gre','application/vnd.geometry-explorer');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gxt','application/vnd.geonext');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'g2w','application/vnd.geoplan');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'g3w','application/vnd.geospace');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gmx','application/vnd.gmx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kml','application/vnd.google-earth.kml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kmz','application/vnd.google-earth.kmz');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gqf','application/vnd.grafeq');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gqs','application/vnd.grafeq');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gac','application/vnd.groove-account');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ghf','application/vnd.groove-help');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gim','application/vnd.groove-identity-message');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'grv','application/vnd.groove-injector');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gtm','application/vnd.groove-tool-message');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tpl','application/vnd.groove-tool-template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vcg','application/vnd.groove-vcard');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hal','application/vnd.hal+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'zmm','application/vnd.handheld-entertainment+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hbci','application/vnd.hbci');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'les','application/vnd.hhe.lesson-player');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hpgl','application/vnd.hp-hpgl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hpid','application/vnd.hp-hpid');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hps','application/vnd.hp-hps');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jlt','application/vnd.hp-jlyt');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pcl','application/vnd.hp-pcl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pclxl','application/vnd.hp-pclxl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sfd-hdstx','application/vnd.hydrostatix.sof-data');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpy','application/vnd.ibm.minipay');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'afp','application/vnd.ibm.modcap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'listafp','application/vnd.ibm.modcap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'list3820','application/vnd.ibm.modcap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'irm','application/vnd.ibm.rights-management');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sc','application/vnd.ibm.secure-container');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'icc','application/vnd.iccprofile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'icm','application/vnd.iccprofile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'igl','application/vnd.igloader');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ivp','application/vnd.immervision-ivp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ivu','application/vnd.immervision-ivu');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'igm','application/vnd.insors.igm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xpw','application/vnd.intercon.formnet');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xpx','application/vnd.intercon.formnet');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'i2g','application/vnd.intergeo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qbo','application/vnd.intu.qbo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qfx','application/vnd.intu.qfx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rcprofile','application/vnd.ipunplugged.rcprofile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'irp','application/vnd.irepository.package+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xpr','application/vnd.is-xpr');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fcs','application/vnd.isac.fcs');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jam','application/vnd.jam');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rms','application/vnd.jcp.javame.midlet-rms');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jisp','application/vnd.jisp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'joda','application/vnd.joost.joda-archive');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ktz','application/vnd.kahootz');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ktr','application/vnd.kahootz');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'karbon','application/vnd.kde.karbon');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'chrt','application/vnd.kde.kchart');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kfo','application/vnd.kde.kformula');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'flw','application/vnd.kde.kivio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kon','application/vnd.kde.kontour');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kpr','application/vnd.kde.kpresenter');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kpt','application/vnd.kde.kpresenter');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ksp','application/vnd.kde.kspread');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kwd','application/vnd.kde.kword');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kwt','application/vnd.kde.kword');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'htke','application/vnd.kenameaapp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kia','application/vnd.kidspiration');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kne','application/vnd.kinar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'knp','application/vnd.kinar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'skp','application/vnd.koan');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'skd','application/vnd.koan');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'skt','application/vnd.koan');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'skm','application/vnd.koan');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sse','application/vnd.kodak-descriptor');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lasxml','application/vnd.las.las+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lbd','application/vnd.llamagraphics.life-balance.desktop');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lbe','application/vnd.llamagraphics.life-balance.exchange+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'apr','application/vnd.lotus-approach');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pre','application/vnd.lotus-freelance');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nsf','application/vnd.lotus-notes');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'org','application/vnd.lotus-organizer');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'scm','application/vnd.lotus-screencam');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lwp','application/vnd.lotus-wordpro');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'portpkg','application/vnd.macports.portpkg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mcd','application/vnd.mcd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mc1','application/vnd.medcalcdata');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdkey','application/vnd.mediastation.cdkey');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mwf','application/vnd.mfer');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mfm','application/vnd.mfmp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'flo','application/vnd.micrografx.flo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'igx','application/vnd.micrografx.igx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mif','application/vnd.mif');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'daf','application/vnd.mobius.daf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dis','application/vnd.mobius.dis');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mbk','application/vnd.mobius.mbk');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mqy','application/vnd.mobius.mqy');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'msl','application/vnd.mobius.msl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'plc','application/vnd.mobius.plc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'txf','application/vnd.mobius.txf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpn','application/vnd.mophun.application');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpc','application/vnd.mophun.certificate');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xul','application/vnd.mozilla.xul+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cil','application/vnd.ms-artgalry');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cab','application/vnd.ms-cab-compressed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xls','application/vnd.ms-excel');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xlm','application/vnd.ms-excel');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xla','application/vnd.ms-excel');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xlc','application/vnd.ms-excel');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xlt','application/vnd.ms-excel');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xlw','application/vnd.ms-excel');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xlam','application/vnd.ms-excel.addin.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xlsb','application/vnd.ms-excel.sheet.binary.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xlsm','application/vnd.ms-excel.sheet.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xltm','application/vnd.ms-excel.template.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'eot','application/vnd.ms-fontobject');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'chm','application/vnd.ms-htmlhelp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ims','application/vnd.ms-ims');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lrm','application/vnd.ms-lrm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'thmx','application/vnd.ms-officetheme');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cat','application/vnd.ms-pki.seccat');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'stl','application/vnd.ms-pki.stl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ppt','application/vnd.ms-powerpoint');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pps','application/vnd.ms-powerpoint');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pot','application/vnd.ms-powerpoint');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ppam','application/vnd.ms-powerpoint.addin.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pptm','application/vnd.ms-powerpoint.presentation.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sldm','application/vnd.ms-powerpoint.slide.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ppsm','application/vnd.ms-powerpoint.slideshow.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'potm','application/vnd.ms-powerpoint.template.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpp','application/vnd.ms-project');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpt','application/vnd.ms-project');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'docm','application/vnd.ms-word.document.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dotm','application/vnd.ms-word.template.macroenabled.12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wps','application/vnd.ms-works');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wks','application/vnd.ms-works');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wcm','application/vnd.ms-works');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wdb','application/vnd.ms-works');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wpl','application/vnd.ms-wpl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xps','application/vnd.ms-xpsdocument');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mseq','application/vnd.mseq');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mus','application/vnd.musician');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'msty','application/vnd.muvee.style');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'taglet','application/vnd.mynfc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nlu','application/vnd.neurolanguage.nlu');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ntf','application/vnd.nitf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nitf','application/vnd.nitf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nnd','application/vnd.noblenet-directory');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nns','application/vnd.noblenet-sealer');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nnw','application/vnd.noblenet-web');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ngdat','application/vnd.nokia.n-gage.data');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'n-gage','application/vnd.nokia.n-gage.symbian.install');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rpst','application/vnd.nokia.radio-preset');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rpss','application/vnd.nokia.radio-presets');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'edm','application/vnd.novadigm.edm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'edx','application/vnd.novadigm.edx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ext','application/vnd.novadigm.ext');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'odc','application/vnd.oasis.opendocument.chart');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'otc','application/vnd.oasis.opendocument.chart-template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'odb','application/vnd.oasis.opendocument.database');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'odf','application/vnd.oasis.opendocument.formula');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'odft','application/vnd.oasis.opendocument.formula-template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'odg','application/vnd.oasis.opendocument.graphics');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'otg','application/vnd.oasis.opendocument.graphics-template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'odi','application/vnd.oasis.opendocument.image');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oti','application/vnd.oasis.opendocument.image-template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'odp','application/vnd.oasis.opendocument.presentation');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'otp','application/vnd.oasis.opendocument.presentation-template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ods','application/vnd.oasis.opendocument.spreadsheet');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ots','application/vnd.oasis.opendocument.spreadsheet-template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'odt','application/vnd.oasis.opendocument.text');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'odm','application/vnd.oasis.opendocument.text-master');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ott','application/vnd.oasis.opendocument.text-template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oth','application/vnd.oasis.opendocument.text-web');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xo','application/vnd.olpc-sugar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dd2','application/vnd.oma.dd2+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oxt','application/vnd.openofficeorg.extension');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pptx','application/vnd.openxmlformats-officedocument.presentationml.presentation');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sldx','application/vnd.openxmlformats-officedocument.presentationml.slide');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ppsx','application/vnd.openxmlformats-officedocument.presentationml.slideshow');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'potx','application/vnd.openxmlformats-officedocument.presentationml.template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xltx','application/vnd.openxmlformats-officedocument.spreadsheetml.template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dotx','application/vnd.openxmlformats-officedocument.wordprocessingml.template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mgp','application/vnd.osgeo.mapguide.package');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dp','application/vnd.osgi.dp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'esa','application/vnd.osgi.subsystem');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pdb','application/vnd.palm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pqa','application/vnd.palm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oprc','application/vnd.palm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'paw','application/vnd.pawaafile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'str','application/vnd.pg.format');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ei6','application/vnd.pg.osasli');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'efif','application/vnd.picsel');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wg','application/vnd.pmi.widget');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'plf','application/vnd.pocketlearn');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pbd','application/vnd.powerbuilder6');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'box','application/vnd.previewsystems.box');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mgz','application/vnd.proteus.magazine');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qps','application/vnd.publishare-delta-tree');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ptid','application/vnd.pvi.ptid1');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qxd','application/vnd.quark.quarkxpress');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qxt','application/vnd.quark.quarkxpress');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qwd','application/vnd.quark.quarkxpress');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qwt','application/vnd.quark.quarkxpress');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qxl','application/vnd.quark.quarkxpress');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qxb','application/vnd.quark.quarkxpress');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bed','application/vnd.realvnc.bed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mxl','application/vnd.recordare.musicxml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'musicxml','application/vnd.recordare.musicxml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cryptonote','application/vnd.rig.cryptonote');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cod','application/vnd.rim.cod');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rm','application/vnd.rn-realmedia');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rmvb','application/vnd.rn-realmedia-vbr');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'link66','application/vnd.route66.link66+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'st','application/vnd.sailingtracker.track');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'see','application/vnd.seemail');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sema','application/vnd.sema');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'semd','application/vnd.semd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'semf','application/vnd.semf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ifm','application/vnd.shana.informed.formdata');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'itp','application/vnd.shana.informed.formtemplate');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'iif','application/vnd.shana.informed.interchange');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ipk','application/vnd.shana.informed.package');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'twd','application/vnd.simtech-mindmapper');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'twds','application/vnd.simtech-mindmapper');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mmf','application/vnd.smaf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'teacher','application/vnd.smart.teacher');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sdkm','application/vnd.solent.sdkm+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sdkd','application/vnd.solent.sdkm+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dxp','application/vnd.spotfire.dxp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sfs','application/vnd.spotfire.sfs');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sdc','application/vnd.stardivision.calc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sda','application/vnd.stardivision.draw');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sdd','application/vnd.stardivision.impress');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'smf','application/vnd.stardivision.math');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sdw','application/vnd.stardivision.writer');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vor','application/vnd.stardivision.writer');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sgl','application/vnd.stardivision.writer-global');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'smzip','application/vnd.stepmania.package');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sm','application/vnd.stepmania.stepchart');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sxc','application/vnd.sun.xml.calc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'stc','application/vnd.sun.xml.calc.template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sxd','application/vnd.sun.xml.draw');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'std','application/vnd.sun.xml.draw.template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sxi','application/vnd.sun.xml.impress');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sti','application/vnd.sun.xml.impress.template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sxm','application/vnd.sun.xml.math');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sxw','application/vnd.sun.xml.writer');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sxg','application/vnd.sun.xml.writer.global');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'stw','application/vnd.sun.xml.writer.template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sus','application/vnd.sus-calendar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'susp','application/vnd.sus-calendar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'svd','application/vnd.svd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sis','application/vnd.symbian.install');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sisx','application/vnd.symbian.install');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xsm','application/vnd.syncml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bdm','application/vnd.syncml.dm+wbxml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xdm','application/vnd.syncml.dm+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tao','application/vnd.tao.intent-module-archive');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pcap','application/vnd.tcpdump.pcap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cap','application/vnd.tcpdump.pcap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dmp','application/vnd.tcpdump.pcap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tmo','application/vnd.tmobile-livetv');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tpt','application/vnd.trid.tpt');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mxs','application/vnd.triscape.mxs');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tra','application/vnd.trueapp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ufd','application/vnd.ufdl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ufdl','application/vnd.ufdl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'utz','application/vnd.uiq.theme');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'umj','application/vnd.umajin');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'unityweb','application/vnd.unity');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uoml','application/vnd.uoml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vcx','application/vnd.vcx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vsd','application/vnd.visio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vst','application/vnd.visio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vss','application/vnd.visio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vsw','application/vnd.visio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vis','application/vnd.visionary');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vsf','application/vnd.vsf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wbxml','application/vnd.wap.wbxml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wmlc','application/vnd.wap.wmlc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wmlsc','application/vnd.wap.wmlscriptc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wtb','application/vnd.webturbo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nbp','application/vnd.wolfram.player');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wpd','application/vnd.wordperfect');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wqd','application/vnd.wqd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'stf','application/vnd.wt.stf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xar','application/vnd.xara');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xfdl','application/vnd.xfdl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hvd','application/vnd.yamaha.hv-dic');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hvs','application/vnd.yamaha.hv-script');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hvp','application/vnd.yamaha.hv-voice');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'osf','application/vnd.yamaha.openscoreformat');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'osfpvg','application/vnd.yamaha.openscoreformat.osfpvg+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'saf','application/vnd.yamaha.smaf-audio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'spf','application/vnd.yamaha.smaf-phrase');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cmp','application/vnd.yellowriver-custom-menu');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'zir','application/vnd.zul');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'zirz','application/vnd.zul');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'zaz','application/vnd.zzazz.deck+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vxml','application/voicexml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wgt','application/widget');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hlp','application/winhlp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wsdl','application/wsdl+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wspolicy','application/wspolicy+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', '7z','application/x-7z-compressed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'abw','application/x-abiword');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ace','application/x-ace-compressed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aab','application/x-authorware-bin');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'x32','application/x-authorware-bin');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'u32','application/x-authorware-bin');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vox','application/x-authorware-bin');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aam','application/x-authorware-map');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aas','application/x-authorware-seg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bcpio','application/x-bcpio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'torrent','application/x-bittorrent');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'blb','application/x-blorb');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'blorb','application/x-blorb');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bz','application/x-bzip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bz2','application/x-bzip2');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'boz','application/x-bzip2');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cbr','application/x-cbr');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cba','application/x-cbr');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cbt','application/x-cbr');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cbz','application/x-cbr');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cb7','application/x-cbr');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vcd','application/x-cdlink');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cfs','application/x-cfs-compressed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'chat','application/x-chat');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pgn','application/x-chess-pgn');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'crx','application/x-chrome-extension');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cco','application/x-cocoa');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nsc','application/x-conference');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cpio','application/x-cpio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'csh','application/x-csh');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'udeb','application/x-debian-package');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dgc','application/x-dgc-compressed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dir','application/x-director');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dcr','application/x-director');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dxr','application/x-director');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cst','application/x-director');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cct','application/x-director');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cxt','application/x-director');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'w3d','application/x-director');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fgd','application/x-director');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'swa','application/x-director');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wad','application/x-doom');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ncx','application/x-dtbncx+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dtb','application/x-dtbook+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'res','application/x-dtbresource+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dvi','application/x-dvi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'evy','application/x-envoy');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'eva','application/x-eva');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bdf','application/x-font-bdf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gsf','application/x-font-ghostscript');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'psf','application/x-font-linux-psf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'otf','font/opentype');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pcf','application/x-font-pcf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'snf','application/x-font-snf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ttf','application/x-font-ttf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ttc','application/x-font-ttf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pfa','application/x-font-type1');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pfb','application/x-font-type1');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pfm','application/x-font-type1');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'afm','application/x-font-type1');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'arc','application/x-freearc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'spl','application/x-futuresplash');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gca','application/x-gca-compressed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ulx','application/x-glulx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gnumeric','application/x-gnumeric');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gramps','application/x-gramps-xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gtar','application/x-gtar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hdf','application/x-hdf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'php','application/x-httpd-php');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'install','application/x-install-instructions');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jardiff','application/x-java-archive-diff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jnlp','application/x-java-jnlp-file');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'latex','application/x-latex');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'luac','application/x-lua-bytecode');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lzh','application/x-lzh-compressed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lha','application/x-lzh-compressed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'run','application/x-makeself');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mie','application/x-mie');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'prc','application/x-pilot');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mobi','application/x-mobipocket-ebook');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'application','application/x-ms-application');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lnk','application/x-ms-shortcut');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wmd','application/x-ms-wmd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wmz','application/x-msmetafile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xbap','application/x-ms-xbap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mdb','application/x-msaccess');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'obd','application/x-msbinder');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'crd','application/x-mscardfile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'clp','application/x-msclip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'com','application/x-msdownload');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bat','application/x-msdownload');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mvb','application/x-msmediaview');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm13','application/x-msmediaview');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm14','application/x-msmediaview');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wmf','application/x-msmetafile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'emf','application/x-msmetafile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'emz','application/x-msmetafile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mny','application/x-msmoney');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pub','application/x-mspublisher');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'scd','application/x-msschedule');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'trm','application/x-msterminal');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wri','application/x-mswrite');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nc','application/x-netcdf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdf','application/x-netcdf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pac','application/x-ns-proxy-autoconfig');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nzb','application/x-nzb');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pl','application/x-perl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pm','application/x-perl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'p12','application/x-pkcs12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pfx','application/x-pkcs12');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'p7b','application/x-pkcs7-certificates');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'spc','application/x-pkcs7-certificates');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'p7r','application/x-pkcs7-certreqresp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rar','application/x-rar-compressed');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rpm','application/x-redhat-package-manager');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ris','application/x-research-info-systems');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sea','application/x-sea');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sh','application/x-sh');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'shar','application/x-shar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'swf','application/x-shockwave-flash');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xap','application/x-silverlight-app');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sql','application/x-sql');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sit','application/x-stuffit');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sitx','application/x-stuffitx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'srt','application/x-subrip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sv4cpio','application/x-sv4cpio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sv4crc','application/x-sv4crc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 't3','application/x-t3vm-image');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gam','application/x-tads');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tar','application/x-tar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tcl','application/x-tcl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tk','application/x-tcl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tex','application/x-tex');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tfm','application/x-tex-tfm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'texinfo','application/x-texinfo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'texi','application/x-texinfo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'obj','application/x-tgif');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ustar','application/x-ustar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'src','application/x-wais-source');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'webapp','application/x-web-app-manifest+json');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'der','application/x-x509-ca-cert');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'crt','application/x-x509-ca-cert');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pem','application/x-x509-ca-cert');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fig','application/x-xfig');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xlf','application/x-xliff+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xpi','application/x-xpinstall');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xz','application/x-xz');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'z1','application/x-zmachine');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'z2','application/x-zmachine');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'z3','application/x-zmachine');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'z4','application/x-zmachine');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'z5','application/x-zmachine');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'z6','application/x-zmachine');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'z7','application/x-zmachine');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'z8','application/x-zmachine');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xaml','application/xaml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xdf','application/xcap-diff+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xenc','application/xenc+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xhtml','application/xhtml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xht','application/xhtml+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xml','text/xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xsl','application/xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xsd','application/xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dtd','application/xml-dtd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xop','application/xop+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xpl','application/xproc+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xslt','application/xslt+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xspf','application/xspf+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mxml','application/xv+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xhvml','application/xv+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xvml','application/xv+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xvm','application/xv+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'yang','application/yang');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'yin','application/yin+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'zip','application/zip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'adp','audio/adpcm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'au','audio/basic');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'snd','audio/basic');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mid','audio/midi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'midi','audio/midi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'kar','audio/midi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rmi','audio/midi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mp4a','audio/mp4');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm4a','audio/mp4');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpga','audio/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mp2','audio/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mp2a','audio/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mp3','audio/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm2a','audio/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm3a','audio/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'oga','audio/ogg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ogg','audio/ogg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'spx','audio/ogg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 's3m','audio/s3m');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sil','audio/silk');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uva','audio/vnd.dece.audio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvva','audio/vnd.dece.audio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'eol','audio/vnd.digital-winds');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dra','audio/vnd.dra');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dts','audio/vnd.dts');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dtshd','audio/vnd.dts.hd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lvp','audio/vnd.lucent.voice');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pya','audio/vnd.ms-playready.media.pya');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ecelp4800','audio/vnd.nuera.ecelp4800');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ecelp7470','audio/vnd.nuera.ecelp7470');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ecelp9600','audio/vnd.nuera.ecelp9600');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rip','audio/vnd.rip');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wav','audio/wav');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'weba','audio/webm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aac','audio/x-aac');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aif','audio/x-aiff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aiff','audio/x-aiff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'aifc','audio/x-aiff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'caf','audio/x-caf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'flac','audio/x-flac');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mka','audio/x-matroska');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm3u','audio/x-mpegurl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wax','audio/x-ms-wax');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wma','audio/x-ms-wma');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ram','audio/x-pn-realaudio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ra','audio/x-realaudio');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rmp','audio/x-pn-realaudio-plugin');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xm','audio/xm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cdx','chemical/x-cdx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cif','chemical/x-cif');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cmdf','chemical/x-cmdf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cml','chemical/x-cml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'csml','chemical/x-csml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xyz','chemical/x-xyz');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'bmp','image/bmp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cgm','image/cgm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'g3','image/g3fax');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gif','image/gif');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ief','image/ief');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jpeg','image/jpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jpg','image/jpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jpe','image/jpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ktx','image/ktx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'png','image/png');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'btif','image/prs.btif');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sgi','image/sgi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'svg','image/svg+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'svgz','image/svg+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tiff','image/tiff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tif','image/tiff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'psd','image/vnd.adobe.photoshop');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvi','image/vnd.dece.graphic');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvi','image/vnd.dece.graphic');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvg','image/vnd.dece.graphic');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvg','image/vnd.dece.graphic');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'djvu','image/vnd.djvu');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'djv','image/vnd.djvu');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sub','text/vnd.dvb.subtitle');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dwg','image/vnd.dwg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dxf','image/vnd.dxf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fbs','image/vnd.fastbidsheet');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fpx','image/vnd.fpx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fst','image/vnd.fst');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mmr','image/vnd.fujixerox.edmics-mmr');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rlc','image/vnd.fujixerox.edmics-rlc');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mdi','image/vnd.ms-modi');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wdp','image/vnd.ms-photo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'npx','image/vnd.net-fpx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wbmp','image/vnd.wap.wbmp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xif','image/vnd.xiff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'webp','image/webp');
-  insert into oos_util_values(cat, name, value) values('mime-type', '3ds','image/x-3ds');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ras','image/x-cmu-raster');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cmx','image/x-cmx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fh','image/x-freehand');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fhc','image/x-freehand');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fh4','image/x-freehand');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fh5','image/x-freehand');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fh7','image/x-freehand');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ico','image/x-icon');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jng','image/x-jng');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sid','image/x-mrsid-image');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pcx','image/x-pcx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pic','image/x-pict');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pct','image/x-pict');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pnm','image/x-portable-anymap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pbm','image/x-portable-bitmap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pgm','image/x-portable-graymap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ppm','image/x-portable-pixmap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rgb','image/x-rgb');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tga','image/x-tga');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xbm','image/x-xbitmap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xpm','image/x-xpixmap');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'xwd','image/x-xwindowdump');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'eml','message/rfc822');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mime','message/rfc822');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'igs','model/iges');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'iges','model/iges');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'msh','model/mesh');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mesh','model/mesh');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'silo','model/mesh');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dae','model/vnd.collada+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dwf','model/vnd.dwf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gdl','model/vnd.gdl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gtw','model/vnd.gtw');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mts','model/vnd.mts');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vtu','model/vnd.vtu');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wrl','model/vrml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vrml','model/vrml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'x3db','model/x3d+binary');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'x3dbz','model/x3d+binary');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'x3dv','model/x3d+vrml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'x3dvz','model/x3d+vrml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'x3d','model/x3d+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'x3dz','model/x3d+xml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'appcache','text/cache-manifest');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'manifest','text/cache-manifest');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ics','text/calendar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ifb','text/calendar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'coffee','text/coffeescript');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'litcoffee','text/coffeescript');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'css','text/css');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'csv','text/csv');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hjson','text/hjson');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'html','text/html');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'htm','text/html');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'shtml','text/html');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jade','text/jade');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jsx','text/jsx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'less','text/less');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mml','text/mathml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'n3','text/n3');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'txt','text/plain');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'text','text/plain');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'conf','text/plain');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'def','text/plain');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'list','text/plain');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'log','text/plain');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'in','text/plain');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ini','text/plain');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dsc','text/prs.lines.tag');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'rtx','text/richtext');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sgml','text/sgml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sgm','text/sgml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'stylus','text/stylus');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'styl','text/stylus');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tsv','text/tab-separated-values');
-  insert into oos_util_values(cat, name, value) values('mime-type', 't','text/troff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'tr','text/troff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'roff','text/troff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'man','text/troff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'me','text/troff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ms','text/troff');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ttl','text/turtle');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uri','text/uri-list');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uris','text/uri-list');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'urls','text/uri-list');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vcard','text/vcard');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'curl','text/vnd.curl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dcurl','text/vnd.curl.dcurl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mcurl','text/vnd.curl.mcurl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'scurl','text/vnd.curl.scurl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fly','text/vnd.fly');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'flx','text/vnd.fmi.flexstor');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'gv','text/vnd.graphviz');
-  insert into oos_util_values(cat, name, value) values('mime-type', '3dml','text/vnd.in3d.3dml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'spot','text/vnd.in3d.spot');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jad','text/vnd.sun.j2me.app-descriptor');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wml','text/vnd.wap.wml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wmls','text/vnd.wap.wmlscript');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vtt','text/vtt');
-  insert into oos_util_values(cat, name, value) values('mime-type', 's','text/x-asm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'asm','text/x-asm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'c','text/x-c');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cc','text/x-c');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cxx','text/x-c');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'cpp','text/x-c');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'h','text/x-c');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hh','text/x-c');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dic','text/x-c');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'htc','text/x-component');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'f','text/x-fortran');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'for','text/x-fortran');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'f77','text/x-fortran');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'f90','text/x-fortran');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'hbs','text/x-handlebars-template');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'java','text/x-java-source');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'lua','text/x-lua');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'markdown','text/x-markdown');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'md','text/x-markdown');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mkd','text/x-markdown');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'nfo','text/x-nfo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'opml','text/x-opml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'p','text/x-pascal');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pas','text/x-pascal');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pde','text/x-processing');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sass','text/x-sass');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'scss','text/x-scss');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'etx','text/x-setext');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'sfv','text/x-sfv');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ymp','text/x-suse-ymp');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uu','text/x-uuencode');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vcs','text/x-vcalendar');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vcf','text/x-vcard');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'yaml','text/yaml');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'yml','text/yaml');
-  insert into oos_util_values(cat, name, value) values('mime-type', '3gp','video/3gpp');
-  insert into oos_util_values(cat, name, value) values('mime-type', '3gpp','video/3gpp');
-  insert into oos_util_values(cat, name, value) values('mime-type', '3g2','video/3gpp2');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'h261','video/h261');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'h263','video/h263');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'h264','video/h264');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jpgv','video/jpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jpm','video/jpm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'jpgm','video/jpm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mj2','video/mj2');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mjp2','video/mj2');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ts','video/mp2t');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mp4','video/mp4');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mp4v','video/mp4');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpg4','video/mp4');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpeg','video/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpg','video/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mpe','video/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm1v','video/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm2v','video/mpeg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ogv','video/ogg');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'qt','video/quicktime');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mov','video/quicktime');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvh','video/vnd.dece.hd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvh','video/vnd.dece.hd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvm','video/vnd.dece.mobile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvm','video/vnd.dece.mobile');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvp','video/vnd.dece.pd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvp','video/vnd.dece.pd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvs','video/vnd.dece.sd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvs','video/vnd.dece.sd');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvv','video/vnd.dece.video');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvv','video/vnd.dece.video');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'dvb','video/vnd.dvb.file');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fvt','video/vnd.fvt');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mxu','video/vnd.mpegurl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm4u','video/vnd.mpegurl');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'pyv','video/vnd.ms-playready.media.pyv');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvu','video/vnd.uvvu.mp4');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'uvvu','video/vnd.uvvu.mp4');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'viv','video/vnd.vivo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'webm','video/webm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'f4v','video/x-f4v');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'fli','video/x-fli');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'flv','video/x-flv');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'm4v','video/x-m4v');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mkv','video/x-matroska');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mk3d','video/x-matroska');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mks','video/x-matroska');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'mng','video/x-mng');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'asf','video/x-ms-asf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'asx','video/x-ms-asf');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'vob','video/x-ms-vob');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wm','video/x-ms-wm');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wmv','video/x-ms-wmv');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wmx','video/x-ms-wmx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'wvx','video/x-ms-wvx');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'avi','video/x-msvideo');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'movie','video/x-sgi-movie');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'smv','video/x-smv');
-  insert into oos_util_values(cat, name, value) values('mime-type', 'ice','x-conference/x-cooltalk');
-
+  insert all
+    into oos_util_values(cat, name, value) values('mime-type', '123','application/vnd.lotus-1-2-3')
+    into oos_util_values(cat, name, value) values('mime-type', 'ez','application/andrew-inset')
+    into oos_util_values(cat, name, value) values('mime-type', 'aw','application/applixware')
+    into oos_util_values(cat, name, value) values('mime-type', 'atom','application/atom+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'atomcat','application/atomcat+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'atomsvc','application/atomsvc+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'bdoc','application/bdoc')
+    into oos_util_values(cat, name, value) values('mime-type', 'ccxml','application/ccxml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdmia','application/cdmi-capability')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdmic','application/cdmi-container')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdmid','application/cdmi-domain')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdmio','application/cdmi-object')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdmiq','application/cdmi-queue')
+    into oos_util_values(cat, name, value) values('mime-type', 'cu','application/cu-seeme')
+    into oos_util_values(cat, name, value) values('mime-type', 'mdp','application/dash+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'davmount','application/davmount+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'dbk','application/docbook+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'dssc','application/dssc+der')
+    into oos_util_values(cat, name, value) values('mime-type', 'xdssc','application/dssc+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'ecma','application/ecmascript')
+    into oos_util_values(cat, name, value) values('mime-type', 'emma','application/emma+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'epub','application/epub+zip')
+    into oos_util_values(cat, name, value) values('mime-type', 'exi','application/exi')
+    into oos_util_values(cat, name, value) values('mime-type', 'pfr','application/font-tdpfr')
+    into oos_util_values(cat, name, value) values('mime-type', 'woff','application/font-woff')
+    into oos_util_values(cat, name, value) values('mime-type', 'woff2','application/font-woff2')
+    into oos_util_values(cat, name, value) values('mime-type', 'gml','application/gml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'gpx','application/gpx+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'gxf','application/gxf')
+    into oos_util_values(cat, name, value) values('mime-type', 'stk','application/hyperstudio')
+    into oos_util_values(cat, name, value) values('mime-type', 'ink','application/inkml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'inkml','application/inkml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'ipfix','application/ipfix')
+    into oos_util_values(cat, name, value) values('mime-type', 'jar','application/java-archive')
+    into oos_util_values(cat, name, value) values('mime-type', 'war','application/java-archive')
+    into oos_util_values(cat, name, value) values('mime-type', 'ear','application/java-archive')
+    into oos_util_values(cat, name, value) values('mime-type', 'ser','application/java-serialized-object')
+    into oos_util_values(cat, name, value) values('mime-type', 'class','application/java-vm')
+    into oos_util_values(cat, name, value) values('mime-type', 'js','application/javascript')
+    into oos_util_values(cat, name, value) values('mime-type', 'json','application/json')
+    into oos_util_values(cat, name, value) values('mime-type', 'map','application/json')
+    into oos_util_values(cat, name, value) values('mime-type', 'json5','application/json5')
+    into oos_util_values(cat, name, value) values('mime-type', 'jsonml','application/jsonml+json')
+    into oos_util_values(cat, name, value) values('mime-type', 'jsonld','application/ld+json')
+    into oos_util_values(cat, name, value) values('mime-type', 'lostxml','application/lost+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'hqx','application/mac-binhex40')
+    into oos_util_values(cat, name, value) values('mime-type', 'cpt','application/mac-compactpro')
+    into oos_util_values(cat, name, value) values('mime-type', 'mads','application/mads+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'webmanifest','application/manifest+json')
+    into oos_util_values(cat, name, value) values('mime-type', 'mrc','application/marc')
+    into oos_util_values(cat, name, value) values('mime-type', 'mrcx','application/marcxml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'ma','application/mathematica')
+    into oos_util_values(cat, name, value) values('mime-type', 'nb','application/mathematica')
+    into oos_util_values(cat, name, value) values('mime-type', 'mb','application/mathematica')
+    into oos_util_values(cat, name, value) values('mime-type', 'mathml','application/mathml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'mbox','application/mbox')
+    into oos_util_values(cat, name, value) values('mime-type', 'mscml','application/mediaservercontrol+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'metalink','application/metalink+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'meta4','application/metalink4+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'mets','application/mets+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'mods','application/mods+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'm21','application/mp21')
+    into oos_util_values(cat, name, value) values('mime-type', 'mp21','application/mp21')
+    into oos_util_values(cat, name, value) values('mime-type', 'mp4s','application/mp4')
+    into oos_util_values(cat, name, value) values('mime-type', 'm4p','application/mp4')
+    into oos_util_values(cat, name, value) values('mime-type', 'doc','application/msword')
+    into oos_util_values(cat, name, value) values('mime-type', 'dot','application/msword')
+    into oos_util_values(cat, name, value) values('mime-type', 'mxf','application/mxf')
+    into oos_util_values(cat, name, value) values('mime-type', 'bin','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'dms','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'lrf','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'mar','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'so','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'dist','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'distz','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'pkg','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'bpk','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'dump','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'elc','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'deploy','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'exe','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'dll','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'deb','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'dmg','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'iso','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'img','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'msi','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'msp','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'msm','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'buffer','application/octet-stream')
+    into oos_util_values(cat, name, value) values('mime-type', 'oda','application/oda')
+    into oos_util_values(cat, name, value) values('mime-type', 'opf','application/oebps-package+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'ogx','application/ogg')
+    into oos_util_values(cat, name, value) values('mime-type', 'omdoc','application/omdoc+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'onetoc','application/onenote')
+    into oos_util_values(cat, name, value) values('mime-type', 'onetoc2','application/onenote')
+    into oos_util_values(cat, name, value) values('mime-type', 'onetmp','application/onenote')
+    into oos_util_values(cat, name, value) values('mime-type', 'onepkg','application/onenote')
+    into oos_util_values(cat, name, value) values('mime-type', 'oxps','application/oxps')
+    into oos_util_values(cat, name, value) values('mime-type', 'xer','application/patch-ops-error+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'pdf','application/pdf')
+    into oos_util_values(cat, name, value) values('mime-type', 'pgp','application/pgp-encrypted')
+    into oos_util_values(cat, name, value) values('mime-type', 'asc','application/pgp-signature')
+    into oos_util_values(cat, name, value) values('mime-type', 'sig','application/pgp-signature')
+    into oos_util_values(cat, name, value) values('mime-type', 'prf','application/pics-rules')
+    into oos_util_values(cat, name, value) values('mime-type', 'p10','application/pkcs10')
+    into oos_util_values(cat, name, value) values('mime-type', 'p7m','application/pkcs7-mime')
+    into oos_util_values(cat, name, value) values('mime-type', 'p7c','application/pkcs7-mime')
+    into oos_util_values(cat, name, value) values('mime-type', 'p7s','application/pkcs7-signature')
+    into oos_util_values(cat, name, value) values('mime-type', 'p8','application/pkcs8')
+    into oos_util_values(cat, name, value) values('mime-type', 'ac','application/pkix-attr-cert')
+    into oos_util_values(cat, name, value) values('mime-type', 'cer','application/pkix-cert')
+    into oos_util_values(cat, name, value) values('mime-type', 'crl','application/pkix-crl')
+    into oos_util_values(cat, name, value) values('mime-type', 'pkipath','application/pkix-pkipath')
+    into oos_util_values(cat, name, value) values('mime-type', 'pki','application/pkixcmp')
+    into oos_util_values(cat, name, value) values('mime-type', 'pls','application/pls+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'ai','application/postscript')
+    into oos_util_values(cat, name, value) values('mime-type', 'eps','application/postscript')
+    into oos_util_values(cat, name, value) values('mime-type', 'ps','application/postscript')
+    into oos_util_values(cat, name, value) values('mime-type', 'cww','application/prs.cww')
+    into oos_util_values(cat, name, value) values('mime-type', 'pskcxml','application/pskc+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'rdf','application/rdf+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'rif','application/reginfo+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'rnc','application/relax-ng-compact-syntax')
+    into oos_util_values(cat, name, value) values('mime-type', 'rl','application/resource-lists+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'rld','application/resource-lists-diff+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'rs','application/rls-services+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'gbr','application/rpki-ghostbusters')
+    into oos_util_values(cat, name, value) values('mime-type', 'mft','application/rpki-manifest')
+    into oos_util_values(cat, name, value) values('mime-type', 'roa','application/rpki-roa')
+    into oos_util_values(cat, name, value) values('mime-type', 'rsd','application/rsd+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'rss','application/rss+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'rtf','text/rtf')
+    into oos_util_values(cat, name, value) values('mime-type', 'sbml','application/sbml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'scq','application/scvp-cv-request')
+    into oos_util_values(cat, name, value) values('mime-type', 'scs','application/scvp-cv-response')
+    into oos_util_values(cat, name, value) values('mime-type', 'spq','application/scvp-vp-request')
+    into oos_util_values(cat, name, value) values('mime-type', 'spp','application/scvp-vp-response')
+    into oos_util_values(cat, name, value) values('mime-type', 'sdp','application/sdp')
+    into oos_util_values(cat, name, value) values('mime-type', 'setpay','application/set-payment-initiation')
+    into oos_util_values(cat, name, value) values('mime-type', 'setreg','application/set-registration-initiation')
+    into oos_util_values(cat, name, value) values('mime-type', 'shf','application/shf+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'smi','application/smil+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'smil','application/smil+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'rq','application/sparql-query')
+    into oos_util_values(cat, name, value) values('mime-type', 'srx','application/sparql-results+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'gram','application/srgs')
+    into oos_util_values(cat, name, value) values('mime-type', 'grxml','application/srgs+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'sru','application/sru+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'ssdl','application/ssdl+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'ssml','application/ssml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'tei','application/tei+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'teicorpus','application/tei+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'tfi','application/thraud+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'tsd','application/timestamped-data')
+    into oos_util_values(cat, name, value) values('mime-type', 'plb','application/vnd.3gpp.pic-bw-large')
+    into oos_util_values(cat, name, value) values('mime-type', 'psb','application/vnd.3gpp.pic-bw-small')
+    into oos_util_values(cat, name, value) values('mime-type', 'pvb','application/vnd.3gpp.pic-bw-var')
+    into oos_util_values(cat, name, value) values('mime-type', 'tcap','application/vnd.3gpp2.tcap')
+    into oos_util_values(cat, name, value) values('mime-type', 'pwn','application/vnd.3m.post-it-notes')
+    into oos_util_values(cat, name, value) values('mime-type', 'aso','application/vnd.accpac.simply.aso')
+    into oos_util_values(cat, name, value) values('mime-type', 'imp','application/vnd.accpac.simply.imp')
+    into oos_util_values(cat, name, value) values('mime-type', 'acu','application/vnd.acucobol')
+    into oos_util_values(cat, name, value) values('mime-type', 'atc','application/vnd.acucorp')
+    into oos_util_values(cat, name, value) values('mime-type', 'acutc','application/vnd.acucorp')
+    into oos_util_values(cat, name, value) values('mime-type', 'air','application/vnd.adobe.air-application-installer-package+zip')
+    into oos_util_values(cat, name, value) values('mime-type', 'fcdt','application/vnd.adobe.formscentral.fcdt')
+    into oos_util_values(cat, name, value) values('mime-type', 'fxp','application/vnd.adobe.fxp')
+    into oos_util_values(cat, name, value) values('mime-type', 'fxpl','application/vnd.adobe.fxp')
+    into oos_util_values(cat, name, value) values('mime-type', 'xdp','application/vnd.adobe.xdp+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xfdf','application/vnd.adobe.xfdf')
+    into oos_util_values(cat, name, value) values('mime-type', 'ahead','application/vnd.ahead.space')
+    into oos_util_values(cat, name, value) values('mime-type', 'azf','application/vnd.airzip.filesecure.azf')
+    into oos_util_values(cat, name, value) values('mime-type', 'azs','application/vnd.airzip.filesecure.azs')
+    into oos_util_values(cat, name, value) values('mime-type', 'azw','application/vnd.amazon.ebook')
+    into oos_util_values(cat, name, value) values('mime-type', 'acc','application/vnd.americandynamics.acc')
+    into oos_util_values(cat, name, value) values('mime-type', 'ami','application/vnd.amiga.ami')
+    into oos_util_values(cat, name, value) values('mime-type', 'apk','application/vnd.android.package-archive')
+    into oos_util_values(cat, name, value) values('mime-type', 'cii','application/vnd.anser-web-certificate-issue-initiation')
+    into oos_util_values(cat, name, value) values('mime-type', 'fti','application/vnd.anser-web-funds-transfer-initiation')
+    into oos_util_values(cat, name, value) values('mime-type', 'atx','application/vnd.antix.game-component')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpkg','application/vnd.apple.installer+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'm3u8','application/vnd.apple.mpegurl')
+    into oos_util_values(cat, name, value) values('mime-type', 'pkpass','application/vnd.apple.pkpass')
+    into oos_util_values(cat, name, value) values('mime-type', 'swi','application/vnd.aristanetworks.swi')
+    into oos_util_values(cat, name, value) values('mime-type', 'iota','application/vnd.astraea-software.iota')
+    into oos_util_values(cat, name, value) values('mime-type', 'aep','application/vnd.audiograph')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpm','application/vnd.blueice.multipass')
+    into oos_util_values(cat, name, value) values('mime-type', 'bmi','application/vnd.bmi')
+    into oos_util_values(cat, name, value) values('mime-type', 'rep','application/vnd.businessobjects')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdxml','application/vnd.chemdraw+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'mmd','application/vnd.chipnuts.karaoke-mmd')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdy','application/vnd.cinderella')
+    into oos_util_values(cat, name, value) values('mime-type', 'cla','application/vnd.claymore')
+    into oos_util_values(cat, name, value) values('mime-type', 'rp9','application/vnd.cloanto.rp9')
+    into oos_util_values(cat, name, value) values('mime-type', 'c4g','application/vnd.clonk.c4group')
+    into oos_util_values(cat, name, value) values('mime-type', 'c4d','application/vnd.clonk.c4group')
+    into oos_util_values(cat, name, value) values('mime-type', 'c4f','application/vnd.clonk.c4group')
+    into oos_util_values(cat, name, value) values('mime-type', 'c4p','application/vnd.clonk.c4group')
+    into oos_util_values(cat, name, value) values('mime-type', 'c4u','application/vnd.clonk.c4group')
+    into oos_util_values(cat, name, value) values('mime-type', 'c11amc','application/vnd.cluetrust.cartomobile-config')
+    into oos_util_values(cat, name, value) values('mime-type', 'c11amz','application/vnd.cluetrust.cartomobile-config-pkg')
+    into oos_util_values(cat, name, value) values('mime-type', 'csp','application/vnd.commonspace')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdbcmsg','application/vnd.contact.cmsg')
+    into oos_util_values(cat, name, value) values('mime-type', 'cmc','application/vnd.cosmocaller')
+    into oos_util_values(cat, name, value) values('mime-type', 'clkx','application/vnd.crick.clicker')
+    into oos_util_values(cat, name, value) values('mime-type', 'clkk','application/vnd.crick.clicker.keyboard')
+    into oos_util_values(cat, name, value) values('mime-type', 'clkp','application/vnd.crick.clicker.palette')
+    into oos_util_values(cat, name, value) values('mime-type', 'clkt','application/vnd.crick.clicker.template')
+    into oos_util_values(cat, name, value) values('mime-type', 'clkw','application/vnd.crick.clicker.wordbank')
+    into oos_util_values(cat, name, value) values('mime-type', 'wbs','application/vnd.criticaltools.wbs+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'pml','application/vnd.ctc-posml')
+    into oos_util_values(cat, name, value) values('mime-type', 'ppd','application/vnd.cups-ppd')
+    into oos_util_values(cat, name, value) values('mime-type', 'car','application/vnd.curl.car')
+    into oos_util_values(cat, name, value) values('mime-type', 'pcurl','application/vnd.curl.pcurl')
+    into oos_util_values(cat, name, value) values('mime-type', 'dart','application/vnd.dart')
+    into oos_util_values(cat, name, value) values('mime-type', 'rdz','application/vnd.data-vision.rdz')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvf','application/vnd.dece.data')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvf','application/vnd.dece.data')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvd','application/vnd.dece.data')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvd','application/vnd.dece.data')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvt','application/vnd.dece.ttml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvt','application/vnd.dece.ttml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvx','application/vnd.dece.unspecified')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvx','application/vnd.dece.unspecified')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvz','application/vnd.dece.zip')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvz','application/vnd.dece.zip')
+    into oos_util_values(cat, name, value) values('mime-type', 'fe_launch','application/vnd.denovo.fcselayout-link')
+    into oos_util_values(cat, name, value) values('mime-type', 'dna','application/vnd.dna')
+    into oos_util_values(cat, name, value) values('mime-type', 'mlp','application/vnd.dolby.mlp')
+    into oos_util_values(cat, name, value) values('mime-type', 'dpg','application/vnd.dpgraph')
+    into oos_util_values(cat, name, value) values('mime-type', 'dfac','application/vnd.dreamfactory')
+    into oos_util_values(cat, name, value) values('mime-type', 'kpxx','application/vnd.ds-keypoint')
+    into oos_util_values(cat, name, value) values('mime-type', 'ait','application/vnd.dvb.ait')
+    into oos_util_values(cat, name, value) values('mime-type', 'svc','application/vnd.dvb.service')
+    into oos_util_values(cat, name, value) values('mime-type', 'geo','application/vnd.dynageo')
+    into oos_util_values(cat, name, value) values('mime-type', 'mag','application/vnd.ecowin.chart')
+    into oos_util_values(cat, name, value) values('mime-type', 'nml','application/vnd.enliven')
+    into oos_util_values(cat, name, value) values('mime-type', 'esf','application/vnd.epson.esf')
+    into oos_util_values(cat, name, value) values('mime-type', 'msf','application/vnd.epson.msf')
+    into oos_util_values(cat, name, value) values('mime-type', 'qam','application/vnd.epson.quickanime')
+    into oos_util_values(cat, name, value) values('mime-type', 'slt','application/vnd.epson.salt')
+    into oos_util_values(cat, name, value) values('mime-type', 'ssf','application/vnd.epson.ssf')
+    into oos_util_values(cat, name, value) values('mime-type', 'es3','application/vnd.eszigno3+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'et3','application/vnd.eszigno3+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'ez2','application/vnd.ezpix-album')
+    into oos_util_values(cat, name, value) values('mime-type', 'ez3','application/vnd.ezpix-package')
+    into oos_util_values(cat, name, value) values('mime-type', 'fdf','application/vnd.fdf')
+    into oos_util_values(cat, name, value) values('mime-type', 'mseed','application/vnd.fdsn.mseed')
+    into oos_util_values(cat, name, value) values('mime-type', 'seed','application/vnd.fdsn.seed')
+    into oos_util_values(cat, name, value) values('mime-type', 'dataless','application/vnd.fdsn.seed')
+    into oos_util_values(cat, name, value) values('mime-type', 'gph','application/vnd.flographit')
+    into oos_util_values(cat, name, value) values('mime-type', 'ftc','application/vnd.fluxtime.clip')
+    into oos_util_values(cat, name, value) values('mime-type', 'fm','application/vnd.framemaker')
+    into oos_util_values(cat, name, value) values('mime-type', 'frame','application/vnd.framemaker')
+    into oos_util_values(cat, name, value) values('mime-type', 'maker','application/vnd.framemaker')
+    into oos_util_values(cat, name, value) values('mime-type', 'book','application/vnd.framemaker')
+    into oos_util_values(cat, name, value) values('mime-type', 'fnc','application/vnd.frogans.fnc')
+    into oos_util_values(cat, name, value) values('mime-type', 'ltf','application/vnd.frogans.ltf')
+    into oos_util_values(cat, name, value) values('mime-type', 'fsc','application/vnd.fsc.weblaunch')
+    into oos_util_values(cat, name, value) values('mime-type', 'oas','application/vnd.fujitsu.oasys')
+    into oos_util_values(cat, name, value) values('mime-type', 'oa2','application/vnd.fujitsu.oasys2')
+    into oos_util_values(cat, name, value) values('mime-type', 'oa3','application/vnd.fujitsu.oasys3')
+    into oos_util_values(cat, name, value) values('mime-type', 'fg5','application/vnd.fujitsu.oasysgp')
+    into oos_util_values(cat, name, value) values('mime-type', 'bh2','application/vnd.fujitsu.oasysprs')
+    into oos_util_values(cat, name, value) values('mime-type', 'ddd','application/vnd.fujixerox.ddd')
+    into oos_util_values(cat, name, value) values('mime-type', 'xdw','application/vnd.fujixerox.docuworks')
+    into oos_util_values(cat, name, value) values('mime-type', 'xbd','application/vnd.fujixerox.docuworks.binder')
+    into oos_util_values(cat, name, value) values('mime-type', 'fzs','application/vnd.fuzzysheet')
+    into oos_util_values(cat, name, value) values('mime-type', 'txd','application/vnd.genomatix.tuxedo')
+    into oos_util_values(cat, name, value) values('mime-type', 'ggb','application/vnd.geogebra.file')
+    into oos_util_values(cat, name, value) values('mime-type', 'ggt','application/vnd.geogebra.tool')
+    into oos_util_values(cat, name, value) values('mime-type', 'gex','application/vnd.geometry-explorer')
+    into oos_util_values(cat, name, value) values('mime-type', 'gre','application/vnd.geometry-explorer')
+    into oos_util_values(cat, name, value) values('mime-type', 'gxt','application/vnd.geonext')
+    into oos_util_values(cat, name, value) values('mime-type', 'g2w','application/vnd.geoplan')
+    into oos_util_values(cat, name, value) values('mime-type', 'g3w','application/vnd.geospace')
+    into oos_util_values(cat, name, value) values('mime-type', 'gmx','application/vnd.gmx')
+    into oos_util_values(cat, name, value) values('mime-type', 'kml','application/vnd.google-earth.kml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'kmz','application/vnd.google-earth.kmz')
+    into oos_util_values(cat, name, value) values('mime-type', 'gqf','application/vnd.grafeq')
+    into oos_util_values(cat, name, value) values('mime-type', 'gqs','application/vnd.grafeq')
+    into oos_util_values(cat, name, value) values('mime-type', 'gac','application/vnd.groove-account')
+    into oos_util_values(cat, name, value) values('mime-type', 'ghf','application/vnd.groove-help')
+    into oos_util_values(cat, name, value) values('mime-type', 'gim','application/vnd.groove-identity-message')
+    into oos_util_values(cat, name, value) values('mime-type', 'grv','application/vnd.groove-injector')
+    into oos_util_values(cat, name, value) values('mime-type', 'gtm','application/vnd.groove-tool-message')
+    into oos_util_values(cat, name, value) values('mime-type', 'tpl','application/vnd.groove-tool-template')
+    into oos_util_values(cat, name, value) values('mime-type', 'vcg','application/vnd.groove-vcard')
+    into oos_util_values(cat, name, value) values('mime-type', 'hal','application/vnd.hal+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'zmm','application/vnd.handheld-entertainment+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'hbci','application/vnd.hbci')
+    into oos_util_values(cat, name, value) values('mime-type', 'les','application/vnd.hhe.lesson-player')
+    into oos_util_values(cat, name, value) values('mime-type', 'hpgl','application/vnd.hp-hpgl')
+    into oos_util_values(cat, name, value) values('mime-type', 'hpid','application/vnd.hp-hpid')
+    into oos_util_values(cat, name, value) values('mime-type', 'hps','application/vnd.hp-hps')
+    into oos_util_values(cat, name, value) values('mime-type', 'jlt','application/vnd.hp-jlyt')
+    into oos_util_values(cat, name, value) values('mime-type', 'pcl','application/vnd.hp-pcl')
+    into oos_util_values(cat, name, value) values('mime-type', 'pclxl','application/vnd.hp-pclxl')
+    into oos_util_values(cat, name, value) values('mime-type', 'sfd-hdstx','application/vnd.hydrostatix.sof-data')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpy','application/vnd.ibm.minipay')
+    into oos_util_values(cat, name, value) values('mime-type', 'afp','application/vnd.ibm.modcap')
+    into oos_util_values(cat, name, value) values('mime-type', 'listafp','application/vnd.ibm.modcap')
+    into oos_util_values(cat, name, value) values('mime-type', 'list3820','application/vnd.ibm.modcap')
+    into oos_util_values(cat, name, value) values('mime-type', 'irm','application/vnd.ibm.rights-management')
+    into oos_util_values(cat, name, value) values('mime-type', 'sc','application/vnd.ibm.secure-container')
+    into oos_util_values(cat, name, value) values('mime-type', 'icc','application/vnd.iccprofile')
+    into oos_util_values(cat, name, value) values('mime-type', 'icm','application/vnd.iccprofile')
+    into oos_util_values(cat, name, value) values('mime-type', 'igl','application/vnd.igloader')
+    into oos_util_values(cat, name, value) values('mime-type', 'ivp','application/vnd.immervision-ivp')
+    into oos_util_values(cat, name, value) values('mime-type', 'ivu','application/vnd.immervision-ivu')
+    into oos_util_values(cat, name, value) values('mime-type', 'igm','application/vnd.insors.igm')
+    into oos_util_values(cat, name, value) values('mime-type', 'xpw','application/vnd.intercon.formnet')
+    into oos_util_values(cat, name, value) values('mime-type', 'xpx','application/vnd.intercon.formnet')
+    into oos_util_values(cat, name, value) values('mime-type', 'i2g','application/vnd.intergeo')
+    into oos_util_values(cat, name, value) values('mime-type', 'qbo','application/vnd.intu.qbo')
+    into oos_util_values(cat, name, value) values('mime-type', 'qfx','application/vnd.intu.qfx')
+    into oos_util_values(cat, name, value) values('mime-type', 'rcprofile','application/vnd.ipunplugged.rcprofile')
+    into oos_util_values(cat, name, value) values('mime-type', 'irp','application/vnd.irepository.package+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xpr','application/vnd.is-xpr')
+    into oos_util_values(cat, name, value) values('mime-type', 'fcs','application/vnd.isac.fcs')
+    into oos_util_values(cat, name, value) values('mime-type', 'jam','application/vnd.jam')
+    into oos_util_values(cat, name, value) values('mime-type', 'rms','application/vnd.jcp.javame.midlet-rms')
+    into oos_util_values(cat, name, value) values('mime-type', 'jisp','application/vnd.jisp')
+    into oos_util_values(cat, name, value) values('mime-type', 'joda','application/vnd.joost.joda-archive')
+    into oos_util_values(cat, name, value) values('mime-type', 'ktz','application/vnd.kahootz')
+    into oos_util_values(cat, name, value) values('mime-type', 'ktr','application/vnd.kahootz')
+    into oos_util_values(cat, name, value) values('mime-type', 'karbon','application/vnd.kde.karbon')
+    into oos_util_values(cat, name, value) values('mime-type', 'chrt','application/vnd.kde.kchart')
+    into oos_util_values(cat, name, value) values('mime-type', 'kfo','application/vnd.kde.kformula')
+    into oos_util_values(cat, name, value) values('mime-type', 'flw','application/vnd.kde.kivio')
+    into oos_util_values(cat, name, value) values('mime-type', 'kon','application/vnd.kde.kontour')
+    into oos_util_values(cat, name, value) values('mime-type', 'kpr','application/vnd.kde.kpresenter')
+    into oos_util_values(cat, name, value) values('mime-type', 'kpt','application/vnd.kde.kpresenter')
+    into oos_util_values(cat, name, value) values('mime-type', 'ksp','application/vnd.kde.kspread')
+    into oos_util_values(cat, name, value) values('mime-type', 'kwd','application/vnd.kde.kword')
+    into oos_util_values(cat, name, value) values('mime-type', 'kwt','application/vnd.kde.kword')
+    into oos_util_values(cat, name, value) values('mime-type', 'htke','application/vnd.kenameaapp')
+    into oos_util_values(cat, name, value) values('mime-type', 'kia','application/vnd.kidspiration')
+    into oos_util_values(cat, name, value) values('mime-type', 'kne','application/vnd.kinar')
+    into oos_util_values(cat, name, value) values('mime-type', 'knp','application/vnd.kinar')
+    into oos_util_values(cat, name, value) values('mime-type', 'skp','application/vnd.koan')
+    into oos_util_values(cat, name, value) values('mime-type', 'skd','application/vnd.koan')
+    into oos_util_values(cat, name, value) values('mime-type', 'skt','application/vnd.koan')
+    into oos_util_values(cat, name, value) values('mime-type', 'skm','application/vnd.koan')
+    into oos_util_values(cat, name, value) values('mime-type', 'sse','application/vnd.kodak-descriptor')
+    into oos_util_values(cat, name, value) values('mime-type', 'lasxml','application/vnd.las.las+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'lbd','application/vnd.llamagraphics.life-balance.desktop')
+    into oos_util_values(cat, name, value) values('mime-type', 'lbe','application/vnd.llamagraphics.life-balance.exchange+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'apr','application/vnd.lotus-approach')
+    into oos_util_values(cat, name, value) values('mime-type', 'pre','application/vnd.lotus-freelance')
+    into oos_util_values(cat, name, value) values('mime-type', 'nsf','application/vnd.lotus-notes')
+    into oos_util_values(cat, name, value) values('mime-type', 'org','application/vnd.lotus-organizer')
+    into oos_util_values(cat, name, value) values('mime-type', 'scm','application/vnd.lotus-screencam')
+    into oos_util_values(cat, name, value) values('mime-type', 'lwp','application/vnd.lotus-wordpro')
+    into oos_util_values(cat, name, value) values('mime-type', 'portpkg','application/vnd.macports.portpkg')
+    into oos_util_values(cat, name, value) values('mime-type', 'mcd','application/vnd.mcd')
+    into oos_util_values(cat, name, value) values('mime-type', 'mc1','application/vnd.medcalcdata')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdkey','application/vnd.mediastation.cdkey')
+    into oos_util_values(cat, name, value) values('mime-type', 'mwf','application/vnd.mfer')
+    into oos_util_values(cat, name, value) values('mime-type', 'mfm','application/vnd.mfmp')
+    into oos_util_values(cat, name, value) values('mime-type', 'flo','application/vnd.micrografx.flo')
+    into oos_util_values(cat, name, value) values('mime-type', 'igx','application/vnd.micrografx.igx')
+    into oos_util_values(cat, name, value) values('mime-type', 'mif','application/vnd.mif')
+    into oos_util_values(cat, name, value) values('mime-type', 'daf','application/vnd.mobius.daf')
+    into oos_util_values(cat, name, value) values('mime-type', 'dis','application/vnd.mobius.dis')
+    into oos_util_values(cat, name, value) values('mime-type', 'mbk','application/vnd.mobius.mbk')
+    into oos_util_values(cat, name, value) values('mime-type', 'mqy','application/vnd.mobius.mqy')
+    into oos_util_values(cat, name, value) values('mime-type', 'msl','application/vnd.mobius.msl')
+    into oos_util_values(cat, name, value) values('mime-type', 'plc','application/vnd.mobius.plc')
+    into oos_util_values(cat, name, value) values('mime-type', 'txf','application/vnd.mobius.txf')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpn','application/vnd.mophun.application')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpc','application/vnd.mophun.certificate')
+    into oos_util_values(cat, name, value) values('mime-type', 'xul','application/vnd.mozilla.xul+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'cil','application/vnd.ms-artgalry')
+    into oos_util_values(cat, name, value) values('mime-type', 'cab','application/vnd.ms-cab-compressed')
+    into oos_util_values(cat, name, value) values('mime-type', 'xls','application/vnd.ms-excel')
+    into oos_util_values(cat, name, value) values('mime-type', 'xlm','application/vnd.ms-excel')
+    into oos_util_values(cat, name, value) values('mime-type', 'xla','application/vnd.ms-excel')
+    into oos_util_values(cat, name, value) values('mime-type', 'xlc','application/vnd.ms-excel')
+    into oos_util_values(cat, name, value) values('mime-type', 'xlt','application/vnd.ms-excel')
+    into oos_util_values(cat, name, value) values('mime-type', 'xlw','application/vnd.ms-excel')
+    into oos_util_values(cat, name, value) values('mime-type', 'xlam','application/vnd.ms-excel.addin.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'xlsb','application/vnd.ms-excel.sheet.binary.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'xlsm','application/vnd.ms-excel.sheet.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'xltm','application/vnd.ms-excel.template.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'eot','application/vnd.ms-fontobject')
+    into oos_util_values(cat, name, value) values('mime-type', 'chm','application/vnd.ms-htmlhelp')
+    into oos_util_values(cat, name, value) values('mime-type', 'ims','application/vnd.ms-ims')
+    into oos_util_values(cat, name, value) values('mime-type', 'lrm','application/vnd.ms-lrm')
+    into oos_util_values(cat, name, value) values('mime-type', 'thmx','application/vnd.ms-officetheme')
+    into oos_util_values(cat, name, value) values('mime-type', 'cat','application/vnd.ms-pki.seccat')
+    into oos_util_values(cat, name, value) values('mime-type', 'stl','application/vnd.ms-pki.stl')
+    into oos_util_values(cat, name, value) values('mime-type', 'ppt','application/vnd.ms-powerpoint')
+    into oos_util_values(cat, name, value) values('mime-type', 'pps','application/vnd.ms-powerpoint')
+    into oos_util_values(cat, name, value) values('mime-type', 'pot','application/vnd.ms-powerpoint')
+    into oos_util_values(cat, name, value) values('mime-type', 'ppam','application/vnd.ms-powerpoint.addin.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'pptm','application/vnd.ms-powerpoint.presentation.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'sldm','application/vnd.ms-powerpoint.slide.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'ppsm','application/vnd.ms-powerpoint.slideshow.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'potm','application/vnd.ms-powerpoint.template.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpp','application/vnd.ms-project')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpt','application/vnd.ms-project')
+    into oos_util_values(cat, name, value) values('mime-type', 'docm','application/vnd.ms-word.document.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'dotm','application/vnd.ms-word.template.macroenabled.12')
+    into oos_util_values(cat, name, value) values('mime-type', 'wps','application/vnd.ms-works')
+    into oos_util_values(cat, name, value) values('mime-type', 'wks','application/vnd.ms-works')
+    into oos_util_values(cat, name, value) values('mime-type', 'wcm','application/vnd.ms-works')
+    into oos_util_values(cat, name, value) values('mime-type', 'wdb','application/vnd.ms-works')
+    into oos_util_values(cat, name, value) values('mime-type', 'wpl','application/vnd.ms-wpl')
+    into oos_util_values(cat, name, value) values('mime-type', 'xps','application/vnd.ms-xpsdocument')
+    into oos_util_values(cat, name, value) values('mime-type', 'mseq','application/vnd.mseq')
+    into oos_util_values(cat, name, value) values('mime-type', 'mus','application/vnd.musician')
+    into oos_util_values(cat, name, value) values('mime-type', 'msty','application/vnd.muvee.style')
+    into oos_util_values(cat, name, value) values('mime-type', 'taglet','application/vnd.mynfc')
+    into oos_util_values(cat, name, value) values('mime-type', 'nlu','application/vnd.neurolanguage.nlu')
+    into oos_util_values(cat, name, value) values('mime-type', 'ntf','application/vnd.nitf')
+    into oos_util_values(cat, name, value) values('mime-type', 'nitf','application/vnd.nitf')
+    into oos_util_values(cat, name, value) values('mime-type', 'nnd','application/vnd.noblenet-directory')
+    into oos_util_values(cat, name, value) values('mime-type', 'nns','application/vnd.noblenet-sealer')
+    into oos_util_values(cat, name, value) values('mime-type', 'nnw','application/vnd.noblenet-web')
+    into oos_util_values(cat, name, value) values('mime-type', 'ngdat','application/vnd.nokia.n-gage.data')
+    into oos_util_values(cat, name, value) values('mime-type', 'n-gage','application/vnd.nokia.n-gage.symbian.install')
+    into oos_util_values(cat, name, value) values('mime-type', 'rpst','application/vnd.nokia.radio-preset')
+    into oos_util_values(cat, name, value) values('mime-type', 'rpss','application/vnd.nokia.radio-presets')
+    into oos_util_values(cat, name, value) values('mime-type', 'edm','application/vnd.novadigm.edm')
+    into oos_util_values(cat, name, value) values('mime-type', 'edx','application/vnd.novadigm.edx')
+    into oos_util_values(cat, name, value) values('mime-type', 'ext','application/vnd.novadigm.ext')
+    into oos_util_values(cat, name, value) values('mime-type', 'odc','application/vnd.oasis.opendocument.chart')
+    into oos_util_values(cat, name, value) values('mime-type', 'otc','application/vnd.oasis.opendocument.chart-template')
+    into oos_util_values(cat, name, value) values('mime-type', 'odb','application/vnd.oasis.opendocument.database')
+    into oos_util_values(cat, name, value) values('mime-type', 'odf','application/vnd.oasis.opendocument.formula')
+    into oos_util_values(cat, name, value) values('mime-type', 'odft','application/vnd.oasis.opendocument.formula-template')
+    into oos_util_values(cat, name, value) values('mime-type', 'odg','application/vnd.oasis.opendocument.graphics')
+    into oos_util_values(cat, name, value) values('mime-type', 'otg','application/vnd.oasis.opendocument.graphics-template')
+    into oos_util_values(cat, name, value) values('mime-type', 'odi','application/vnd.oasis.opendocument.image')
+    into oos_util_values(cat, name, value) values('mime-type', 'oti','application/vnd.oasis.opendocument.image-template')
+    into oos_util_values(cat, name, value) values('mime-type', 'odp','application/vnd.oasis.opendocument.presentation')
+    into oos_util_values(cat, name, value) values('mime-type', 'otp','application/vnd.oasis.opendocument.presentation-template')
+    into oos_util_values(cat, name, value) values('mime-type', 'ods','application/vnd.oasis.opendocument.spreadsheet')
+    into oos_util_values(cat, name, value) values('mime-type', 'ots','application/vnd.oasis.opendocument.spreadsheet-template')
+    into oos_util_values(cat, name, value) values('mime-type', 'odt','application/vnd.oasis.opendocument.text')
+    into oos_util_values(cat, name, value) values('mime-type', 'odm','application/vnd.oasis.opendocument.text-master')
+    into oos_util_values(cat, name, value) values('mime-type', 'ott','application/vnd.oasis.opendocument.text-template')
+    into oos_util_values(cat, name, value) values('mime-type', 'oth','application/vnd.oasis.opendocument.text-web')
+    into oos_util_values(cat, name, value) values('mime-type', 'xo','application/vnd.olpc-sugar')
+    into oos_util_values(cat, name, value) values('mime-type', 'dd2','application/vnd.oma.dd2+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'oxt','application/vnd.openofficeorg.extension')
+    into oos_util_values(cat, name, value) values('mime-type', 'pptx','application/vnd.openxmlformats-officedocument.presentationml.presentation')
+    into oos_util_values(cat, name, value) values('mime-type', 'sldx','application/vnd.openxmlformats-officedocument.presentationml.slide')
+    into oos_util_values(cat, name, value) values('mime-type', 'ppsx','application/vnd.openxmlformats-officedocument.presentationml.slideshow')
+    into oos_util_values(cat, name, value) values('mime-type', 'potx','application/vnd.openxmlformats-officedocument.presentationml.template')
+    into oos_util_values(cat, name, value) values('mime-type', 'xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    into oos_util_values(cat, name, value) values('mime-type', 'xltx','application/vnd.openxmlformats-officedocument.spreadsheetml.template')
+    into oos_util_values(cat, name, value) values('mime-type', 'docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    into oos_util_values(cat, name, value) values('mime-type', 'dotx','application/vnd.openxmlformats-officedocument.wordprocessingml.template')
+    into oos_util_values(cat, name, value) values('mime-type', 'mgp','application/vnd.osgeo.mapguide.package')
+    into oos_util_values(cat, name, value) values('mime-type', 'dp','application/vnd.osgi.dp')
+    into oos_util_values(cat, name, value) values('mime-type', 'esa','application/vnd.osgi.subsystem')
+    into oos_util_values(cat, name, value) values('mime-type', 'pdb','application/vnd.palm')
+    into oos_util_values(cat, name, value) values('mime-type', 'pqa','application/vnd.palm')
+    into oos_util_values(cat, name, value) values('mime-type', 'oprc','application/vnd.palm')
+    into oos_util_values(cat, name, value) values('mime-type', 'paw','application/vnd.pawaafile')
+    into oos_util_values(cat, name, value) values('mime-type', 'str','application/vnd.pg.format')
+    into oos_util_values(cat, name, value) values('mime-type', 'ei6','application/vnd.pg.osasli')
+    into oos_util_values(cat, name, value) values('mime-type', 'efif','application/vnd.picsel')
+    into oos_util_values(cat, name, value) values('mime-type', 'wg','application/vnd.pmi.widget')
+    into oos_util_values(cat, name, value) values('mime-type', 'plf','application/vnd.pocketlearn')
+    into oos_util_values(cat, name, value) values('mime-type', 'pbd','application/vnd.powerbuilder6')
+    into oos_util_values(cat, name, value) values('mime-type', 'box','application/vnd.previewsystems.box')
+    into oos_util_values(cat, name, value) values('mime-type', 'mgz','application/vnd.proteus.magazine')
+    into oos_util_values(cat, name, value) values('mime-type', 'qps','application/vnd.publishare-delta-tree')
+    into oos_util_values(cat, name, value) values('mime-type', 'ptid','application/vnd.pvi.ptid1')
+    into oos_util_values(cat, name, value) values('mime-type', 'qxd','application/vnd.quark.quarkxpress')
+    into oos_util_values(cat, name, value) values('mime-type', 'qxt','application/vnd.quark.quarkxpress')
+    into oos_util_values(cat, name, value) values('mime-type', 'qwd','application/vnd.quark.quarkxpress')
+    into oos_util_values(cat, name, value) values('mime-type', 'qwt','application/vnd.quark.quarkxpress')
+    into oos_util_values(cat, name, value) values('mime-type', 'qxl','application/vnd.quark.quarkxpress')
+    into oos_util_values(cat, name, value) values('mime-type', 'qxb','application/vnd.quark.quarkxpress')
+    into oos_util_values(cat, name, value) values('mime-type', 'bed','application/vnd.realvnc.bed')
+    into oos_util_values(cat, name, value) values('mime-type', 'mxl','application/vnd.recordare.musicxml')
+    into oos_util_values(cat, name, value) values('mime-type', 'musicxml','application/vnd.recordare.musicxml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'cryptonote','application/vnd.rig.cryptonote')
+    into oos_util_values(cat, name, value) values('mime-type', 'cod','application/vnd.rim.cod')
+    into oos_util_values(cat, name, value) values('mime-type', 'rm','application/vnd.rn-realmedia')
+    into oos_util_values(cat, name, value) values('mime-type', 'rmvb','application/vnd.rn-realmedia-vbr')
+    into oos_util_values(cat, name, value) values('mime-type', 'link66','application/vnd.route66.link66+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'st','application/vnd.sailingtracker.track')
+    into oos_util_values(cat, name, value) values('mime-type', 'see','application/vnd.seemail')
+    into oos_util_values(cat, name, value) values('mime-type', 'sema','application/vnd.sema')
+    into oos_util_values(cat, name, value) values('mime-type', 'semd','application/vnd.semd')
+    into oos_util_values(cat, name, value) values('mime-type', 'semf','application/vnd.semf')
+    into oos_util_values(cat, name, value) values('mime-type', 'ifm','application/vnd.shana.informed.formdata')
+    into oos_util_values(cat, name, value) values('mime-type', 'itp','application/vnd.shana.informed.formtemplate')
+    into oos_util_values(cat, name, value) values('mime-type', 'iif','application/vnd.shana.informed.interchange')
+    into oos_util_values(cat, name, value) values('mime-type', 'ipk','application/vnd.shana.informed.package')
+    into oos_util_values(cat, name, value) values('mime-type', 'twd','application/vnd.simtech-mindmapper')
+    into oos_util_values(cat, name, value) values('mime-type', 'twds','application/vnd.simtech-mindmapper')
+    into oos_util_values(cat, name, value) values('mime-type', 'mmf','application/vnd.smaf')
+    into oos_util_values(cat, name, value) values('mime-type', 'teacher','application/vnd.smart.teacher')
+    into oos_util_values(cat, name, value) values('mime-type', 'sdkm','application/vnd.solent.sdkm+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'sdkd','application/vnd.solent.sdkm+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'dxp','application/vnd.spotfire.dxp')
+    into oos_util_values(cat, name, value) values('mime-type', 'sfs','application/vnd.spotfire.sfs')
+    into oos_util_values(cat, name, value) values('mime-type', 'sdc','application/vnd.stardivision.calc')
+    into oos_util_values(cat, name, value) values('mime-type', 'sda','application/vnd.stardivision.draw')
+    into oos_util_values(cat, name, value) values('mime-type', 'sdd','application/vnd.stardivision.impress')
+    into oos_util_values(cat, name, value) values('mime-type', 'smf','application/vnd.stardivision.math')
+    into oos_util_values(cat, name, value) values('mime-type', 'sdw','application/vnd.stardivision.writer')
+    into oos_util_values(cat, name, value) values('mime-type', 'vor','application/vnd.stardivision.writer')
+    into oos_util_values(cat, name, value) values('mime-type', 'sgl','application/vnd.stardivision.writer-global')
+    into oos_util_values(cat, name, value) values('mime-type', 'smzip','application/vnd.stepmania.package')
+    into oos_util_values(cat, name, value) values('mime-type', 'sm','application/vnd.stepmania.stepchart')
+    into oos_util_values(cat, name, value) values('mime-type', 'sxc','application/vnd.sun.xml.calc')
+    into oos_util_values(cat, name, value) values('mime-type', 'stc','application/vnd.sun.xml.calc.template')
+    into oos_util_values(cat, name, value) values('mime-type', 'sxd','application/vnd.sun.xml.draw')
+    into oos_util_values(cat, name, value) values('mime-type', 'std','application/vnd.sun.xml.draw.template')
+    into oos_util_values(cat, name, value) values('mime-type', 'sxi','application/vnd.sun.xml.impress')
+    into oos_util_values(cat, name, value) values('mime-type', 'sti','application/vnd.sun.xml.impress.template')
+    into oos_util_values(cat, name, value) values('mime-type', 'sxm','application/vnd.sun.xml.math')
+    into oos_util_values(cat, name, value) values('mime-type', 'sxw','application/vnd.sun.xml.writer')
+    into oos_util_values(cat, name, value) values('mime-type', 'sxg','application/vnd.sun.xml.writer.global')
+    into oos_util_values(cat, name, value) values('mime-type', 'stw','application/vnd.sun.xml.writer.template')
+    into oos_util_values(cat, name, value) values('mime-type', 'sus','application/vnd.sus-calendar')
+    into oos_util_values(cat, name, value) values('mime-type', 'susp','application/vnd.sus-calendar')
+    into oos_util_values(cat, name, value) values('mime-type', 'svd','application/vnd.svd')
+    into oos_util_values(cat, name, value) values('mime-type', 'sis','application/vnd.symbian.install')
+    into oos_util_values(cat, name, value) values('mime-type', 'sisx','application/vnd.symbian.install')
+    into oos_util_values(cat, name, value) values('mime-type', 'xsm','application/vnd.syncml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'bdm','application/vnd.syncml.dm+wbxml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xdm','application/vnd.syncml.dm+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'tao','application/vnd.tao.intent-module-archive')
+    into oos_util_values(cat, name, value) values('mime-type', 'pcap','application/vnd.tcpdump.pcap')
+    into oos_util_values(cat, name, value) values('mime-type', 'cap','application/vnd.tcpdump.pcap')
+    into oos_util_values(cat, name, value) values('mime-type', 'dmp','application/vnd.tcpdump.pcap')
+    into oos_util_values(cat, name, value) values('mime-type', 'tmo','application/vnd.tmobile-livetv')
+    into oos_util_values(cat, name, value) values('mime-type', 'tpt','application/vnd.trid.tpt')
+    into oos_util_values(cat, name, value) values('mime-type', 'mxs','application/vnd.triscape.mxs')
+    into oos_util_values(cat, name, value) values('mime-type', 'tra','application/vnd.trueapp')
+    into oos_util_values(cat, name, value) values('mime-type', 'ufd','application/vnd.ufdl')
+    into oos_util_values(cat, name, value) values('mime-type', 'ufdl','application/vnd.ufdl')
+    into oos_util_values(cat, name, value) values('mime-type', 'utz','application/vnd.uiq.theme')
+    into oos_util_values(cat, name, value) values('mime-type', 'umj','application/vnd.umajin')
+    into oos_util_values(cat, name, value) values('mime-type', 'unityweb','application/vnd.unity')
+    into oos_util_values(cat, name, value) values('mime-type', 'uoml','application/vnd.uoml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'vcx','application/vnd.vcx')
+    into oos_util_values(cat, name, value) values('mime-type', 'vsd','application/vnd.visio')
+    into oos_util_values(cat, name, value) values('mime-type', 'vst','application/vnd.visio')
+    into oos_util_values(cat, name, value) values('mime-type', 'vss','application/vnd.visio')
+    into oos_util_values(cat, name, value) values('mime-type', 'vsw','application/vnd.visio')
+    into oos_util_values(cat, name, value) values('mime-type', 'vis','application/vnd.visionary')
+    into oos_util_values(cat, name, value) values('mime-type', 'vsf','application/vnd.vsf')
+    into oos_util_values(cat, name, value) values('mime-type', 'wbxml','application/vnd.wap.wbxml')
+    into oos_util_values(cat, name, value) values('mime-type', 'wmlc','application/vnd.wap.wmlc')
+    into oos_util_values(cat, name, value) values('mime-type', 'wmlsc','application/vnd.wap.wmlscriptc')
+    into oos_util_values(cat, name, value) values('mime-type', 'wtb','application/vnd.webturbo')
+    into oos_util_values(cat, name, value) values('mime-type', 'nbp','application/vnd.wolfram.player')
+    into oos_util_values(cat, name, value) values('mime-type', 'wpd','application/vnd.wordperfect')
+    into oos_util_values(cat, name, value) values('mime-type', 'wqd','application/vnd.wqd')
+    into oos_util_values(cat, name, value) values('mime-type', 'stf','application/vnd.wt.stf')
+    into oos_util_values(cat, name, value) values('mime-type', 'xar','application/vnd.xara')
+    into oos_util_values(cat, name, value) values('mime-type', 'xfdl','application/vnd.xfdl')
+    into oos_util_values(cat, name, value) values('mime-type', 'hvd','application/vnd.yamaha.hv-dic')
+    into oos_util_values(cat, name, value) values('mime-type', 'hvs','application/vnd.yamaha.hv-script')
+    into oos_util_values(cat, name, value) values('mime-type', 'hvp','application/vnd.yamaha.hv-voice')
+    into oos_util_values(cat, name, value) values('mime-type', 'osf','application/vnd.yamaha.openscoreformat')
+    into oos_util_values(cat, name, value) values('mime-type', 'osfpvg','application/vnd.yamaha.openscoreformat.osfpvg+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'saf','application/vnd.yamaha.smaf-audio')
+    into oos_util_values(cat, name, value) values('mime-type', 'spf','application/vnd.yamaha.smaf-phrase')
+    into oos_util_values(cat, name, value) values('mime-type', 'cmp','application/vnd.yellowriver-custom-menu')
+    into oos_util_values(cat, name, value) values('mime-type', 'zir','application/vnd.zul')
+    into oos_util_values(cat, name, value) values('mime-type', 'zirz','application/vnd.zul')
+    into oos_util_values(cat, name, value) values('mime-type', 'zaz','application/vnd.zzazz.deck+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'vxml','application/voicexml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'wgt','application/widget')
+    into oos_util_values(cat, name, value) values('mime-type', 'hlp','application/winhlp')
+    into oos_util_values(cat, name, value) values('mime-type', 'wsdl','application/wsdl+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'wspolicy','application/wspolicy+xml')
+    into oos_util_values(cat, name, value) values('mime-type', '7z','application/x-7z-compressed')
+    into oos_util_values(cat, name, value) values('mime-type', 'abw','application/x-abiword')
+    into oos_util_values(cat, name, value) values('mime-type', 'ace','application/x-ace-compressed')
+    into oos_util_values(cat, name, value) values('mime-type', 'aab','application/x-authorware-bin')
+    into oos_util_values(cat, name, value) values('mime-type', 'x32','application/x-authorware-bin')
+    into oos_util_values(cat, name, value) values('mime-type', 'u32','application/x-authorware-bin')
+    into oos_util_values(cat, name, value) values('mime-type', 'vox','application/x-authorware-bin')
+    into oos_util_values(cat, name, value) values('mime-type', 'aam','application/x-authorware-map')
+    into oos_util_values(cat, name, value) values('mime-type', 'aas','application/x-authorware-seg')
+    into oos_util_values(cat, name, value) values('mime-type', 'bcpio','application/x-bcpio')
+    into oos_util_values(cat, name, value) values('mime-type', 'torrent','application/x-bittorrent')
+    into oos_util_values(cat, name, value) values('mime-type', 'blb','application/x-blorb')
+    into oos_util_values(cat, name, value) values('mime-type', 'blorb','application/x-blorb')
+    into oos_util_values(cat, name, value) values('mime-type', 'bz','application/x-bzip')
+    into oos_util_values(cat, name, value) values('mime-type', 'bz2','application/x-bzip2')
+    into oos_util_values(cat, name, value) values('mime-type', 'boz','application/x-bzip2')
+    into oos_util_values(cat, name, value) values('mime-type', 'cbr','application/x-cbr')
+    into oos_util_values(cat, name, value) values('mime-type', 'cba','application/x-cbr')
+    into oos_util_values(cat, name, value) values('mime-type', 'cbt','application/x-cbr')
+    into oos_util_values(cat, name, value) values('mime-type', 'cbz','application/x-cbr')
+    into oos_util_values(cat, name, value) values('mime-type', 'cb7','application/x-cbr')
+    into oos_util_values(cat, name, value) values('mime-type', 'vcd','application/x-cdlink')
+    into oos_util_values(cat, name, value) values('mime-type', 'cfs','application/x-cfs-compressed')
+    into oos_util_values(cat, name, value) values('mime-type', 'chat','application/x-chat')
+    into oos_util_values(cat, name, value) values('mime-type', 'pgn','application/x-chess-pgn')
+    into oos_util_values(cat, name, value) values('mime-type', 'crx','application/x-chrome-extension')
+    into oos_util_values(cat, name, value) values('mime-type', 'cco','application/x-cocoa')
+    into oos_util_values(cat, name, value) values('mime-type', 'nsc','application/x-conference')
+    into oos_util_values(cat, name, value) values('mime-type', 'cpio','application/x-cpio')
+    into oos_util_values(cat, name, value) values('mime-type', 'csh','application/x-csh')
+    into oos_util_values(cat, name, value) values('mime-type', 'udeb','application/x-debian-package')
+    into oos_util_values(cat, name, value) values('mime-type', 'dgc','application/x-dgc-compressed')
+    into oos_util_values(cat, name, value) values('mime-type', 'dir','application/x-director')
+    into oos_util_values(cat, name, value) values('mime-type', 'dcr','application/x-director')
+    into oos_util_values(cat, name, value) values('mime-type', 'dxr','application/x-director')
+    into oos_util_values(cat, name, value) values('mime-type', 'cst','application/x-director')
+    into oos_util_values(cat, name, value) values('mime-type', 'cct','application/x-director')
+    into oos_util_values(cat, name, value) values('mime-type', 'cxt','application/x-director')
+    into oos_util_values(cat, name, value) values('mime-type', 'w3d','application/x-director')
+    into oos_util_values(cat, name, value) values('mime-type', 'fgd','application/x-director')
+    into oos_util_values(cat, name, value) values('mime-type', 'swa','application/x-director')
+    into oos_util_values(cat, name, value) values('mime-type', 'wad','application/x-doom')
+    into oos_util_values(cat, name, value) values('mime-type', 'ncx','application/x-dtbncx+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'dtb','application/x-dtbook+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'res','application/x-dtbresource+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'dvi','application/x-dvi')
+    into oos_util_values(cat, name, value) values('mime-type', 'evy','application/x-envoy')
+    into oos_util_values(cat, name, value) values('mime-type', 'eva','application/x-eva')
+    into oos_util_values(cat, name, value) values('mime-type', 'bdf','application/x-font-bdf')
+    into oos_util_values(cat, name, value) values('mime-type', 'gsf','application/x-font-ghostscript')
+    into oos_util_values(cat, name, value) values('mime-type', 'psf','application/x-font-linux-psf')
+    into oos_util_values(cat, name, value) values('mime-type', 'otf','font/opentype')
+    into oos_util_values(cat, name, value) values('mime-type', 'pcf','application/x-font-pcf')
+    into oos_util_values(cat, name, value) values('mime-type', 'snf','application/x-font-snf')
+    into oos_util_values(cat, name, value) values('mime-type', 'ttf','application/x-font-ttf')
+    into oos_util_values(cat, name, value) values('mime-type', 'ttc','application/x-font-ttf')
+    into oos_util_values(cat, name, value) values('mime-type', 'pfa','application/x-font-type1')
+    into oos_util_values(cat, name, value) values('mime-type', 'pfb','application/x-font-type1')
+    into oos_util_values(cat, name, value) values('mime-type', 'pfm','application/x-font-type1')
+    into oos_util_values(cat, name, value) values('mime-type', 'afm','application/x-font-type1')
+    into oos_util_values(cat, name, value) values('mime-type', 'arc','application/x-freearc')
+    into oos_util_values(cat, name, value) values('mime-type', 'spl','application/x-futuresplash')
+    into oos_util_values(cat, name, value) values('mime-type', 'gca','application/x-gca-compressed')
+    into oos_util_values(cat, name, value) values('mime-type', 'ulx','application/x-glulx')
+    into oos_util_values(cat, name, value) values('mime-type', 'gnumeric','application/x-gnumeric')
+    into oos_util_values(cat, name, value) values('mime-type', 'gramps','application/x-gramps-xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'gtar','application/x-gtar')
+    into oos_util_values(cat, name, value) values('mime-type', 'hdf','application/x-hdf')
+    into oos_util_values(cat, name, value) values('mime-type', 'php','application/x-httpd-php')
+    into oos_util_values(cat, name, value) values('mime-type', 'install','application/x-install-instructions')
+    into oos_util_values(cat, name, value) values('mime-type', 'jardiff','application/x-java-archive-diff')
+    into oos_util_values(cat, name, value) values('mime-type', 'jnlp','application/x-java-jnlp-file')
+    into oos_util_values(cat, name, value) values('mime-type', 'latex','application/x-latex')
+    into oos_util_values(cat, name, value) values('mime-type', 'luac','application/x-lua-bytecode')
+    into oos_util_values(cat, name, value) values('mime-type', 'lzh','application/x-lzh-compressed')
+    into oos_util_values(cat, name, value) values('mime-type', 'lha','application/x-lzh-compressed')
+    into oos_util_values(cat, name, value) values('mime-type', 'run','application/x-makeself')
+    into oos_util_values(cat, name, value) values('mime-type', 'mie','application/x-mie')
+    into oos_util_values(cat, name, value) values('mime-type', 'prc','application/x-pilot')
+    into oos_util_values(cat, name, value) values('mime-type', 'mobi','application/x-mobipocket-ebook')
+    into oos_util_values(cat, name, value) values('mime-type', 'application','application/x-ms-application')
+    into oos_util_values(cat, name, value) values('mime-type', 'lnk','application/x-ms-shortcut')
+    into oos_util_values(cat, name, value) values('mime-type', 'wmd','application/x-ms-wmd')
+    into oos_util_values(cat, name, value) values('mime-type', 'wmz','application/x-msmetafile')
+    into oos_util_values(cat, name, value) values('mime-type', 'xbap','application/x-ms-xbap')
+    into oos_util_values(cat, name, value) values('mime-type', 'mdb','application/x-msaccess')
+    into oos_util_values(cat, name, value) values('mime-type', 'obd','application/x-msbinder')
+    into oos_util_values(cat, name, value) values('mime-type', 'crd','application/x-mscardfile')
+    into oos_util_values(cat, name, value) values('mime-type', 'clp','application/x-msclip')
+    into oos_util_values(cat, name, value) values('mime-type', 'com','application/x-msdownload')
+    into oos_util_values(cat, name, value) values('mime-type', 'bat','application/x-msdownload')
+    into oos_util_values(cat, name, value) values('mime-type', 'mvb','application/x-msmediaview')
+    into oos_util_values(cat, name, value) values('mime-type', 'm13','application/x-msmediaview')
+    into oos_util_values(cat, name, value) values('mime-type', 'm14','application/x-msmediaview')
+    into oos_util_values(cat, name, value) values('mime-type', 'wmf','application/x-msmetafile')
+    into oos_util_values(cat, name, value) values('mime-type', 'emf','application/x-msmetafile')
+    into oos_util_values(cat, name, value) values('mime-type', 'emz','application/x-msmetafile')
+    into oos_util_values(cat, name, value) values('mime-type', 'mny','application/x-msmoney')
+    into oos_util_values(cat, name, value) values('mime-type', 'pub','application/x-mspublisher')
+    into oos_util_values(cat, name, value) values('mime-type', 'scd','application/x-msschedule')
+    into oos_util_values(cat, name, value) values('mime-type', 'trm','application/x-msterminal')
+    into oos_util_values(cat, name, value) values('mime-type', 'wri','application/x-mswrite')
+    into oos_util_values(cat, name, value) values('mime-type', 'nc','application/x-netcdf')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdf','application/x-netcdf')
+    into oos_util_values(cat, name, value) values('mime-type', 'pac','application/x-ns-proxy-autoconfig')
+    into oos_util_values(cat, name, value) values('mime-type', 'nzb','application/x-nzb')
+    into oos_util_values(cat, name, value) values('mime-type', 'pl','application/x-perl')
+    into oos_util_values(cat, name, value) values('mime-type', 'pm','application/x-perl')
+    into oos_util_values(cat, name, value) values('mime-type', 'p12','application/x-pkcs12')
+    into oos_util_values(cat, name, value) values('mime-type', 'pfx','application/x-pkcs12')
+    into oos_util_values(cat, name, value) values('mime-type', 'p7b','application/x-pkcs7-certificates')
+    into oos_util_values(cat, name, value) values('mime-type', 'spc','application/x-pkcs7-certificates')
+    into oos_util_values(cat, name, value) values('mime-type', 'p7r','application/x-pkcs7-certreqresp')
+    into oos_util_values(cat, name, value) values('mime-type', 'rar','application/x-rar-compressed')
+    into oos_util_values(cat, name, value) values('mime-type', 'rpm','application/x-redhat-package-manager')
+    into oos_util_values(cat, name, value) values('mime-type', 'ris','application/x-research-info-systems')
+    into oos_util_values(cat, name, value) values('mime-type', 'sea','application/x-sea')
+    into oos_util_values(cat, name, value) values('mime-type', 'sh','application/x-sh')
+    into oos_util_values(cat, name, value) values('mime-type', 'shar','application/x-shar')
+    into oos_util_values(cat, name, value) values('mime-type', 'swf','application/x-shockwave-flash')
+    into oos_util_values(cat, name, value) values('mime-type', 'xap','application/x-silverlight-app')
+    into oos_util_values(cat, name, value) values('mime-type', 'sql','application/x-sql')
+    into oos_util_values(cat, name, value) values('mime-type', 'sit','application/x-stuffit')
+    into oos_util_values(cat, name, value) values('mime-type', 'sitx','application/x-stuffitx')
+    into oos_util_values(cat, name, value) values('mime-type', 'srt','application/x-subrip')
+    into oos_util_values(cat, name, value) values('mime-type', 'sv4cpio','application/x-sv4cpio')
+    into oos_util_values(cat, name, value) values('mime-type', 'sv4crc','application/x-sv4crc')
+    into oos_util_values(cat, name, value) values('mime-type', 't3','application/x-t3vm-image')
+    into oos_util_values(cat, name, value) values('mime-type', 'gam','application/x-tads')
+    into oos_util_values(cat, name, value) values('mime-type', 'tar','application/x-tar')
+    into oos_util_values(cat, name, value) values('mime-type', 'tcl','application/x-tcl')
+    into oos_util_values(cat, name, value) values('mime-type', 'tk','application/x-tcl')
+    into oos_util_values(cat, name, value) values('mime-type', 'tex','application/x-tex')
+    into oos_util_values(cat, name, value) values('mime-type', 'tfm','application/x-tex-tfm')
+    into oos_util_values(cat, name, value) values('mime-type', 'texinfo','application/x-texinfo')
+    into oos_util_values(cat, name, value) values('mime-type', 'texi','application/x-texinfo')
+    into oos_util_values(cat, name, value) values('mime-type', 'obj','application/x-tgif')
+    into oos_util_values(cat, name, value) values('mime-type', 'ustar','application/x-ustar')
+    into oos_util_values(cat, name, value) values('mime-type', 'src','application/x-wais-source')
+    into oos_util_values(cat, name, value) values('mime-type', 'webapp','application/x-web-app-manifest+json')
+    into oos_util_values(cat, name, value) values('mime-type', 'der','application/x-x509-ca-cert')
+    into oos_util_values(cat, name, value) values('mime-type', 'crt','application/x-x509-ca-cert')
+    into oos_util_values(cat, name, value) values('mime-type', 'pem','application/x-x509-ca-cert')
+    into oos_util_values(cat, name, value) values('mime-type', 'fig','application/x-xfig')
+    into oos_util_values(cat, name, value) values('mime-type', 'xlf','application/x-xliff+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xpi','application/x-xpinstall')
+    into oos_util_values(cat, name, value) values('mime-type', 'xz','application/x-xz')
+    into oos_util_values(cat, name, value) values('mime-type', 'z1','application/x-zmachine')
+    into oos_util_values(cat, name, value) values('mime-type', 'z2','application/x-zmachine')
+    into oos_util_values(cat, name, value) values('mime-type', 'z3','application/x-zmachine')
+    into oos_util_values(cat, name, value) values('mime-type', 'z4','application/x-zmachine')
+    into oos_util_values(cat, name, value) values('mime-type', 'z5','application/x-zmachine')
+    into oos_util_values(cat, name, value) values('mime-type', 'z6','application/x-zmachine')
+    into oos_util_values(cat, name, value) values('mime-type', 'z7','application/x-zmachine')
+    into oos_util_values(cat, name, value) values('mime-type', 'z8','application/x-zmachine')
+    into oos_util_values(cat, name, value) values('mime-type', 'xaml','application/xaml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xdf','application/xcap-diff+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xenc','application/xenc+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xhtml','application/xhtml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xht','application/xhtml+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xml','text/xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xsl','application/xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xsd','application/xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'dtd','application/xml-dtd')
+    into oos_util_values(cat, name, value) values('mime-type', 'xop','application/xop+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xpl','application/xproc+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xslt','application/xslt+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xspf','application/xspf+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'mxml','application/xv+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xhvml','application/xv+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xvml','application/xv+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xvm','application/xv+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'yang','application/yang')
+    into oos_util_values(cat, name, value) values('mime-type', 'yin','application/yin+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'zip','application/zip')
+    into oos_util_values(cat, name, value) values('mime-type', 'adp','audio/adpcm')
+    into oos_util_values(cat, name, value) values('mime-type', 'au','audio/basic')
+    into oos_util_values(cat, name, value) values('mime-type', 'snd','audio/basic')
+    into oos_util_values(cat, name, value) values('mime-type', 'mid','audio/midi')
+    into oos_util_values(cat, name, value) values('mime-type', 'midi','audio/midi')
+    into oos_util_values(cat, name, value) values('mime-type', 'kar','audio/midi')
+    into oos_util_values(cat, name, value) values('mime-type', 'rmi','audio/midi')
+    into oos_util_values(cat, name, value) values('mime-type', 'mp4a','audio/mp4')
+    into oos_util_values(cat, name, value) values('mime-type', 'm4a','audio/mp4')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpga','audio/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'mp2','audio/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'mp2a','audio/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'mp3','audio/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'm2a','audio/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'm3a','audio/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'oga','audio/ogg')
+    into oos_util_values(cat, name, value) values('mime-type', 'ogg','audio/ogg')
+    into oos_util_values(cat, name, value) values('mime-type', 'spx','audio/ogg')
+    into oos_util_values(cat, name, value) values('mime-type', 's3m','audio/s3m')
+    into oos_util_values(cat, name, value) values('mime-type', 'sil','audio/silk')
+    into oos_util_values(cat, name, value) values('mime-type', 'uva','audio/vnd.dece.audio')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvva','audio/vnd.dece.audio')
+    into oos_util_values(cat, name, value) values('mime-type', 'eol','audio/vnd.digital-winds')
+    into oos_util_values(cat, name, value) values('mime-type', 'dra','audio/vnd.dra')
+    into oos_util_values(cat, name, value) values('mime-type', 'dts','audio/vnd.dts')
+    into oos_util_values(cat, name, value) values('mime-type', 'dtshd','audio/vnd.dts.hd')
+    into oos_util_values(cat, name, value) values('mime-type', 'lvp','audio/vnd.lucent.voice')
+    into oos_util_values(cat, name, value) values('mime-type', 'pya','audio/vnd.ms-playready.media.pya')
+    into oos_util_values(cat, name, value) values('mime-type', 'ecelp4800','audio/vnd.nuera.ecelp4800')
+    into oos_util_values(cat, name, value) values('mime-type', 'ecelp7470','audio/vnd.nuera.ecelp7470')
+    into oos_util_values(cat, name, value) values('mime-type', 'ecelp9600','audio/vnd.nuera.ecelp9600')
+    into oos_util_values(cat, name, value) values('mime-type', 'rip','audio/vnd.rip')
+    into oos_util_values(cat, name, value) values('mime-type', 'wav','audio/wav')
+    into oos_util_values(cat, name, value) values('mime-type', 'weba','audio/webm')
+    into oos_util_values(cat, name, value) values('mime-type', 'aac','audio/x-aac')
+    into oos_util_values(cat, name, value) values('mime-type', 'aif','audio/x-aiff')
+    into oos_util_values(cat, name, value) values('mime-type', 'aiff','audio/x-aiff')
+    into oos_util_values(cat, name, value) values('mime-type', 'aifc','audio/x-aiff')
+    into oos_util_values(cat, name, value) values('mime-type', 'caf','audio/x-caf')
+    into oos_util_values(cat, name, value) values('mime-type', 'flac','audio/x-flac')
+    into oos_util_values(cat, name, value) values('mime-type', 'mka','audio/x-matroska')
+    into oos_util_values(cat, name, value) values('mime-type', 'm3u','audio/x-mpegurl')
+    into oos_util_values(cat, name, value) values('mime-type', 'wax','audio/x-ms-wax')
+    into oos_util_values(cat, name, value) values('mime-type', 'wma','audio/x-ms-wma')
+    into oos_util_values(cat, name, value) values('mime-type', 'ram','audio/x-pn-realaudio')
+    into oos_util_values(cat, name, value) values('mime-type', 'ra','audio/x-realaudio')
+    into oos_util_values(cat, name, value) values('mime-type', 'rmp','audio/x-pn-realaudio-plugin')
+    into oos_util_values(cat, name, value) values('mime-type', 'xm','audio/xm')
+    into oos_util_values(cat, name, value) values('mime-type', 'cdx','chemical/x-cdx')
+    into oos_util_values(cat, name, value) values('mime-type', 'cif','chemical/x-cif')
+    into oos_util_values(cat, name, value) values('mime-type', 'cmdf','chemical/x-cmdf')
+    into oos_util_values(cat, name, value) values('mime-type', 'cml','chemical/x-cml')
+    into oos_util_values(cat, name, value) values('mime-type', 'csml','chemical/x-csml')
+    into oos_util_values(cat, name, value) values('mime-type', 'xyz','chemical/x-xyz')
+    into oos_util_values(cat, name, value) values('mime-type', 'bmp','image/bmp')
+    into oos_util_values(cat, name, value) values('mime-type', 'cgm','image/cgm')
+    into oos_util_values(cat, name, value) values('mime-type', 'g3','image/g3fax')
+    into oos_util_values(cat, name, value) values('mime-type', 'gif','image/gif')
+    into oos_util_values(cat, name, value) values('mime-type', 'ief','image/ief')
+    into oos_util_values(cat, name, value) values('mime-type', 'jpeg','image/jpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'jpg','image/jpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'jpe','image/jpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'ktx','image/ktx')
+    into oos_util_values(cat, name, value) values('mime-type', 'png','image/png')
+    into oos_util_values(cat, name, value) values('mime-type', 'btif','image/prs.btif')
+    into oos_util_values(cat, name, value) values('mime-type', 'sgi','image/sgi')
+    into oos_util_values(cat, name, value) values('mime-type', 'svg','image/svg+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'svgz','image/svg+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'tiff','image/tiff')
+    into oos_util_values(cat, name, value) values('mime-type', 'tif','image/tiff')
+    into oos_util_values(cat, name, value) values('mime-type', 'psd','image/vnd.adobe.photoshop')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvi','image/vnd.dece.graphic')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvi','image/vnd.dece.graphic')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvg','image/vnd.dece.graphic')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvg','image/vnd.dece.graphic')
+    into oos_util_values(cat, name, value) values('mime-type', 'djvu','image/vnd.djvu')
+    into oos_util_values(cat, name, value) values('mime-type', 'djv','image/vnd.djvu')
+    into oos_util_values(cat, name, value) values('mime-type', 'sub','text/vnd.dvb.subtitle')
+    into oos_util_values(cat, name, value) values('mime-type', 'dwg','image/vnd.dwg')
+    into oos_util_values(cat, name, value) values('mime-type', 'dxf','image/vnd.dxf')
+    into oos_util_values(cat, name, value) values('mime-type', 'fbs','image/vnd.fastbidsheet')
+    into oos_util_values(cat, name, value) values('mime-type', 'fpx','image/vnd.fpx')
+    into oos_util_values(cat, name, value) values('mime-type', 'fst','image/vnd.fst')
+    into oos_util_values(cat, name, value) values('mime-type', 'mmr','image/vnd.fujixerox.edmics-mmr')
+    into oos_util_values(cat, name, value) values('mime-type', 'rlc','image/vnd.fujixerox.edmics-rlc')
+    into oos_util_values(cat, name, value) values('mime-type', 'mdi','image/vnd.ms-modi')
+    into oos_util_values(cat, name, value) values('mime-type', 'wdp','image/vnd.ms-photo')
+    into oos_util_values(cat, name, value) values('mime-type', 'npx','image/vnd.net-fpx')
+    into oos_util_values(cat, name, value) values('mime-type', 'wbmp','image/vnd.wap.wbmp')
+    into oos_util_values(cat, name, value) values('mime-type', 'xif','image/vnd.xiff')
+    into oos_util_values(cat, name, value) values('mime-type', 'webp','image/webp')
+    into oos_util_values(cat, name, value) values('mime-type', '3ds','image/x-3ds')
+    into oos_util_values(cat, name, value) values('mime-type', 'ras','image/x-cmu-raster')
+    into oos_util_values(cat, name, value) values('mime-type', 'cmx','image/x-cmx')
+    into oos_util_values(cat, name, value) values('mime-type', 'fh','image/x-freehand')
+    into oos_util_values(cat, name, value) values('mime-type', 'fhc','image/x-freehand')
+    into oos_util_values(cat, name, value) values('mime-type', 'fh4','image/x-freehand')
+    into oos_util_values(cat, name, value) values('mime-type', 'fh5','image/x-freehand')
+    into oos_util_values(cat, name, value) values('mime-type', 'fh7','image/x-freehand')
+    into oos_util_values(cat, name, value) values('mime-type', 'ico','image/x-icon')
+    into oos_util_values(cat, name, value) values('mime-type', 'jng','image/x-jng')
+    into oos_util_values(cat, name, value) values('mime-type', 'sid','image/x-mrsid-image')
+    into oos_util_values(cat, name, value) values('mime-type', 'pcx','image/x-pcx')
+    into oos_util_values(cat, name, value) values('mime-type', 'pic','image/x-pict')
+    into oos_util_values(cat, name, value) values('mime-type', 'pct','image/x-pict')
+    into oos_util_values(cat, name, value) values('mime-type', 'pnm','image/x-portable-anymap')
+    into oos_util_values(cat, name, value) values('mime-type', 'pbm','image/x-portable-bitmap')
+    into oos_util_values(cat, name, value) values('mime-type', 'pgm','image/x-portable-graymap')
+    into oos_util_values(cat, name, value) values('mime-type', 'ppm','image/x-portable-pixmap')
+    into oos_util_values(cat, name, value) values('mime-type', 'rgb','image/x-rgb')
+    into oos_util_values(cat, name, value) values('mime-type', 'tga','image/x-tga')
+    into oos_util_values(cat, name, value) values('mime-type', 'xbm','image/x-xbitmap')
+    into oos_util_values(cat, name, value) values('mime-type', 'xpm','image/x-xpixmap')
+    into oos_util_values(cat, name, value) values('mime-type', 'xwd','image/x-xwindowdump')
+    into oos_util_values(cat, name, value) values('mime-type', 'eml','message/rfc822')
+    into oos_util_values(cat, name, value) values('mime-type', 'mime','message/rfc822')
+    into oos_util_values(cat, name, value) values('mime-type', 'igs','model/iges')
+    into oos_util_values(cat, name, value) values('mime-type', 'iges','model/iges')
+    into oos_util_values(cat, name, value) values('mime-type', 'msh','model/mesh')
+    into oos_util_values(cat, name, value) values('mime-type', 'mesh','model/mesh')
+    into oos_util_values(cat, name, value) values('mime-type', 'silo','model/mesh')
+    into oos_util_values(cat, name, value) values('mime-type', 'dae','model/vnd.collada+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'dwf','model/vnd.dwf')
+    into oos_util_values(cat, name, value) values('mime-type', 'gdl','model/vnd.gdl')
+    into oos_util_values(cat, name, value) values('mime-type', 'gtw','model/vnd.gtw')
+    into oos_util_values(cat, name, value) values('mime-type', 'mts','model/vnd.mts')
+    into oos_util_values(cat, name, value) values('mime-type', 'vtu','model/vnd.vtu')
+    into oos_util_values(cat, name, value) values('mime-type', 'wrl','model/vrml')
+    into oos_util_values(cat, name, value) values('mime-type', 'vrml','model/vrml')
+    into oos_util_values(cat, name, value) values('mime-type', 'x3db','model/x3d+binary')
+    into oos_util_values(cat, name, value) values('mime-type', 'x3dbz','model/x3d+binary')
+    into oos_util_values(cat, name, value) values('mime-type', 'x3dv','model/x3d+vrml')
+    into oos_util_values(cat, name, value) values('mime-type', 'x3dvz','model/x3d+vrml')
+    into oos_util_values(cat, name, value) values('mime-type', 'x3d','model/x3d+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'x3dz','model/x3d+xml')
+    into oos_util_values(cat, name, value) values('mime-type', 'appcache','text/cache-manifest')
+    into oos_util_values(cat, name, value) values('mime-type', 'manifest','text/cache-manifest')
+    into oos_util_values(cat, name, value) values('mime-type', 'ics','text/calendar')
+    into oos_util_values(cat, name, value) values('mime-type', 'ifb','text/calendar')
+    into oos_util_values(cat, name, value) values('mime-type', 'coffee','text/coffeescript')
+    into oos_util_values(cat, name, value) values('mime-type', 'litcoffee','text/coffeescript')
+    into oos_util_values(cat, name, value) values('mime-type', 'css','text/css')
+    into oos_util_values(cat, name, value) values('mime-type', 'csv','text/csv')
+    into oos_util_values(cat, name, value) values('mime-type', 'hjson','text/hjson')
+    into oos_util_values(cat, name, value) values('mime-type', 'html','text/html')
+    into oos_util_values(cat, name, value) values('mime-type', 'htm','text/html')
+    into oos_util_values(cat, name, value) values('mime-type', 'shtml','text/html')
+    into oos_util_values(cat, name, value) values('mime-type', 'jade','text/jade')
+    into oos_util_values(cat, name, value) values('mime-type', 'jsx','text/jsx')
+    into oos_util_values(cat, name, value) values('mime-type', 'less','text/less')
+    into oos_util_values(cat, name, value) values('mime-type', 'mml','text/mathml')
+    into oos_util_values(cat, name, value) values('mime-type', 'n3','text/n3')
+    into oos_util_values(cat, name, value) values('mime-type', 'txt','text/plain')
+    into oos_util_values(cat, name, value) values('mime-type', 'text','text/plain')
+    into oos_util_values(cat, name, value) values('mime-type', 'conf','text/plain')
+    into oos_util_values(cat, name, value) values('mime-type', 'def','text/plain')
+    into oos_util_values(cat, name, value) values('mime-type', 'list','text/plain')
+    into oos_util_values(cat, name, value) values('mime-type', 'log','text/plain')
+    into oos_util_values(cat, name, value) values('mime-type', 'in','text/plain')
+    into oos_util_values(cat, name, value) values('mime-type', 'ini','text/plain')
+    into oos_util_values(cat, name, value) values('mime-type', 'dsc','text/prs.lines.tag')
+    into oos_util_values(cat, name, value) values('mime-type', 'rtx','text/richtext')
+    into oos_util_values(cat, name, value) values('mime-type', 'sgml','text/sgml')
+    into oos_util_values(cat, name, value) values('mime-type', 'sgm','text/sgml')
+    into oos_util_values(cat, name, value) values('mime-type', 'stylus','text/stylus')
+    into oos_util_values(cat, name, value) values('mime-type', 'styl','text/stylus')
+    into oos_util_values(cat, name, value) values('mime-type', 'tsv','text/tab-separated-values')
+    into oos_util_values(cat, name, value) values('mime-type', 't','text/troff')
+    into oos_util_values(cat, name, value) values('mime-type', 'tr','text/troff')
+    into oos_util_values(cat, name, value) values('mime-type', 'roff','text/troff')
+    into oos_util_values(cat, name, value) values('mime-type', 'man','text/troff')
+    into oos_util_values(cat, name, value) values('mime-type', 'me','text/troff')
+    into oos_util_values(cat, name, value) values('mime-type', 'ms','text/troff')
+    into oos_util_values(cat, name, value) values('mime-type', 'ttl','text/turtle')
+    into oos_util_values(cat, name, value) values('mime-type', 'uri','text/uri-list')
+    into oos_util_values(cat, name, value) values('mime-type', 'uris','text/uri-list')
+    into oos_util_values(cat, name, value) values('mime-type', 'urls','text/uri-list')
+    into oos_util_values(cat, name, value) values('mime-type', 'vcard','text/vcard')
+    into oos_util_values(cat, name, value) values('mime-type', 'curl','text/vnd.curl')
+    into oos_util_values(cat, name, value) values('mime-type', 'dcurl','text/vnd.curl.dcurl')
+    into oos_util_values(cat, name, value) values('mime-type', 'mcurl','text/vnd.curl.mcurl')
+    into oos_util_values(cat, name, value) values('mime-type', 'scurl','text/vnd.curl.scurl')
+    into oos_util_values(cat, name, value) values('mime-type', 'fly','text/vnd.fly')
+    into oos_util_values(cat, name, value) values('mime-type', 'flx','text/vnd.fmi.flexstor')
+    into oos_util_values(cat, name, value) values('mime-type', 'gv','text/vnd.graphviz')
+    into oos_util_values(cat, name, value) values('mime-type', '3dml','text/vnd.in3d.3dml')
+    into oos_util_values(cat, name, value) values('mime-type', 'spot','text/vnd.in3d.spot')
+    into oos_util_values(cat, name, value) values('mime-type', 'jad','text/vnd.sun.j2me.app-descriptor')
+    into oos_util_values(cat, name, value) values('mime-type', 'wml','text/vnd.wap.wml')
+    into oos_util_values(cat, name, value) values('mime-type', 'wmls','text/vnd.wap.wmlscript')
+    into oos_util_values(cat, name, value) values('mime-type', 'vtt','text/vtt')
+    into oos_util_values(cat, name, value) values('mime-type', 's','text/x-asm')
+    into oos_util_values(cat, name, value) values('mime-type', 'asm','text/x-asm')
+    into oos_util_values(cat, name, value) values('mime-type', 'c','text/x-c')
+    into oos_util_values(cat, name, value) values('mime-type', 'cc','text/x-c')
+    into oos_util_values(cat, name, value) values('mime-type', 'cxx','text/x-c')
+    into oos_util_values(cat, name, value) values('mime-type', 'cpp','text/x-c')
+    into oos_util_values(cat, name, value) values('mime-type', 'h','text/x-c')
+    into oos_util_values(cat, name, value) values('mime-type', 'hh','text/x-c')
+    into oos_util_values(cat, name, value) values('mime-type', 'dic','text/x-c')
+    into oos_util_values(cat, name, value) values('mime-type', 'htc','text/x-component')
+    into oos_util_values(cat, name, value) values('mime-type', 'f','text/x-fortran')
+    into oos_util_values(cat, name, value) values('mime-type', 'for','text/x-fortran')
+    into oos_util_values(cat, name, value) values('mime-type', 'f77','text/x-fortran')
+    into oos_util_values(cat, name, value) values('mime-type', 'f90','text/x-fortran')
+    into oos_util_values(cat, name, value) values('mime-type', 'hbs','text/x-handlebars-template')
+    into oos_util_values(cat, name, value) values('mime-type', 'java','text/x-java-source')
+    into oos_util_values(cat, name, value) values('mime-type', 'lua','text/x-lua')
+    into oos_util_values(cat, name, value) values('mime-type', 'markdown','text/x-markdown')
+    into oos_util_values(cat, name, value) values('mime-type', 'md','text/x-markdown')
+    into oos_util_values(cat, name, value) values('mime-type', 'mkd','text/x-markdown')
+    into oos_util_values(cat, name, value) values('mime-type', 'nfo','text/x-nfo')
+    into oos_util_values(cat, name, value) values('mime-type', 'opml','text/x-opml')
+    into oos_util_values(cat, name, value) values('mime-type', 'p','text/x-pascal')
+    into oos_util_values(cat, name, value) values('mime-type', 'pas','text/x-pascal')
+    into oos_util_values(cat, name, value) values('mime-type', 'pde','text/x-processing')
+    into oos_util_values(cat, name, value) values('mime-type', 'sass','text/x-sass')
+    into oos_util_values(cat, name, value) values('mime-type', 'scss','text/x-scss')
+    into oos_util_values(cat, name, value) values('mime-type', 'etx','text/x-setext')
+    into oos_util_values(cat, name, value) values('mime-type', 'sfv','text/x-sfv')
+    into oos_util_values(cat, name, value) values('mime-type', 'ymp','text/x-suse-ymp')
+    into oos_util_values(cat, name, value) values('mime-type', 'uu','text/x-uuencode')
+    into oos_util_values(cat, name, value) values('mime-type', 'vcs','text/x-vcalendar')
+    into oos_util_values(cat, name, value) values('mime-type', 'vcf','text/x-vcard')
+    into oos_util_values(cat, name, value) values('mime-type', 'yaml','text/yaml')
+    into oos_util_values(cat, name, value) values('mime-type', 'yml','text/yaml')
+    into oos_util_values(cat, name, value) values('mime-type', '3gp','video/3gpp')
+    into oos_util_values(cat, name, value) values('mime-type', '3gpp','video/3gpp')
+    into oos_util_values(cat, name, value) values('mime-type', '3g2','video/3gpp2')
+    into oos_util_values(cat, name, value) values('mime-type', 'h261','video/h261')
+    into oos_util_values(cat, name, value) values('mime-type', 'h263','video/h263')
+    into oos_util_values(cat, name, value) values('mime-type', 'h264','video/h264')
+    into oos_util_values(cat, name, value) values('mime-type', 'jpgv','video/jpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'jpm','video/jpm')
+    into oos_util_values(cat, name, value) values('mime-type', 'jpgm','video/jpm')
+    into oos_util_values(cat, name, value) values('mime-type', 'mj2','video/mj2')
+    into oos_util_values(cat, name, value) values('mime-type', 'mjp2','video/mj2')
+    into oos_util_values(cat, name, value) values('mime-type', 'ts','video/mp2t')
+    into oos_util_values(cat, name, value) values('mime-type', 'mp4','video/mp4')
+    into oos_util_values(cat, name, value) values('mime-type', 'mp4v','video/mp4')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpg4','video/mp4')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpeg','video/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpg','video/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'mpe','video/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'm1v','video/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'm2v','video/mpeg')
+    into oos_util_values(cat, name, value) values('mime-type', 'ogv','video/ogg')
+    into oos_util_values(cat, name, value) values('mime-type', 'qt','video/quicktime')
+    into oos_util_values(cat, name, value) values('mime-type', 'mov','video/quicktime')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvh','video/vnd.dece.hd')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvh','video/vnd.dece.hd')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvm','video/vnd.dece.mobile')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvm','video/vnd.dece.mobile')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvp','video/vnd.dece.pd')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvp','video/vnd.dece.pd')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvs','video/vnd.dece.sd')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvs','video/vnd.dece.sd')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvv','video/vnd.dece.video')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvv','video/vnd.dece.video')
+    into oos_util_values(cat, name, value) values('mime-type', 'dvb','video/vnd.dvb.file')
+    into oos_util_values(cat, name, value) values('mime-type', 'fvt','video/vnd.fvt')
+    into oos_util_values(cat, name, value) values('mime-type', 'mxu','video/vnd.mpegurl')
+    into oos_util_values(cat, name, value) values('mime-type', 'm4u','video/vnd.mpegurl')
+    into oos_util_values(cat, name, value) values('mime-type', 'pyv','video/vnd.ms-playready.media.pyv')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvu','video/vnd.uvvu.mp4')
+    into oos_util_values(cat, name, value) values('mime-type', 'uvvu','video/vnd.uvvu.mp4')
+    into oos_util_values(cat, name, value) values('mime-type', 'viv','video/vnd.vivo')
+    into oos_util_values(cat, name, value) values('mime-type', 'webm','video/webm')
+    into oos_util_values(cat, name, value) values('mime-type', 'f4v','video/x-f4v')
+    into oos_util_values(cat, name, value) values('mime-type', 'fli','video/x-fli')
+    into oos_util_values(cat, name, value) values('mime-type', 'flv','video/x-flv')
+    into oos_util_values(cat, name, value) values('mime-type', 'm4v','video/x-m4v')
+    into oos_util_values(cat, name, value) values('mime-type', 'mkv','video/x-matroska')
+    into oos_util_values(cat, name, value) values('mime-type', 'mk3d','video/x-matroska')
+    into oos_util_values(cat, name, value) values('mime-type', 'mks','video/x-matroska')
+    into oos_util_values(cat, name, value) values('mime-type', 'mng','video/x-mng')
+    into oos_util_values(cat, name, value) values('mime-type', 'asf','video/x-ms-asf')
+    into oos_util_values(cat, name, value) values('mime-type', 'asx','video/x-ms-asf')
+    into oos_util_values(cat, name, value) values('mime-type', 'vob','video/x-ms-vob')
+    into oos_util_values(cat, name, value) values('mime-type', 'wm','video/x-ms-wm')
+    into oos_util_values(cat, name, value) values('mime-type', 'wmv','video/x-ms-wmv')
+    into oos_util_values(cat, name, value) values('mime-type', 'wmx','video/x-ms-wmx')
+    into oos_util_values(cat, name, value) values('mime-type', 'wvx','video/x-ms-wvx')
+    into oos_util_values(cat, name, value) values('mime-type', 'avi','video/x-msvideo')
+    into oos_util_values(cat, name, value) values('mime-type', 'movie','video/x-sgi-movie')
+    into oos_util_values(cat, name, value) values('mime-type', 'smv','video/x-smv')
+    into oos_util_values(cat, name, value) values('mime-type', 'ice','x-conference/x-cooltalk')
+  select 1 from dual;
 end;
 /
 commit;
