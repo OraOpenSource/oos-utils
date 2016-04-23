@@ -15,27 +15,27 @@ as
    */
   gc_default_delimiter constant varchar2(1) := ',';
 
-  function tochar(
+  function to_char(
     p_val in number)
     return varchar2;
 
-  function tochar(
+  function to_char(
     p_val in date)
     return varchar2;
 
-  function tochar(
+  function to_char(
     p_val in timestamp)
     return varchar2;
 
-  function tochar(
+  function to_char(
     p_val in timestamp with time zone)
     return varchar2;
 
-  function tochar(
+  function to_char(
     p_val in timestamp with local time zone)
     return varchar2;
 
-  function tochar(
+  function to_char(
     p_val in boolean)
     return varchar2;
 
