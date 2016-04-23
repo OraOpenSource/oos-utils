@@ -7,6 +7,8 @@
 - [GET_LOB_SIZE Function](#get_lob_size)
 - [GET_LOB_SIZE Function](#get_lob_size)
 - [REPLACE_CLOB Function](#replace_clob)
+- [WRITE_TO_FILE Procedure](#write_to_file)
+- [READ_FROM_FILE Function](#read_from_file)
 
 
 ## Constants<a name="constants"></a>
@@ -204,6 +206,64 @@ Name | Description
 `p_search` | 
 `p_replace` | 
 *return* | Replaced string
+ 
+ 
+
+
+
+
+
+ 
+## WRITE_TO_FILE Procedure<a name="write_to_file"></a>
+
+
+<p>
+<p>Write a clob (p_text) into a file (p_filename) located in a database<br />server file system directory (p_path). p_path is an Oracle directory<br />object.</p>
+</p>
+
+### Syntax
+```plsql
+procedure write_to_file(
+  p_text in clob,
+  p_path in varchar2,
+  p_filename in varchar2)
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_text` | 
+`p_path` | 
+`p_filename` | 
+ 
+ 
+
+
+
+
+
+ 
+## READ_FROM_FILE Function<a name="read_from_file"></a>
+
+
+<p>
+<p>Read a content of a file (p_filename) from a database server file system<br />directory (p_path) and return it as a temporary clob. The caller is<br />responsible to free the clob (dbms_lob.freetemporary()). p_path is an<br />Oracle directory object.</p><p>The implementation is based on UTL_FILE so the following constraints apply:</p><p>A line size can&#39;t exceed 32767 bytes.</p><p>Because UTL_FILE.get_line ignores line terminator it has to be added<br />implicitly. Currently the line terminator is hardcoded to char(10)<br />(unix), so if in the original file the terminator is different then a<br />conversion will take place.</p><p>TODO: consider DBMS_LOB.LOADCLOBFROMFILE instead.</p>
+</p>
+
+### Syntax
+```plsql
+function read_from_file(
+  p_path in varchar2,
+  p_filename in varchar2)
+  return clob
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_path` | 
+`p_filename` | 
+*return* | clob
  
  
 

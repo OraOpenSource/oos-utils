@@ -2,13 +2,13 @@
 
 - [Data Types](#types)
 - [Constants](#constants)
-- [TOCHAR Function](#tochar)
-- [TOCHAR Function](#tochar)
-- [TOCHAR Function](#tochar)
-- [TOCHAR Function](#tochar)
-- [TOCHAR Function](#tochar)
-- [TOCHAR Function](#tochar)
-- [TRUNCATE_STRING Function](#truncate_string)
+- [TO_CHAR Function](#to_char)
+- [TO_CHAR Function](#to_char)
+- [TO_CHAR Function](#to_char)
+- [TO_CHAR Function](#to_char)
+- [TO_CHAR Function](#to_char)
+- [TO_CHAR Function](#to_char)
+- [TRUNCATE Function](#truncate)
 - [SPRINTF Function](#sprintf)
 - [STRING_TO_TABLE Function](#string_to_table)
 - [STRING_TO_TABLE Function](#string_to_table)
@@ -33,12 +33,11 @@ tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_int
 
 
  
-## TOCHAR Function<a name="tochar"></a>
+## TO_CHAR Function<a name="to_char"></a>
 
 
 <p>
 <p>Converts parameter to varchar2</p><p>Notes:</p><ul>
-<li>Needed to call this function <code>tochar</code> instead of <code>to_char</code> since there will be a conflict when calling it</li>
 <li>Code copied from Logger: <a href="https://github.com/OraOpenSource/Logger">https://github.com/OraOpenSource/Logger</a></li>
 </ul>
 
@@ -46,7 +45,7 @@ tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_int
 
 ### Syntax
 ```plsql
-function tochar(
+function to_char(
   p_val in number)
   return varchar2
 ```
@@ -54,8 +53,8 @@ function tochar(
 ### Parameters
 Name | Description
 --- | ---
-`p_value` | 
-*return* | string value for p_value
+`p_val` | Number
+*return* | string value for p_val
  
  
 
@@ -64,16 +63,16 @@ Name | Description
 
 
  
-## TOCHAR Function<a name="tochar"></a>
+## TO_CHAR Function<a name="to_char"></a>
 
 
 <p>
-<p>See first <code>tochar</code></p>
+<p>See first <code>to_char</code></p>
 </p>
 
 ### Syntax
 ```plsql
-function tochar(
+function to_char(
   p_val in date)
   return varchar2
 ```
@@ -82,7 +81,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Date
-*return* | string value for p_value
+*return* | string value for p_val
  
  
 
@@ -91,16 +90,16 @@ Name | Description
 
 
  
-## TOCHAR Function<a name="tochar"></a>
+## TO_CHAR Function<a name="to_char"></a>
 
 
 <p>
-<p>See first <code>tochar</code></p>
+<p>See first <code>to_char</code></p>
 </p>
 
 ### Syntax
 ```plsql
-function tochar(
+function to_char(
   p_val in timestamp)
   return varchar2
 ```
@@ -109,7 +108,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Timestamp
-*return* | string value for p_value
+*return* | string value for p_val
  
  
 
@@ -118,16 +117,16 @@ Name | Description
 
 
  
-## TOCHAR Function<a name="tochar"></a>
+## TO_CHAR Function<a name="to_char"></a>
 
 
 <p>
-<p>See first <code>tochar</code></p>
+<p>See first <code>to_char</code></p>
 </p>
 
 ### Syntax
 ```plsql
-function tochar(
+function to_char(
   p_val in timestamp with time zone)
   return varchar2
 ```
@@ -136,7 +135,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Timestamp with TZ
-*return* | string value for p_value
+*return* | string value for p_val
  
  
 
@@ -145,16 +144,16 @@ Name | Description
 
 
  
-## TOCHAR Function<a name="tochar"></a>
+## TO_CHAR Function<a name="to_char"></a>
 
 
 <p>
-<p>See first <code>tochar</code></p>
+<p>See first <code>to_char</code></p>
 </p>
 
 ### Syntax
 ```plsql
-function tochar(
+function to_char(
   p_val in timestamp with local time zone)
   return varchar2
 ```
@@ -163,7 +162,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Timestamp with local TZ
-*return* | string value for p_value
+*return* | string value for p_val
  
  
 
@@ -172,16 +171,16 @@ Name | Description
 
 
  
-## TOCHAR Function<a name="tochar"></a>
+## TO_CHAR Function<a name="to_char"></a>
 
 
 <p>
-<p>See first <code>tochar</code></p>
+<p>See first <code>to_char</code></p>
 </p>
 
 ### Syntax
 ```plsql
-function tochar(
+function to_char(
   p_val in boolean)
   return varchar2
 ```
@@ -190,7 +189,7 @@ function tochar(
 Name | Description
 --- | ---
 `p_val` | Boolean
-*return* | string value for p_value
+*return* | string value for p_val
  
  
 
@@ -199,7 +198,7 @@ Name | Description
 
 
  
-## TRUNCATE_STRING Function<a name="truncate_string"></a>
+## TRUNCATE Function<a name="truncate"></a>
 
 
 <p>
@@ -212,7 +211,7 @@ Name | Description
 
 ### Syntax
 ```plsql
-function truncate_string(
+function truncate(
   p_str in varchar2,
   p_length in pls_integer,
   p_by_word in varchar2 default 'N',
