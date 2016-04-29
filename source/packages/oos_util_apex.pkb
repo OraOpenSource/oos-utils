@@ -5,13 +5,22 @@ as
    * Returns true/false if APEX developer is enable
    * Supports both APEX 4 and 5
    *
-   * Can be used in APEX to declaratively determine if in development mode
+   * Can be used in APEX to declaratively determine if in development mode.
+   *
+   * @example
+   * begin
+   *   if oos_util_apex.is_developer then
+   *     dbms_output.put_line('Developer mode');
+   *   else
+   *     dbms_output.put_line('Non-Dev mode');
+   *   end if;
+   * end;
    *
    * @issue 25
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
-   * @return true/false
+   * @return boolan True: Developer has an active session in Application Builder
    */
   function is_developer
     return boolean
@@ -28,6 +37,15 @@ as
   /**
    * Returns Y/N if APEX developer is enable
    * See `is_developer` for details
+   *
+   * @example
+   * begin
+   *   if oos_util_apex.is_developer_yn = 'Y' then
+   *     dbms_output.put_line('Developer mode');
+   *   else
+   *     dbms_output.put_line('Non-Dev mode');
+   *   end if;
+   * end;
    *
    * @issue #25
    *
@@ -52,6 +70,16 @@ as
 
   /**
    * Checks if APEX session is still active/valid
+   *
+   * @example
+   *
+   * begin
+   *   if oos_util_apex.is_session_valid(p_session_id => :app_session) then
+   *     dbms_output.put_line('Session is active');
+   *   else
+   *     dbms_output.put_line('Session is inactive');
+   *   end if;
+   * end;
    *
    * @issue #9
    *
@@ -86,6 +114,16 @@ as
 
   /**
    * Checks if session is still active
+   *
+   * @example
+   *
+   * begin
+   *   if oos_util_apex.is_session_valid_yn(p_session_id => :app_session) = 'Y' then
+   *     dbms_output.put_line('Session is active');
+   *   else
+   *     dbms_output.put_line('Session is inactive');
+   *   end if;
+   * end;
    *
    * @issue 9
    *
@@ -123,6 +161,15 @@ as
    *    - http://www.talkapex.com/2012/08/how-to-create-apex-session-in-plsql.html
    *    - http://apextips.blogspot.com.au/2014/10/debugging-parameterised-views-outside.html
    *
+   * @example
+   *
+   * begin
+   *   oos_util_apex.create_session(
+   *     p_app_id => :app_id,
+   *     p_user_name => :app_user,
+   *     p_page_id => :app_page_id);
+   *   );
+   * end;
    *
    * @issue #7
    * @issue #49 ensure page and user exist
@@ -229,6 +276,16 @@ as
    * Notes:
    *  - `v('P1_X')` won't work. Use `apex_util.get_session_state('P1_X')` instead
    *
+   *
+   * @example
+   *
+   * begin
+   *   oos_util_apex.join_session(
+   *     p_session_id => :app_session,
+   *     p_app_id => :app_id
+   *   );
+   * end;
+   *
    * @issue #7
    *
    * @author Martin Giffy D'Souza
@@ -280,6 +337,12 @@ as
    *  - Suggested to run submit page process application wide
    *  - Excludes inputs that users shouldn't modify and password fields
    *    - Ex: select list, hidden values, files
+   *
+   * @example
+   *
+   * begin
+   *   oos_util_apex.trim_page_items(p_page_id => :app_page_id);
+   * end;
    *
    * @issue 24
    *
@@ -336,6 +399,15 @@ as
    *
    * Notes:
    *  - This should only run on a page submit process otherwise it won't work. An error is raised otherwise
+   *
+   * @example
+   * begin
+   *   if oos_util_apex.is_page_item_rendered(p_item_name => 'P1_EMPNO') then
+   *     dbms_output.put_line('P1_EMPNO rendered');
+   *   else
+   *     dbms_output.put_line('P1_EMPNO was not rendered');
+   *   end if;
+   * end;
    *
    * @issue #39
    *

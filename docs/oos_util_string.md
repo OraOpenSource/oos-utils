@@ -28,8 +28,8 @@ gc_default_delimiter | `gc_default_delimiter constant varchar2(1) := ',';` | Def
 
 Name | Code | Description
 --- | --- | ---
-tab_vc2 | <pre>type tab_vc2 is table of varchar2(32767);</pre> | 
-tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_integer;</pre> | 
+tab_vc2 | <pre>type tab_vc2 is table of varchar2(32767);</pre> | VC2 Nested table
+tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_integer;</pre> | VC2 associated array
 
 
  
@@ -59,6 +59,15 @@ Name | Description
  
 
 
+### Example
+```plsql
+
+select oos_util_string.to_char(123)
+from dual;
+
+OOS_UTIL_STRING.TO_CHAR(123)---
+123
+```
 
 
 
@@ -86,6 +95,14 @@ Name | Description
  
 
 
+### Example
+```plsql
+select oos_util_string.to_char(sysdate)
+from dual;
+
+OOS_UTIL_STRING.TO_CHAR(SYSDATE)---
+26-APR-2016 13:57:51
+```
 
 
 
@@ -113,6 +130,14 @@ Name | Description
  
 
 
+### Example
+```plsql
+select oos_util_string.to_char(systimestamp)
+from dual;
+
+OOS_UTIL_STRING.TO_CHAR(SYSTIMESTAMP)---
+26-APR-2016 13:58:24:851908000 -06:00
+```
 
 
 
@@ -140,6 +165,10 @@ Name | Description
  
 
 
+### Example
+```plsql
+TODO
+```
 
 
 
@@ -167,6 +196,10 @@ Name | Description
  
 
 
+### Example
+```plsql
+TODO
+```
 
 
 
@@ -194,6 +227,17 @@ Name | Description
  
 
 
+### Example
+```plsql
+begin
+  dbms_output.put_line(oos_util_string.to_char(true));
+  dbms_output.put_line(oos_util_string.to_char(false));
+end;
+/
+
+TRUE
+FALSE
+```
 
 
 
@@ -231,6 +275,32 @@ Name | Description
  
 
 
+### Example
+```plsql
+select
+  oos_util_string.truncate(
+    p_str => comments,
+    p_length => 20,
+    p_by_word => 'N'
+  ) by_word_n,
+  oos_util_string.truncate(
+    p_str => comments,
+    p_length => 20,
+    p_by_word => 'Y'
+  ) by_word_y
+from apex_dictionary
+where 1=1
+  and rownum <= 5
+;
+
+BY_WORD_N            BY_WORD_Y
+-------------------- --------------------
+List of APEX buil... List of APEX...
+Identifies the th... Identifies the...
+Identifies the na... Identifies the...
+Identifies the th... Identifies the...
+Identifies a work... Identifies a...
+```
 
 
 
@@ -325,6 +395,24 @@ Name | Description
  
 
 
+### Example
+```plsql
+declare
+  l_str clob := 'abc,def,ghi';
+  l_arr oos_util_string.tab_vc2_arr;
+begin
+  l_arr := oos_util_string.string_to_table(p_string => l_str);
+
+  for i in 1..l_arr.count loop
+    dbms_output.put_line('i: ' || i || ' ' || l_arr(i));
+  end loop;
+end;
+/
+
+i: 1 abc
+i: 2 def
+i: 3 ghi
+```
 
 
 
@@ -354,6 +442,10 @@ Name | Description
  
 
 
+### Example
+```plsql
+-- See previous example
+```
 
 
 
@@ -404,7 +496,7 @@ Name | Description
 
 
 <p>
-<p>Converts delimited string to queriable table</p><p>See above for example</p>
+<p>Converts delimited string to queriable table</p>
 </p>
 
 ### Syntax
@@ -425,6 +517,10 @@ Name | Description
  
 
 
+### Example
+```plsql
+See previous example
+```
 
 
 
@@ -452,6 +548,15 @@ Name | Description
  
 
 
+### Example
+```plsql
+begin
+  dbms_output.put_line(oos_util_string.reverse('OraOpenSource'));
+end;
+/
+
+ecruoSnepOarO
+```
 
 
 

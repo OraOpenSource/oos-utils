@@ -1,7 +1,6 @@
 # OOS_UTIL
 
 - [Constants](#constants)
-- [LOG Procedure](#log)
 - [ASSERT Procedure](#assert)
 - [SLEEP Procedure](#sleep)
 
@@ -14,33 +13,6 @@ gc_date_format | `gc_date_format constant varchar2(255) := 'DD-MON-YYYY HH24:MI:
 gc_timestamp_format | `gc_timestamp_format constant varchar2(255) := gc_date_format || ':FF';` | default timestamp format
 gc_timestamp_tz_format | `gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';` | default timestamp (with TZ) format
 gc_version | `gc_version constant varchar2(10) := '1.0.0';` | 
-
-
-
-
-
- 
-## LOG Procedure<a name="log"></a>
-
-
-<p>
-<p>Internal logging procedure.<br />Requires Logger to be installed only while developing.<br />-- TODO mdsouza: conditional compilation notes</p>
-</p>
-
-### Syntax
-```plsql
-procedure log(
-  p_text in varchar2,
-  p_scope in varchar2)
-```
-
-### Parameters
-Name | Description
---- | ---
-`p_message` | Item to log
-`p_scope` | Logger scope
- 
- 
 
 
 
@@ -122,6 +94,18 @@ Name | Description
  
 
 
+### Example
+```plsql
+begin
+  dbms_output.put_line(oos_util_string.to_char(sysdate));
+  oos_util.sleep(5);
+  dbms_output.put_line(oos_util_string.to_char(sysdate));
+end;
+/
+
+26-APR-2016 14:29:02
+26-APR-2016 14:29:07
+```
 
 
 

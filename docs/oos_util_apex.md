@@ -21,7 +21,7 @@
 
 
 <p>
-<p>Returns true/false if APEX developer is enable<br />Supports both APEX 4 and 5</p><p>Can be used in APEX to declaratively determine if in development mode</p>
+<p>Returns true/false if APEX developer is enable<br />Supports both APEX 4 and 5</p><p>Can be used in APEX to declaratively determine if in development mode.</p>
 </p>
 
 ### Syntax
@@ -33,11 +33,21 @@ function is_developer
 ### Parameters
 Name | Description
 --- | ---
-*return* | true/false
+*return* | boolan True: Developer has an active session in Application Builder
  
  
 
 
+### Example
+```plsql
+begin
+  if oos_util_apex.is_developer then
+    dbms_output.put_line('Developer mode');
+  else
+    dbms_output.put_line('Non-Dev mode');
+  end if;
+end;
+```
 
 
 
@@ -63,6 +73,16 @@ Name | Description
  
 
 
+### Example
+```plsql
+begin
+  if oos_util_apex.is_developer_yn = 'Y' then
+    dbms_output.put_line('Developer mode');
+  else
+    dbms_output.put_line('Non-Dev mode');
+  end if;
+end;
+```
 
 
 
@@ -90,6 +110,17 @@ Name | Description
  
 
 
+### Example
+```plsql
+
+begin
+  if oos_util_apex.is_session_valid(p_session_id => :app_session) then
+    dbms_output.put_line('Session is active');
+  else
+    dbms_output.put_line('Session is inactive');
+  end if;
+end;
+```
 
 
 
@@ -117,6 +148,17 @@ Name | Description
  
 
 
+### Example
+```plsql
+
+begin
+  if oos_util_apex.is_session_valid_yn(p_session_id => :app_session) = 'Y' then
+    dbms_output.put_line('Session is active');
+  else
+    dbms_output.put_line('Session is inactive');
+  end if;
+end;
+```
 
 
 
@@ -155,6 +197,17 @@ Name | Description
  
 
 
+### Example
+```plsql
+
+begin
+  oos_util_apex.create_session(
+    p_app_id => :app_id,
+    p_user_name => :app_user,
+    p_page_id => :app_page_id);
+  );
+end;
+```
 
 
 
@@ -185,6 +238,16 @@ Name | Description
  
 
 
+### Example
+```plsql
+
+begin
+  oos_util_apex.join_session(
+    p_session_id => :app_session,
+    p_app_id => :app_id
+  );
+end;
+```
 
 
 
@@ -217,6 +280,13 @@ Name | Description
  
 
 
+### Example
+```plsql
+
+begin
+  oos_util_apex.trim_page_items(p_page_id => :app_page_id);
+end;
+```
 
 
 
@@ -246,6 +316,16 @@ Name | Description
  
 
 
+### Example
+```plsql
+begin
+  if oos_util_apex.is_page_item_rendered(p_item_name => 'P1_EMPNO') then
+    dbms_output.put_line('P1_EMPNO rendered');
+  else
+    dbms_output.put_line('P1_EMPNO was not rendered');
+  end if;
+end;
+```
 
 
 

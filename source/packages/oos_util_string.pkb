@@ -9,6 +9,14 @@ as
    *
    * @issue 11
    *
+   * @example
+   *
+   * select oos_util_string.to_char(123)
+   * from dual;
+   *
+   * OOS_UTIL_STRING.TO_CHAR(123)---
+   * 123
+   *
    * @author Martin D'Souza
    * @created 07-Jun-2014
    * @param p_val Number
@@ -25,6 +33,13 @@ as
   /**
    * See first `to_char`
    *
+   * @example
+   * select oos_util_string.to_char(sysdate)
+   * from dual;
+   *
+   * OOS_UTIL_STRING.TO_CHAR(SYSDATE)---
+   * 26-APR-2016 13:57:51
+   *
    * @param p_val Date
    * @return string value for p_val
    */
@@ -38,6 +53,13 @@ as
 
   /**
    * See first `to_char`
+   *
+   * @example
+   * select oos_util_string.to_char(systimestamp)
+   * from dual;
+   *
+   * OOS_UTIL_STRING.TO_CHAR(SYSTIMESTAMP)---
+   * 26-APR-2016 13:58:24:851908000 -06:00
    *
    * @param p_val Timestamp
    * @return string value for p_val
@@ -53,6 +75,8 @@ as
   /**
    * See first `to_char`
    *
+   * @example
+   * TODO
    * @param p_val Timestamp with TZ
    * @return string value for p_val
    */
@@ -67,6 +91,9 @@ as
   /**
    * See first `to_char`
    *
+   * @example
+   * TODO
+   *
    * @param p_val Timestamp with local TZ
    * @return string value for p_val
    */
@@ -80,6 +107,16 @@ as
 
   /**
    * See first `to_char`
+   *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.to_char(true));
+   *   dbms_output.put_line(oos_util_string.to_char(false));
+   * end;
+   * /
+   *
+   * TRUE
+   * FALSE
    *
    * @param p_val Boolean
    * @return string value for p_val
@@ -102,6 +139,31 @@ as
    *
    *
    * @issue #5
+   *
+   * @example
+   * select
+   *   oos_util_string.truncate(
+   *     p_str => comments,
+   *     p_length => 20,
+   *     p_by_word => 'N'
+   *   ) by_word_n,
+   *   oos_util_string.truncate(
+   *     p_str => comments,
+   *     p_length => 20,
+   *     p_by_word => 'Y'
+   *   ) by_word_y
+   * from apex_dictionary
+   * where 1=1
+   *   and rownum <= 5
+   * ;
+   *
+   * BY_WORD_N            BY_WORD_Y
+   * -------------------- --------------------
+   * List of APEX buil... List of APEX...
+   * Identifies the th... Identifies the...
+   * Identifies the na... Identifies the...
+   * Identifies the th... Identifies the...
+   * Identifies a work... Identifies a...
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
@@ -268,6 +330,23 @@ as
    *
    * @issue #32
    *
+   * @example
+   * declare
+   *   l_str clob := 'abc,def,ghi';
+   *   l_arr oos_util_string.tab_vc2_arr;
+   * begin
+   *   l_arr := oos_util_string.string_to_table(p_string => l_str);
+   *
+   *   for i in 1..l_arr.count loop
+   *     dbms_output.put_line('i: ' || i || ' ' || l_arr(i));
+   *   end loop;
+   * end;
+   * /
+   *
+   * i: 1 abc
+   * i: 2 def
+   * i: 3 ghi
+   *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
    * @param p_string String containing delimited text
@@ -314,6 +393,9 @@ as
    * See `string_to_table (p_string clob)` for notes
    *
    * @issue  #32
+   *
+   * @example
+   * -- See previous example
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -375,10 +457,10 @@ as
   /**
    * Converts delimited string to queriable table
    *
-   * See above for example
-   *
-   *
    * @issue #4
+   *
+   * @example
+   * See previous example
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -406,6 +488,14 @@ as
    *
    * @issue #55
    *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.reverse('OraOpenSource'));
+   * end;
+   * /
+   *
+   * ecruoSnepOarO
+   *
    * @author Tim Nanos
    * @created 31-Mar-2016
    * @param p_string String
@@ -422,7 +512,7 @@ as
         l_string := substr(p_string, i, 1) || l_string;
       end loop;
     end if;
-    
+
     return l_string;
   end reverse;
 

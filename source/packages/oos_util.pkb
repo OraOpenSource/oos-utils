@@ -7,7 +7,7 @@ as
 
   -- ******** PRIVATE ********
 
-  /**
+  /*!
    * Internal logging procedure.
    * Requires Logger to be installed only while developing.
    * -- TODO mdsouza: conditional compilation notes
@@ -83,6 +83,17 @@ as
    *  - If calling in SQLDeveloper may get "IO Error: Socket read timed out". This is a JDBC driver setting, not a bug in this code.
    *
    * @issue #13
+   *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.to_char(sysdate));
+   *   oos_util.sleep(5);
+   *   dbms_output.put_line(oos_util_string.to_char(sysdate));
+   * end;
+   * /
+   *
+   * 26-APR-2016 14:29:02
+   * 26-APR-2016 14:29:07
    *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015

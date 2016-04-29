@@ -9,6 +9,16 @@ as
    *
    * @issue #15
    *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.to_char(oos_util_validation.is_number('123')));
+   *   dbms_output.put_line(oos_util_string.to_char(oos_util_validation.is_number('abc')));
+   * end;
+   * /
+   *
+   * TRUE
+   * FALSE
+   *
    * @author Trent Schafer
    * @created 05-Sep-2015
    * @param p_str String to validate
@@ -31,6 +41,18 @@ as
    * Checks if string is a valid date
    *
    * @issue #20
+   *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.to_char(
+   *     oos_util_validation.is_date('01-JAN-2015', 'DD-MON-YYYY')));
+   *   dbms_output.put_line(oos_util_string.to_char(
+   *     oos_util_validation.is_date('not-a-date', 'DD-MON-YYYY')));
+   * end;
+   * /
+   *
+   * TRUE
+   * FALSE
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015

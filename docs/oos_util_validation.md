@@ -33,6 +33,17 @@ Name | Description
  
 
 
+### Example
+```plsql
+begin
+  dbms_output.put_line(oos_util_string.to_char(oos_util_validation.is_number('123')));
+  dbms_output.put_line(oos_util_string.to_char(oos_util_validation.is_number('abc')));
+end;
+/
+
+TRUE
+FALSE
+```
 
 
 
@@ -62,6 +73,19 @@ Name | Description
  
 
 
+### Example
+```plsql
+begin
+  dbms_output.put_line(oos_util_string.to_char(
+    oos_util_validation.is_date('01-JAN-2015', 'DD-MON-YYYY')));
+  dbms_output.put_line(oos_util_string.to_char(
+    oos_util_validation.is_date('not-a-date', 'DD-MON-YYYY')));
+end;
+/
+
+TRUE
+FALSE
+```
 
 
 

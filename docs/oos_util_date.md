@@ -34,6 +34,16 @@ Name | Description
  
 
 
+### Example
+```plsql
+
+select oos_util_date.date2epoch(sysdate)
+from dual;
+
+OOS_UTIL_DATE.DATE2EPOCH(SYSDATE)
+---------------------------------
+                       1461663997
+```
 
 
 
@@ -61,6 +71,16 @@ Name | Description
  
 
 
+### Example
+```plsql
+
+select oos_util_date.epoch2date(1461663982)
+from dual;
+
+OOS_UTIL_DATE.EPOCH2DATE(1461663982)
+------------------------------------
+26-APR-2016 12:46:22
+```
 
 
 

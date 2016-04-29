@@ -5,6 +5,15 @@ as
   /**
    * Coverts date to Unix Epoch time
    *
+   * @example
+   *
+   * select oos_util_date.date2epoch(sysdate)
+   * from dual;
+   *
+   * OOS_UTIL_DATE.DATE2EPOCH(SYSDATE)
+   * ---------------------------------
+   *                        1461663997
+   *
    * @issue #18
    *
    * @author Martin Giffy D'Souza
@@ -32,6 +41,15 @@ as
    * Converts Unix linux time to Oracle date
    *
    * @issue 18
+   *
+   * @example
+   *
+   * select oos_util_date.epoch2date(1461663982)
+   * from dual;
+   *
+   * OOS_UTIL_DATE.EPOCH2DATE(1461663982)
+   * ------------------------------------
+   * 26-APR-2016 12:46:22
    *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015

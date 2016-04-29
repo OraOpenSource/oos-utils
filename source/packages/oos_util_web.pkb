@@ -8,6 +8,17 @@ as
    *
    * @issue #27
    *
+   * @example
+   * select
+   *   oos_util_web.get_mime_type('file.xls') xls,
+   *   oos_util_web.get_mime_type('file.txt') txt,
+   *   oos_util_web.get_mime_type('file.swf') swf
+   * from dual;
+   *
+   * XLS                        TXT          SWF
+   * -------------------------- ------------ ------------------------------
+   * application/vnd.ms-excel   text/plain   application/x-shockwave-flash
+   *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
    * @param p_filename Filename
@@ -55,20 +66,22 @@ as
 
   /**
    * Download file
+   * Will call `apex_application.stop_apex_engine` if called from within an APEX application
    *
    * @issue #2
    * @issue #47: cache support
    *
+   * @example
+   *
+   * oos_util_web.download_file(
+   *   p_filename => 'my_file.zip',
+   *   p_blob => l_file):
+   *
+   *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
-   * @example
-   *  ```plsql
-   *    select todo from dual
-   *    where 1=1
-   *    from dual
-   *  ```
-   * @param {number=} p_filename Filename
-   * @param p_mime_type mime-type of file. If null will be resolved via p_filename
+   * @param p_filename Filename
+   * @param p_mime_type mime-type of file. If null will be automatically resolved via p_filename
    * @param p_content_disposition inline or attachment
    * @param p_cache_control options to pass to the Cache-Control attribute. Examples include max-age=3600, no-cache, etc. See https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en for examples
    * @param p_blob File to be downloaded
@@ -115,7 +128,7 @@ as
     if apex_application.g_flow_id is not null then
       apex_application.stop_apex_engine;
     end if;
-    
+
   exception
     -- Not necessarily required but leaving in as a demo of how to handle stop_apex_engine
     when apex_application.e_stop_apex_engine then
@@ -130,6 +143,11 @@ as
    *  - See download_file (blob) for full documentation
    *
    * @issue #2
+   *
+   * @example
+   * oos_util_web.download_file(
+   *   p_filename => 'my_file.txt',
+   *   p_clob => l_file):
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015

@@ -3,8 +3,8 @@ as
 
   -- TYPES
   /**
-   * @type tab_vc2
-   * @type tab_vc2_arr
+   * @type tab_vc2 VC2 Nested table
+   * @type tab_vc2_arr VC2 associated array
    */
   type tab_vc2 is table of varchar2(32767);
   type tab_vc2_arr is table of varchar2(32767) index by pls_integer;

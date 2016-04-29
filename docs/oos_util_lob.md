@@ -184,7 +184,7 @@ Name | Description
 
 
 <p>
-<p>Replaces p_search with p_replace</p><p>Oracle&#39;s replace function does handle clobs but runs into 32k issues</p><p>Notes:</p><ul>
+<p>Replaces p_search with p_replace</p><p>Oracle&#39;s replace function handles clobs but runs into 32k issues</p><p>Notes:</p><ul>
 <li>Source: <a href="http://dbaora.com/ora-22828-input-pattern-or-replacement-parameters-exceed-32k-size-limit/">http://dbaora.com/ora-22828-input-pattern-or-replacement-parameters-exceed-32k-size-limit/</a></li>
 </ul>
 

@@ -6,6 +6,13 @@ as
    *
    * @issue #12
    *
+   * declare
+   *   l_blob blob;
+   *   l_clob clob;
+   * begin
+   *   l_blob := oos_util_lob.clob2blob(l_clob);
+   * end;
+   *
    * @author Moritz Klein (https://github.com/commi235)
    * @created 07-Sep-2015
    * @param p_clob Clob to conver to blob
@@ -52,6 +59,13 @@ as
    *
    * @issue #1
    *
+   * declare
+   *   l_blob blob;
+   *   l_clob clob;
+   * begin
+   *   l_clob := oos_util_lob.blob2clob(l_blob);
+   * end;
+   *
    * @author Martin D'Souza
    * @created 02-Mar-2014
    * @param p_blob blob to be converted to clob
@@ -95,6 +109,16 @@ as
    *
    * @issue #6
    *
+   * select
+   *   oos_util_lob.get_file_size(2048) "2kb",
+   *   oos_util_lob.get_file_size(3145728) "3mb",
+   *   oos_util_lob.get_file_size(3145728, 'kb') "3mb_kb"
+   * from dual;
+   *
+   * 2kb        3mb        3mb_kb
+   * ---------- ---------- ----------
+   * 2.0 KB     3.0 MB     3,072.0 KB
+   *
    * @author Martin D'Souza
    * @created 07-Sep-2015
    * @param p_file_size size of file in bytes
@@ -113,7 +137,7 @@ as
     end if;
 
     -- List of formats: http://www.gnu.org/software/coreutils/manual/coreutils
-    l_units := nvl(p_units,
+    l_units := nvl(upper(p_units),
       case
         when p_file_size < gc_size_b then oos_util_lob.gc_unit_b
         when p_file_size < gc_size_kb then oos_util_lob.gc_unit_kb
@@ -201,12 +225,30 @@ as
   /**
    * Replaces p_search with p_replace
    *
-   * Oracle's replace function does handle clobs but runs into 32k issues
+   * Oracle's replace function handles clobs but runs into 32k issues
    *
    * Notes:
    *  - Source: http://dbaora.com/ora-22828-input-pattern-or-replacement-parameters-exceed-32k-size-limit/
    *
    * @issue #29
+   *
+   *
+   * declare
+   *   l_clob clob;
+   * begin
+   *   l_clob := 'foo bar foo';
+   *
+   *   l_clob := oos_util_lob.replace_clob(
+   *     p_str => l_clob,
+   *     p_search => 'foo',
+   *     p_replace => 'hello'
+   *   );
+   *
+   *   dbms_output.put_line(l_clob);
+   * end;
+   * /
+   *
+   * hello bar hello
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -221,17 +263,24 @@ as
     p_replace in clob)
     return clob
   as
-    l_pos pls_integer;
+    l_pos pls_integer := 1;
+    l_return clob := p_str;
   begin
-    l_pos := instr(p_str, p_search);
+    while l_pos > 0 loop
+      l_pos := instr(l_return, p_search, l_pos);
 
-    if l_pos > 0 then
-      return substr(p_str, 1, l_pos-1)
-          || p_replace
-          || substr(p_str, l_pos+length(p_search));
-    end if;
+      if l_pos > 0 then
+        l_return := substr(l_return, 1, l_pos-1)
+            || p_replace
+            || substr(l_return, l_pos+length(p_search));
 
-    return p_str;
+        -- Move forward past the replaced string
+        l_pos := l_pos + length(p_replace);
+      end if;
+
+    end loop;
+
+    return l_return;
   end replace_clob;
 
   /**
