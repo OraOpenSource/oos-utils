@@ -297,7 +297,7 @@ as
    * @param p_path
    * @param p_filename
    */
-  procedure write_to_file(
+  procedure write_file(
     p_text in clob,
     p_path in varchar2,
     p_filename in varchar2)
@@ -348,7 +348,7 @@ as
       dbms_lob.freetemporary(l_tmp_lob);
     end;
 
-  end write_to_file;
+  end write_file;
 
   /**
    *
@@ -376,7 +376,7 @@ as
    * @param p_filename
    * @return clob
    */
-  function read_from_file(
+  function read_file(
     p_path in varchar2,
     p_filename in varchar2)
     return clob
@@ -413,7 +413,7 @@ as
     utl_file.fclose(l_fh);
 
     return l_tmp_lob;
-  end read_from_file;
+  end read_file;
 
 end oos_util_lob;
 /
