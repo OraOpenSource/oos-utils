@@ -19,3 +19,14 @@ node app.js
 | `app.js` | Main file to build the release. |
 | `config.js` | Contains all the config options. Some are generated.|
 | `fn.js` | Common functions used in `app.js` |
+
+
+## Dev Standards
+
+The following development stadards are used for this project:
+
+- All parameters start with `p_`
+- Tabs: space 2
+- Everything in lowercase. I.e. no upper for keywords
+- No unnecessary spacing/indentation of variables.
+  - Write like you would in regular language.
