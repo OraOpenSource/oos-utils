@@ -16,20 +16,18 @@
 - [LISTUNAGG Function](#listunagg)
 - [REVERSE Function](#reverse)
 
-
-## Constants<a name="constants"></a>
-
-Name | Code | Description
---- | --- | ---
-gc_default_delimiter | `gc_default_delimiter constant varchar2(1) := ',';` | Default delimiter for delimited strings
-
-
 ## Types<a name="types"></a>
 
 Name | Code | Description
 --- | --- | ---
 tab_vc2 | <pre>type tab_vc2 is table of varchar2(32767);</pre> | VC2 Nested table
 tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_integer;</pre> | VC2 associated array
+
+## Constants<a name="constants"></a>
+
+Name | Code | Description
+--- | --- | ---
+gc_default_delimiter | `gc_default_delimiter constant varchar2(1) := ',';` | Default delimiter for delimited strings
 
 
  

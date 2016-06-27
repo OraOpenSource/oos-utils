@@ -7,8 +7,9 @@
 - [GET_LOB_SIZE Function](#get_lob_size)
 - [GET_LOB_SIZE Function](#get_lob_size)
 - [REPLACE_CLOB Function](#replace_clob)
-- [WRITE_TO_FILE Procedure](#write_to_file)
-- [READ_FROM_FILE Function](#read_from_file)
+- [WRITE_FILE Procedure](#write_file)
+- [READ_FILE Function](#read_file)
+
 
 
 ## Constants<a name="constants"></a>
@@ -32,9 +33,6 @@ gc_size_pb | `gc_size_pb constant number := power(1024, 6);` |
 gc_size_eb | `gc_size_eb constant number := power(1024, 7);` | 
 gc_size_zb | `gc_size_zb constant number := power(1024, 8);` | 
 gc_size_yb | `gc_size_yb constant number := power(1024, 9);` | 
-
-
-
 
 
  
@@ -214,7 +212,7 @@ Name | Description
 
 
  
-## WRITE_TO_FILE Procedure<a name="write_to_file"></a>
+## WRITE_FILE Procedure<a name="write_file"></a>
 
 
 <p>
@@ -223,7 +221,7 @@ Name | Description
 
 ### Syntax
 ```plsql
-procedure write_to_file(
+procedure write_file(
   p_text in clob,
   p_path in varchar2,
   p_filename in varchar2)
@@ -243,7 +241,7 @@ Name | Description
 
 
  
-## READ_FROM_FILE Function<a name="read_from_file"></a>
+## READ_FILE Function<a name="read_file"></a>
 
 
 <p>
@@ -252,7 +250,7 @@ Name | Description
 
 ### Syntax
 ```plsql
-function read_from_file(
+function read_file(
   p_path in varchar2,
   p_filename in varchar2)
   return clob

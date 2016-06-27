@@ -8,8 +8,6 @@
 
 
 
-
-
  
 ## IS_NUMBER Function<a name="is_number"></a>
 

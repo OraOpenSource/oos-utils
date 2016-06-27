@@ -6,15 +6,13 @@
 - [DOWNLOAD_FILE Procedure](#download_file)
 
 
+
 ## Constants<a name="constants"></a>
 
 Name | Code | Description
 --- | --- | ---
 gc_content_disposition_inline | `gc_content_disposition_inline constant varchar2(20) := 'inline';` | For downloading file and viewing inline
 gc_content_disposition_attach | `gc_content_disposition_attach constant varchar2(20) := 'attachment';` | For downloading file as attachment
-
-
-
 
 
  
