@@ -142,7 +142,7 @@ as
 
   -- ******** PRIVATE ********
 
-  /**
+  /*!
    * Internal logging procedure.
    * Requires Logger to be installed only while developing.
    * -- TODO mdsouza: conditional compilation notes
@@ -219,6 +219,17 @@ as
    *
    * @issue #13
    *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.to_char(sysdate));
+   *   oos_util.sleep(5);
+   *   dbms_output.put_line(oos_util_string.to_char(sysdate));
+   * end;
+   * /
+   *
+   * 26-APR-2016 14:29:02
+   * 26-APR-2016 14:29:07
+   *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015
    * @param p_seconds Number of seconds to sleep for
@@ -288,13 +299,22 @@ as
    * Returns true/false if APEX developer is enable
    * Supports both APEX 4 and 5
    *
-   * Can be used in APEX to declaratively determine if in development mode
+   * Can be used in APEX to declaratively determine if in development mode.
+   *
+   * @example
+   * begin
+   *   if oos_util_apex.is_developer then
+   *     dbms_output.put_line('Developer mode');
+   *   else
+   *     dbms_output.put_line('Non-Dev mode');
+   *   end if;
+   * end;
    *
    * @issue 25
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
-   * @return true/false
+   * @return boolan True: Developer has an active session in Application Builder
    */
   function is_developer
     return boolean
@@ -311,6 +331,15 @@ as
   /**
    * Returns Y/N if APEX developer is enable
    * See `is_developer` for details
+   *
+   * @example
+   * begin
+   *   if oos_util_apex.is_developer_yn = 'Y' then
+   *     dbms_output.put_line('Developer mode');
+   *   else
+   *     dbms_output.put_line('Non-Dev mode');
+   *   end if;
+   * end;
    *
    * @issue #25
    *
@@ -335,6 +364,16 @@ as
 
   /**
    * Checks if APEX session is still active/valid
+   *
+   * @example
+   *
+   * begin
+   *   if oos_util_apex.is_session_valid(p_session_id => :app_session) then
+   *     dbms_output.put_line('Session is active');
+   *   else
+   *     dbms_output.put_line('Session is inactive');
+   *   end if;
+   * end;
    *
    * @issue #9
    *
@@ -369,6 +408,16 @@ as
 
   /**
    * Checks if session is still active
+   *
+   * @example
+   *
+   * begin
+   *   if oos_util_apex.is_session_valid_yn(p_session_id => :app_session) = 'Y' then
+   *     dbms_output.put_line('Session is active');
+   *   else
+   *     dbms_output.put_line('Session is inactive');
+   *   end if;
+   * end;
    *
    * @issue 9
    *
@@ -406,6 +455,15 @@ as
    *    - http://www.talkapex.com/2012/08/how-to-create-apex-session-in-plsql.html
    *    - http://apextips.blogspot.com.au/2014/10/debugging-parameterised-views-outside.html
    *
+   * @example
+   *
+   * begin
+   *   oos_util_apex.create_session(
+   *     p_app_id => :app_id,
+   *     p_user_name => :app_user,
+   *     p_page_id => :app_page_id
+   *   );
+   * end;
    *
    * @issue #7
    * @issue #49 ensure page and user exist
@@ -512,6 +570,16 @@ as
    * Notes:
    *  - `v('P1_X')` won't work. Use `apex_util.get_session_state('P1_X')` instead
    *
+   *
+   * @example
+   *
+   * begin
+   *   oos_util_apex.join_session(
+   *     p_session_id => :app_session,
+   *     p_app_id => :app_id
+   *   );
+   * end;
+   *
    * @issue #7
    *
    * @author Martin Giffy D'Souza
@@ -563,6 +631,12 @@ as
    *  - Suggested to run submit page process application wide
    *  - Excludes inputs that users shouldn't modify and password fields
    *    - Ex: select list, hidden values, files
+   *
+   * @example
+   *
+   * begin
+   *   oos_util_apex.trim_page_items(p_page_id => :app_page_id);
+   * end;
    *
    * @issue 24
    *
@@ -619,6 +693,15 @@ as
    *
    * Notes:
    *  - This should only run on a page submit process otherwise it won't work. An error is raised otherwise
+   *
+   * @example
+   * begin
+   *   if oos_util_apex.is_page_item_rendered(p_item_name => 'P1_EMPNO') then
+   *     dbms_output.put_line('P1_EMPNO rendered');
+   *   else
+   *     dbms_output.put_line('P1_EMPNO was not rendered');
+   *   end if;
+   * end;
    *
    * @issue #39
    *
@@ -864,6 +947,15 @@ as
   /**
    * Coverts date to Unix Epoch time
    *
+   * @example
+   *
+   * select oos_util_date.date2epoch(sysdate)
+   * from dual;
+   *
+   * OOS_UTIL_DATE.DATE2EPOCH(SYSDATE)
+   * ---------------------------------
+   *                        1461663997
+   *
    * @issue #18
    *
    * @author Martin Giffy D'Souza
@@ -891,6 +983,15 @@ as
    * Converts Unix linux time to Oracle date
    *
    * @issue 18
+   *
+   * @example
+   *
+   * select oos_util_date.epoch2date(1461663982)
+   * from dual;
+   *
+   * OOS_UTIL_DATE.EPOCH2DATE(1461663982)
+   * ------------------------------------
+   * 26-APR-2016 12:46:22
    *
    * @author Martin Giffy D'Souza
    * @created 31-Dec-2015
@@ -977,12 +1078,12 @@ as
     p_replace in clob)
     return clob;
 
-  procedure write_to_file(
+  procedure write_file(
     p_text in clob,
     p_path in varchar2,
     p_filename in varchar2);
 
-  function read_from_file(
+  function read_file(
     p_path in varchar2,
     p_filename in varchar2)
     return clob;
@@ -997,6 +1098,13 @@ as
    * Convers clob to blob
    *
    * @issue #12
+   *
+   * declare
+   *   l_blob blob;
+   *   l_clob clob;
+   * begin
+   *   l_blob := oos_util_lob.clob2blob(l_clob);
+   * end;
    *
    * @author Moritz Klein (https://github.com/commi235)
    * @created 07-Sep-2015
@@ -1044,6 +1152,13 @@ as
    *
    * @issue #1
    *
+   * declare
+   *   l_blob blob;
+   *   l_clob clob;
+   * begin
+   *   l_clob := oos_util_lob.blob2clob(l_blob);
+   * end;
+   *
    * @author Martin D'Souza
    * @created 02-Mar-2014
    * @param p_blob blob to be converted to clob
@@ -1087,6 +1202,16 @@ as
    *
    * @issue #6
    *
+   * select
+   *   oos_util_lob.get_file_size(2048) "2kb",
+   *   oos_util_lob.get_file_size(3145728) "3mb",
+   *   oos_util_lob.get_file_size(3145728, 'kb') "3mb_kb"
+   * from dual;
+   *
+   * 2kb        3mb        3mb_kb
+   * ---------- ---------- ----------
+   * 2.0 KB     3.0 MB     3,072.0 KB
+   *
    * @author Martin D'Souza
    * @created 07-Sep-2015
    * @param p_file_size size of file in bytes
@@ -1105,7 +1230,7 @@ as
     end if;
 
     -- List of formats: http://www.gnu.org/software/coreutils/manual/coreutils
-    l_units := nvl(p_units,
+    l_units := nvl(upper(p_units),
       case
         when p_file_size < gc_size_b then oos_util_lob.gc_unit_b
         when p_file_size < gc_size_kb then oos_util_lob.gc_unit_kb
@@ -1193,12 +1318,30 @@ as
   /**
    * Replaces p_search with p_replace
    *
-   * Oracle's replace function does handle clobs but runs into 32k issues
+   * Oracle's replace function handles clobs but runs into 32k issues
    *
    * Notes:
    *  - Source: http://dbaora.com/ora-22828-input-pattern-or-replacement-parameters-exceed-32k-size-limit/
    *
    * @issue #29
+   *
+   *
+   * declare
+   *   l_clob clob;
+   * begin
+   *   l_clob := 'foo bar foo';
+   *
+   *   l_clob := oos_util_lob.replace_clob(
+   *     p_str => l_clob,
+   *     p_search => 'foo',
+   *     p_replace => 'hello'
+   *   );
+   *
+   *   dbms_output.put_line(l_clob);
+   * end;
+   * /
+   *
+   * hello bar hello
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -1213,17 +1356,24 @@ as
     p_replace in clob)
     return clob
   as
-    l_pos pls_integer;
+    l_pos pls_integer := 1;
+    l_return clob := p_str;
   begin
-    l_pos := instr(p_str, p_search);
+    while l_pos > 0 loop
+      l_pos := instr(l_return, p_search, l_pos);
 
-    if l_pos > 0 then
-      return substr(p_str, 1, l_pos-1)
-          || p_replace
-          || substr(p_str, l_pos+length(p_search));
-    end if;
+      if l_pos > 0 then
+        l_return := substr(l_return, 1, l_pos-1)
+            || p_replace
+            || substr(l_return, l_pos+length(p_search));
 
-    return p_str;
+        -- Move forward past the replaced string
+        l_pos := l_pos + length(p_replace);
+      end if;
+
+    end loop;
+
+    return l_return;
   end replace_clob;
 
   /**
@@ -1240,7 +1390,7 @@ as
    * @param p_path
    * @param p_filename
    */
-  procedure write_to_file(
+  procedure write_file(
     p_text in clob,
     p_path in varchar2,
     p_filename in varchar2)
@@ -1291,7 +1441,7 @@ as
       dbms_lob.freetemporary(l_tmp_lob);
     end;
 
-  end write_to_file;
+  end write_file;
 
   /**
    *
@@ -1299,17 +1449,6 @@ as
    * directory (p_path) and return it as a temporary clob. The caller is
    * responsible to free the clob (dbms_lob.freetemporary()). p_path is an
    * Oracle directory object.
-   *
-   * The implementation is based on UTL_FILE so the following constraints apply:
-   *
-   * A line size can't exceed 32767 bytes.
-   *
-   * Because UTL_FILE.get_line ignores line terminator it has to be added
-   * implicitly. Currently the line terminator is hardcoded to char(10)
-   * (unix), so if in the original file the terminator is different then a
-   * conversion will take place.
-   *
-   * TODO: consider DBMS_LOB.LOADCLOBFROMFILE instead.
    *
    * @issue #56
    *
@@ -1319,44 +1458,48 @@ as
    * @param p_filename
    * @return clob
    */
-  function read_from_file(
+  function read_file(
     p_path in varchar2,
     p_filename in varchar2)
     return clob
   as
-    l_fh utl_file.file_type;
+    l_src_bfile bfile;
     l_tmp_lob clob;
+
+    l_dest_offset integer := 1;
+    l_src_offset integer := 1;
+    l_lang_context integer := dbms_lob.default_lang_ctx;
+    l_warning integer := dbms_lob.no_warning;
   begin
-    l_fh := utl_file.fopen(
-      location => p_path,
-      filename => p_filename,
-      open_mode => 'r',
-      max_linesize => 32767);
+    -- exit if any parameter is null
+    oos_util.assert(p_path is not null, 'p_path required parameter');
+    oos_util.assert(p_filename is not null, 'p_filename required parameter');
+
+    l_src_bfile := bfilename(upper(p_path), p_filename);
+
+    dbms_lob.open(l_src_bfile, dbms_lob.lob_readonly);
 
     dbms_lob.createtemporary(
       lob_loc => l_tmp_lob,
-      cache => false,
-      dur => dbms_lob.session);
+      cache => false);
 
-    declare
-      c_lt constant varchar2(1) := chr(10); -- unix line terminator
-      l_buf varchar2(32767);
-    begin
-      loop
-        utl_file.get_line(l_fh, l_buf);
-        dbms_lob.writeappend(l_tmp_lob, length(l_buf), l_buf);
-        -- get_line ignores line terminator so it is explicitly included
-        dbms_lob.writeappend(l_tmp_lob, length(c_lt), c_lt);
-      end loop;
-    exception
-      when no_data_found then
-        utl_file.fclose(l_fh);
-    end;
+    dbms_lob.loadclobfromfile(
+      dest_lob     => l_tmp_lob
+     ,src_bfile    => l_src_bfile
+     ,amount       => dbms_lob.lobmaxsize
+     ,dest_offset  => l_dest_offset
+     ,src_offset   => l_src_offset
+     ,bfile_csid   => dbms_lob.default_csid
+     ,lang_context => l_lang_context
+     ,warning      => l_warning
+    );
 
-    utl_file.fclose(l_fh);
+    dbms_lob.close(l_src_bfile);
+
+    oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to load clob from a file: ' || l_warning);
 
     return l_tmp_lob;
-  end read_from_file;
+  end read_file;
 
 end oos_util_lob;
 /
@@ -1367,8 +1510,8 @@ as
 
   -- TYPES
   /**
-   * @type tab_vc2
-   * @type tab_vc2_arr
+   * @type tab_vc2 VC2 Nested table
+   * @type tab_vc2_arr VC2 associated array
    */
   type tab_vc2 is table of varchar2(32767);
   type tab_vc2_arr is table of varchar2(32767) index by pls_integer;
@@ -1462,6 +1605,14 @@ as
    *
    * @issue 11
    *
+   * @example
+   *
+   * select oos_util_string.to_char(123)
+   * from dual;
+   *
+   * OOS_UTIL_STRING.TO_CHAR(123)---
+   * 123
+   *
    * @author Martin D'Souza
    * @created 07-Jun-2014
    * @param p_val Number
@@ -1478,6 +1629,13 @@ as
   /**
    * See first `to_char`
    *
+   * @example
+   * select oos_util_string.to_char(sysdate)
+   * from dual;
+   *
+   * OOS_UTIL_STRING.TO_CHAR(SYSDATE)---
+   * 26-APR-2016 13:57:51
+   *
    * @param p_val Date
    * @return string value for p_val
    */
@@ -1491,6 +1649,13 @@ as
 
   /**
    * See first `to_char`
+   *
+   * @example
+   * select oos_util_string.to_char(systimestamp)
+   * from dual;
+   *
+   * OOS_UTIL_STRING.TO_CHAR(SYSTIMESTAMP)---
+   * 26-APR-2016 13:58:24:851908000 -06:00
    *
    * @param p_val Timestamp
    * @return string value for p_val
@@ -1506,6 +1671,8 @@ as
   /**
    * See first `to_char`
    *
+   * @example
+   * TODO
    * @param p_val Timestamp with TZ
    * @return string value for p_val
    */
@@ -1520,6 +1687,9 @@ as
   /**
    * See first `to_char`
    *
+   * @example
+   * TODO
+   *
    * @param p_val Timestamp with local TZ
    * @return string value for p_val
    */
@@ -1533,6 +1703,16 @@ as
 
   /**
    * See first `to_char`
+   *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.to_char(true));
+   *   dbms_output.put_line(oos_util_string.to_char(false));
+   * end;
+   * /
+   *
+   * TRUE
+   * FALSE
    *
    * @param p_val Boolean
    * @return string value for p_val
@@ -1555,6 +1735,31 @@ as
    *
    *
    * @issue #5
+   *
+   * @example
+   * select
+   *   oos_util_string.truncate(
+   *     p_str => comments,
+   *     p_length => 20,
+   *     p_by_word => 'N'
+   *   ) by_word_n,
+   *   oos_util_string.truncate(
+   *     p_str => comments,
+   *     p_length => 20,
+   *     p_by_word => 'Y'
+   *   ) by_word_y
+   * from apex_dictionary
+   * where 1=1
+   *   and rownum <= 5
+   * ;
+   *
+   * BY_WORD_N            BY_WORD_Y
+   * -------------------- --------------------
+   * List of APEX buil... List of APEX...
+   * Identifies the th... Identifies the...
+   * Identifies the na... Identifies the...
+   * Identifies the th... Identifies the...
+   * Identifies a work... Identifies a...
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
@@ -1721,6 +1926,23 @@ as
    *
    * @issue #32
    *
+   * @example
+   * declare
+   *   l_str clob := 'abc,def,ghi';
+   *   l_arr oos_util_string.tab_vc2_arr;
+   * begin
+   *   l_arr := oos_util_string.string_to_table(p_string => l_str);
+   *
+   *   for i in 1..l_arr.count loop
+   *     dbms_output.put_line('i: ' || i || ' ' || l_arr(i));
+   *   end loop;
+   * end;
+   * /
+   *
+   * i: 1 abc
+   * i: 2 def
+   * i: 3 ghi
+   *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
    * @param p_string String containing delimited text
@@ -1767,6 +1989,9 @@ as
    * See `string_to_table (p_string clob)` for notes
    *
    * @issue  #32
+   *
+   * @example
+   * -- See previous example
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -1828,10 +2053,10 @@ as
   /**
    * Converts delimited string to queriable table
    *
-   * See above for example
-   *
-   *
    * @issue #4
+   *
+   * @example
+   * See previous example
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
@@ -1859,6 +2084,14 @@ as
    *
    * @issue #55
    *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.reverse('OraOpenSource'));
+   * end;
+   * /
+   *
+   * ecruoSnepOarO
+   *
    * @author Tim Nanos
    * @created 31-Mar-2016
    * @param p_string String
@@ -1875,7 +2108,7 @@ as
         l_string := substr(p_string, i, 1) || l_string;
       end loop;
     end if;
-    
+
     return l_string;
   end reverse;
 
@@ -1909,6 +2142,16 @@ as
    *
    * @issue #15
    *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.to_char(oos_util_validation.is_number('123')));
+   *   dbms_output.put_line(oos_util_string.to_char(oos_util_validation.is_number('abc')));
+   * end;
+   * /
+   *
+   * TRUE
+   * FALSE
+   *
    * @author Trent Schafer
    * @created 05-Sep-2015
    * @param p_str String to validate
@@ -1931,6 +2174,18 @@ as
    * Checks if string is a valid date
    *
    * @issue #20
+   *
+   * @example
+   * begin
+   *   dbms_output.put_line(oos_util_string.to_char(
+   *     oos_util_validation.is_date('01-JAN-2015', 'DD-MON-YYYY')));
+   *   dbms_output.put_line(oos_util_string.to_char(
+   *     oos_util_validation.is_date('not-a-date', 'DD-MON-YYYY')));
+   * end;
+   * /
+   *
+   * TRUE
+   * FALSE
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
@@ -1999,6 +2254,17 @@ as
    *
    * @issue #27
    *
+   * @example
+   * select
+   *   oos_util_web.get_mime_type('file.xls') xls,
+   *   oos_util_web.get_mime_type('file.txt') txt,
+   *   oos_util_web.get_mime_type('file.swf') swf
+   * from dual;
+   *
+   * XLS                        TXT          SWF
+   * -------------------------- ------------ ------------------------------
+   * application/vnd.ms-excel   text/plain   application/x-shockwave-flash
+   *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
    * @param p_filename Filename
@@ -2046,20 +2312,22 @@ as
 
   /**
    * Download file
+   * Will call `apex_application.stop_apex_engine` if called from within an APEX application
    *
    * @issue #2
    * @issue #47: cache support
    *
+   * @example
+   *
+   * oos_util_web.download_file(
+   *   p_filename => 'my_file.zip',
+   *   p_blob => l_file):
+   *
+   *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
-   * @example
-   *  ```plsql
-   *    select todo from dual
-   *    where 1=1
-   *    from dual
-   *  ```
-   * @param {number=} p_filename Filename
-   * @param p_mime_type mime-type of file. If null will be resolved via p_filename
+   * @param p_filename Filename
+   * @param p_mime_type mime-type of file. If null will be automatically resolved via p_filename
    * @param p_content_disposition inline or attachment
    * @param p_cache_control options to pass to the Cache-Control attribute. Examples include max-age=3600, no-cache, etc. See https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=en for examples
    * @param p_blob File to be downloaded
@@ -2106,7 +2374,7 @@ as
     if apex_application.g_flow_id is not null then
       apex_application.stop_apex_engine;
     end if;
-    
+
   exception
     -- Not necessarily required but leaving in as a demo of how to handle stop_apex_engine
     when apex_application.e_stop_apex_engine then
@@ -2121,6 +2389,11 @@ as
    *  - See download_file (blob) for full documentation
    *
    * @issue #2
+   *
+   * @example
+   * oos_util_web.download_file(
+   *   p_filename => 'my_file.txt',
+   *   p_clob => l_file):
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
