@@ -167,7 +167,7 @@ as
    *   oos_util_apex.create_session(
    *     p_app_id => :app_id,
    *     p_user_name => :app_user,
-   *     p_page_id => :app_page_id);
+   *     p_page_id => :app_page_id
    *   );
    * end;
    *

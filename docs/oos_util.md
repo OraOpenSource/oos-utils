@@ -5,6 +5,7 @@
 - [SLEEP Procedure](#sleep)
 
 
+
 ## Constants<a name="constants"></a>
 
 Name | Code | Description
@@ -13,9 +14,6 @@ gc_date_format | `gc_date_format constant varchar2(255) := 'DD-MON-YYYY HH24:MI:
 gc_timestamp_format | `gc_timestamp_format constant varchar2(255) := gc_date_format || ':FF';` | default timestamp format
 gc_timestamp_tz_format | `gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';` | default timestamp (with TZ) format
 gc_version | `gc_version constant varchar2(10) := '1.0.0';` | 
-
-
-
 
 
  
