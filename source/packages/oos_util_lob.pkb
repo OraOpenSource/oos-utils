@@ -357,17 +357,6 @@ as
    * responsible to free the clob (dbms_lob.freetemporary()). p_path is an
    * Oracle directory object.
    *
-   * The implementation is based on UTL_FILE so the following constraints apply:
-   *
-   * A line size can't exceed 32767 bytes.
-   *
-   * Because UTL_FILE.get_line ignores line terminator it has to be added
-   * implicitly. Currently the line terminator is hardcoded to char(10)
-   * (unix), so if in the original file the terminator is different then a
-   * conversion will take place.
-   *
-   * TODO: consider DBMS_LOB.LOADCLOBFROMFILE instead.
-   *
    * @issue #56
    *
    * @author Jani Hur <webmaster@jani-hur.net>
@@ -381,36 +370,40 @@ as
     p_filename in varchar2)
     return clob
   as
-    l_fh utl_file.file_type;
+    l_src_bfile bfile;
     l_tmp_lob clob;
+
+    l_dest_offset integer := 1;
+    l_src_offset integer := 1;
+    l_lang_context integer := dbms_lob.default_lang_ctx;
+    l_warning integer := dbms_lob.no_warning;
   begin
-    l_fh := utl_file.fopen(
-      location => p_path,
-      filename => p_filename,
-      open_mode => 'r',
-      max_linesize => 32767);
+    -- exit if any parameter is null
+    oos_util.assert(p_path is not null, 'p_path required parameter');
+    oos_util.assert(p_filename is not null, 'p_filename required parameter');
+
+    l_src_bfile := bfilename(upper(p_path), p_filename);
+
+    dbms_lob.open(l_src_bfile, dbms_lob.lob_readonly);
 
     dbms_lob.createtemporary(
       lob_loc => l_tmp_lob,
-      cache => false,
-      dur => dbms_lob.session);
+      cache => false);
 
-    declare
-      c_lt constant varchar2(1) := chr(10); -- unix line terminator
-      l_buf varchar2(32767);
-    begin
-      loop
-        utl_file.get_line(l_fh, l_buf);
-        dbms_lob.writeappend(l_tmp_lob, length(l_buf), l_buf);
-        -- get_line ignores line terminator so it is explicitly included
-        dbms_lob.writeappend(l_tmp_lob, length(c_lt), c_lt);
-      end loop;
-    exception
-      when no_data_found then
-        utl_file.fclose(l_fh);
-    end;
+    dbms_lob.loadclobfromfile(
+      dest_lob     => l_tmp_lob
+     ,src_bfile    => l_src_bfile
+     ,amount       => dbms_lob.lobmaxsize
+     ,dest_offset  => l_dest_offset
+     ,src_offset   => l_src_offset
+     ,bfile_csid   => dbms_lob.default_csid
+     ,lang_context => l_lang_context
+     ,warning      => l_warning
+    );
 
-    utl_file.fclose(l_fh);
+    dbms_lob.close(l_src_bfile);
+
+    oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to load clob from a file: ' || l_warning);
 
     return l_tmp_lob;
   end read_file;
