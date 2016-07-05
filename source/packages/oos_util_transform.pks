@@ -5,6 +5,10 @@ create or replace package oos_util_transform as
     p_null_handling in number default dbms_xmlgen.null_attr)
     return xmltype;
 
+  function xml_has_rows(
+    p_xml in xmltype)
+    return boolean;
+
   function xslt(
     p_in in xmltype,
     p_trans in xmltype)
@@ -17,7 +21,8 @@ create or replace package oos_util_transform as
 
   function refcur2csv(
     p_rc in sys_refcursor,
-    p_column_names in boolean default false)
+    p_column_names in boolean default false,
+    p_return_empty in boolean default false)
     return clob;
 
   function refcur2csv2(
@@ -29,11 +34,13 @@ create or replace package oos_util_transform as
     return clob;
 
   function refcur2html(
-    p_rc in sys_refcursor)
+    p_rc in sys_refcursor,
+    p_return_empty in boolean default false)
     return clob;
 
   function refcur2json(
-    p_rc in sys_refcursor)
+    p_rc in sys_refcursor,
+    p_return_empty in boolean default false)
     return clob;
 
   function entity_decode(

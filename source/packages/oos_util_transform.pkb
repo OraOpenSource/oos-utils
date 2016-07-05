@@ -6,6 +6,7 @@ create or replace package body oos_util_transform as
    *  - this is just a wrapper for dbms_xmlgen so refer to oracle documentation
    *  - http://docs.oracle.com/cd/E11882_01/appdev.112/e40758/d_xmlgen.htm
    *
+   * @example
    * declare
    *   v_rc sys_refcursor;
    *   v_xml1 xmltype;
@@ -40,6 +41,40 @@ create or replace package body oos_util_transform as
 
     return l_xml;
   end;
+
+  /**
+   * Checks if xmltype has rows
+   *
+   * @issue #15
+   *
+   * @example
+   * declare
+   *   v_rc sys_refcursor;
+   *   v_xml1 xmltype;
+   *   v_bool boolean;
+   * begin
+   *   open v_rc for select dummy from dual;
+   *   v_xml1 := oos_util_transform.refcur2xml(v_rc);
+   *   v_bool := oos_util_transform.xml_has_rows(v_xml1);
+   * end;
+   * /
+   *
+   * TRUE
+   * FALSE
+   *
+   * @author Zach Hudock
+   * @created 27-JUN-2016
+   * @param p_xml XML to validate
+   * @return True or false
+   */
+  function xml_has_rows(p_xml in xmltype)
+    return boolean
+  as
+    l_num number;
+  begin
+    select count(1) into l_num from dual where existsnode(p_xml, '/ROWSET/ROW') = 1;
+    return (l_num > 0);
+  end xml_has_rows;
 
    /**
    * transforms a canonical oracle xml with user provided xslt
@@ -100,20 +135,21 @@ create or replace package body oos_util_transform as
    */
   function refcur2csv(
     p_rc in sys_refcursor,
-    p_column_names in boolean default false)
+    p_column_names in boolean default false,
+    p_return_empty in boolean default false)
     return clob
   as
     v_xml1 xmltype;
     v_xml2 xmltype;
     -- see: http://stackoverflow.com/questions/14088881/xml-to-csv-conversion-using-xquery
-    v_xquery constant varchar2(32767) := q'[
+    c_xquery constant varchar2(32767) := q'[
     let $nl := codepoints-to-string(10),
         $q := codepoints-to-string(34),
         $nodes := /ROWSET/ROW
     for $i in $nodes
        return concat(string-join($i/*/concat($q, normalize-space(replace(data(.), $q, concat($q,$q))), $q), ','),$nl)
     ]';
-    v_xquery_names constant varchar2(32767) := q'[
+    c_xquery_names constant varchar2(32767) := q'[
     let $nl := codepoints-to-string(10),
         $q := codepoints-to-string(34),
         $nodes := /ROWSET/ROW
@@ -129,11 +165,15 @@ create or replace package body oos_util_transform as
   begin
     v_xml1 := refcur2xml(p_rc);
 
+    if not xml_has_rows(v_xml1) and p_return_empty THEN
+      return null;
+    end if;
+
     if p_column_names
     then
-      v_xml2 := xquery(v_xml1, v_xquery_names);
+      v_xml2 := xquery(v_xml1, c_xquery_names);
     else
-      v_xml2 := xquery(v_xml1, v_xquery);
+      v_xml2 := xquery(v_xml1, c_xquery);
     end if;
     return entity_decode(v_xml2.getclobval());
   end;
@@ -252,12 +292,13 @@ create or replace package body oos_util_transform as
    * @return clob
    */
   function refcur2html(
-    p_rc in sys_refcursor)
+    p_rc in sys_refcursor,
+    p_return_empty in boolean default false)
     return clob
   as
     v_xml1 xmltype;
     v_xml2 xmltype;
-    v_xquery constant varchar2(32767) := q'[<table>
+    c_xquery constant varchar2(32767) := q'[<table>
   <thead>
     <tr>{ for $i in /ROWSET/ROW[1]/* return <th>{name($i)}</th> }</tr>
   </thead>
@@ -269,7 +310,10 @@ create or replace package body oos_util_transform as
 </table>]';
   begin
     v_xml1 := refcur2xml(p_rc);
-    v_xml2 := xquery(v_xml1, v_xquery);
+    if not xml_has_rows(v_xml1) and p_return_empty THEN
+      return null;
+    end if;
+    v_xml2 := xquery(v_xml1, c_xquery);
     return entity_decode(v_xml2.getclobval());
   end;
 
@@ -287,12 +331,13 @@ create or replace package body oos_util_transform as
    * @return clob
    */
   function refcur2json(
-    p_rc in sys_refcursor)
+    p_rc in sys_refcursor,
+    p_return_empty in boolean default false)
     return clob
   as
     v_xml1 xmltype;
     v_xml2 xmltype;
-    v_json_xslt constant xmltype := xmltype('<?xml version="1.0" encoding="UTF-8"?>
+    c_json_xslt constant xmltype := xmltype('<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <!--
   Copyright (c) 2006, Doeke Zanstra
@@ -472,7 +517,10 @@ create or replace package body oos_util_transform as
 </xsl:stylesheet>');
   begin
     v_xml1 := refcur2xml(p_rc);
-    v_xml2 := xslt(v_xml1, v_json_xslt);
+    if not xml_has_rows(v_xml1) and p_return_empty THEN
+      return null;
+    end if;
+    v_xml2 := xslt(v_xml1, c_json_xslt);
     return entity_decode(v_xml2.getclobval());
   end;
 
