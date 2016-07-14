@@ -19,7 +19,7 @@
 
 
 <p>
-<p>Returns true/false if APEX developer is enable<br />Supports both APEX 4 and 5</p><p>Can be used in APEX to declaratively determine if in development mode.</p>
+<p>LIVE FROM KSCOPE Returns true/false if APEX developer is enable<br />Supports both APEX 4 and 5</p><p>Can be used in APEX to declaratively determine if in development mode.</p>
 </p>
 
 ### Syntax
