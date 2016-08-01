@@ -517,7 +517,7 @@ as
   end reverse;
 
   /**
-   * Returns the input number with the ordinal attached
+   * Returns the input number with the ordinal attached, in english.
    * e.g. 1st, 2nd, 3rd, 4th, etc
    *
    * Notes:
@@ -566,6 +566,6 @@ as
 
     return p_num || l_ordinal;
   end ordinal;
-  
+
 end oos_util_string;
 /
