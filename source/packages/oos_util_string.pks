@@ -84,5 +84,9 @@ as
     p_string in varchar2)
     return varchar2;
 
+  function ordinal(
+    p_num in number)
+    return varchar2;
+
 end oos_util_string;
 /
