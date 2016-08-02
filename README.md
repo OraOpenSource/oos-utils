@@ -21,6 +21,3 @@ If you have a recommendations, please add your idea and/or snippet examples as a
 
 ### Build
 If you are working on OOS Utils and want to test your build go to the [build](/build) folder for instructions.
-
-
-Test from martin personal account.
