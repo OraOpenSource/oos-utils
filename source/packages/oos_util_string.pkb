@@ -25,6 +25,7 @@ as
   function to_char(
     p_val in number)
     return varchar2
+    deterministic
   as
   begin
     return sys.standard.to_char(p_val);
@@ -46,6 +47,7 @@ as
   function to_char(
     p_val in date)
     return varchar2
+    deterministic
   as
   begin
     return sys.standard.to_char(p_val, oos_util.gc_date_format);
@@ -67,6 +69,7 @@ as
   function to_char(
     p_val in timestamp)
     return varchar2
+    deterministic
   as
   begin
     return sys.standard.to_char(p_val, oos_util.gc_timestamp_format);
@@ -83,6 +86,7 @@ as
   function to_char(
     p_val in timestamp with time zone)
     return varchar2
+    deterministic
   as
   begin
     return sys.standard.to_char(p_val, oos_util.gc_timestamp_tz_format);
@@ -124,6 +128,7 @@ as
   function to_char(
     p_val in boolean)
     return varchar2
+    deterministic
   as
   begin
     return case when p_val then 'TRUE' else 'FALSE' end;
@@ -543,8 +548,8 @@ as
     p_num in number)
     return varchar2
   is
-    l_mod10 NUMBER;
-    l_mod100 NUMBER;
+    l_mod10 number;
+    l_mod100 number;
 
     l_ordinal varchar2(2);
   begin

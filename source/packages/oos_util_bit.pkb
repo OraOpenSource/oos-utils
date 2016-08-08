@@ -30,6 +30,7 @@ as
     p_x in binary_integer,
     p_y in binary_integer)
     return binary_integer
+    deterministic
   as
   begin
     return sys.standard.bitand(p_x, p_y);
@@ -66,6 +67,7 @@ as
     p_x in binary_integer,
     p_y in binary_integer)
     return binary_integer
+    deterministic
   as
   begin
     return p_x + p_y - bitand(p_x, p_y);
@@ -102,6 +104,7 @@ as
     p_x in binary_integer,
     p_y in binary_integer)
     return binary_integer
+    deterministic
   as
   begin
     return bitor(p_x, p_y) - bitand(p_x, p_y);
@@ -136,6 +139,7 @@ as
   function bitnot(
     p_x in binary_integer)
     return binary_integer
+    deterministic
   as
   begin
     return (0 - p_x) - 1;
