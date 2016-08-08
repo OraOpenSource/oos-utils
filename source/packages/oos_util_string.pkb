@@ -516,5 +516,56 @@ as
     return l_string;
   end reverse;
 
+  /**
+   * Returns the input number with the ordinal attached, in english.
+   * e.g. 1st, 2nd, 3rd, 4th, etc
+   *
+   * Notes:
+   * - Logic taken from: http://stackoverflow.com/a/13627586/3476713
+   *
+   * @issue #53
+   *
+   * @example
+   * begin
+   *   for i in 1..10
+   *   loop
+   *     dbms_output.put_line(oos_util_string.ordinal(i));
+   *   end loop;
+   * end;
+   * /
+   *
+   * @author Trent Schafer
+   * @created 1-Aug-2016
+   * @param p_num Number
+   * @return String
+   */
+  function ordinal(
+    p_num in number)
+    return varchar2
+  is
+    l_mod10 NUMBER;
+    l_mod100 NUMBER;
+
+    l_ordinal varchar2(2);
+  begin
+    l_mod10 := mod(p_num, 10);
+    l_mod100 := mod(p_num, 100);
+
+    if l_mod10 = 1 and l_mod100 != 11
+    then
+      l_ordinal := 'st';
+    elsif l_mod10 = 2 and l_mod100 != 12
+    then
+      l_ordinal := 'nd';
+    elsif l_mod10 = 3 and l_mod100 != 13
+    then
+      l_ordinal := 'rd';
+    else
+      l_ordinal := 'th';
+    end if;
+
+    return p_num || l_ordinal;
+  end ordinal;
+
 end oos_util_string;
 /
