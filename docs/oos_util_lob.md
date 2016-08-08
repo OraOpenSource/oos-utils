@@ -245,7 +245,7 @@ Name | Description
 
 
 <p>
-<p>Read a content of a file (p_filename) from a database server file system<br />directory (p_path) and return it as a temporary clob. The caller is<br />responsible to free the clob (dbms_lob.freetemporary()). p_path is an<br />Oracle directory object.</p><p>The implementation is based on UTL_FILE so the following constraints apply:</p><p>A line size can&#39;t exceed 32767 bytes.</p><p>Because UTL_FILE.get_line ignores line terminator it has to be added<br />implicitly. Currently the line terminator is hardcoded to char(10)<br />(unix), so if in the original file the terminator is different then a<br />conversion will take place.</p><p>TODO: consider DBMS_LOB.LOADCLOBFROMFILE instead.</p>
+<p>Read a content of a file (p_filename) from a database server file system<br />directory (p_path) and return it as a temporary clob. The caller is<br />responsible to free the clob (dbms_lob.freetemporary()). p_path is an<br />Oracle directory object.</p>
 </p>
 
 ### Syntax
