@@ -106,9 +106,11 @@ as
   begin
     l_url := 'otpauth://#TYPE#/#LABEL#?secret=#SECRET#&issuer=#ISSUER#';
 
-    select nvl2(p_label_issuer, '#ISSUER#:#ACCOUNTNAME#', '#ACCOUNTNAME#')
-    into l_label
-    from dual;
+    l_label :=
+      case
+        when p_label_issuer is not null then '#ISSUER#:#ACCOUNTNAME#'
+        else '#ACCOUNTNAME#'
+      end;
 
     -- Set the issuer. Only use either issue supplied. Remove  illegal characters;
     l_issuer := regexp_replace(coalesce(p_label_issuer, p_issuer), ':|;', '');
