@@ -36,7 +36,7 @@ as
   end to_binary;
 
   /**
-   * Generates a sixteen-character alphanumeric, Base32 [1]-encoded string.
+   * Generates a sixteen-character alphanumeric, Base32-encoded [1] string.
    *
    * [1] - <https://en.wikipedia.org/wiki/Base32>
    *
@@ -218,7 +218,8 @@ as
   end generate_otp;
 
   /**
-   * Validate an OTP. Provide to
+   * Validate an OTP. The skew parameter allows for a customizable degree of
+   * tolerance for clocks that are not in sync.
    *
    * @todo Support for SHA-2 for Oracle 12c compilation.
    * @todo Pass MAC type as a parameter.
