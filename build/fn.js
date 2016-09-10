@@ -136,7 +136,7 @@ var functions = {
         contents = this.readFile(pPackages[packageName][fileExt]);
 
         // #37
-        if (contents.search(/\/\n*$/) === -1){
+        if (contents.search(/\/(\r?\n)*$/) === -1){
           console.log('File missing "/" at end: ' + pPackages[packageName][fileExt]);
           error = true;
         }
