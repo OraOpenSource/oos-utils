@@ -15,6 +15,7 @@
 - [LISTUNAGG Function](#listunagg)
 - [LISTUNAGG Function](#listunagg)
 - [REVERSE Function](#reverse)
+- [ORDINAL Function](#ordinal)
 
 ## Types<a name="types"></a>
 
@@ -28,6 +29,9 @@ tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_int
 Name | Code | Description
 --- | --- | ---
 gc_default_delimiter | `gc_default_delimiter constant varchar2(1) := ',';` | Default delimiter for delimited strings
+gc_cr | `gc_cr constant varchar2(1) := chr(13);` | Carriage Return
+gc_lf | `gc_lf constant varchar2(1) := chr(10);` | Line Feed
+gc_crlf | `gc_crlf constant varchar2(2) := gc_cr || gc_lf;` | Use for new lines.
 
 
  
@@ -46,6 +50,7 @@ gc_default_delimiter | `gc_default_delimiter constant varchar2(1) := ',';` | Def
 function to_char(
   p_val in number)
   return varchar2
+  deterministic
 ```
 
 ### Parameters
@@ -82,6 +87,7 @@ OOS_UTIL_STRING.TO_CHAR(123)---
 function to_char(
   p_val in date)
   return varchar2
+  deterministic
 ```
 
 ### Parameters
@@ -117,6 +123,7 @@ OOS_UTIL_STRING.TO_CHAR(SYSDATE)---
 function to_char(
   p_val in timestamp)
   return varchar2
+  deterministic
 ```
 
 ### Parameters
@@ -152,6 +159,7 @@ OOS_UTIL_STRING.TO_CHAR(SYSTIMESTAMP)---
 function to_char(
   p_val in timestamp with time zone)
   return varchar2
+  deterministic
 ```
 
 ### Parameters
@@ -214,6 +222,7 @@ TODO
 function to_char(
   p_val in boolean)
   return varchar2
+  deterministic
 ```
 
 ### Parameters
@@ -554,6 +563,46 @@ end;
 /
 
 ecruoSnepOarO
+```
+
+
+
+ 
+## ORDINAL Function<a name="ordinal"></a>
+
+
+<p>
+<p>Returns the input number with the ordinal attached, in english.<br />e.g. 1st, 2nd, 3rd, 4th, etc</p><p>Notes:</p><ul>
+<li>Logic taken from: <a href="http://stackoverflow.com/a/13627586/3476713">http://stackoverflow.com/a/13627586/3476713</a></li>
+</ul>
+
+</p>
+
+### Syntax
+```plsql
+function ordinal(
+  p_num in number)
+  return varchar2
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_num` | Number
+*return* | String
+ 
+ 
+
+
+### Example
+```plsql
+begin
+  for i in 1..10
+  loop
+    dbms_output.put_line(oos_util_string.ordinal(i));
+  end loop;
+end;
+/
 ```
 
 

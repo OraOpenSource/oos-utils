@@ -12,8 +12,14 @@ as
   -- CONSTANTS
   /**
    * @constant gc_default_delimiter Default delimiter for delimited strings
+   * @constant gc_cr Carriage Return
+   * @constant gc_lf Line Feed
+   * @constant gc_crlf Use for new lines.
    */
   gc_default_delimiter constant varchar2(1) := ',';
+  gc_cr constant varchar2(1) := chr(13);
+  gc_lf constant varchar2(1) := chr(10);
+  gc_crlf constant varchar2(2) := gc_cr || gc_lf;
 
   function to_char(
     p_val in number)
