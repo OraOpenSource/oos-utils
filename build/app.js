@@ -8,6 +8,8 @@ var
 // Validations
 fn.validatePackages(config.objects.packages);
 
+// Parameters
+var params = fn.getParameters();
 
 // Generate Data
 fn.generateDataOosUtilValues();
@@ -47,11 +49,21 @@ for (table in config.objects.tables){
 }//tables
 
 fn.appendFile(config.files.install,'prompt *** PACKAGES ***\n');
+var packageSpecContent;
 for (package in config.objects.packages){
   fn.appendFile(config.files.install,'prompt ' + package);
-  fn.appendFile(files.install, fn.readFile(config.objects.packages[package].pks));
+
+  packageSpecContent = fn.readFile(config.objects.packages[package].pks);
+  // #58 update version numbers
+  packageSpecContent = packageSpecContent.replace(/(gc_version_major constant pls_integer :=\s*)(.*)/, `$1${params.version.major};`);
+  packageSpecContent = packageSpecContent.replace(/(gc_version_minor constant pls_integer :=\s*)(.*)/, `$1${params.version.minor};`);
+  packageSpecContent = packageSpecContent.replace(/(gc_version_patch constant pls_integer :=\s*)(.*)/, `$1${params.version.patch};`);
+
+
+  fn.appendFile(files.install, packageSpecContent);
   fn.appendFile(files.install, fn.readFile(config.objects.packages[package].pkb));
 }//packages
+
 
 
 fn.appendFile(config.files.install,'\n\nprompt *** Post Install ***\n');

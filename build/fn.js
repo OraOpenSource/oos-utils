@@ -191,7 +191,56 @@ var functions = {
 
     this.writeFile(pConfig.files.createGrants, temp);
 
-  }//createGrantScript
+  }, //createGrantScript
+
+  /**
+   * Returns JSON object of parameters
+   * Will validate and exit if parameters are Invalid
+   *
+   */
+  getParameters : function(){
+
+    // Parameters
+    var params = {
+      help : 'Run: node app <version major.minor.patch>',
+      valArr : process.argv.splice(2), // Array of variables passed in via command line
+      values : {
+        version : ''
+      },
+      valid : true, // Update if not valid
+      errMsg : '' // if not valid, then display this message
+    }// params
+
+    if (params.valArr.length < 1){
+      params.errMsg = 'Missing parameters.';
+    }
+    else{
+      // Define all parameters
+      params.values.version = params.valArr[0];
+    }
+
+    // Test params
+    if (!/\d+\.\d+\.\d+/.test(params.values.version)) {
+      params.errMsg = 'Version needs to be major.minor.patch'
+    }
+
+    // If any parameters are invalid
+    if (params.errMsg != ''){
+      console.log(`Error: ${params.errMsg}\n${params.help}`);
+      process.exit(1);
+    }
+
+    // No errors sanitize and return parameters
+    var tmpVersion = params.values.version.split('.');
+    params.values.version = {
+      major : tmpVersion[0],
+      minor : tmpVersion[1],
+      patch : tmpVersion[2]
+    };
+
+    return params.values;
+  }// getParameters
+
 };// functions
 
 

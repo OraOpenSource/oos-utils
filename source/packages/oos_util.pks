@@ -5,7 +5,7 @@ as
    * @constant gc_date_format default date format
    * @constant gc_timestamp_format default timestamp format
    * @constant gc_timestamp_tz_format default timestamp (with TZ) format
-   * @constant gc_version String represenation of MAJOR.MINOR.PATCH
+   * @constant gc_version String represenation of MAJOR.MINOR.PATCH: Note documented version is just an example.
    * @constant gc_version_major Version number major 1.0.0
    * @constant gc_version_minor Verison number minor 0.1.0
    * @constant gc_version_patch Version number patch 0.0.1
