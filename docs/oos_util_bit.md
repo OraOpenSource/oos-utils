@@ -24,6 +24,7 @@ function bitand(
   p_x in binary_integer,
   p_y in binary_integer)
   return binary_integer
+  deterministic
 ```
 
 ### Parameters
@@ -63,6 +64,7 @@ function bitor(
   p_x in binary_integer,
   p_y in binary_integer)
   return binary_integer
+  deterministic
 ```
 
 ### Parameters
@@ -102,6 +104,7 @@ function bitxor(
   p_x in binary_integer,
   p_y in binary_integer)
   return binary_integer
+  deterministic
 ```
 
 ### Parameters
@@ -140,6 +143,7 @@ OOS_UTIL_BIT.BITXOR(1,3)
 function bitnot(
   p_x in binary_integer)
   return binary_integer
+  deterministic
 ```
 
 ### Parameters

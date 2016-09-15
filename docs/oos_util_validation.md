@@ -20,6 +20,7 @@
 ```plsql
 function is_number(p_str in varchar2)
   return boolean
+  deterministic
 ```
 
 ### Parameters
@@ -59,6 +60,7 @@ function is_date(
   p_str in varchar2,
   p_date_format in varchar2)
   return boolean
+  deterministic
 ```
 
 ### Parameters
