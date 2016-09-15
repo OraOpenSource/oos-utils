@@ -2,9 +2,9 @@ create or replace package body oos_util_transform as
 
   /**
    * converts a ref cursor to a canonical oracle xml
-   * notes:
-   *  - this is just a wrapper for dbms_xmlgen so refer to oracle documentation
-   *  - http://docs.oracle.com/cd/E11882_01/appdev.112/e40758/d_xmlgen.htm
+   * Notes:
+   *  - This is just a wrapper for dbms_xmlgen so refer to the [Oracle documentation](http://docs.oracle.com/cd/E11882_01/appdev.112/e40758/d_xmlgen.htm)
+   *
    *
    * @example
    * declare
