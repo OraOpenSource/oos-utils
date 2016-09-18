@@ -16,15 +16,16 @@
 
 Name | Code | Description
 --- | --- | ---
-gc_unit_b | `gc_unit_b constant varchar2(1) := 'B';` | 
-gc_unit_kb | `gc_unit_kb constant varchar2(2) := 'KB';` | 
-gc_unit_mb | `gc_unit_mb constant varchar2(2) := 'MB';` | 
-gc_unit_gb | `gc_unit_gb constant varchar2(2) := 'GB';` | 
-gc_unit_tb | `gc_unit_tb constant varchar2(2) := 'TB';` | 
-gc_unit_pb | `gc_unit_pb constant varchar2(2) := 'PB';` | 
-gc_unit_eb | `gc_unit_eb constant varchar2(2) := 'EB';` | 
-gc_unit_zb | `gc_unit_zb constant varchar2(2) := 'ZB';` | 
-gc_unit_yb | `gc_unit_yb constant varchar2(2) := 'YB';` | 
+gc_unit_b | `gc_unit_b constant varchar2(1) := 'B';` | B
+gc_unit_kb | `gc_unit_kb constant varchar2(2) := 'KB';` | KB
+gc_unit_mb | `gc_unit_mb constant varchar2(2) := 'MB';` | MB
+gc_unit_gb | `gc_unit_gb constant varchar2(2) := 'GB';` | GB
+gc_unit_tb | `gc_unit_tb constant varchar2(2) := 'TB';` | TB
+gc_unit_pb | `gc_unit_pb constant varchar2(2) := 'PB';` | PB
+gc_unit_eb | `gc_unit_eb constant varchar2(2) := 'EB';` | EB
+gc_unit_zb | `gc_unit_zb constant varchar2(2) := 'ZB';` | ZB
+gc_unit_yb | `gc_unit_yb constant varchar2(2) := 'YB';` | YB
+gc_size_b | `gc_size_b constant number := 1024;` | 
 gc_size_kb | `gc_size_kb constant number := power(1024, 2);` | 
 gc_size_mb | `gc_size_mb constant number := power(1024, 3);` | 
 gc_size_gb | `gc_size_gb constant number := power(1024, 4);` | 
