@@ -30,12 +30,12 @@ create sequence %table_name%_seq
   cache 20
 !';
 
-  c_add_column_sql constant varchar2 (100) := q'!alter table %table_name% add (%column_name% %data_type%)!';
-  c_drop_column_sql constant varchar2 (100) := q'!alter table %table_name% drop column %column_name%!';
+  c_add_column_sql constant varchar2 (100) := 'alter table %table_name% add (%column_name% %data_type%)';
+  c_drop_column_sql constant varchar2 (100) := 'alter table %table_name% drop column %column_name%';
   c_backfill_required_sql constant varchar2 (100) := 'update %table_name% set %column_name% = %default_val% where %column_name% is null';
   c_required_column_sql constant varchar2 (100) := 'alter table %table_name% modify %column_name% %default_val% not null';
   c_add_constraint_sql constant varchar2 (100) := 'alter table %table_name% add constraint %constraint_name% %constraint_condition%';
-  c_drop_constraint_sql constant varchar2 (100) := q'!alter table %table_name% drop constraint %constraint_name%!';
+  c_drop_constraint_sql constant varchar2 (100) := 'alter table %table_name% drop constraint %constraint_name%';
   c_create_index_sql constant varchar2 (100) := 'create index %index_name% on %table_name% %index_columns%';
   c_drop_trigger_sql constant varchar2 (100) := 'drop trigger %trigger_name%';
 
