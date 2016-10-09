@@ -203,6 +203,7 @@ var functions = {
     // Parameters
     var params = {
       help : 'Run: node app <version major.minor.patch>',
+      // If process.argv.splice(2) is called before it will be null here
       valArr : process.argv.splice(2), // Array of variables passed in via command line
       values : {
         version : ''
