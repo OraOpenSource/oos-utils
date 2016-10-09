@@ -363,31 +363,30 @@ as
     p_delimiter in varchar2 default gc_default_delimiter)
     return tab_vc2_arr
   is
-    l_occurrence pls_integer;
     l_last_pos pls_integer;
     l_pos pls_integer;
-    l_length pls_integer;
 
     l_return tab_vc2_arr;
+    l_delimiter_len pls_integer := length(p_delimiter);
+
   begin
 
     if p_string is not null then
-      l_occurrence := 1;
-      l_last_pos := 0;
-      l_pos := 1;
-      l_length := dbms_lob.getlength(p_string);
+      l_last_pos := 1 - l_delimiter_len; -- If the delimeter length = 1 (most cases) this should be 0. If not need to move back "n" chars
+      l_pos := 0;
 
-      while l_pos > 0 loop
-        l_pos := instr(p_string, p_delimiter, 1, l_occurrence);
+      while true loop
+        l_pos := l_pos + 1;
+        l_pos := dbms_lob.instr(p_string, p_delimiter, l_pos, 1);
 
         if l_pos = 0 then
-          l_return(l_return.count + 1) := substr(p_string, l_last_pos + 1, l_length);
+          l_return(l_return.count + 1) := substr(p_string, l_last_pos + l_delimiter_len); -- Get everything to the end.
+          exit;
         else
-          l_return(l_return.count + 1) := substr(p_string, l_last_pos + 1, l_pos - (l_last_pos+1));
+          l_return(l_return.count + 1) := dbms_lob.substr(p_string, l_pos - (l_last_pos+l_delimiter_len), l_last_pos + l_delimiter_len);
         end if; -- l_pos = 0
 
         l_last_pos := l_pos;
-        l_occurrence := l_occurrence + 1;
       end loop;
     end if; -- p_string is not null
 
