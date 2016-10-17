@@ -197,8 +197,7 @@ as
   begin
 
     -- #122 return null if string is null. Doing first since no need to do extra work if null.
-    -- Only looking at p_str since spaces could occur that users may want to see/factor.
-    if p_str is null then
+    if l_str is null then
       return null;
     end if;
 
