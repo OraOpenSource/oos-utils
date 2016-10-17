@@ -10,7 +10,7 @@ as
    * @constant gc_version_minor Verison number minor 0.1.0
    * @constant gc_version_patch Version number patch 0.0.1
    */
-  gc_date_format constant varchar2(255) := 'DD-MON-YYYY HH24:MI:SS';
+  gc_date_format constant varchar2(255) := 'YYYY-MM-DD HH24:MI:SS';
   gc_timestamp_format constant varchar2(255) := gc_date_format || ':FF';
   gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';
 
