@@ -195,6 +195,13 @@ as
       pragma udf;
     $end
   begin
+
+    -- #122 return null if string is null. Doing first since no need to do extra work if null.
+    -- Only looking at p_str since spaces could occur that users may want to see/factor.
+    if p_str is null then
+      return null;
+    end if;
+
     -- TODO mdsouza: look at the cost of doing these checks
     oos_util.assert(upper(nvl(p_by_word, 'N')) in ('Y', 'N'), 'Invalid p_by_word. Must be Y/N');
     oos_util.assert(p_length > 0, 'p_length must be a postive number');
