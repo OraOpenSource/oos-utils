@@ -9,5 +9,9 @@ as
     p_epoch in number)
     return date;
 
+  function timestamp2epoch(
+    p_timestamp in timestamp)
+    return pls_integer;
+
 end oos_util_date;
 /
