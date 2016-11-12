@@ -331,7 +331,106 @@ as
     return l_return;
 
   end sprintf;
-
+  
+  
+  /**
+   * Does string replacement of keys by values
+   *
+   * @example
+   * SELECT oos_util_string.sprintf('Hello {firstName} {lastName}!', 
+   *                                 t_tab_key_value(t_rec_key_value('firstName', 'Nuno'),
+   *                                                 t_rec_key_value('lastName', 'Alves')
+   *                                                 )
+   *                               ) demo
+   * FROM dual;
+   *
+   * DEMO
+   * ------------------------------
+   * Hello Nuno Alves!
+   *
+   * @issue #134
+   *
+   * @author Nuno Alves
+   * @created 12-Nov-2016
+   * @param p_str Messsage to format using %s and %d replacement strings
+   * @param p_key_values Nested table of key value pairs to be replaced
+   * @param p_left_pattern Left string pattern, '{' by default
+   * @param p_right_pattern Right string pattern, '}' by default
+   * @return p_msg with strings replaced
+   */
+  function sprintf(
+    p_str in varchar2,
+    p_key_values in t_tab_key_value,
+    p_left_pattern in varchar2 default '{',
+    p_right_pattern in varchar2 default '}')
+    return varchar2
+  as
+    l_return varchar2(4000);
+  begin
+    l_return := p_str;
+    if p_key_values IS NOT NULL AND p_key_values.exists(1)
+    then
+      for i in 1 .. p_key_values.count
+      loop
+        l_return := REPLACE(l_return, p_left_pattern || p_key_values(i).key || p_right_pattern, p_key_values(i).value);
+      end loop;
+    end if;
+    
+    return l_return;
+  end sprintf;
+  
+  
+  /**
+   * Does string replacement by string position
+   *
+   * @example
+   * select oos_util_string.sprintf('hello {1} {2}!', t_tab_vc2('Nuno','Alves')) demo
+   * from dual;
+   *
+   * DEMO
+   * ------------------------------
+   * Hello Nuno Alves!
+   *
+   * select oos_util_string.sprintf('hello {2} {1}!', t_tab_vc2('Nuno','Alves')) demo
+   * from dual;
+   *
+   * DEMO
+   * ------------------------------
+   * Hello Alves Nuno!
+   * @issue #134
+   *
+   * @author Nuno Alves
+   * @created 12-Nov-2016
+   * @param p_str Messsage to format using %s and %d replacement strings
+   * @param p_tab_vc2 Nested table of replacement strings
+   * @param p_left_pattern Left string pattern, '{' by default
+   * @param p_right_pattern Right string pattern, '}' by default
+   * @return p_msg with strings replaced
+   */
+  function sprintf(
+    p_str in varchar2,
+    p_tab_vc2 in t_tab_vc2,
+    p_left_pattern in varchar2 default '{',
+    p_right_pattern in varchar2 default '}')
+    return varchar2
+  as
+    l_tab_key_value t_tab_key_value := t_tab_key_value();
+    l_return varchar2(4000);
+  begin
+    l_return := p_str;
+    if p_tab_vc2 IS NOT NULL AND p_tab_vc2.exists(1)
+    then
+      for i in 1 .. p_tab_vc2.count
+      loop
+        l_tab_key_value.extend(1);
+        l_tab_key_value(i) := t_rec_key_value(i, p_tab_vc2(i));
+      end loop;
+    end if;
+    
+    l_return := sprintf(l_return, l_tab_key_value, p_left_pattern, p_right_pattern);
+    
+    return l_return;
+  end sprintf;
 
   /**
    * Converts delimited string to array
