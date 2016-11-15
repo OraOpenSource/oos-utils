@@ -10,15 +10,14 @@
 
 Name | Code | Description
 --- | --- | ---
-gc_date_format | `gc_date_format constant varchar2(255) := 'DD-MON-YYYY HH24:MI:SS';` | default date format
+gc_date_format | `gc_date_format constant varchar2(255) := 'YYYY-MM-DD HH24:MI:SS';` | default date format
 gc_timestamp_format | `gc_timestamp_format constant varchar2(255) := gc_date_format || ':FF';` | default timestamp format
 gc_timestamp_tz_format | `gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';` | default timestamp (with TZ) format
 gc_version_major | `gc_version_major constant pls_integer := 1;` | Version number major 1.0.0
 gc_version_minor | `gc_version_minor constant pls_integer := 0;` | Verison number minor 0.1.0
 gc_version_patch | `gc_version_patch constant pls_integer := 0;` | Version number patch 0.0.1
-gc_version | `gc_version constant varchar2(30) := gc_version_major || '.' || gc_version_minor || '.' || gc_version_patch;` | String represenation of MAJOR.MINOR.PATCH
+gc_version | `gc_version constant varchar2(30) := gc_version_major || '.' || gc_version_minor || '.' || gc_version_patch;` | String represenation of MAJOR.MINOR.PATCH: Note documented version is just an example.
 gc_vals_cat_mime_type | `gc_vals_cat_mime_type constant oos_util_values.cat%type := 'mime-type';` | 
-gc_version | `gc_version constant varchar2(10) := '1.0.0';` | String represenation of MAJOR.MINOR.PATCH
 
 
  
