@@ -1,30 +1,21 @@
 create or replace package body oos_util_crypto
 as
 
-  -- TODO mdsouza: document
+  -- To test: https://www.freeformatter.com/hmac-generator.html#ad-output
 
-  gc_8x constant varchar2(8) := 'xxxxxxxx'; -- TODO mdsouza: what to name this?
-
-
-  type tab_num is table of number;
-  type tab_num_arr is table of number index by pls_integer;
-  --
-  -- TODO mdsouza: change to ck
+  gc_8x constant varchar2(8) := 'xxxxxxxx';
   gc_bmax32 constant number := power(2, 32) - 1;
   gc_bmax64 constant number := power(2, 64) - 1;
 
-  -- TODO mdsouza: g_
-  -- TODO mdsouza: what is sp1..8?
-  sp1 tab_num;
-  sp2 tab_num;
-  sp3 tab_num;
-  sp4 tab_num;
-  sp5 tab_num;
-  sp6 tab_num;
-  sp7 tab_num;
-  sp8 tab_num;
+  sp1 oos_util.tab_num;
+  sp2 oos_util.tab_num;
+  sp3 oos_util.tab_num;
+  sp4 oos_util.tab_num;
+  sp5 oos_util.tab_num;
+  sp6 oos_util.tab_num;
+  sp7 oos_util.tab_num;
+  sp8 oos_util.tab_num;
 
-  -- TODO mdsouza:
   /*!
    * Description
    *
@@ -63,7 +54,6 @@ as
    * @param p_y
    * @return
    */
-  -- TODO mdsouza: all the functions below have some itterations of integer, pls_integer, and number. Should the all be pls_integer?
   function bitxor32(p_x integer, p_y integer)
     return integer
   is
@@ -211,9 +201,9 @@ as
     l_chunksize pls_integer := 16320; -- 255 * 64
     l_block varchar2(128);
 
-    st tab_num;
-    sl tab_num;
-    sr tab_num;
+    st oos_util.tab_num;
+    sl oos_util.tab_num;
+    sr oos_util.tab_num;
 
     procedure ff(a in out number,b number,c in out number,d number,e number,xi pls_integer,r pls_integer)
     is
@@ -259,7 +249,7 @@ as
       c := rol32( c, 10 );
     end;
   --
-    procedure fa( ar in out tab_num, s pls_integer, xis tab_num, r_cnt tab_num )
+    procedure fa( ar in out oos_util.tab_num, s pls_integer, xis oos_util.tab_num, r_cnt oos_util.tab_num )
     is
     begin
       for i in 1 .. 16
@@ -267,7 +257,7 @@ as
         ff( ar(mod(15-i+s,5)+1),ar(mod(16-i+s,5)+1),ar(mod(17-i+s,5)+1),ar(mod(18-i+s,5)+1),ar(mod(19-i+s,5)+1),xis(i),r_cnt(i) );
       end loop;
     end;
-    procedure ga( ar in out tab_num, s pls_integer, h number, xis tab_num, r_cnt tab_num )
+    procedure ga( ar in out oos_util.tab_num, s pls_integer, h number, xis oos_util.tab_num, r_cnt oos_util.tab_num )
     is
     begin
       for i in 1 .. 16
@@ -275,7 +265,7 @@ as
         gg( ar(mod(15-i+s,5)+1),ar(mod(16-i+s,5)+1),ar(mod(17-i+s,5)+1),ar(mod(18-i+s,5)+1),ar(mod(19-i+s,5)+1),xis(i),r_cnt(i), h );
       end loop;
     end;
-    procedure ha( ar in out tab_num, s pls_integer, h number, xis tab_num, r_cnt tab_num )
+    procedure ha( ar in out oos_util.tab_num, s pls_integer, h number, xis oos_util.tab_num, r_cnt oos_util.tab_num )
     is
     begin
       for i in 1 .. 16
@@ -283,7 +273,7 @@ as
         hh( ar(mod(15-i+s,5)+1),ar(mod(16-i+s,5)+1),ar(mod(17-i+s,5)+1),ar(mod(18-i+s,5)+1),ar(mod(19-i+s,5)+1),xis(i),r_cnt(i), h );
       end loop;
     end;
-    procedure ka( ar in out tab_num, s pls_integer, h number, xis tab_num, r_cnt tab_num )
+    procedure ka( ar in out oos_util.tab_num, s pls_integer, h number, xis oos_util.tab_num, r_cnt oos_util.tab_num )
     is
     begin
       for i in 1 .. 16
@@ -291,7 +281,7 @@ as
         kk( ar(mod(15-i+s,5)+1),ar(mod(16-i+s,5)+1),ar(mod(17-i+s,5)+1),ar(mod(18-i+s,5)+1),ar(mod(19-i+s,5)+1),xis(i),r_cnt(i), h );
       end loop;
     end;
-    procedure la( ar in out tab_num, s pls_integer, h number, xis tab_num, r_cnt tab_num )
+    procedure la( ar in out oos_util.tab_num, s pls_integer, h number, xis oos_util.tab_num, r_cnt oos_util.tab_num )
     is
     begin
       for i in 1 .. 16
@@ -310,15 +300,15 @@ as
        || utl_raw.cast_from_binary_integer( l_len * 8, utl_raw.little_endian )
        || '00000000';
   --
-    st := tab_num( 1732584193 -- 67452301
+    st := oos_util.tab_num( 1732584193 -- 67452301
                    , 4023233417 -- efcdab89
                    , 2562383102 -- 98badcfe
                    ,  271733878 -- 10325476
                    , 3285377520 -- c3d2e1f0
                    );
   --
-    sl := tab_num( 0, 0, 0, 0, 0 );
-    sr := tab_num( 0, 0, 0, 0, 0 );
+    sl := oos_util.tab_num( 0, 0, 0, 0, 0 );
+    sr := oos_util.tab_num( 0, 0, 0, 0, 0 );
   --
     l_idx := 1;
     while l_idx <= l_len + l_pad_len
@@ -352,45 +342,45 @@ as
         end loop;
   --
         fa( sl, 1
-          , tab_num( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15 )
-          , tab_num(11,14,15,12, 5, 8, 7, 9,11,13,14,15, 6, 7, 9, 8 )
+          , oos_util.tab_num( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15 )
+          , oos_util.tab_num(11,14,15,12, 5, 8, 7, 9,11,13,14,15, 6, 7, 9, 8 )
           );
         ga( sl, 5, 1518500249 -- 5a827999
-          , tab_num( 7, 4,13, 1,10, 6,15, 3,12, 0, 9, 5, 2,14,11, 8 )
-          , tab_num( 7, 6, 8,13,11, 9, 7,15, 7,12,15, 9,11, 7,13,12 )
+          , oos_util.tab_num( 7, 4,13, 1,10, 6,15, 3,12, 0, 9, 5, 2,14,11, 8 )
+          , oos_util.tab_num( 7, 6, 8,13,11, 9, 7,15, 7,12,15, 9,11, 7,13,12 )
           );
         ha( sl, 4, 1859775393  -- 6ed9eba1
-          , tab_num( 3,10,14, 4, 9,15, 8, 1, 2, 7, 0, 6,13,11, 5,12 )
-          , tab_num(11,13, 6, 7,14, 9,13,15,14, 8,13, 6, 5,12, 7, 5 )
+          , oos_util.tab_num( 3,10,14, 4, 9,15, 8, 1, 2, 7, 0, 6,13,11, 5,12 )
+          , oos_util.tab_num(11,13, 6, 7,14, 9,13,15,14, 8,13, 6, 5,12, 7, 5 )
           );
         ka( sl, 3, 2400959708  -- 8f1bbcdc
-          , tab_num( 1, 9,11,10, 0, 8,12, 4,13, 3, 7,15,14, 5, 6, 2 )
-          , tab_num(11,12,14,15,14,15, 9, 8, 9,14, 5, 6, 8, 6, 5,12 )
+          , oos_util.tab_num( 1, 9,11,10, 0, 8,12, 4,13, 3, 7,15,14, 5, 6, 2 )
+          , oos_util.tab_num(11,12,14,15,14,15, 9, 8, 9,14, 5, 6, 8, 6, 5,12 )
           );
         la( sl, 2, 2840853838  -- a953fd4e
-          , tab_num( 4, 0, 5, 9, 7,12, 2,10,14, 1, 3, 8,11, 6,15,13 )
-          , tab_num( 9,15, 5,11, 6, 8,13,12, 5,12,13,14,11, 8, 5, 6 )
+          , oos_util.tab_num( 4, 0, 5, 9, 7,12, 2,10,14, 1, 3, 8,11, 6,15,13 )
+          , oos_util.tab_num( 9,15, 5,11, 6, 8,13,12, 5,12,13,14,11, 8, 5, 6 )
           );
   --
         la( sr, 1, 1352829926  -- 50a28be6
-          , tab_num( 5,14, 7, 0, 9, 2,11, 4,13, 6,15, 8, 1,10, 3,12 )
-          , tab_num( 8, 9, 9,11,13,15,15, 5, 7, 7, 8,11,14,14,12, 6 )
+          , oos_util.tab_num( 5,14, 7, 0, 9, 2,11, 4,13, 6,15, 8, 1,10, 3,12 )
+          , oos_util.tab_num( 8, 9, 9,11,13,15,15, 5, 7, 7, 8,11,14,14,12, 6 )
           );
         ka( sr, 5, 1548603684  -- 5c4dd124
-          , tab_num( 6,11, 3, 7, 0,13, 5,10,14,15, 8,12, 4, 9, 1, 2 )
-          , tab_num( 9,13,15, 7,12, 8, 9,11, 7, 7,12, 7, 6,15,13,11 )
+          , oos_util.tab_num( 6,11, 3, 7, 0,13, 5,10,14,15, 8,12, 4, 9, 1, 2 )
+          , oos_util.tab_num( 9,13,15, 7,12, 8, 9,11, 7, 7,12, 7, 6,15,13,11 )
           );
         ha( sr, 4, 1836072691  -- 6d703ef3
-          , tab_num(15, 5, 1, 3, 7,14, 6, 9,11, 8,12, 2,10, 0, 4,13 )
-          , tab_num( 9, 7,15,11, 8, 6, 6,14,12,13, 5,14,13,13, 7, 5 )
+          , oos_util.tab_num(15, 5, 1, 3, 7,14, 6, 9,11, 8,12, 2,10, 0, 4,13 )
+          , oos_util.tab_num( 9, 7,15,11, 8, 6, 6,14,12,13, 5,14,13,13, 7, 5 )
           );
         ga( sr, 3, 2053994217  -- 7a6d76e9
-          , tab_num( 8, 6, 4, 1, 3,11,15, 0, 5,12, 2,13, 9, 7,10,14 )
-          , tab_num(15, 5, 8,11,14,14, 6,14, 6, 9,12, 9,12, 5,15, 8 )
+          , oos_util.tab_num( 8, 6, 4, 1, 3,11,15, 0, 5,12, 2,13, 9, 7,10,14 )
+          , oos_util.tab_num(15, 5, 8,11,14,14, 6,14, 6, 9,12, 9,12, 5,15, 8 )
           );
         fa( sr, 2
-          , tab_num(12,15,10, 4, 1, 5, 8, 7, 6, 2,13,14, 0, 3, 9,11 )
-          , tab_num( 8, 5,12, 9,12, 5,14, 6, 8,13, 6, 5,15,13,11,11 )
+          , oos_util.tab_num(12,15,10, 4, 1, 5, 8, 7, 6, 2,13,14, 0, 3, 9,11 )
+          , oos_util.tab_num( 8, 5,12, 9,12, 5,14, 6, 8,13, 6, 5,15,13,11,11 )
           );
   --
         sl(2) := oos_util_bit.bitand( sl(2) + st(1) + sr(3), gc_bmax32 );
@@ -1156,7 +1146,10 @@ as
     end loop;
     return t_md;
   end;
+
   --
+  -- TODO mdsouza:
+
   function hash( src raw, typ pls_integer )
   return raw
   is
@@ -1172,6 +1165,7 @@ as
              when HASH_RIPEMD160 then ripemd160( src )
            end;
   end;
+
   --
   function mac( src raw, typ pls_integer, key raw )
   return raw
@@ -1284,10 +1278,10 @@ as
   --
   procedure aes_encrypt_key
     ( key varchar2
-    , p_encrypt_key out nocopy tab_num_arr
+    , p_encrypt_key out nocopy oos_util.tab_num_arr
     )
   is
-    rcon tab_num_arr;
+    rcon oos_util.tab_num_arr;
     t_r number;
     SS varchar2(512);
     s1 number;
@@ -1377,12 +1371,12 @@ as
   --
   procedure aes_decrypt_key
     ( key varchar2
-    , p_decrypt_key out nocopy tab_num_arr
+    , p_decrypt_key out nocopy oos_util.tab_num_arr
     )
   is
-    Se tab_num_arr;
-    rek tab_num_arr;
-    rcon tab_num_arr;
+    Se oos_util.tab_num_arr;
+    rek oos_util.tab_num_arr;
+    rcon oos_util.tab_num_arr;
     SS varchar2(512);
     s1 number;
     s2 number;
@@ -1518,7 +1512,7 @@ as
   function aes_encrypt
     ( src varchar2
     , klen pls_integer
-    , p_decrypt_key tab_num_arr
+    , p_decrypt_key oos_util.tab_num_arr
     )
   return raw
   is
@@ -1603,7 +1597,7 @@ as
   function aes_decrypt
     ( src varchar2
     , klen pls_integer
-    , p_decrypt_key tab_num_arr
+    , p_decrypt_key oos_util.tab_num_arr
     )
   return raw
   is
@@ -1685,17 +1679,17 @@ as
         || grv( t3, t2, t1, t0, p_decrypt_key( 1280 + k + 3 ) );
   end;
   --
-  procedure deskey( p_key raw, p_keys out tab_num, p_encrypt boolean )
+  procedure deskey( p_key raw, p_keys out oos_util.tab_num, p_encrypt boolean )
   is
-    bytebit tab_num := tab_num( 128, 64, 32, 16, 8, 4, 2, 1 );
-    bigbyte tab_num := tab_num( to_number( '800000', 'XXXXXX' ), to_number( '400000', 'XXXXXX' ), to_number( '200000', 'XXXXXX' ), to_number( '100000', 'XXXXXX' )
+    bytebit oos_util.tab_num := oos_util.tab_num( 128, 64, 32, 16, 8, 4, 2, 1 );
+    bigbyte oos_util.tab_num := oos_util.tab_num( to_number( '800000', 'XXXXXX' ), to_number( '400000', 'XXXXXX' ), to_number( '200000', 'XXXXXX' ), to_number( '100000', 'XXXXXX' )
                                   , to_number( '080000', 'XXXXXX' ), to_number( '040000', 'XXXXXX' ), to_number( '020000', 'XXXXXX' ), to_number( '010000', 'XXXXXX' )
                                   , to_number( '008000', 'XXXXXX' ), to_number( '004000', 'XXXXXX' ), to_number( '002000', 'XXXXXX' ), to_number( '001000', 'XXXXXX' )
                                   , to_number( '000800', 'XXXXXX' ), to_number( '000400', 'XXXXXX' ), to_number( '000200', 'XXXXXX' ), to_number( '000100', 'XXXXXX' )
                                   , to_number( '000080', 'XXXXXX' ), to_number( '000040', 'XXXXXX' ), to_number( '000020', 'XXXXXX' ), to_number( '000010', 'XXXXXX' )
                                   , to_number( '000008', 'XXXXXX' ), to_number( '000004', 'XXXXXX' ), to_number( '000002', 'XXXXXX' ), to_number( '000001', 'XXXXXX' )
                                   );
-    pcl tab_num := tab_num( 56, 48, 40, 32, 24, 16,  8
+    pcl oos_util.tab_num := oos_util.tab_num( 56, 48, 40, 32, 24, 16,  8
                               ,  0, 57, 49, 41, 33, 25, 17
                               ,  9,  1, 58, 50, 42, 34, 26
                               , 18, 10,  2, 59, 51, 43, 35
@@ -1704,7 +1698,7 @@ as
                               , 13,  5, 60, 52, 44, 36, 28
                               , 20, 12,  4, 27, 19, 11, 3
                               );
-    pc2 tab_num := tab_num( 13, 16, 10, 23,  0,  4
+    pc2 oos_util.tab_num := oos_util.tab_num( 13, 16, 10, 23,  0,  4
                               ,  2, 27, 14,  5, 20,  9
                               , 22, 18, 11, 3 , 25,  7
                               , 15,  6, 26, 19, 12,  1
@@ -1713,13 +1707,13 @@ as
                               , 43, 48, 38, 55, 33, 52
                               , 45, 41, 49, 35, 28, 31
                               );
-    totrot tab_num := tab_num( 1, 2, 4, 6, 8, 10, 12, 14
+    totrot oos_util.tab_num := oos_util.tab_num( 1, 2, 4, 6, 8, 10, 12, 14
                                  , 15, 17, 19, 21, 23, 25, 27, 28
                                  );
-    t_key tab_num := tab_num();
-    pclm tab_num := tab_num();
-    pcr tab_num := tab_num();
-    kn tab_num := tab_num();
+    t_key oos_util.tab_num := oos_util.tab_num();
+    pclm oos_util.tab_num := oos_util.tab_num();
+    pcr oos_util.tab_num := oos_util.tab_num();
+    kn oos_util.tab_num := oos_util.tab_num();
     t_l pls_integer;
     t_m pls_integer;
     t_n pls_integer;
@@ -1731,7 +1725,7 @@ as
   begin
   --
     if SP1 is null then
-        SP1 := tab_num(
+        SP1 := oos_util.tab_num(
         to_number( '01010400', gc_8x ), to_number( '00000000', gc_8x ), to_number( '00010000', gc_8x ), to_number( '01010404', gc_8x ),
         to_number( '01010004', gc_8x ), to_number( '00010404', gc_8x ), to_number( '00000004', gc_8x ), to_number( '00010000', gc_8x ),
         to_number( '00000400', gc_8x ), to_number( '01010400', gc_8x ), to_number( '01010404', gc_8x ), to_number( '00000400', gc_8x ),
@@ -1749,7 +1743,7 @@ as
         to_number( '00000404', gc_8x ), to_number( '01000400', gc_8x ), to_number( '01000400', gc_8x ), to_number( '00000000', gc_8x ),
         to_number( '00010004', gc_8x ), to_number( '00010400', gc_8x ), to_number( '00000000', gc_8x ), to_number( '01010004', gc_8x )
     );
-        SP2 := tab_num(
+        SP2 := oos_util.tab_num(
         to_number( '80108020', gc_8x ), to_number( '80008000', gc_8x ), to_number( '00008000', gc_8x ), to_number( '00108020', gc_8x ),
         to_number( '00100000', gc_8x ), to_number( '00000020', gc_8x ), to_number( '80100020', gc_8x ), to_number( '80008020', gc_8x ),
         to_number( '80000020', gc_8x ), to_number( '80108020', gc_8x ), to_number( '80108000', gc_8x ), to_number( '80000000', gc_8x ),
@@ -1767,7 +1761,7 @@ as
         to_number( '00108000', gc_8x ), to_number( '00000000', gc_8x ), to_number( '80008000', gc_8x ), to_number( '00008020', gc_8x ),
         to_number( '80000000', gc_8x ), to_number( '80100020', gc_8x ), to_number( '80108020', gc_8x ), to_number( '00108000', gc_8x )
     );
-        SP3 := tab_num(
+        SP3 := oos_util.tab_num(
         to_number( '00000208', gc_8x ), to_number( '08020200', gc_8x ), to_number( '00000000', gc_8x ), to_number( '08020008', gc_8x ),
         to_number( '08000200', gc_8x ), to_number( '00000000', gc_8x ), to_number( '00020208', gc_8x ), to_number( '08000200', gc_8x ),
         to_number( '00020008', gc_8x ), to_number( '08000008', gc_8x ), to_number( '08000008', gc_8x ), to_number( '00020000', gc_8x ),
@@ -1785,7 +1779,7 @@ as
         to_number( '08020000', gc_8x ), to_number( '08000208', gc_8x ), to_number( '00000208', gc_8x ), to_number( '08020000', gc_8x ),
         to_number( '00020208', gc_8x ), to_number( '00000008', gc_8x ), to_number( '08020008', gc_8x ), to_number( '00020200', gc_8x )
     );
-        SP4 := tab_num(
+        SP4 := oos_util.tab_num(
         to_number( '00802001', gc_8x ), to_number( '00002081', gc_8x ), to_number( '00002081', gc_8x ), to_number( '00000080', gc_8x ),
         to_number( '00802080', gc_8x ), to_number( '00800081', gc_8x ), to_number( '00800001', gc_8x ), to_number( '00002001', gc_8x ),
         to_number( '00000000', gc_8x ), to_number( '00802000', gc_8x ), to_number( '00802000', gc_8x ), to_number( '00802081', gc_8x ),
@@ -1803,7 +1797,7 @@ as
         to_number( '00002001', gc_8x ), to_number( '00002080', gc_8x ), to_number( '00800000', gc_8x ), to_number( '00802001', gc_8x ),
         to_number( '00000080', gc_8x ), to_number( '00800000', gc_8x ), to_number( '00002000', gc_8x ), to_number( '00802080', gc_8x )
     );
-        SP5 := tab_num(
+        SP5 := oos_util.tab_num(
         to_number( '00000100', gc_8x ), to_number( '02080100', gc_8x ), to_number( '02080000', gc_8x ), to_number( '42000100', gc_8x ),
         to_number( '00080000', gc_8x ), to_number( '00000100', gc_8x ), to_number( '40000000', gc_8x ), to_number( '02080000', gc_8x ),
         to_number( '40080100', gc_8x ), to_number( '00080000', gc_8x ), to_number( '02000100', gc_8x ), to_number( '40080100', gc_8x ),
@@ -1821,7 +1815,7 @@ as
         to_number( '00080100', gc_8x ), to_number( '02000100', gc_8x ), to_number( '40000100', gc_8x ), to_number( '00080000', gc_8x ),
         to_number( '00000000', gc_8x ), to_number( '40080000', gc_8x ), to_number( '02080100', gc_8x ), to_number( '40000100', gc_8x )
     );
-        SP6 := tab_num(
+        SP6 := oos_util.tab_num(
         to_number( '20000010', gc_8x ), to_number( '20400000', gc_8x ), to_number( '00004000', gc_8x ), to_number( '20404010', gc_8x ),
         to_number( '20400000', gc_8x ), to_number( '00000010', gc_8x ), to_number( '20404010', gc_8x ), to_number( '00400000', gc_8x ),
         to_number( '20004000', gc_8x ), to_number( '00404010', gc_8x ), to_number( '00400000', gc_8x ), to_number( '20000010', gc_8x ),
@@ -1839,7 +1833,7 @@ as
         to_number( '00004000', gc_8x ), to_number( '00400010', gc_8x ), to_number( '20004010', gc_8x ), to_number( '00000000', gc_8x ),
         to_number( '20404000', gc_8x ), to_number( '20000000', gc_8x ), to_number( '00400010', gc_8x ), to_number( '20004010', gc_8x )
     );
-        SP7 := tab_num(
+        SP7 := oos_util.tab_num(
         to_number( '00200000', gc_8x ), to_number( '04200002', gc_8x ), to_number( '04000802', gc_8x ), to_number( '00000000', gc_8x ),
         to_number( '00000800', gc_8x ), to_number( '04000802', gc_8x ), to_number( '00200802', gc_8x ), to_number( '04200800', gc_8x ),
         to_number( '04200802', gc_8x ), to_number( '00200000', gc_8x ), to_number( '00000000', gc_8x ), to_number( '04000002', gc_8x ),
@@ -1857,7 +1851,7 @@ as
         to_number( '00000000', gc_8x ), to_number( '00200802', gc_8x ), to_number( '04200000', gc_8x ), to_number( '00000800', gc_8x ),
         to_number( '04000002', gc_8x ), to_number( '04000800', gc_8x ), to_number( '00000800', gc_8x ), to_number( '00200002', gc_8x )
     );
-        SP8 := tab_num(
+        SP8 := oos_util.tab_num(
         to_number( '10001040', gc_8x ), to_number( '00001000', gc_8x ), to_number( '00040000', gc_8x ), to_number( '10041040', gc_8x ),
         to_number( '10000000', gc_8x ), to_number( '10001040', gc_8x ), to_number( '00000040', gc_8x ), to_number( '10000000', gc_8x ),
         to_number( '00040040', gc_8x ), to_number( '10040000', gc_8x ), to_number( '10041040', gc_8x ), to_number( '00041000', gc_8x ),
@@ -1928,7 +1922,7 @@ as
       end loop;
     end loop;
   --
-    p_keys := tab_num();
+    p_keys := oos_util.tab_num();
     p_keys.extend(32);
     rawi := 1;
     knli := 1;
@@ -1953,7 +1947,7 @@ as
     end loop;
   end;
   --
-  function des( p_block varchar2, p_keys tab_num )
+  function des( p_block varchar2, p_keys oos_util.tab_num )
   return varchar2
   is
     t_left  integer;
@@ -2092,10 +2086,10 @@ as
   function encrypt( src raw, typ pls_integer, key raw, iv raw := null )
   return raw
   is
-    t_keys tab_num;
-    t_keys2 tab_num;
-    t_keys3 tab_num;
-    t_encrypt_key tab_num_arr;
+    t_keys oos_util.tab_num;
+    t_keys2 oos_util.tab_num;
+    t_keys3 oos_util.tab_num;
+    t_encrypt_key oos_util.tab_num_arr;
     t_idx pls_integer;
     t_len pls_integer;
     t_tmp varchar2(32766);
@@ -2258,10 +2252,10 @@ as
   function decrypt( src raw, typ pls_integer, key raw, iv raw := null )
   return raw
   is
-    t_keys tab_num;
-    t_keys2 tab_num;
-    t_keys3 tab_num;
-    t_decrypt_key tab_num_arr;
+    t_keys oos_util.tab_num;
+    t_keys2 oos_util.tab_num;
+    t_keys3 oos_util.tab_num;
+    t_decrypt_key oos_util.tab_num_arr;
     t_idx pls_integer;
     t_len pls_integer;
     t_tmp varchar2(32766);
