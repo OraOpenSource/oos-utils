@@ -344,7 +344,7 @@ as
    * @example
    * declare
    *   l_str clob := 'abc,def,ghi';
-   *   l_arr oos_util_string.tab_vc2_arr;
+   *   l_arr oos_util_string.oos_util.tab_vc2_arr;
    * begin
    *   l_arr := oos_util_string.string_to_table(p_string => l_str);
    *
@@ -367,12 +367,12 @@ as
   function string_to_table(
     p_string in clob,
     p_delimiter in varchar2 default gc_default_delimiter)
-    return tab_vc2_arr
+    return oos_util.tab_vc2_arr
   is
     l_last_pos pls_integer;
     l_pos pls_integer;
 
-    l_return tab_vc2_arr;
+    l_return oos_util.tab_vc2_arr;
     l_delimiter_len pls_integer := length(p_delimiter);
 
   begin
@@ -416,10 +416,10 @@ as
   function string_to_table(
     p_string in varchar2,
     p_delimiter in varchar2 default gc_default_delimiter)
-    return tab_vc2_arr
+    return oos_util.tab_vc2_arr
   is
     l_clob clob;
-    l_return tab_vc2_arr;
+    l_return oos_util.tab_vc2_arr;
   begin
     l_clob := p_string;
     return string_to_table(p_string => l_clob, p_delimiter => p_delimiter);
@@ -452,9 +452,9 @@ as
   function listunagg(
     p_string in varchar2,
     p_delimiter in varchar2 default gc_default_delimiter)
-    return tab_vc2 pipelined
+    return oos_util.tab_vc2 pipelined
   is
-    l_arr oos_util_string.tab_vc2_arr;
+    l_arr oos_util.tab_vc2_arr;
   begin
     l_arr := string_to_table(p_string => p_string, p_delimiter => p_delimiter);
 
@@ -481,9 +481,9 @@ as
   function listunagg(
     p_string in clob,
     p_delimiter in varchar2 default gc_default_delimiter)
-    return tab_vc2 pipelined
+    return oos_util.tab_vc2 pipelined
   is
-    l_arr tab_vc2_arr;
+    l_arr oos_util.tab_vc2_arr;
   begin
     l_arr := string_to_table(p_string => p_string, p_delimiter => p_delimiter);
 

@@ -1,5 +1,20 @@
 create or replace package oos_util
 as
+
+  -- TYPES
+  /**
+   * @type tab_num `number` nested table
+   * @type tab_num_arr `number` associated array
+   * @type tab_vc2 `varchar2` nested table
+   * @type tab_vc2_arr `varchar2` associated array
+   */
+  type tab_num is table of number;
+  type tab_num_arr is table of number index by pls_integer;
+  type tab_vc2 is table of varchar2(32767);
+  type tab_vc2_arr is table of varchar2(32767) index by pls_integer;
+
+
+
   -- CONSTANTS
   /**
    * @constant gc_date_format default date format

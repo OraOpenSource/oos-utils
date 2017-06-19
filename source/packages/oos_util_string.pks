@@ -2,12 +2,6 @@ create or replace package oos_util_string
 as
 
   -- TYPES
-  /**
-   * @type tab_vc2 VC2 Nested table
-   * @type tab_vc2_arr VC2 associated array
-   */
-  type tab_vc2 is table of varchar2(32767);
-  type tab_vc2_arr is table of varchar2(32767) index by pls_integer;
 
   -- CONSTANTS
   /**
@@ -74,22 +68,22 @@ as
   function string_to_table(
     p_string in clob,
     p_delimiter in varchar2 default gc_default_delimiter)
-    return tab_vc2_arr;
+    return oos_util.tab_vc2_arr;
 
   function string_to_table(
     p_string in varchar2,
     p_delimiter in varchar2 default gc_default_delimiter)
-    return tab_vc2_arr;
+    return oos_util.tab_vc2_arr;
 
   function listunagg(
     p_string in varchar2,
     p_delimiter in varchar2 default gc_default_delimiter)
-    return tab_vc2 pipelined;
+    return oos_util.tab_vc2 pipelined;
 
   function listunagg(
     p_string in clob,
     p_delimiter in varchar2 default gc_default_delimiter)
-    return tab_vc2 pipelined;
+    return oos_util.tab_vc2 pipelined;
 
   function reverse(
     p_string in varchar2)
