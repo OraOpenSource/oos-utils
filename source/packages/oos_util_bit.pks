@@ -24,5 +24,17 @@ as
     return binary_integer
     deterministic;
 
+  function bitshift_left(
+    p_x binary_integer,
+    p_y binary_integer)
+    return binary_integer
+    deterministic;
+
+  function bitshift_right(
+    p_x binary_integer,
+    p_y binary_integer)
+    return binary_integer
+    deterministic;
+
 end;
 /

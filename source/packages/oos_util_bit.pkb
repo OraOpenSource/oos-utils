@@ -145,5 +145,68 @@ as
     return (0 - p_x) - 1;
   end bitnot;
 
+
+  /**
+   * From [https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Left_shift](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Left_shift): _This operator shifts the first operand the specified number of bits to the left. Excess bits shifted off to the left are discarded. Zero bits are shifted in from the right_.
+   *
+   * @example
+   *
+   * select oos_util_bit.bitshift_left(7, 4)
+   * from dual;
+   *
+   * OOS_UTIL_BIT.BITSHIFT_LEFT(7,4)
+   * 112
+   *
+   * -- In binary terms this converted 111 (7) to 1110000 (112)
+   *
+   * @issue #112
+   *
+   * @author Anton Scheffer
+   * @created 22-Sep-2016
+   * @param p_x binary_integer
+   * @param p_y binary_integer
+   * @return binary_integer
+   */
+  function bitshift_left(
+    p_x binary_integer,
+    p_y binary_integer)
+    return binary_integer
+    deterministic
+  is
+  begin
+    return p_x * power(2, p_y);
+  end bitshift_left;
+
+  /**
+   * From [https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Right_shift](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Right_shift): _This operator shifts the first operand the specified number of bits to the right. Excess bits shifted off to the right are discarded. Copies of the leftmost bit are shifted in from the left. Since the new leftmost bit has the same value as the previous leftmost bit, the sign bit (the leftmost bit) does not change. Hence the name "sign-propagating"._
+   *
+   * @example
+   *
+   * select oos_util_bit.bitshift_right(7, 1)
+   * from dual;
+   *
+   * OOS_UTIL_BIT.BITSHIFT_RIGHT(7,1)
+   * 3
+   *
+   * -- In binary terms this converted 111 (7) to 011 (3)
+   *
+   * @issue #112
+   *
+   * @author Anton Scheffer
+   * @created 22-Sep-2016
+   * @param p_x binary_integer
+   * @param p_y binary_integer
+   * @return binary_integer
+   */
+  function bitshift_right(
+    p_x binary_integer,
+    p_y binary_integer)
+    return binary_integer
+    deterministic
+  is
+  begin
+    return trunc(p_x / power(2, p_y));
+  end bitshift_right;
+
 end;
 /
