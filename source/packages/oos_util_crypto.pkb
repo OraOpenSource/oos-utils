@@ -1147,45 +1147,90 @@ as
     return t_md;
   end;
 
-  --
-  -- TODO mdsouza:
 
-  function hash( src raw, typ pls_integer )
+  /**
+   * Hashes raw value
+   *
+   * @issue #112
+   *
+   * @example
+   *
+   *
+   * @author Anton Scheffer
+   * @created 08-Oct-2016
+   * @param p_src Source
+   * @param p_typ see `oos_util_crypto.gc_hash` variables
+   * @return raw value
+   */
+  function hash(
+    p_src raw,
+    p_typ pls_integer )
   return raw
   is
   begin
-    return case typ
-             when HASH_MD4 then md4( src )
-             when HASH_MD5 then md5( src )
-             when HASH_SH1 then sha1( src )
-             when HASH_SH224 then sha256( src, false )
-             when HASH_SH256 then sha256( src, true )
-             when HASH_SH384 then sha512( src, false )
-             when HASH_SH512 then sha512( src, true )
-             when HASH_RIPEMD160 then ripemd160( src )
+    return case p_typ
+             when GC_HASH_MD4 then md4( p_src )
+             when GC_HASH_MD5 then md5( p_src )
+             when GC_HASH_SH1 then sha1( p_src )
+             when GC_HASH_SH224 then sha256( p_src, false )
+             when GC_HASH_SH256 then sha256( p_src, true )
+             when GC_HASH_SH384 then sha512( p_src, false )
+             when GC_HASH_SH512 then sha512( p_src, true )
+             when GC_HASH_RIPEMD160 then ripemd160( p_src )
            end;
-  end;
+  end hash;
 
-  --
+  -- -- TODO mdsouza: upate
+  /**
+   * Converts delimited string to array
+   *
+   * Notes:
+   *  - Similar to `apex_util.string_to_table` but handles clobs
+   *
+   * @issue #32
+   *
+   * @example
+   * declare
+   *   l_str clob := 'abc,def,ghi';
+   *   l_arr oos_util_string.oos_util.tab_vc2_arr;
+   * begin
+   *   l_arr := oos_util_string.string_to_table(p_string => l_str);
+   *
+   *   for i in 1..l_arr.count loop
+   *     dbms_output.put_line('i: ' || i || ' ' || l_arr(i));
+   *   end loop;
+   * end;
+   * /
+   *
+   * i: 1 abc
+   * i: 2 def
+   * i: 3 ghi
+   *
+   * @author Martin Giffy D'Souza
+   * @created 28-Dec-2015
+   * @param p_string String containing delimited text
+   * @param p_delimiter Delimiter
+   * @return Array of string
+   */
   function mac( src raw, typ pls_integer, key raw )
   return raw
   is
     t_key raw(128);
     t_len pls_integer;
     l_blocksize pls_integer := case
-                                 when typ in ( HMAC_SH384, HMAC_SH512 )
+                                 when typ in ( GC_HMAC_SH384, GC_HMAC_SH512 )
                                    then 128
                                    else 64
                                end;
     t_typ pls_integer := case typ
-                           when HMAC_MD4       then HASH_MD4
-                           when HMAC_MD5       then HASH_MD5
-                           when HMAC_SH1       then HASH_SH1
-                           when HMAC_SH224     then HASH_SH224
-                           when HMAC_SH256     then HASH_SH256
-                           when HMAC_SH384     then HASH_SH384
-                           when HMAC_SH512     then HASH_SH512
-                           when HMAC_RIPEMD160 then HASH_RIPEMD160
+                           when GC_HMAC_MD4       then GC_HASH_MD4
+                           when GC_HMAC_MD5       then GC_HASH_MD5
+                           when GC_HMAC_SH1       then GC_HASH_SH1
+                           when GC_HMAC_SH224     then GC_HASH_SH224
+                           when GC_HMAC_SH256     then GC_HASH_SH256
+                           when GC_HMAC_SH384     then GC_HASH_SH384
+                           when GC_HMAC_SH512     then GC_HASH_SH512
+                           when GC_HMAC_RIPEMD160 then GC_HASH_RIPEMD160
                          end;
   begin
     t_len := utl_raw.length( key );
