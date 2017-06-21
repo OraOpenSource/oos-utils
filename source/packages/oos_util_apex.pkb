@@ -160,6 +160,10 @@ as
    *  - Content taken from:
    *    - http://www.talkapex.com/2012/08/how-to-create-apex-session-in-plsql.html
    *    - http://apextips.blogspot.com.au/2014/10/debugging-parameterised-views-outside.html
+   *  - Known Issues:
+   *    - [#118](https://github.com/OraOpenSource/oos-utils/issues/118)
+   *    - [#132](https://github.com/OraOpenSource/oos-utils/issues/132)
+   *    - [#49](https://github.com/OraOpenSource/oos-utils/issues/49)
    *
    * @example
    *
@@ -271,7 +275,9 @@ as
 
 
   /**
-   * Join an existing APEX session
+   * Join an existing APEX session.
+   * Note they're some known issues with this procedure right now:
+   * - [#88](https://github.com/OraOpenSource/oos-utils/issues/88)
    *
    * Notes:
    *  - `v('P1_X')` won't work. Use `apex_util.get_session_state('P1_X')` instead
