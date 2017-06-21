@@ -19,6 +19,9 @@ drop package oos_util_apex;
 prompt oos_util_bit
 drop package oos_util_bit;
 
+prompt oos_util_crypto
+drop package oos_util_crypto;
+
 prompt oos_util_date
 drop package oos_util_date;
 
@@ -27,6 +30,9 @@ drop package oos_util_lob;
 
 prompt oos_util_string
 drop package oos_util_string;
+
+prompt oos_util_totp
+drop package oos_util_totp;
 
 prompt oos_util_validation
 drop package oos_util_validation;

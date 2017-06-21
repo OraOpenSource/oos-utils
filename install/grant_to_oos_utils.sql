@@ -13,8 +13,10 @@ whenever sqlerror exit sql.sqlcode
 grant execute on oos_util to &to_user;
 grant execute on oos_util_apex to &to_user;
 grant execute on oos_util_bit to &to_user;
+grant execute on oos_util_crypto to &to_user;
 grant execute on oos_util_date to &to_user;
 grant execute on oos_util_lob to &to_user;
 grant execute on oos_util_string to &to_user;
+grant execute on oos_util_totp to &to_user;
 grant execute on oos_util_validation to &to_user;
 grant execute on oos_util_web to &to_user;
