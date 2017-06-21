@@ -204,6 +204,7 @@ as
       , '0'
     );
 
+    -- TODO mdsouza: iuse oos_util crypt
     l_rhmac := dbms_crypto.mac(
       src => hextoraw(l_szepoch)
       , typ => dbms_crypto.hmac_sh1

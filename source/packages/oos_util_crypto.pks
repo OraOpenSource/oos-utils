@@ -65,19 +65,34 @@ as
    function hash(
      p_src raw,
      p_typ pls_integer)
-   return raw;
+     return raw;
 
-   function mac( src raw, typ pls_integer, key raw )
-   return raw;
+   function hash_str(
+     p_src varchar2,
+     p_typ pls_integer)
+     return varchar2;
 
-   function randombytes( number_bytes positive )
-   return raw;
+   function mac(
+    p_src raw,
+    p_typ pls_integer,
+    p_key raw)
+    return raw;
 
-   function encrypt( src raw, typ pls_integer, key raw, iv raw := null )
-   return raw;
+   function mac_str(
+    p_src varchar2,
+    p_typ pls_integer,
+    p_key varchar2)
+    return varchar2;
 
-   function decrypt( src raw, typ pls_integer, key raw, iv raw := null )
-   return raw;
+  -- Enable these in future versions #154
+  --  function randombytes( number_bytes positive )
+  --  return raw;
+   --
+  --  function encrypt( src raw, typ pls_integer, key raw, iv raw := null )
+  --  return raw;
+   --
+  --  function decrypt( src raw, typ pls_integer, key raw, iv raw := null )
+  --  return raw;
 
 
 end oos_util_crypto;
