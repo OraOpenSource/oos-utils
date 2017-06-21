@@ -481,6 +481,10 @@ as
    *  - Content taken from:
    *    - http://www.talkapex.com/2012/08/how-to-create-apex-session-in-plsql.html
    *    - http://apextips.blogspot.com.au/2014/10/debugging-parameterised-views-outside.html
+   *  - Known Issues:
+   *    - [#118](https://github.com/OraOpenSource/oos-utils/issues/118)
+   *    - [#132](https://github.com/OraOpenSource/oos-utils/issues/132)
+   *    - [#49](https://github.com/OraOpenSource/oos-utils/issues/49)
    *
    * @example
    *
@@ -592,7 +596,9 @@ as
 
 
   /**
-   * Join an existing APEX session
+   * Join an existing APEX session.
+   * Note they're some known issues with this procedure right now:
+   * - [#88](https://github.com/OraOpenSource/oos-utils/issues/88)
    *
    * Notes:
    *  - `v('P1_X')` won't work. Use `apex_util.get_session_state('P1_X')` instead
@@ -3643,7 +3649,7 @@ as
       to_date ('19700101', 'yyyymmdd')
       + ((p_epoch + ((to_number(substr(tz_offset(sessiontimezone), 1, 3))+0) * 3600)) / 86400); -- Note: Was +1 but was causing 1 hour ahead (#123)
   end epoch2date;
-  
+
 
   /*!
    * Coverts timestamp to Unix Epoch time
@@ -4618,7 +4624,7 @@ as
    * @example
    * declare
    *   l_str clob := 'abc,def,ghi';
-   *   l_arr oos_util_string.oos_util.tab_vc2_arr;
+   *   l_arr oos_util.tab_vc2_arr;
    * begin
    *   l_arr := oos_util_string.string_to_table(p_str => l_str);
    *

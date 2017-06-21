@@ -458,7 +458,7 @@ Name | Description
 ```plsql
 declare
   l_str clob := 'abc,def,ghi';
-  l_arr oos_util_string.oos_util.tab_vc2_arr;
+  l_arr oos_util.tab_vc2_arr;
 begin
   l_arr := oos_util_string.string_to_table(p_str => l_str);
 
