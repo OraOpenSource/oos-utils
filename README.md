@@ -13,8 +13,13 @@ NOTE: OOS Utils is currently in Beta. **Do not install in production.**s
 
 ## Install
 
-[Download](TODO)
-Go to the [Install](/install) folder for instructions and installation file(s).
+For quick install of the latest version of OOS Utils using [SQLcl](http://www.oracle.com/technetwork/developer-tools/sqlcl/downloads/index.html) run the following in SQLcl:
+
+```sql
+@https://observant-message.glitch.me/oos-utils/latest/oos_utils_install.sql
+```
+
+If you want to download a copy and install from a local file go to the [Install](/install) folder for instructions and installation file(s).
 
 ## Development
 
