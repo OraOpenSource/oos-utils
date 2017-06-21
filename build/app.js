@@ -2,7 +2,8 @@ var
   path = require('path'),
   fs = require('fs'),
   config = require('./config.js'),
-  fn = require('./fn.js')
+  fn = require('./fn.js'),
+  exec = require('child_process').exec;
 ;
 
 // Validations
@@ -99,3 +100,15 @@ for (package in config.objects.packages){
   fn.appendFile(files.uninstall, 'prompt ' + package);
   fn.appendFile(files.uninstall, 'drop package ' + package + ';\n');
 }//packages
+
+// Generate Documentation
+// Future make htis generic for others to use (not just martin) - #59
+var cmd = 'node ~/Documents/GitHub/oraopensource/plsql-md-doc/app oos-utils';
+
+console.log(`*** Generating Documentation ***`);
+exec(cmd, function(error, stdout, stderr) {
+  // command output is in stdout
+  if (error !== null) {
+    console.log(`Error: ${error}`);
+  }
+});
