@@ -31,8 +31,15 @@ for (file in config.files){
 
 console.log('*** Generating Install File ***');
 
-fn.appendFile(config.files.install,'-- DO NOT MODIFY THIS FILE. IT IS AUTO GENERATED\n');
-fn.appendFile(config.files.install,'prompt *** OOS_UTILS ***\n\n');
+fn.appendFile(config.files.install,`
+-- DO NOT MODIFY THIS FILE. IT IS AUTO GENERATED
+set define off
+
+prompt *** OOS_UTILS ***
+
+
+`
+);
 
 fn.appendFile(config.files.install,'prompt *** Prereqs OOS_UTILS ***\n');
 for (script in config.preInstall){
