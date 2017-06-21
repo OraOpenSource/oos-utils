@@ -68,7 +68,7 @@ as
       to_date ('19700101', 'yyyymmdd')
       + ((p_epoch + ((to_number(substr(tz_offset(sessiontimezone), 1, 3))+0) * 3600)) / 86400); -- Note: Was +1 but was causing 1 hour ahead (#123)
   end epoch2date;
-  
+
 
   /*!
    * Coverts timestamp to Unix Epoch time
