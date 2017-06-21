@@ -1,9 +1,21 @@
 # OOS_UTIL_BIT
 
+
+
+
+
 - [BITAND Function](#bitand)
 - [BITOR Function](#bitor)
 - [BITXOR Function](#bitxor)
 - [BITNOT Function](#bitnot)
+- [BITSHIFT_LEFT Function](#bitshift_left)
+- [BITSHIFT_RIGHT Function](#bitshift_right)
+
+
+
+
+
+
 
 
 
@@ -49,6 +61,12 @@ OOS_UTIL_BIT.BITAND(1,3)
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Jani Hur <webmaster@jani-hur.net>
+Created | 11-Apr-2016
+
 
  
 ## BITOR Function<a name="bitor"></a>
@@ -88,6 +106,12 @@ OOS_UTIL_BIT.BITOR(1,3)
                       3
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Jani Hur <webmaster@jani-hur.net>
+Created | 06-Apr-2016
 
 
  
@@ -129,6 +153,12 @@ OOS_UTIL_BIT.BITXOR(1,3)
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Jani Hur <webmaster@jani-hur.net>
+Created | 06-Apr-2016
+
 
  
 ## BITNOT Function<a name="bitnot"></a>
@@ -166,6 +196,106 @@ OOS_UTIL_BIT.BITNOT(7)
                     -8
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Jani Hur <webmaster@jani-hur.net>
+Created | 06-Apr-2016
+
+
+ 
+## BITSHIFT_LEFT Function<a name="bitshift_left"></a>
+
+
+<p>
+<p>From <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Left_shift">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Left_shift</a>: <em>This operator shifts the first operand the specified number of bits to the left. Excess bits shifted off to the left are discarded. Zero bits are shifted in from the right</em>.</p>
+</p>
+
+### Syntax
+```plsql
+function bitshift_left(
+  p_x binary_integer,
+  p_y binary_integer)
+  return binary_integer
+  deterministic
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_x` | binary_integer
+`p_y` | binary_integer
+*return* | binary_integer
+ 
+ 
+
+
+### Example
+```plsql
+
+select oos_util_bit.bitshift_left(7, 4)
+from dual;
+
+OOS_UTIL_BIT.BITSHIFT_LEFT(7,4)
+112
+
+-- In binary terms this converted 111 (7) to 1110000 (112)
+```
+
+
+### Properties
+Name | Description
+--- | ---
+Author | Anton Scheffer
+Created | 22-Sep-2016
+
+
+ 
+## BITSHIFT_RIGHT Function<a name="bitshift_right"></a>
+
+
+<p>
+<p>From <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Right_shift">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Right_shift</a>: <em>This operator shifts the first operand the specified number of bits to the right. Excess bits shifted off to the right are discarded. Copies of the leftmost bit are shifted in from the left. Since the new leftmost bit has the same value as the previous leftmost bit, the sign bit (the leftmost bit) does not change. Hence the name &quot;sign-propagating&quot;.</em></p>
+</p>
+
+### Syntax
+```plsql
+function bitshift_right(
+  p_x binary_integer,
+  p_y binary_integer)
+  return binary_integer
+  deterministic
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_x` | binary_integer
+`p_y` | binary_integer
+*return* | binary_integer
+ 
+ 
+
+
+### Example
+```plsql
+
+select oos_util_bit.bitshift_right(7, 1)
+from dual;
+
+OOS_UTIL_BIT.BITSHIFT_RIGHT(7,1)
+3
+
+-- In binary terms this converted 111 (7) to 011 (3)
+```
+
+
+### Properties
+Name | Description
+--- | ---
+Author | Anton Scheffer
+Created | 22-Sep-2016
 
 
  

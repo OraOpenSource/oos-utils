@@ -1,8 +1,22 @@
 # OOS_UTIL
 
+- [Data Types](#types)
+
 - [Constants](#constants)
+
+
+
 - [ASSERT Procedure](#assert)
 - [SLEEP Procedure](#sleep)
+
+## Types<a name="types"></a>
+
+Name | Code | Description
+--- | --- | ---
+tab_num | <pre>type tab_num is table of number;</pre> | `number` nested table
+tab_num_arr | <pre>type tab_num_arr is table of number index by pls_integer;</pre> | `number` associated array
+tab_vc2 | <pre>type tab_vc2 is table of varchar2(32767);</pre> | `varchar2` nested table
+tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_integer;</pre> | `varchar2` associated array
 
 
 
@@ -10,14 +24,18 @@
 
 Name | Code | Description
 --- | --- | ---
-gc_date_format | `gc_date_format constant varchar2(255) := 'YYYY-MM-DD HH24:MI:SS';` | default date format
-gc_timestamp_format | `gc_timestamp_format constant varchar2(255) := gc_date_format || ':FF';` | default timestamp format
-gc_timestamp_tz_format | `gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';` | default timestamp (with TZ) format
-gc_version_major | `gc_version_major constant pls_integer := 1;` | Version number major 1.0.0
-gc_version_minor | `gc_version_minor constant pls_integer := 0;` | Verison number minor 0.1.0
-gc_version_patch | `gc_version_patch constant pls_integer := 0;` | Version number patch 0.0.1
-gc_version | `gc_version constant varchar2(30) := gc_version_major || '.' || gc_version_minor || '.' || gc_version_patch;` | String represenation of MAJOR.MINOR.PATCH: Note documented version is just an example.
-gc_vals_cat_mime_type | `gc_vals_cat_mime_type constant oos_util_values.cat%type := 'mime-type';` | 
+gc_date_format | <pre>gc_date_format constant varchar2(255) := 'YYYY-MM-DD HH24:MI:SS';</pre> | default date format
+gc_timestamp_format | <pre>gc_timestamp_format constant varchar2(255) := gc_date_format || ':FF';</pre> | default timestamp format
+gc_timestamp_tz_format | <pre>gc_timestamp_tz_format constant varchar2(255) := gc_timestamp_format || ' TZR';</pre> | default timestamp (with TZ) format
+gc_version_major | <pre>gc_version_major constant pls_integer := 1;</pre> | Version number major 1.0.0
+gc_version_minor | <pre>gc_version_minor constant pls_integer := 0;</pre> | Verison number minor 0.1.0
+gc_version_patch | <pre>gc_version_patch constant pls_integer := 0;</pre> | Version number patch 0.0.1
+gc_version | <pre>gc_version constant varchar2(30) := gc_version_major || '.' || gc_version_minor || '.' || gc_version_patch;</pre> | String represenation of MAJOR.MINOR.PATCH: Note documented version is just an example.
+gc_vals_cat_mime_type | <pre>gc_vals_cat_mime_type constant oos_util_values.cat%type := 'mime-type';</pre> | 
+
+
+
+
 
 
  
@@ -64,6 +82,12 @@ PL/SQL: Statement ignored
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin D'Souza
+Created | 05-Sep-2015
+
 
  
 ## SLEEP Procedure<a name="sleep"></a>
@@ -109,6 +133,12 @@ end;
 26-APR-2016 14:29:07
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 31-Dec-2015
 
 
  

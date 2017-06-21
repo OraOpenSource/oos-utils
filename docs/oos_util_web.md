@@ -1,9 +1,15 @@
 # OOS_UTIL_WEB
 
+
 - [Constants](#constants)
+
+
+
 - [GET_MIME_TYPE Function](#get_mime_type)
 - [DOWNLOAD_FILE Procedure](#download_file)
-- [DOWNLOAD_FILE Procedure](#download_file)
+- [DOWNLOAD_FILE-1 Procedure](#download_file-1)
+
+
 
 
 
@@ -11,8 +17,12 @@
 
 Name | Code | Description
 --- | --- | ---
-gc_content_disposition_inline | `gc_content_disposition_inline constant varchar2(20) := 'inline';` | For downloading file and viewing inline
-gc_content_disposition_attach | `gc_content_disposition_attach constant varchar2(20) := 'attachment';` | For downloading file as attachment
+gc_content_disposition_inline | <pre>gc_content_disposition_inline constant varchar2(20) := 'inline';</pre> | For downloading file and viewing inline
+gc_content_disposition_attach | <pre>gc_content_disposition_attach constant varchar2(20) := 'attachment';</pre> | For downloading file as attachment
+
+
+
+
 
 
  
@@ -52,6 +62,12 @@ XLS                        TXT          SWF
 application/vnd.ms-excel   text/plain   application/x-shockwave-flash
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 28-Dec-2015
 
 
  
@@ -94,9 +110,15 @@ oos_util_web.download_file(
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 28-Dec-2015
+
 
  
-## DOWNLOAD_FILE Procedure<a name="download_file"></a>
+## DOWNLOAD_FILE-1 Procedure<a name="download_file-1"></a>
 
 
 <p>
@@ -135,6 +157,12 @@ oos_util_web.download_file(
   p_clob => l_file):
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 28-Dec-2015
 
 
  

@@ -1,37 +1,41 @@
 # OOS_UTIL_STRING
 
-- [Data Types](#types)
+
 - [Constants](#constants)
+
+
+
 - [TO_CHAR Function](#to_char)
-- [TO_CHAR Function](#to_char)
-- [TO_CHAR Function](#to_char)
-- [TO_CHAR Function](#to_char)
-- [TO_CHAR Function](#to_char)
-- [TO_CHAR Function](#to_char)
+- [TO_CHAR-1 Function](#to_char-1)
+- [TO_CHAR-2 Function](#to_char-2)
+- [TO_CHAR-3 Function](#to_char-3)
+- [TO_CHAR-4 Function](#to_char-4)
+- [TO_CHAR-5 Function](#to_char-5)
 - [TRUNCATE Function](#truncate)
 - [SPRINTF Function](#sprintf)
 - [STRING_TO_TABLE Function](#string_to_table)
-- [STRING_TO_TABLE Function](#string_to_table)
+- [STRING_TO_TABLE-1 Function](#string_to_table-1)
 - [LISTUNAGG Function](#listunagg)
-- [LISTUNAGG Function](#listunagg)
+- [LISTUNAGG-1 Function](#listunagg-1)
 - [REVERSE Function](#reverse)
 - [ORDINAL Function](#ordinal)
 
-## Types<a name="types"></a>
 
-Name | Code | Description
---- | --- | ---
-tab_vc2 | <pre>type tab_vc2 is table of varchar2(32767);</pre> | VC2 Nested table
-tab_vc2_arr | <pre>type tab_vc2_arr is table of varchar2(32767) index by pls_integer;</pre> | VC2 associated array
+
+
 
 ## Constants<a name="constants"></a>
 
 Name | Code | Description
 --- | --- | ---
-gc_default_delimiter | `gc_default_delimiter constant varchar2(1) := ',';` | Default delimiter for delimited strings
-gc_cr | `gc_cr constant varchar2(1) := chr(13);` | Carriage Return
-gc_lf | `gc_lf constant varchar2(1) := chr(10);` | Line Feed
-gc_crlf | `gc_crlf constant varchar2(2) := gc_cr || gc_lf;` | Use for new lines.
+gc_default_delimiter | <pre>gc_default_delimiter constant varchar2(1) := ',';</pre> | Default delimiter for delimited strings
+gc_cr | <pre>gc_cr constant varchar2(1) := chr(13);</pre> | Carriage Return
+gc_lf | <pre>gc_lf constant varchar2(1) := chr(10);</pre> | Line Feed
+gc_crlf | <pre>gc_crlf constant varchar2(2) := gc_cr || gc_lf;</pre> | Use for new lines.
+
+
+
+
 
 
  
@@ -73,9 +77,15 @@ OOS_UTIL_STRING.TO_CHAR(123)---
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin D'Souza
+Created | 07-Jun-2014
+
 
  
-## TO_CHAR Function<a name="to_char"></a>
+## TO_CHAR-1 Function<a name="to_char-1"></a>
 
 
 <p>
@@ -109,9 +119,15 @@ OOS_UTIL_STRING.TO_CHAR(SYSDATE)---
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | 
+Created | 
+
 
  
-## TO_CHAR Function<a name="to_char"></a>
+## TO_CHAR-2 Function<a name="to_char-2"></a>
 
 
 <p>
@@ -145,9 +161,15 @@ OOS_UTIL_STRING.TO_CHAR(SYSTIMESTAMP)---
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | 
+Created | 
+
 
  
-## TO_CHAR Function<a name="to_char"></a>
+## TO_CHAR-3 Function<a name="to_char-3"></a>
 
 
 <p>
@@ -177,9 +199,15 @@ TODO
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | 
+Created | 
+
 
  
-## TO_CHAR Function<a name="to_char"></a>
+## TO_CHAR-4 Function<a name="to_char-4"></a>
 
 
 <p>
@@ -208,9 +236,15 @@ TODO
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | 
+Created | 
+
 
  
-## TO_CHAR Function<a name="to_char"></a>
+## TO_CHAR-5 Function<a name="to_char-5"></a>
 
 
 <p>
@@ -246,6 +280,12 @@ TRUE
 FALSE
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | 
+Created | 
 
 
  
@@ -310,6 +350,12 @@ Identifies a work... Identifies a...
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin D'Souza
+Created | 05-Sep-2015
+
 
  
 ## SPRINTF Function<a name="sprintf"></a>
@@ -372,6 +418,12 @@ Lastname, Firstname
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin D'Souza
+Created | 15-Jun-2014
+
 
  
 ## STRING_TO_TABLE Function<a name="string_to_table"></a>
@@ -387,16 +439,16 @@ Lastname, Firstname
 ### Syntax
 ```plsql
 function string_to_table(
-  p_string in clob,
-  p_delimiter in varchar2 default gc_default_delimiter)
-  return tab_vc2_arr
+  p_str in clob,
+  p_delim in varchar2 default gc_default_delimiter)
+  return oos_util.tab_vc2_arr
 ```
 
 ### Parameters
 Name | Description
 --- | ---
-`p_string` | String containing delimited text
-`p_delimiter` | Delimiter
+`p_str` | String containing delimited text
+`p_delim` | Delimiter
 *return* | Array of string
  
  
@@ -406,9 +458,9 @@ Name | Description
 ```plsql
 declare
   l_str clob := 'abc,def,ghi';
-  l_arr oos_util_string.tab_vc2_arr;
+  l_arr oos_util_string.oos_util.tab_vc2_arr;
 begin
-  l_arr := oos_util_string.string_to_table(p_string => l_str);
+  l_arr := oos_util_string.string_to_table(p_str => l_str);
 
   for i in 1..l_arr.count loop
     dbms_output.put_line('i: ' || i || ' ' || l_arr(i));
@@ -422,28 +474,34 @@ i: 3 ghi
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 28-Dec-2015
+
 
  
-## STRING_TO_TABLE Function<a name="string_to_table"></a>
+## STRING_TO_TABLE-1 Function<a name="string_to_table-1"></a>
 
 
 <p>
-<p>See <code>string_to_table (p_string clob)</code> for notes</p>
+<p>See <code>string_to_table (p_str clob)</code> for notes</p>
 </p>
 
 ### Syntax
 ```plsql
 function string_to_table(
-  p_string in varchar2,
-  p_delimiter in varchar2 default gc_default_delimiter)
-  return tab_vc2_arr
+  p_str in varchar2,
+  p_delim in varchar2 default gc_default_delimiter)
+  return oos_util.tab_vc2_arr
 ```
 
 ### Parameters
 Name | Description
 --- | ---
-`p_string` | String containing delimited text
-`p_delimiter` | Delimiter
+`p_str` | String containing delimited text
+`p_delim` | Delimiter
 *return* | Array of string
  
  
@@ -454,6 +512,12 @@ Name | Description
 -- See previous example
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 28-Dec-2015
 
 
  
@@ -470,16 +534,16 @@ Name | Description
 ### Syntax
 ```plsql
 function listunagg(
-  p_string in varchar2,
-  p_delimiter in varchar2 default gc_default_delimiter)
-  return tab_vc2 pipelined
+  p_str in varchar2,
+  p_delim in varchar2 default gc_default_delimiter)
+  return oos_util.tab_vc2 pipelined
 ```
 
 ### Parameters
 Name | Description
 --- | ---
-`p_string` | String containing delimited text
-`p_delimiter` | Delimiter
+`p_str` | String containing delimited text
+`p_delim` | Delimiter
 *return* | pipelined table
  
  
@@ -497,9 +561,15 @@ Name | Description
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 28-Dec-2015
+
 
  
-## LISTUNAGG Function<a name="listunagg"></a>
+## LISTUNAGG-1 Function<a name="listunagg-1"></a>
 
 
 <p>
@@ -509,16 +579,16 @@ Name | Description
 ### Syntax
 ```plsql
 function listunagg(
-  p_string in clob,
-  p_delimiter in varchar2 default gc_default_delimiter)
-  return tab_vc2 pipelined
+  p_str in clob,
+  p_delim in varchar2 default gc_default_delimiter)
+  return oos_util.tab_vc2 pipelined
 ```
 
 ### Parameters
 Name | Description
 --- | ---
-`p_string` | String (clob) containing delimited text
-`p_delimiter` | Delimiter
+`p_str` | String (clob) containing delimited text
+`p_delim` | Delimiter
 *return* | pipelined table
  
  
@@ -529,6 +599,12 @@ Name | Description
 See previous example
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 28-Dec-2015
 
 
  
@@ -542,14 +618,14 @@ See previous example
 ### Syntax
 ```plsql
 function reverse(
-  p_string in varchar2)
+  p_str in varchar2)
   return varchar2
 ```
 
 ### Parameters
 Name | Description
 --- | ---
-`p_string` | String
+`p_str` | String
 *return* | String
  
  
@@ -565,6 +641,12 @@ end;
 ecruoSnepOarO
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Tim Nanos
+Created | 31-Mar-2016
 
 
  
@@ -605,6 +687,12 @@ end;
 /
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Trent Schafer
+Created | 1-Aug-2016
 
 
  

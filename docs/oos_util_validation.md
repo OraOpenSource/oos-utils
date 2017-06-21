@@ -1,7 +1,17 @@
 # OOS_UTIL_VALIDATION
 
+
+
+
+
 - [IS_NUMBER Function](#is_number)
 - [IS_DATE Function](#is_date)
+
+
+
+
+
+
 
 
 
@@ -45,6 +55,12 @@ FALSE
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Trent Schafer
+Created | 05-Sep-2015
+
 
  
 ## IS_DATE Function<a name="is_date"></a>
@@ -87,6 +103,12 @@ TRUE
 FALSE
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Martin D'Souza
+Created | 05-Sep-2015
 
 
  

@@ -1,5 +1,9 @@
 # OOS_UTIL_APEX
 
+
+
+
+
 - [IS_DEVELOPER Function](#is_developer)
 - [IS_DEVELOPER_YN Function](#is_developer_yn)
 - [IS_SESSION_VALID Function](#is_session_valid)
@@ -8,6 +12,12 @@
 - [JOIN_SESSION Procedure](#join_session)
 - [TRIM_PAGE_ITEMS Procedure](#trim_page_items)
 - [IS_PAGE_ITEM_RENDERED Function](#is_page_item_rendered)
+
+
+
+
+
+
 
 
 
@@ -48,6 +58,12 @@ end;
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 29-Dec-2015
+
 
  
 ## IS_DEVELOPER_YN Function<a name="is_developer_yn"></a>
@@ -82,6 +98,12 @@ begin
 end;
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 29-Dec-2015
 
 
  
@@ -121,6 +143,12 @@ end;
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 29-Dec-2015
+
 
  
 ## IS_SESSION_VALID_YN Function<a name="is_session_valid_yn"></a>
@@ -159,6 +187,12 @@ end;
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 29-Dec-2015
+
 
  
 ## CREATE_SESSION Procedure<a name="create_session"></a>
@@ -169,6 +203,12 @@ end;
 <li>Content taken from:<ul>
 <li><a href="http://www.talkapex.com/2012/08/how-to-create-apex-session-in-plsql.html">http://www.talkapex.com/2012/08/how-to-create-apex-session-in-plsql.html</a></li>
 <li><a href="http://apextips.blogspot.com.au/2014/10/debugging-parameterised-views-outside.html">http://apextips.blogspot.com.au/2014/10/debugging-parameterised-views-outside.html</a></li>
+</ul>
+</li>
+<li>Known Issues:<ul>
+<li><a href="https://github.com/OraOpenSource/oos-utils/issues/118">#118</a></li>
+<li><a href="https://github.com/OraOpenSource/oos-utils/issues/132">#132</a></li>
+<li><a href="https://github.com/OraOpenSource/oos-utils/issues/49">#49</a></li>
 </ul>
 </li>
 </ul>
@@ -208,13 +248,22 @@ end;
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 29-Dec-2015
+
 
  
 ## JOIN_SESSION Procedure<a name="join_session"></a>
 
 
 <p>
-<p>Join an existing APEX session</p><p>Notes:</p><ul>
+<p>Join an existing APEX session.<br />Note they&#39;re some known issues with this procedure right now:</p><ul>
+<li><a href="https://github.com/OraOpenSource/oos-utils/issues/88">#88</a></li>
+</ul>
+<p>Notes:</p><ul>
 <li><code>v(&#39;P1_X&#39;)</code> won&#39;t work. Use <code>apex_util.get_session_state(&#39;P1_X&#39;)</code> instead</li>
 </ul>
 
@@ -247,6 +296,12 @@ begin
 end;
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 29-Dec-2015
 
 
  
@@ -287,6 +342,12 @@ end;
 ```
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 31-Dec-2015
+
 
  
 ## IS_PAGE_ITEM_RENDERED Function<a name="is_page_item_rendered"></a>
@@ -325,6 +386,12 @@ begin
 end;
 ```
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Daniel Hochleitner
+Created | 06-Mar-2016
 
 
  

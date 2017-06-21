@@ -1,14 +1,20 @@
 # OOS_UTIL_LOB
 
+
 - [Constants](#constants)
+
+
+
 - [CLOB2BLOB Function](#clob2blob)
 - [BLOB2CLOB Function](#blob2clob)
 - [GET_FILE_SIZE Function](#get_file_size)
 - [GET_LOB_SIZE Function](#get_lob_size)
-- [GET_LOB_SIZE Function](#get_lob_size)
+- [GET_LOB_SIZE-1 Function](#get_lob_size-1)
 - [REPLACE_CLOB Function](#replace_clob)
 - [WRITE_FILE Procedure](#write_file)
 - [READ_FILE Function](#read_file)
+
+
 
 
 
@@ -16,24 +22,28 @@
 
 Name | Code | Description
 --- | --- | ---
-gc_unit_b | `gc_unit_b constant varchar2(1) := 'B';` | B
-gc_unit_kb | `gc_unit_kb constant varchar2(2) := 'KB';` | KB
-gc_unit_mb | `gc_unit_mb constant varchar2(2) := 'MB';` | MB
-gc_unit_gb | `gc_unit_gb constant varchar2(2) := 'GB';` | GB
-gc_unit_tb | `gc_unit_tb constant varchar2(2) := 'TB';` | TB
-gc_unit_pb | `gc_unit_pb constant varchar2(2) := 'PB';` | PB
-gc_unit_eb | `gc_unit_eb constant varchar2(2) := 'EB';` | EB
-gc_unit_zb | `gc_unit_zb constant varchar2(2) := 'ZB';` | ZB
-gc_unit_yb | `gc_unit_yb constant varchar2(2) := 'YB';` | YB
-gc_size_b | `gc_size_b constant number := 1024;` | 
-gc_size_kb | `gc_size_kb constant number := power(1024, 2);` | 
-gc_size_mb | `gc_size_mb constant number := power(1024, 3);` | 
-gc_size_gb | `gc_size_gb constant number := power(1024, 4);` | 
-gc_size_tb | `gc_size_tb constant number := power(1024, 5);` | 
-gc_size_pb | `gc_size_pb constant number := power(1024, 6);` | 
-gc_size_eb | `gc_size_eb constant number := power(1024, 7);` | 
-gc_size_zb | `gc_size_zb constant number := power(1024, 8);` | 
-gc_size_yb | `gc_size_yb constant number := power(1024, 9);` | 
+gc_unit_b | <pre>gc_unit_b constant varchar2(1) := 'B';</pre> | B
+gc_unit_kb | <pre>gc_unit_kb constant varchar2(2) := 'KB';</pre> | KB
+gc_unit_mb | <pre>gc_unit_mb constant varchar2(2) := 'MB';</pre> | MB
+gc_unit_gb | <pre>gc_unit_gb constant varchar2(2) := 'GB';</pre> | GB
+gc_unit_tb | <pre>gc_unit_tb constant varchar2(2) := 'TB';</pre> | TB
+gc_unit_pb | <pre>gc_unit_pb constant varchar2(2) := 'PB';</pre> | PB
+gc_unit_eb | <pre>gc_unit_eb constant varchar2(2) := 'EB';</pre> | EB
+gc_unit_zb | <pre>gc_unit_zb constant varchar2(2) := 'ZB';</pre> | ZB
+gc_unit_yb | <pre>gc_unit_yb constant varchar2(2) := 'YB';</pre> | YB
+gc_size_b | <pre>gc_size_b constant number := 1024;</pre> | 
+gc_size_kb | <pre>gc_size_kb constant number := power(1024, 2);</pre> | 
+gc_size_mb | <pre>gc_size_mb constant number := power(1024, 3);</pre> | 
+gc_size_gb | <pre>gc_size_gb constant number := power(1024, 4);</pre> | 
+gc_size_tb | <pre>gc_size_tb constant number := power(1024, 5);</pre> | 
+gc_size_pb | <pre>gc_size_pb constant number := power(1024, 6);</pre> | 
+gc_size_eb | <pre>gc_size_eb constant number := power(1024, 7);</pre> | 
+gc_size_zb | <pre>gc_size_zb constant number := power(1024, 8);</pre> | 
+gc_size_yb | <pre>gc_size_yb constant number := power(1024, 9);</pre> | 
+
+
+
+
 
 
  
@@ -61,6 +71,12 @@ Name | Description
 
 
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Moritz Klein (https://github.com/commi235)
+Created | 07-Sep-2015
 
 
  
@@ -92,6 +108,12 @@ Name | Description
 
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin D'Souza
+Created | 02-Mar-2014
+
 
  
 ## GET_FILE_SIZE Function<a name="get_file_size"></a>
@@ -121,6 +143,12 @@ Name | Description
 
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin D'Souza
+Created | 07-Sep-2015
+
 
  
 ## GET_LOB_SIZE Function<a name="get_lob_size"></a>
@@ -149,9 +177,15 @@ Name | Description
 
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin D'Souza
+Created | 07-Sep-2015
+
 
  
-## GET_LOB_SIZE Function<a name="get_lob_size"></a>
+## GET_LOB_SIZE-1 Function<a name="get_lob_size-1"></a>
 
 
 <p>
@@ -176,6 +210,12 @@ Name | Description
 
 
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Martin D'Souza
+Created | 07-Sep-2015
 
 
  
@@ -211,6 +251,12 @@ Name | Description
 
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Martin Giffy D'Souza
+Created | 29-Dec-2015
+
 
  
 ## WRITE_FILE Procedure<a name="write_file"></a>
@@ -240,6 +286,12 @@ Name | Description
 
 
 
+### Properties
+Name | Description
+--- | ---
+Author | Jani Hur <webmaster@jani-hur.net>
+Created | 05-Apr-2016
+
 
  
 ## READ_FILE Function<a name="read_file"></a>
@@ -268,6 +320,12 @@ Name | Description
 
 
 
+
+### Properties
+Name | Description
+--- | ---
+Author | Jani Hur <webmaster@jani-hur.net>
+Created | 05-Apr-2016
 
 
  
