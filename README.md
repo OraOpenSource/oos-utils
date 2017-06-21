@@ -13,6 +13,7 @@ NOTE: OOS Utils is currently in Beta. **Do not install in production.**s
 
 ## Install
 
+[Download](TODO)
 Go to the [Install](/install) folder for instructions and installation file(s).
 
 ## Development
