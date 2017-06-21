@@ -204,11 +204,16 @@ as
       , '0'
     );
 
-    -- TODO mdsouza: iuse oos_util crypt
-    l_rhmac := dbms_crypto.mac(
-      src => hextoraw(l_szepoch)
-      , typ => dbms_crypto.hmac_sh1
-      , key => hextoraw(l_sztmp)
+    -- Original code
+    -- l_rhmac := dbms_crypto.mac(
+    --   src => hextoraw(l_szepoch)
+    --   , typ => dbms_crypto.hmac_sh1
+    --   , key => hextoraw(l_sztmp)
+    -- );
+    l_rhmac := oos_util_crypto.mac(
+      p_src => hextoraw(l_szepoch)
+      , p_typ => oos_util_crypto.gc_hash_sh256
+      , p_key => hextoraw(l_sztmp)
     );
 
     l_noffset := to_number(substr(rawtohex(l_rhmac), -1, 1), 'x');
