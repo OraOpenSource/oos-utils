@@ -9,7 +9,7 @@ The install script acts both as a install and an upgrade script.
 To install OOS Utils run the following in sql*plus:
 
 ```sql
-@oos_util_install.sql
+@oos_utils_install.sql
 ```
 
 ## Uninstall
@@ -17,7 +17,7 @@ To install OOS Utils run the following in sql*plus:
 To uninstall OOS Utils run the following in sql*plus:
 
 ```sql
-@oos_util_uninstall.sql
+@oos_utils_uninstall.sql
 ```
 
 ## Objects
