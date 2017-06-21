@@ -71,6 +71,8 @@ var functions = {
             deleteElements('audio/wave', extensions[ext]);
           case 3:
             deleteElements('image/', extensions[ext]);
+          case 4:
+            deleteElements('audio/', extensions[ext]);
         }//switch
 
         j++;
