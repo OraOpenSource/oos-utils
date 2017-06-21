@@ -66,27 +66,27 @@ as
     return varchar2;
 
   function string_to_table(
-    p_string in clob,
-    p_delimiter in varchar2 default gc_default_delimiter)
+    p_str in clob,
+    p_delim in varchar2 default gc_default_delimiter)
     return oos_util.tab_vc2_arr;
 
   function string_to_table(
-    p_string in varchar2,
-    p_delimiter in varchar2 default gc_default_delimiter)
+    p_str in varchar2,
+    p_delim in varchar2 default gc_default_delimiter)
     return oos_util.tab_vc2_arr;
 
   function listunagg(
-    p_string in varchar2,
-    p_delimiter in varchar2 default gc_default_delimiter)
+    p_str in varchar2,
+    p_delim in varchar2 default gc_default_delimiter)
     return oos_util.tab_vc2 pipelined;
 
   function listunagg(
-    p_string in clob,
-    p_delimiter in varchar2 default gc_default_delimiter)
+    p_str in clob,
+    p_delim in varchar2 default gc_default_delimiter)
     return oos_util.tab_vc2 pipelined;
 
   function reverse(
-    p_string in varchar2)
+    p_str in varchar2)
     return varchar2;
 
   function ordinal(

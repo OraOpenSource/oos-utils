@@ -346,7 +346,7 @@ as
    *   l_str clob := 'abc,def,ghi';
    *   l_arr oos_util_string.oos_util.tab_vc2_arr;
    * begin
-   *   l_arr := oos_util_string.string_to_table(p_string => l_str);
+   *   l_arr := oos_util_string.string_to_table(p_str => l_str);
    *
    *   for i in 1..l_arr.count loop
    *     dbms_output.put_line('i: ' || i || ' ' || l_arr(i));
@@ -360,47 +360,47 @@ as
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
-   * @param p_string String containing delimited text
-   * @param p_delimiter Delimiter
+   * @param p_str String containing delimited text
+   * @param p_delim Delimiter
    * @return Array of string
    */
   function string_to_table(
-    p_string in clob,
-    p_delimiter in varchar2 default gc_default_delimiter)
+    p_str in clob,
+    p_delim in varchar2 default gc_default_delimiter)
     return oos_util.tab_vc2_arr
   is
     l_last_pos pls_integer;
     l_pos pls_integer;
 
     l_return oos_util.tab_vc2_arr;
-    l_delimiter_len pls_integer := length(p_delimiter);
+    l_delimiter_len pls_integer := length(p_delim);
 
   begin
 
-    if p_string is not null then
+    if p_str is not null then
       l_last_pos := 1 - l_delimiter_len; -- If the delimeter length = 1 (most cases) this should be 0. If not need to move back "n" chars
       l_pos := 0;
 
       while true loop
         l_pos := l_pos + 1;
-        l_pos := dbms_lob.instr(p_string, p_delimiter, l_pos, 1);
+        l_pos := dbms_lob.instr(p_str, p_delim, l_pos, 1);
 
         if l_pos = 0 then
-          l_return(l_return.count + 1) := substr(p_string, l_last_pos + l_delimiter_len); -- Get everything to the end.
+          l_return(l_return.count + 1) := substr(p_str, l_last_pos + l_delimiter_len); -- Get everything to the end.
           exit;
         else
-          l_return(l_return.count + 1) := dbms_lob.substr(p_string, l_pos - (l_last_pos+l_delimiter_len), l_last_pos + l_delimiter_len);
+          l_return(l_return.count + 1) := dbms_lob.substr(p_str, l_pos - (l_last_pos+l_delimiter_len), l_last_pos + l_delimiter_len);
         end if; -- l_pos = 0
 
         l_last_pos := l_pos;
       end loop;
-    end if; -- p_string is not null
+    end if; -- p_str is not null
 
     return l_return;
   end string_to_table;
 
   /**
-   * See `string_to_table (p_string clob)` for notes
+   * See `string_to_table (p_str clob)` for notes
    *
    * @issue  #32
    *
@@ -409,20 +409,20 @@ as
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
-   * @param p_string String containing delimited text
-   * @param p_delimiter Delimiter
+   * @param p_str String containing delimited text
+   * @param p_delim Delimiter
    * @return Array of string
    */
   function string_to_table(
-    p_string in varchar2,
-    p_delimiter in varchar2 default gc_default_delimiter)
+    p_str in varchar2,
+    p_delim in varchar2 default gc_default_delimiter)
     return oos_util.tab_vc2_arr
   is
     l_clob clob;
     l_return oos_util.tab_vc2_arr;
   begin
-    l_clob := p_string;
-    return string_to_table(p_string => l_clob, p_delimiter => p_delimiter);
+    l_clob := p_str;
+    return string_to_table(p_str => l_clob, p_delim => p_delim);
   end string_to_table;
 
 
@@ -445,18 +445,18 @@ as
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
-   * @param p_string String containing delimited text
-   * @param p_delimiter Delimiter
+   * @param p_str String containing delimited text
+   * @param p_delim Delimiter
    * @return pipelined table
    */
   function listunagg(
-    p_string in varchar2,
-    p_delimiter in varchar2 default gc_default_delimiter)
+    p_str in varchar2,
+    p_delim in varchar2 default gc_default_delimiter)
     return oos_util.tab_vc2 pipelined
   is
     l_arr oos_util.tab_vc2_arr;
   begin
-    l_arr := string_to_table(p_string => p_string, p_delimiter => p_delimiter);
+    l_arr := string_to_table(p_str => p_str, p_delim => p_delim);
 
     for i in 1 .. l_arr.count loop
       pipe row (l_arr(i));
@@ -474,18 +474,18 @@ as
    *
    * @author Martin Giffy D'Souza
    * @created 28-Dec-2015
-   * @param p_string String (clob) containing delimited text
-   * @param p_delimiter Delimiter
+   * @param p_str String (clob) containing delimited text
+   * @param p_delim Delimiter
    * @return pipelined table
    */
   function listunagg(
-    p_string in clob,
-    p_delimiter in varchar2 default gc_default_delimiter)
+    p_str in clob,
+    p_delim in varchar2 default gc_default_delimiter)
     return oos_util.tab_vc2 pipelined
   is
     l_arr oos_util.tab_vc2_arr;
   begin
-    l_arr := string_to_table(p_string => p_string, p_delimiter => p_delimiter);
+    l_arr := string_to_table(p_str => p_str, p_delim => p_delim);
 
     for i in 1 .. l_arr.count loop
       pipe row (l_arr(i));
@@ -508,18 +508,18 @@ as
    *
    * @author Tim Nanos
    * @created 31-Mar-2016
-   * @param p_string String
+   * @param p_str String
    * @return String
    */
   function reverse(
-    p_string in varchar2)
+    p_str in varchar2)
     return varchar2
   is
     l_string varchar2(32767);
   begin
-    if p_string is not null then
-      for i in 1..length(p_string) loop
-        l_string := substr(p_string, i, 1) || l_string;
+    if p_str is not null then
+      for i in 1..length(p_str) loop
+        l_string := substr(p_str, i, 1) || l_string;
       end loop;
     end if;
 
