@@ -1015,14 +1015,14 @@ as
     end;
 
     /**
-     * Generates hash functions
-     *
+     * Generates hash with raw values
+     * See `oos_util_crypto.hash_str` to handle wrapping
      *
      * @example
      * select
      *   rawtohex(
      *     oos_util_crypto.hash(
-     *       p_src => utl_raw.cast_to_raw('hello'),
+     *       p_src => sys.utl_raw.cast_to_raw('hello'),
      *       p_typ => 4 -- oos_util_crypto.gc_hash_sh256
      *     )
      *   ) example
@@ -1032,6 +1032,8 @@ as
      * EXAMPLE
      * 2CF24DBA5FB0A30E26E83B2AC5B9E29E1B161E5C1FA7425E73043362938B9824
      *
+     * @author Aton Scheffer
+     * @created 4-Oct-2016
      * @param p_src
      * @param p_typ see `oos_util_crypto.gc_hash*` variables
      * @return
@@ -1054,18 +1056,81 @@ as
              end;
     end;
 
-  --
-    function mac( src raw, typ pls_integer, key raw )
+    /**
+     * Generates hash
+     *
+     *
+     * @example
+     * select
+     *   oos_util_crypto.hash_str(
+     *     p_src => 'hello',
+     *     p_typ => 4 -- oos_util_crypto.gc_hash_md5
+     *   ) example
+     * from dual
+     * ;
+     *
+     * EXAMPLE
+     * 2CF24DBA5FB0A30E26E83B2AC5B9E29E1B161E5C1FA7425E73043362938B9824
+     *
+     * @author Martin D'Souza
+     * @created 19-Jun-2017
+     * @param p_src
+     * @param p_typ see `oos_util_crypto.gc_hash*` variables
+     * @return Hex hashed value as a string
+     */
+    function hash_str(
+      p_src varchar2,
+      p_typ pls_integer)
+      return varchar2
+    as
+    begin
+      return rawtohex(
+        hash(
+          p_src => sys.utl_raw.cast_to_raw(p_src),
+          p_typ => p_typ)
+        );
+    end hash_str;
+
+    /**
+     * Generates mac
+     * Note: see mac_str for string inputs
+     *
+     * @example
+     * select
+     *   rawtohex(
+     *     oos_util_crypto.mac(
+     *       p_src => utl_raw.cast_to_raw('hello'),
+     *       p_typ => 3, -- oos_util_crypto.gc_hmac_sh256
+     *       p_key => utl_raw.cast_to_raw('abc')
+     *     )
+     *   ) example
+     * from dual
+     * ;
+     *
+     * EXAMPLE
+     * F3166A3A404599D2046ED2AAE479B37D54B51D2E85259C9E314042753BE7D813
+     *
+     * @author Aton Scheffer
+     * @created 4-Oct-2016
+     * @param p_src
+     * @param p_typ see `oos_util_crypto.gc_hmac*` variables
+     * @param p_key secret key
+     * @return
+     */
+    function mac(
+      p_src raw,
+      p_typ pls_integer,
+      p_key raw )
     return raw
     is
       t_key raw(128);
       t_len pls_integer;
       t_blocksize pls_integer := case
-                                   when typ in ( gc_HMAC_SH384, gc_HMAC_SH512 )
+                                   when p_typ in ( gc_HMAC_SH384, gc_HMAC_SH512 )
                                      then 128
                                      else 64
                                  end;
-      t_typ pls_integer := case typ
+      t_typ pls_integer := case p_typ
                              when gc_hmac_md4       then gc_hash_md4
                              when gc_hmac_md5       then gc_hash_md5
                              when gc_hmac_sh1       then gc_hash_sh1
@@ -1076,13 +1141,13 @@ as
                              when gc_hmac_ripemd160 then gc_hash_ripemd160
                            end;
     begin
-      t_len := utl_raw.length( key );
+      t_len := utl_raw.length( p_key );
       if t_len > t_blocksize
       then
-        t_key := hash( key, t_typ );
+        t_key := hash( p_key, t_typ );
         t_len := utl_raw.length( t_key );
       else
-        t_key := key;
+        t_key := p_key;
       end if;
       if t_len < t_blocksize
       then
@@ -1093,7 +1158,7 @@ as
       end if;
       return hash( utl_raw.concat( utl_raw.bit_xor( utl_raw.copies( hextoraw( '5c' ), t_blocksize ), t_key )
                                  , hash( utl_raw.concat( utl_raw.bit_xor( utl_raw.copies( hextoraw( '36' ), t_blocksize ), t_key )
-                                                       , src
+                                                       , p_src
                                                        )
                                        , t_typ
                                        )
@@ -1101,6 +1166,49 @@ as
                  , t_typ
                  );
     end;
+
+
+    /**
+     * Generates mac with string input / output
+     *
+     *
+     * @example
+     * select
+     *   oos_util_crypto.mac_str(
+     *     p_src => 'hello'',
+     *     p_typ => 3, -- oos_util_crypto.gc_hmac_sh256
+     *     p_key => 'abc'
+     *   ) example
+     * from dual
+     * ;
+     *
+     * EXAMPLE
+     * F3166A3A404599D2046ED2AAE479B37D54B51D2E85259C9E314042753BE7D813
+     *
+     * @author Martin D'Souza
+     * @created 19-Jun-2017
+     * @param p_src
+     * @param p_typ see `oos_util_crypto.gc_hmac*` variables
+     * @param p_key secret key
+     * @return mac hex value as varchar2
+     */
+    function mac_str(
+      p_src varchar2,
+      p_typ pls_integer,
+      p_key varchar2 )
+      return varchar2
+    as
+    begin
+      return
+        rawtohex(
+          oos_util_crypto.mac(
+            p_src => utl_raw.cast_to_raw(p_src),
+            p_typ => p_typ,
+            p_key => utl_raw.cast_to_raw(p_key)
+         )
+       );
+    end mac_str;
+
   --
     function randombytes( number_bytes positive )
     return raw
