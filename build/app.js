@@ -52,14 +52,14 @@ fn.appendFile(config.files.install,'prompt *** Installing OOS_UTILS ***\n\n\n');
 fn.appendFile(config.files.install,'prompt *** TABLES ***\n');
 
 for (table in config.objects.tables){
-  fn.appendFile(files.install, 'prompt ' + table + '\n');
+  fn.appendFile(files.install, `prompt ${table}\n`);
   fn.appendFile(files.install, fn.readFile(config.objects.tables[table].src));
 }//tables
 
 fn.appendFile(config.files.install,'prompt *** PACKAGES ***\n');
 var packageSpecContent;
 for (package in config.objects.packages){
-  fn.appendFile(config.files.install,'prompt ' + package);
+  fn.appendFile(config.files.install, `prompt ${package}`);
 
   packageSpecContent = fn.readFile(config.objects.packages[package].pks);
   // #58 update version numbers
@@ -97,8 +97,8 @@ for (table in config.objects.tables){
 
 fn.appendFile(config.files.uninstall,'\n\nprompt *** PACKAGES ***\n');
 for (package in config.objects.packages){
-  fn.appendFile(files.uninstall, 'prompt ' + package);
-  fn.appendFile(files.uninstall, 'drop package ' + package + ';\n');
+  fn.appendFile(files.uninstall, `prompt ${package}`);
+  fn.appendFile(files.uninstall, `drop package ${package};\n`);
 }//packages
 
 // Generate Documentation
