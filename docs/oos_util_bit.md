@@ -61,12 +61,6 @@ OOS_UTIL_BIT.BITAND(1,3)
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Jani Hur <webmaster@jani-hur.net>
-Created | 11-Apr-2016
-
 
  
 ## BITOR Function<a name="bitor"></a>
@@ -106,12 +100,6 @@ OOS_UTIL_BIT.BITOR(1,3)
                       3
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Jani Hur <webmaster@jani-hur.net>
-Created | 06-Apr-2016
 
 
  
@@ -153,12 +141,6 @@ OOS_UTIL_BIT.BITXOR(1,3)
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Jani Hur <webmaster@jani-hur.net>
-Created | 06-Apr-2016
-
 
  
 ## BITNOT Function<a name="bitnot"></a>
@@ -196,12 +178,6 @@ OOS_UTIL_BIT.BITNOT(7)
                     -8
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Jani Hur <webmaster@jani-hur.net>
-Created | 06-Apr-2016
 
 
  
@@ -244,12 +220,6 @@ OOS_UTIL_BIT.BITSHIFT_LEFT(7,4)
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Anton Scheffer
-Created | 22-Sep-2016
-
 
  
 ## BITSHIFT_RIGHT Function<a name="bitshift_right"></a>
@@ -290,12 +260,6 @@ OOS_UTIL_BIT.BITSHIFT_RIGHT(7,1)
 -- In binary terms this converted 111 (7) to 011 (3)
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Anton Scheffer
-Created | 22-Sep-2016
 
 
  

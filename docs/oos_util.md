@@ -82,12 +82,6 @@ PL/SQL: Statement ignored
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 05-Sep-2015
-
 
  
 ## SLEEP Procedure<a name="sleep"></a>
@@ -133,12 +127,6 @@ end;
 26-APR-2016 14:29:07
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 31-Dec-2015
 
 
  

@@ -63,12 +63,6 @@ application/vnd.ms-excel   text/plain   application/x-shockwave-flash
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 28-Dec-2015
-
 
  
 ## DOWNLOAD_FILE Procedure<a name="download_file"></a>
@@ -109,12 +103,6 @@ oos_util_web.download_file(
   p_blob => l_file):
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 28-Dec-2015
 
 
  
@@ -157,12 +145,6 @@ oos_util_web.download_file(
   p_clob => l_file):
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 28-Dec-2015
 
 
  

@@ -77,12 +77,6 @@ OOS_UTIL_STRING.TO_CHAR(123)---
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 07-Jun-2014
-
 
  
 ## TO_CHAR-1 Function<a name="to_char-1"></a>
@@ -118,12 +112,6 @@ OOS_UTIL_STRING.TO_CHAR(SYSDATE)---
 26-APR-2016 13:57:51
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | 
-Created | 
 
 
  
@@ -161,12 +149,6 @@ OOS_UTIL_STRING.TO_CHAR(SYSTIMESTAMP)---
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | 
-Created | 
-
 
  
 ## TO_CHAR-3 Function<a name="to_char-3"></a>
@@ -199,12 +181,6 @@ TODO
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | 
-Created | 
-
 
  
 ## TO_CHAR-4 Function<a name="to_char-4"></a>
@@ -235,12 +211,6 @@ Name | Description
 TODO
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | 
-Created | 
 
 
  
@@ -280,12 +250,6 @@ TRUE
 FALSE
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | 
-Created | 
 
 
  
@@ -350,12 +314,6 @@ Identifies a work... Identifies a...
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 05-Sep-2015
-
 
  
 ## SPRINTF Function<a name="sprintf"></a>
@@ -418,12 +376,6 @@ Lastname, Firstname
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 15-Jun-2014
-
 
  
 ## STRING_TO_TABLE Function<a name="string_to_table"></a>
@@ -474,12 +426,6 @@ i: 3 ghi
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 28-Dec-2015
-
 
  
 ## STRING_TO_TABLE-1 Function<a name="string_to_table-1"></a>
@@ -512,12 +458,6 @@ Name | Description
 -- See previous example
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 28-Dec-2015
 
 
  
@@ -561,12 +501,6 @@ Name | Description
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 28-Dec-2015
-
 
  
 ## LISTUNAGG-1 Function<a name="listunagg-1"></a>
@@ -599,12 +533,6 @@ Name | Description
 See previous example
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 28-Dec-2015
 
 
  
@@ -641,12 +569,6 @@ end;
 ecruoSnepOarO
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Tim Nanos
-Created | 31-Mar-2016
 
 
  
@@ -687,12 +609,6 @@ end;
 /
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Trent Schafer
-Created | 1-Aug-2016
 
 
  

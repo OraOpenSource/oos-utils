@@ -29,22 +29,22 @@ gc_unit_pb | <pre>gc_unit_pb constant varchar2(2) := 'PB';</pre> | PB
 gc_unit_eb | <pre>gc_unit_eb constant varchar2(2) := 'EB';</pre> | EB
 gc_unit_zb | <pre>gc_unit_zb constant varchar2(2) := 'ZB';</pre> | ZB
 gc_unit_yb | <pre>gc_unit_yb constant varchar2(2) := 'YB';</pre> | YB
-gc_size_b | <pre>gc_size_b constant number := 1024;</pre> |
-gc_size_kb | <pre>gc_size_kb constant number := power(1024, 2);</pre> |
-gc_size_mb | <pre>gc_size_mb constant number := power(1024, 3);</pre> |
-gc_size_gb | <pre>gc_size_gb constant number := power(1024, 4);</pre> |
-gc_size_tb | <pre>gc_size_tb constant number := power(1024, 5);</pre> |
-gc_size_pb | <pre>gc_size_pb constant number := power(1024, 6);</pre> |
-gc_size_eb | <pre>gc_size_eb constant number := power(1024, 7);</pre> |
-gc_size_zb | <pre>gc_size_zb constant number := power(1024, 8);</pre> |
-gc_size_yb | <pre>gc_size_yb constant number := power(1024, 9);</pre> |
+gc_size_b | <pre>gc_size_b constant number := 1024;</pre> | 
+gc_size_kb | <pre>gc_size_kb constant number := power(1024, 2);</pre> | 
+gc_size_mb | <pre>gc_size_mb constant number := power(1024, 3);</pre> | 
+gc_size_gb | <pre>gc_size_gb constant number := power(1024, 4);</pre> | 
+gc_size_tb | <pre>gc_size_tb constant number := power(1024, 5);</pre> | 
+gc_size_pb | <pre>gc_size_pb constant number := power(1024, 6);</pre> | 
+gc_size_eb | <pre>gc_size_eb constant number := power(1024, 7);</pre> | 
+gc_size_zb | <pre>gc_size_zb constant number := power(1024, 8);</pre> | 
+gc_size_yb | <pre>gc_size_yb constant number := power(1024, 9);</pre> | 
 
 
 
 
 
 
-
+ 
 ## CLOB2BLOB Function<a name="clob2blob"></a>
 
 
@@ -64,20 +64,14 @@ Name | Description
 --- | ---
 `p_clob` | Clob to conver to blob
 *return* | blob
+ 
+ 
 
 
 
 
 
-
-### Properties
-Name | Description
---- | ---
-Author | Moritz Klein (https://github.com/commi235)
-Created | 07-Sep-2015
-
-
-
+ 
 ## BLOB2CLOB Function<a name="blob2clob"></a>
 
 
@@ -100,20 +94,14 @@ Name | Description
 --- | ---
 `p_blob` | blob to be converted to clob
 *return* | clob
+ 
+ 
 
 
 
 
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 02-Mar-2014
-
-
-
+ 
 ## GET_FILE_SIZE Function<a name="get_file_size"></a>
 
 
@@ -135,20 +123,14 @@ Name | Description
 `p_file_size` | size of file in bytes
 `p_units` | See <code>gc_size_...</code> consants for options. If not provided, most significant one automatically chosen.
 *return* | Human readable file size
+ 
+ 
 
 
 
 
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 07-Sep-2015
-
-
-
+ 
 ## GET_LOB_SIZE Function<a name="get_lob_size"></a>
 
 
@@ -167,22 +149,16 @@ function get_lob_size(
 ### Parameters
 Name | Description
 --- | ---
-`p_lob` |
-`p_units` |
+`p_lob` | 
+`p_units` | 
+ 
+ 
 
 
 
 
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 07-Sep-2015
-
-
-
+ 
 ## GET_LOB_SIZE-1 Function<a name="get_lob_size-1"></a>
 
 
@@ -201,22 +177,16 @@ function get_lob_size(
 ### Parameters
 Name | Description
 --- | ---
-`p_lob` |
-`p_units` |
+`p_lob` | 
+`p_units` | 
+ 
+ 
 
 
 
 
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 07-Sep-2015
-
-
-
+ 
 ## REPLACE_CLOB Function<a name="replace_clob"></a>
 
 
@@ -239,18 +209,15 @@ function replace_clob(
 ### Parameters
 Name | Description
 --- | ---
-`p_str` |
-`p_search` |
-`p_replace` |
+`p_str` | 
+`p_search` | 
+`p_replace` | 
 *return* | Replaced string
+ 
+ 
 
 
 
 
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 29-Dec-2015
+ 

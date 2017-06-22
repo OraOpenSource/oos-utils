@@ -83,12 +83,6 @@ EXAMPLE
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Aton Scheffer
-Created | 4-Oct-2016
-
 
  
 ## HASH_STR Function<a name="hash_str"></a>
@@ -130,12 +124,6 @@ EXAMPLE
 2CF24DBA5FB0A30E26E83B2AC5B9E29E1B161E5C1FA7425E73043362938B9824
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 19-Jun-2017
 
 
  
@@ -183,12 +171,6 @@ F3166A3A404599D2046ED2AAE479B37D54B51D2E85259C9E314042753BE7D813
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Aton Scheffer
-Created | 4-Oct-2016
-
 
  
 ## MAC_STR Function<a name="mac_str"></a>
@@ -233,12 +215,6 @@ EXAMPLE
 F3166A3A404599D2046ED2AAE479B37D54B51D2E85259C9E314042753BE7D813
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin D'Souza
-Created | 19-Jun-2017
 
 
  

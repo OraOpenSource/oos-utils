@@ -55,12 +55,6 @@ from dual;
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | 
-Created | 
-
 
  
 ## FORMAT_KEY_URI Function<a name="format_key_uri"></a>
@@ -115,12 +109,6 @@ from dual;
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | 
-Created | 
-
 
  
 ## GENERATE_OTP Function<a name="generate_otp"></a>
@@ -154,12 +142,6 @@ select generate_otp(p_secret => 'JBSWY3DPEHPK3PXP', p_offset => -30)
 from dual;
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | 
-Created | 
 
 
  
@@ -205,12 +187,6 @@ begin
 end;
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | 
-Created | 
 
 
  

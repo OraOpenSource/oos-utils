@@ -54,12 +54,6 @@ OOS_UTIL_DATE.DATE2EPOCH(SYSDATE)
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 30-Dec-2015
-
 
  
 ## EPOCH2DATE Function<a name="epoch2date"></a>
@@ -96,12 +90,6 @@ OOS_UTIL_DATE.EPOCH2DATE(1461663982)
 26-APR-2016 12:46:22
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 31-Dec-2015
 
 
  

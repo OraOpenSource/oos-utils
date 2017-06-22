@@ -58,12 +58,6 @@ end;
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 29-Dec-2015
-
 
  
 ## IS_DEVELOPER_YN Function<a name="is_developer_yn"></a>
@@ -98,12 +92,6 @@ begin
 end;
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 29-Dec-2015
 
 
  
@@ -143,12 +131,6 @@ end;
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 29-Dec-2015
-
 
  
 ## IS_SESSION_VALID_YN Function<a name="is_session_valid_yn"></a>
@@ -186,12 +168,6 @@ begin
 end;
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 29-Dec-2015
 
 
  
@@ -248,12 +224,6 @@ end;
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 29-Dec-2015
-
 
  
 ## JOIN_SESSION Procedure<a name="join_session"></a>
@@ -297,12 +267,6 @@ end;
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 29-Dec-2015
-
 
  
 ## TRIM_PAGE_ITEMS Procedure<a name="trim_page_items"></a>
@@ -342,12 +306,6 @@ end;
 ```
 
 
-### Properties
-Name | Description
---- | ---
-Author | Martin Giffy D'Souza
-Created | 31-Dec-2015
-
 
  
 ## IS_PAGE_ITEM_RENDERED Function<a name="is_page_item_rendered"></a>
@@ -386,12 +344,6 @@ begin
 end;
 ```
 
-
-### Properties
-Name | Description
---- | ---
-Author | Daniel Hochleitner
-Created | 06-Mar-2016
 
 
  
