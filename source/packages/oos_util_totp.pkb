@@ -212,7 +212,7 @@ as
     -- );
     l_rhmac := oos_util_crypto.mac(
       p_src => hextoraw(l_szepoch)
-      , p_typ => oos_util_crypto.gc_hash_sh256
+      , p_typ => oos_util_crypto.gc_hmac_sh1
       , p_key => hextoraw(l_sztmp)
     );
 
