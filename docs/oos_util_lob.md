@@ -11,8 +11,6 @@
 - [GET_LOB_SIZE Function](#get_lob_size)
 - [GET_LOB_SIZE-1 Function](#get_lob_size-1)
 - [REPLACE_CLOB Function](#replace_clob)
-- [WRITE_FILE Procedure](#write_file)
-- [READ_FILE Function](#read_file)
 
 
 
@@ -256,76 +254,6 @@ Name | Description
 --- | ---
 Author | Martin Giffy D'Souza
 Created | 29-Dec-2015
-
-
- 
-## WRITE_FILE Procedure<a name="write_file"></a>
-
-
-<p>
-<p>Write a clob (p_text) into a file (p_filename) located in a database<br />server file system directory (p_path). p_path is an Oracle directory<br />object.</p>
-</p>
-
-### Syntax
-```plsql
-procedure write_file(
-  p_text in clob,
-  p_path in varchar2,
-  p_filename in varchar2)
-```
-
-### Parameters
-Name | Description
---- | ---
-`p_text` | 
-`p_path` | 
-`p_filename` | 
- 
- 
-
-
-
-
-### Properties
-Name | Description
---- | ---
-Author | Jani Hur <webmaster@jani-hur.net>
-Created | 05-Apr-2016
-
-
- 
-## READ_FILE Function<a name="read_file"></a>
-
-
-<p>
-<p>Read a content of a file (p_filename) from a database server file system<br />directory (p_path) and return it as a temporary clob. The caller is<br />responsible to free the clob (dbms_lob.freetemporary()). p_path is an<br />Oracle directory object.</p>
-</p>
-
-### Syntax
-```plsql
-function read_file(
-  p_path in varchar2,
-  p_filename in varchar2)
-  return clob
-```
-
-### Parameters
-Name | Description
---- | ---
-`p_path` | 
-`p_filename` | 
-*return* | clob
- 
- 
-
-
-
-
-### Properties
-Name | Description
---- | ---
-Author | Jani Hur <webmaster@jani-hur.net>
-Created | 05-Apr-2016
 
 
  

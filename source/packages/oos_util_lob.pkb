@@ -283,7 +283,7 @@ as
     return l_return;
   end replace_clob;
 
-  /**
+  /*!
    *
    * Write a clob (p_text) into a file (p_filename) located in a database
    * server file system directory (p_path). p_path is an Oracle directory
@@ -297,60 +297,61 @@ as
    * @param p_path
    * @param p_filename
    */
-  procedure write_file(
-    p_text in clob,
-    p_path in varchar2,
-    p_filename in varchar2)
-  as
-    l_tmp_lob blob;
-  begin
+  -- Disabled for 1.0.0 See #156
+  -- procedure write_file(
+  --   p_text in clob,
+  --   p_path in varchar2,
+  --   p_filename in varchar2)
+  -- as
+  --   l_tmp_lob blob;
+  -- begin
+  --
+  --   -- exit if any parameter is null
+  --   oos_util.assert(p_text is not null, 'p_text required parameter');
+  --   oos_util.assert(p_path is not null, 'p_path required parameter');
+  --   oos_util.assert(p_filename is not null, 'p_filename required parameter');
+  --
+  --   -- convert a clob to a blob
+  --   l_tmp_lob := clob2blob(p_text);
+  --
+  --   -- write a blob to a file
+  --   declare
+  --     l_lob_len pls_integer;
+  --     l_fh utl_file.file_type;
+  --     l_pos pls_integer := 1;
+  --     l_buffer raw(32767);
+  --     l_amount pls_integer := 32767;
+  --   begin
+  --     l_fh := utl_file.fopen(
+  --       location => p_path,
+  --       filename => p_filename,
+  --       open_mode =>'wb',
+  --       max_linesize => 32767);
+  --
+  --     l_lob_len := dbms_lob.getlength(l_tmp_lob);
+  --
+  --     while l_pos < l_lob_len loop
+  --       dbms_lob.read(
+  --         lob_loc => l_tmp_lob,
+  --         amount => l_amount,
+  --         offset => l_pos,
+  --         buffer => l_buffer);
+  --
+  --       utl_file.put_raw(
+  --         file => l_fh,
+  --         buffer => l_buffer,
+  --         autoflush => false);
+  --
+  --       l_pos := l_pos + l_amount;
+  --     end loop;
+  --
+  --     utl_file.fclose(l_fh);
+  --     dbms_lob.freetemporary(l_tmp_lob);
+  --   end;
+  --
+  -- end write_file;
 
-    -- exit if any parameter is null
-    oos_util.assert(p_text is not null, 'p_text required parameter');
-    oos_util.assert(p_path is not null, 'p_path required parameter');
-    oos_util.assert(p_filename is not null, 'p_filename required parameter');
-
-    -- convert a clob to a blob
-    l_tmp_lob := clob2blob(p_text);
-
-    -- write a blob to a file
-    declare
-      l_lob_len pls_integer;
-      l_fh utl_file.file_type;
-      l_pos pls_integer := 1;
-      l_buffer raw(32767);
-      l_amount pls_integer := 32767;
-    begin
-      l_fh := utl_file.fopen(
-        location => p_path,
-        filename => p_filename,
-        open_mode =>'wb',
-        max_linesize => 32767);
-
-      l_lob_len := dbms_lob.getlength(l_tmp_lob);
-
-      while l_pos < l_lob_len loop
-        dbms_lob.read(
-          lob_loc => l_tmp_lob,
-          amount => l_amount,
-          offset => l_pos,
-          buffer => l_buffer);
-
-        utl_file.put_raw(
-          file => l_fh,
-          buffer => l_buffer,
-          autoflush => false);
-
-        l_pos := l_pos + l_amount;
-      end loop;
-
-      utl_file.fclose(l_fh);
-      dbms_lob.freetemporary(l_tmp_lob);
-    end;
-
-  end write_file;
-
-  /**
+  /*!
    *
    * Read a content of a file (p_filename) from a database server file system
    * directory (p_path) and return it as a temporary clob. The caller is
@@ -365,48 +366,49 @@ as
    * @param p_filename
    * @return clob
    */
-  function read_file(
-    p_path in varchar2,
-    p_filename in varchar2)
-    return clob
-  as
-    l_src_bfile bfile;
-    l_tmp_lob clob;
-
-    l_dest_offset integer := 1;
-    l_src_offset integer := 1;
-    l_lang_context integer := dbms_lob.default_lang_ctx;
-    l_warning integer := dbms_lob.no_warning;
-  begin
-    -- exit if any parameter is null
-    oos_util.assert(p_path is not null, 'p_path required parameter');
-    oos_util.assert(p_filename is not null, 'p_filename required parameter');
-
-    l_src_bfile := bfilename(upper(p_path), p_filename);
-
-    dbms_lob.open(l_src_bfile, dbms_lob.lob_readonly);
-
-    dbms_lob.createtemporary(
-      lob_loc => l_tmp_lob,
-      cache => false);
-
-    dbms_lob.loadclobfromfile(
-      dest_lob     => l_tmp_lob
-     ,src_bfile    => l_src_bfile
-     ,amount       => dbms_lob.lobmaxsize
-     ,dest_offset  => l_dest_offset
-     ,src_offset   => l_src_offset
-     ,bfile_csid   => dbms_lob.default_csid
-     ,lang_context => l_lang_context
-     ,warning      => l_warning
-    );
-
-    dbms_lob.close(l_src_bfile);
-
-    oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to load clob from a file: ' || l_warning);
-
-    return l_tmp_lob;
-  end read_file;
+  -- See #156
+  -- function read_file(
+  --   p_path in varchar2,
+  --   p_filename in varchar2)
+  --   return clob
+  -- as
+  --   l_src_bfile bfile;
+  --   l_tmp_lob clob;
+  --
+  --   l_dest_offset integer := 1;
+  --   l_src_offset integer := 1;
+  --   l_lang_context integer := dbms_lob.default_lang_ctx;
+  --   l_warning integer := dbms_lob.no_warning;
+  -- begin
+  --   -- exit if any parameter is null
+  --   oos_util.assert(p_path is not null, 'p_path required parameter');
+  --   oos_util.assert(p_filename is not null, 'p_filename required parameter');
+  --
+  --   l_src_bfile := bfilename(upper(p_path), p_filename);
+  --
+  --   dbms_lob.open(l_src_bfile, dbms_lob.lob_readonly);
+  --
+  --   dbms_lob.createtemporary(
+  --     lob_loc => l_tmp_lob,
+  --     cache => false);
+  --
+  --   dbms_lob.loadclobfromfile(
+  --     dest_lob     => l_tmp_lob
+  --    ,src_bfile    => l_src_bfile
+  --    ,amount       => dbms_lob.lobmaxsize
+  --    ,dest_offset  => l_dest_offset
+  --    ,src_offset   => l_src_offset
+  --    ,bfile_csid   => dbms_lob.default_csid
+  --    ,lang_context => l_lang_context
+  --    ,warning      => l_warning
+  --   );
+  --
+  --   dbms_lob.close(l_src_bfile);
+  --
+  --   oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to load clob from a file: ' || l_warning);
+  --
+  --   return l_tmp_lob;
+  -- end read_file;
 
 end oos_util_lob;
 /
