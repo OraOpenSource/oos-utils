@@ -4,8 +4,6 @@ In most applications they're a common set of methods that developers consistentl
 
 Enter OOS Utils. **OOS Utils provides a common set of PL/SQL utility methods that remove the need for the creation of common methods in each application**. Check out the docs below to see the complete list of methods OOS Utils provides. Never re-develop common methods again!
 
-NOTE: OOS Utils is currently in Beta. **Do not install in production.**s
-
 ## Documentation
 
 - [Read The Docs](http://oos-utils.readthedocs.org/en/latest/README/) which displays it in a nice, searchable format
