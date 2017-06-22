@@ -19,7 +19,7 @@ If you want to download a copy and install from a local file:
 To install OOS Utils run the following in sql*plus:
 
 ```sql
-@install/oos_util_install.sql
+@install/oos_utils_install.sql
 ```
 
 ## Uninstall
@@ -27,7 +27,7 @@ To install OOS Utils run the following in sql*plus:
 To uninstall OOS Utils run the following in sql*plus:
 
 ```sql
-@install/oos_util_uninstall.sql
+@install/oos_utils_uninstall.sql
 ```
 
 ## Objects
