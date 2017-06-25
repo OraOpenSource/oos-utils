@@ -600,13 +600,9 @@ Name | Description
 
 ### Example
 ```plsql
-begin
-  for i in 1..10
-  loop
-    dbms_output.put_line(oos_util_string.ordinal(i));
-  end loop;
-end;
-/
+select oos_util_string.ordinal(level)
+from dual
+connect by level <= 10;
 ```
 
 

@@ -204,7 +204,7 @@ Name | Description
 ```plsql
 select
   oos_util_crypto.mac_str(
-    p_src => 'hello'',
+    p_src => 'hello',
     p_typ => 3, -- oos_util_crypto.gc_hmac_sh256
     p_key => 'abc'
   ) example

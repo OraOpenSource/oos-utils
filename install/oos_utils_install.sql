@@ -2320,7 +2320,7 @@ as
      * @example
      * select
      *   oos_util_crypto.mac_str(
-     *     p_src => 'hello'',
+     *     p_src => 'hello',
      *     p_typ => 3, -- oos_util_crypto.gc_hmac_sh256
      *     p_key => 'abc'
      *   ) example
@@ -4818,13 +4818,9 @@ as
    * @issue #53
    *
    * @example
-   * begin
-   *   for i in 1..10
-   *   loop
-   *     dbms_output.put_line(oos_util_string.ordinal(i));
-   *   end loop;
-   * end;
-   * /
+   * select oos_util_string.ordinal(level)
+   * from dual
+   * connect by level <= 10;
    *
    * @author Trent Schafer
    * @created 1-Aug-2016

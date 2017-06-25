@@ -536,13 +536,9 @@ as
    * @issue #53
    *
    * @example
-   * begin
-   *   for i in 1..10
-   *   loop
-   *     dbms_output.put_line(oos_util_string.ordinal(i));
-   *   end loop;
-   * end;
-   * /
+   * select oos_util_string.ordinal(level)
+   * from dual
+   * connect by level <= 10;
    *
    * @author Trent Schafer
    * @created 1-Aug-2016
