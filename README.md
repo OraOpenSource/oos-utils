@@ -23,5 +23,7 @@ If you want to download a copy and install from a local file go to the [Install]
 
 If you have a recommendations, please add your idea and/or snippet examples as an [issue](https://github.com/OraOpenSource/oos-utils/issues).
 
+Starting with `1.1.0` all PRs should be the appropriate release branch rather than master.
+
 ### Build
 If you are working on OOS Utils and want to test your build go to the [build](/build) folder for instructions.
