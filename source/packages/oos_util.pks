@@ -14,7 +14,6 @@ as
   type tab_vc2_arr is table of varchar2(32767) index by pls_integer;
 
 
-
   -- CONSTANTS
   /**
    * @constant gc_date_format default date format
@@ -46,5 +45,13 @@ as
   procedure sleep(
     p_seconds in simple_integer);
 
+
+  function assoc_arr2nested_table(
+    p_assoc_arr in oos_util.tab_vc2_arr)
+    return oos_util.tab_vc2;
+
+  function assoc_arr2nested_table(
+    p_assoc_arr in oos_util.tab_num_arr)
+    return oos_util.tab_num;
 end oos_util;
 /
