@@ -8,6 +8,8 @@
 
 - [ASSERT Procedure](#assert)
 - [SLEEP Procedure](#sleep)
+- [ASSOC_ARR2NESTED_TABLE Function](#assoc_arr2nested_table)
+- [ASSOC_ARR2NESTED_TABLE-1 Function](#assoc_arr2nested_table-1)
 
 ## Types<a name="types"></a>
 
@@ -126,6 +128,109 @@ end;
 26-APR-2016 14:29:02
 26-APR-2016 14:29:07
 ```
+
+
+
+ 
+## ASSOC_ARR2NESTED_TABLE Function<a name="assoc_arr2nested_table"></a>
+
+
+<p>
+<p>Converts an Associated Array to Nested Table<br />See <a href="https://oracle-base.com/articles/8i/collections-8i">https://oracle-base.com/articles/8i/collections-8i</a> for different array types and how to leverage Nested Tables for things like Multiset and Member functions.</p>
+</p>
+
+### Syntax
+```plsql
+function assoc_arr2nested_table(
+  p_assoc_arr in oos_util.tab_vc2_arr)
+  return oos_util.tab_vc2
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_assoc_arr` | Associated Array(vc2) to be converted to Nested Table
+*return* | Nested Table (vc2)
+ 
+ 
+
+
+### Example
+```plsql
+declare
+  -- Associative Arrays
+  l_arr1 oos_util.tab_vc2_arr;
+  l_arr2 oos_util.tab_vc2_arr;
+
+  -- Nested Tables
+  l_nt1 oos_util.tab_vc2;
+  l_nt2 oos_util.tab_vc2;
+  l_result oos_util.tab_vc2;
+begin
+  l_arr1(1) := 'abc';
+  l_arr1(2) := 'def';
+  l_arr2(1) := 'ghi';
+
+  l_nt1 := oos_util.assoc_arr2nested_table(l_arr1);
+  l_nt2 := oos_util.assoc_arr2nested_table(l_arr2);
+
+  dbms_output.put_line('*Multiset Union*');
+  l_result := l_nt1 multiset union l_nt2;
+  for i in 1..l_result.count loop
+    dbms_output.put_line(l_result(i));
+  end loop;
+  dbms_output.put_line('');
+
+  dbms_output.put_line('*Subset*');
+  dbms_output.put_line(oos_util_string.to_char(l_nt1 submultiset of l_nt2));
+  dbms_output.put_line('');
+
+  dbms_output.put_line('*Member Of*');
+  dbms_output.put_line(oos_util_string.to_char('def' member of l_nt1));
+
+end;
+/
+
+*Multiset Union*
+abc
+def
+ghi
+
+*Subset*
+FALSE
+
+*Member Of*
+TRUE
+
+PL/SQL procedure successfully completed.
+```
+
+
+
+ 
+## ASSOC_ARR2NESTED_TABLE-1 Function<a name="assoc_arr2nested_table-1"></a>
+
+
+<p>
+<p>See previous function for details and examples.<br />This is an overloaded function for number table</p>
+</p>
+
+### Syntax
+```plsql
+function assoc_arr2nested_table(
+  p_assoc_arr in oos_util.tab_num_arr)
+  return oos_util.tab_num
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_assoc_arr` | p_assoc_arr Associated Array(num) to be converted to Nested Table
+*return* | Nested Table (num)
+ 
+ 
+
+
 
 
 

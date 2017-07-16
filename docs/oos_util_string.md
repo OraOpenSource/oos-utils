@@ -19,6 +19,7 @@
 - [LISTUNAGG-1 Function](#listunagg-1)
 - [REVERSE Function](#reverse)
 - [ORDINAL Function](#ordinal)
+- [MULTI_REPLACE Function](#multi_replace)
 
 
 
@@ -603,6 +604,46 @@ Name | Description
 select oos_util_string.ordinal(level)
 from dual
 connect by level <= 10;
+```
+
+
+
+ 
+## MULTI_REPLACE Function<a name="multi_replace"></a>
+
+
+<p>
+<p>Allow for multi-word replace via strings</p>
+</p>
+
+### Syntax
+```plsql
+function multi_replace(
+  p_str in varchar2,
+  p_replace_str in varchar2,
+  p_delim in varchar2 default ',')
+  return varchar2
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_str` | String
+`p_replace_str` | String should be in the format (find1,replace1,find2,replace2,...) If an odd number of strings are passed the last one is ignored ano no replacement is done for it.
+`p_delim` | Delimiter default &quot;,&quot;
+*return* | String
+ 
+ 
+
+
+### Example
+```plsql
+select multi_replace('Goodbye, universe','Goodbye,Hello,universe,world!') demo
+from dual;
+
+DEMO
+------------------------------
+Hello, world!
 ```
 
 

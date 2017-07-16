@@ -125,7 +125,6 @@ as
   type tab_vc2_arr is table of varchar2(32767) index by pls_integer;
 
 
-
   -- CONSTANTS
   /**
    * @constant gc_date_format default date format
@@ -157,13 +156,20 @@ as
   procedure sleep(
     p_seconds in simple_integer);
 
+
+  function assoc_arr2nested_table(
+    p_assoc_arr in oos_util.tab_vc2_arr)
+    return oos_util.tab_vc2;
+
+  function assoc_arr2nested_table(
+    p_assoc_arr in oos_util.tab_num_arr)
+    return oos_util.tab_num;
 end oos_util;
 /
 
 create or replace package body oos_util
 as
   -- CONSTANTS
-
   gc_assert_error_number constant pls_integer := -20000;
 
 
@@ -277,6 +283,111 @@ as
   end sleep;
 
 
+
+  /**
+   * Converts an Associated Array to Nested Table
+   * See https://oracle-base.com/articles/8i/collections-8i for different array types and how to leverage Nested Tables for things like Multiset and Member functions.
+   *
+   * @example
+   * declare
+   *   -- Associative Arrays
+   *   l_arr1 oos_util.tab_vc2_arr;
+   *   l_arr2 oos_util.tab_vc2_arr;
+   *
+   *   -- Nested Tables
+   *   l_nt1 oos_util.tab_vc2;
+   *   l_nt2 oos_util.tab_vc2;
+   *   l_result oos_util.tab_vc2;
+   * begin
+   *   l_arr1(1) := 'abc';
+   *   l_arr1(2) := 'def';
+   *   l_arr2(1) := 'ghi';
+   *
+   *   l_nt1 := oos_util.assoc_arr2nested_table(l_arr1);
+   *   l_nt2 := oos_util.assoc_arr2nested_table(l_arr2);
+   *
+   *   dbms_output.put_line('*Multiset Union*');
+   *   l_result := l_nt1 multiset union l_nt2;
+   *   for i in 1..l_result.count loop
+   *     dbms_output.put_line(l_result(i));
+   *   end loop;
+   *   dbms_output.put_line('');
+   *
+   *   dbms_output.put_line('*Subset*');
+   *   dbms_output.put_line(oos_util_string.to_char(l_nt1 submultiset of l_nt2));
+   *   dbms_output.put_line('');
+   *
+   *   dbms_output.put_line('*Member Of*');
+   *   dbms_output.put_line(oos_util_string.to_char('def' member of l_nt1));
+   *
+   * end;
+   * /
+   *
+   * *Multiset Union*
+   * abc
+   * def
+   * ghi
+   *
+   * *Subset*
+   * FALSE
+   *
+   * *Member Of*
+   * TRUE
+   *
+   * PL/SQL procedure successfully completed.
+   *
+   * @issue #110
+   *
+   * @author Martin D'Souza
+   * @created 15-Jul-2017
+   * @param p_assoc_arr Associated Array(vc2) to be converted to Nested Table
+   * @return Nested Table (vc2)
+   */
+  function assoc_arr2nested_table(
+    p_assoc_arr in oos_util.tab_vc2_arr)
+    return oos_util.tab_vc2
+  as
+    l_return oos_util.tab_vc2 := oos_util.tab_vc2();
+    l_cnt pls_integer := 0;
+  begin
+    -- TODO mdsouza: better name and update docs above
+    l_return.extend(p_assoc_arr.count);
+    for i in p_assoc_arr.first .. p_assoc_arr.last loop
+      l_cnt := l_cnt + 1;
+
+      l_return(l_cnt) := p_assoc_arr(i);
+    end loop;
+
+    return l_return;
+  end assoc_arr2nested_table;
+
+  /**
+   * See previous function for details and examples.
+   * This is an overloaded function for number table
+   *
+   * @issue $110
+   *
+   * @author Martin D'Souza
+   * @created 16-Jul-2017
+   * @param p_assoc_arr p_assoc_arr Associated Array(num) to be converted to Nested Table
+   * @return Nested Table (num)
+   */
+  function assoc_arr2nested_table(
+    p_assoc_arr in oos_util.tab_num_arr)
+    return oos_util.tab_num
+  as
+    l_return oos_util.tab_num := oos_util.tab_num();
+    l_cnt pls_integer := 0;
+  begin
+    l_return.extend(p_assoc_arr.count);
+
+    for i in p_assoc_arr.first .. p_assoc_arr.last loop
+      l_cnt := l_cnt + 1;
+      l_return(l_cnt) := p_assoc_arr(i);
+    end loop;
+
+    return l_return;
+  end assoc_arr2nested_table;
 
 end oos_util;
 /
@@ -3753,15 +3864,17 @@ as
     p_replace in clob)
     return clob;
 
-  -- procedure write_file(
-  --   p_text in clob,
-  --   p_path in varchar2,
-  --   p_filename in varchar2);
+  $IF $$UTL_FILE $THEN
+    procedure write_file(
+      p_text in clob,
+      p_path in varchar2,
+      p_filename in varchar2);
 
-  -- function read_file(
-  --   p_path in varchar2,
-  --   p_filename in varchar2)
-  --   return clob;
+    function read_file(
+      p_path in varchar2,
+      p_filename in varchar2)
+      return clob;
+  $END
 
 end oos_util_lob;
 /
@@ -4051,7 +4164,9 @@ as
     return l_return;
   end replace_clob;
 
-  /*!
+  $IF $$UTL_FILE $THEN
+  /**
+   * **Note**: this method is only available if user has access to `sys.utl_file`
    *
    * Write a clob (p_text) into a file (p_filename) located in a database
    * server file system directory (p_path). p_path is an Oracle directory
@@ -4065,61 +4180,64 @@ as
    * @param p_path
    * @param p_filename
    */
-  -- Disabled for 1.0.0 See #156
-  -- procedure write_file(
-  --   p_text in clob,
-  --   p_path in varchar2,
-  --   p_filename in varchar2)
-  -- as
-  --   l_tmp_lob blob;
-  -- begin
-  --
-  --   -- exit if any parameter is null
-  --   oos_util.assert(p_text is not null, 'p_text required parameter');
-  --   oos_util.assert(p_path is not null, 'p_path required parameter');
-  --   oos_util.assert(p_filename is not null, 'p_filename required parameter');
-  --
-  --   -- convert a clob to a blob
-  --   l_tmp_lob := clob2blob(p_text);
-  --
-  --   -- write a blob to a file
-  --   declare
-  --     l_lob_len pls_integer;
-  --     l_fh utl_file.file_type;
-  --     l_pos pls_integer := 1;
-  --     l_buffer raw(32767);
-  --     l_amount pls_integer := 32767;
-  --   begin
-  --     l_fh := utl_file.fopen(
-  --       location => p_path,
-  --       filename => p_filename,
-  --       open_mode =>'wb',
-  --       max_linesize => 32767);
-  --
-  --     l_lob_len := dbms_lob.getlength(l_tmp_lob);
-  --
-  --     while l_pos < l_lob_len loop
-  --       dbms_lob.read(
-  --         lob_loc => l_tmp_lob,
-  --         amount => l_amount,
-  --         offset => l_pos,
-  --         buffer => l_buffer);
-  --
-  --       utl_file.put_raw(
-  --         file => l_fh,
-  --         buffer => l_buffer,
-  --         autoflush => false);
-  --
-  --       l_pos := l_pos + l_amount;
-  --     end loop;
-  --
-  --     utl_file.fclose(l_fh);
-  --     dbms_lob.freetemporary(l_tmp_lob);
-  --   end;
-  --
-  -- end write_file;
+  procedure write_file(
+    p_text in clob,
+    p_path in varchar2,
+    p_filename in varchar2)
+  as
+    l_tmp_lob blob;
+  begin
 
-  /*!
+    -- exit if any parameter is null
+    oos_util.assert(p_text is not null, 'p_text required parameter');
+    oos_util.assert(p_path is not null, 'p_path required parameter');
+    oos_util.assert(p_filename is not null, 'p_filename required parameter');
+
+    -- convert a clob to a blob
+    l_tmp_lob := clob2blob(p_text);
+
+    -- write a blob to a file
+    -- TODO mdsouza: why is this its own procedure?
+    declare
+      l_lob_len pls_integer;
+      l_fh sys.utl_file.file_type;
+      l_pos pls_integer := 1;
+      l_buffer raw(32767);
+      l_amount pls_integer := 32767;
+    begin
+      l_fh := sys.utl_file.fopen(
+        location => p_path,
+        filename => p_filename,
+        open_mode =>'wb',
+        max_linesize => 32767);
+
+      l_lob_len := dbms_lob.getlength(l_tmp_lob);
+
+      while l_pos < l_lob_len loop
+        dbms_lob.read(
+          lob_loc => l_tmp_lob,
+          amount => l_amount,
+          offset => l_pos,
+          buffer => l_buffer);
+
+        sys.utl_file.put_raw(
+          file => l_fh,
+          buffer => l_buffer,
+          autoflush => false);
+
+        l_pos := l_pos + l_amount;
+      end loop;
+
+      sys.utl_file.fclose(l_fh);
+      dbms_lob.freetemporary(l_tmp_lob);
+    end;
+
+  end write_file;
+  $END
+
+  $IF $$UTL_FILE $THEN
+  /**
+   * **Note**: this method is only available if user has access to `sys.utl_file`
    *
    * Read a content of a file (p_filename) from a database server file system
    * directory (p_path) and return it as a temporary clob. The caller is
@@ -4134,49 +4252,49 @@ as
    * @param p_filename
    * @return clob
    */
-  -- See #156
-  -- function read_file(
-  --   p_path in varchar2,
-  --   p_filename in varchar2)
-  --   return clob
-  -- as
-  --   l_src_bfile bfile;
-  --   l_tmp_lob clob;
-  --
-  --   l_dest_offset integer := 1;
-  --   l_src_offset integer := 1;
-  --   l_lang_context integer := dbms_lob.default_lang_ctx;
-  --   l_warning integer := dbms_lob.no_warning;
-  -- begin
-  --   -- exit if any parameter is null
-  --   oos_util.assert(p_path is not null, 'p_path required parameter');
-  --   oos_util.assert(p_filename is not null, 'p_filename required parameter');
-  --
-  --   l_src_bfile := bfilename(upper(p_path), p_filename);
-  --
-  --   dbms_lob.open(l_src_bfile, dbms_lob.lob_readonly);
-  --
-  --   dbms_lob.createtemporary(
-  --     lob_loc => l_tmp_lob,
-  --     cache => false);
-  --
-  --   dbms_lob.loadclobfromfile(
-  --     dest_lob     => l_tmp_lob
-  --    ,src_bfile    => l_src_bfile
-  --    ,amount       => dbms_lob.lobmaxsize
-  --    ,dest_offset  => l_dest_offset
-  --    ,src_offset   => l_src_offset
-  --    ,bfile_csid   => dbms_lob.default_csid
-  --    ,lang_context => l_lang_context
-  --    ,warning      => l_warning
-  --   );
-  --
-  --   dbms_lob.close(l_src_bfile);
-  --
-  --   oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to load clob from a file: ' || l_warning);
-  --
-  --   return l_tmp_lob;
-  -- end read_file;
+  function read_file(
+    p_path in varchar2,
+    p_filename in varchar2)
+    return clob
+  as
+    l_src_bfile bfile;
+    l_tmp_lob clob;
+
+    l_dest_offset integer := 1;
+    l_src_offset integer := 1;
+    l_lang_context integer := dbms_lob.default_lang_ctx;
+    l_warning integer := dbms_lob.no_warning;
+  begin
+    -- exit if any parameter is null
+    oos_util.assert(p_path is not null, 'p_path required parameter');
+    oos_util.assert(p_filename is not null, 'p_filename required parameter');
+
+    l_src_bfile := bfilename(upper(p_path), p_filename);
+
+    dbms_lob.open(l_src_bfile, dbms_lob.lob_readonly);
+
+    dbms_lob.createtemporary(
+      lob_loc => l_tmp_lob,
+      cache => false);
+
+    dbms_lob.loadclobfromfile(
+      dest_lob     => l_tmp_lob
+     ,src_bfile    => l_src_bfile
+     ,amount       => dbms_lob.lobmaxsize
+     ,dest_offset  => l_dest_offset
+     ,src_offset   => l_src_offset
+     ,bfile_csid   => dbms_lob.default_csid
+     ,lang_context => l_lang_context
+     ,warning      => l_warning
+    );
+
+    dbms_lob.close(l_src_bfile);
+
+    oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to load clob from a file: ' || l_warning);
+
+    return l_tmp_lob;
+  end read_file;
+  $END
 
 end oos_util_lob;
 /
@@ -4275,6 +4393,12 @@ as
 
   function ordinal(
     p_num in number)
+    return varchar2;
+
+  function multi_replace(
+    p_str in varchar2,
+    p_replace_str in varchar2,
+    p_delim in varchar2 default ',')
     return varchar2;
 
 end oos_util_string;
@@ -4854,6 +4978,55 @@ as
 
     return p_num || l_ordinal;
   end ordinal;
+
+  /**
+   * Allow for multi-word replace via strings
+   *
+   * @issue #141
+   *
+   * @example
+   * select multi_replace('Goodbye, universe','Goodbye,Hello,universe,world!') demo
+   * from dual;
+   *
+   * DEMO
+   * ------------------------------
+   * Hello, world!
+   *
+   * @author Zach Wilcox
+   * @created 13-Jul-2017
+   * @param p_str String
+   * @param p_replace_str String should be in the format (find1,replace1,find2,replace2,...) If an odd number of strings are passed the last one is ignored ano no replacement is done for it.
+   * @param p_delim Delimiter default ","
+   * @return String
+   */
+  function multi_replace(
+    p_str in varchar2,
+    p_replace_str in varchar2,
+    p_delim in varchar2 default ',')
+    return varchar2
+  as
+    $IF not DBMS_DB_VERSION.VER_LE_11 $THEN
+      -- 12c and above
+      pragma udf;
+    $END
+
+    l_return varchar2(32767);
+    l_arr oos_util.tab_vc2_arr;
+  begin
+    if p_replace_str is null then
+      return p_str;
+    end if;
+
+    l_return := p_str;
+    l_arr := string_to_table(p_replace_str,p_delim);
+
+    -- mod handles even/odd number of replacement srings, ignores the last item if odd
+    for i in 1..((l_arr.count/2)-mod(l_arr.count,2)) loop
+      l_return := replace(l_return,l_arr(2*i-1),l_arr(2*i));
+    end loop;
+
+    return l_return;
+  end multi_replace;
 
 end oos_util_string;
 /
@@ -5492,37 +5665,80 @@ prompt *** Post Install ***
 -- It is used to recompile any invalid oos_util packages
 -- Note: can use dbms_utility.compile_schema but only want to modify oos_util objects
 -- As such try to manually recompile these objects until they are all valid.
+set serveroutput on
 declare
   l_count pls_integer;
   l_loop_counter pls_integer := 1;
+
+  l_plsql_ccflags varchar2(4000);
+  l_cnt pls_integer;
 begin
+
+  -- Conditional compilation
+
+  -- #156: sys.utl_file access
+  select count(1)
+  into l_cnt
+  from (
+    select 1
+    from user_tab_privs
+    where 1=1
+      and grantee = user
+      and table_name = 'UTL_FILE'
+      and owner = 'SYS'
+    union
+    select 1
+    from role_tab_privs
+    where 1=1
+      and role in (
+        select granted_role
+        from user_role_privs
+        where username = user)
+      and table_name = 'UTL_FILE'
+      and owner = 'SYS'
+  );
+  l_plsql_ccflags := 'UTL_FILE:' ||
+    case
+      when l_cnt > 0 then 'TRUE'
+      else 'FALSE'
+    end || ''
+  ;
+
+  dbms_output.put_line('PLSQL_CCFLAGS=' || l_plsql_ccflags);
 
   <<start_check>>
   for x in (
     select
       'alter package ' || object_name || ' compile '
-      || decode(object_type, 'PACKAGE BODY', 'body') exp
+      || decode(object_type, 'PACKAGE BODY', 'body')
+      || ' PLSQL_CCFLAGS=''' || l_plsql_ccflags || ''''
+      as exp
     from user_objects
     where 1=1
       and object_name like 'OOS_UTIL%'
       and object_type like 'PACKAGE%'
-      and status != 'VALID') loop
+      and (1=2
+        or l_loop_counter = 1 -- Always recompile first time with the PLSQL_CCFLAGS
+        or status != 'VALID'
+      )
+    ) loop
 
+    -- dbms_output.put_line(x.exp);
     execute immediate x.exp;
   end loop;
 
-  select count(1)
-  into l_count
-  from user_objects
-  where 1=1
-    and object_name like 'OOS_UTIL%'
-    and object_type like 'PACKAGE%'
-    and status != 'VALID';
+ select count(1)
+ into l_count
+ from user_objects
+ where 1=1
+   and object_name like 'OOS_UTIL%'
+   and object_type like 'PACKAGE%'
+   and status != 'VALID';
 
-  if l_count > 0 and l_loop_counter <= 10 then
-    l_loop_counter := l_loop_counter + 1;
-    goto start_check;
-  end if;
+ if l_count > 0 and l_loop_counter <= 10 then
+   l_loop_counter := l_loop_counter + 1;
+   goto start_check;
+ end if;
 end;
 /
 
