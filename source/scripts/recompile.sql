@@ -8,38 +8,42 @@ declare
   l_loop_counter pls_integer := 1;
 
   l_plsql_ccflags varchar2(4000);
-  l_cnt pls_integer;
 begin
 
   -- Conditional compilation
 
   -- #156: sys.utl_file access
-  select count(1)
-  into l_cnt
+  select listagg(cc_flag, ',') within group (order by 1 desc)
+  into l_plsql_ccflags
   from (
-    select 1
-    from user_tab_privs
+    -- UTL_FILE
+    select 'UTL_FILE:' || decode(count(1), 0, 'FALSE', 'TRUE') cc_flag
+    from (
+      select table_name, owner
+      from user_tab_privs
+      where 1=1
+        and grantee = user
+      union
+      select table_name, owner
+      from role_tab_privs
+      where 1=1
+        and role in (
+          select granted_role
+          from user_role_privs
+          where username = user)
+      )
     where 1=1
-      and grantee = user
       and table_name = 'UTL_FILE'
       and owner = 'SYS'
-    union
-    select 1
-    from role_tab_privs
+    -- APEX
+    union all
+    select 'APEX:' || decode(count(1), 0, 'FALSE', 'TRUE') cc_flag
+    from all_synonyms
     where 1=1
-      and role in (
-        select granted_role
-        from user_role_privs
-        where username = user)
-      and table_name = 'UTL_FILE'
-      and owner = 'SYS'
-  );
-  l_plsql_ccflags := 'UTL_FILE:' ||
-    case
-      when l_cnt > 0 then 'TRUE'
-      else 'FALSE'
-    end || ''
-  ;
+      and owner = 'PUBLIC'
+      and synonym_name = 'APEX_APPLICATION'
+   );
+
 
   dbms_output.put_line('PLSQL_CCFLAGS=' || l_plsql_ccflags);
 

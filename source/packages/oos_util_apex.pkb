@@ -1,5 +1,6 @@
 create or replace package body oos_util_apex
 as
+  $IF $$APEX $THEN
 
   /**
    * Returns true/false if APEX developer is enable
@@ -462,5 +463,6 @@ as
     return l_return;
   end is_page_item_rendered;
 
+  $END
 end oos_util_apex;
 /

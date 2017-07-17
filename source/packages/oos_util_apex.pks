@@ -1,6 +1,6 @@
 create or replace package oos_util_apex
 as
-
+  $IF $$APEX $THEN
   function is_developer
     return boolean;
 
@@ -31,6 +31,11 @@ as
   function is_page_item_rendered(
     p_item_name in apex_application_page_items.item_name%type)
     return boolean;
+
+  $ELSE
+    -- Need to have this here for no APEX installatipn
+    gc_do_not_use constant varchar(1) := '';
+  $END
 
 end oos_util_apex;
 /
