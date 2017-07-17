@@ -63,17 +63,15 @@ as
     p_replace in clob)
     return clob;
 
-  $IF $$UTL_FILE $THEN
-    procedure write_file(
-      p_text in clob,
-      p_path in varchar2,
-      p_filename in varchar2);
+  procedure write_file(
+    p_text in clob,
+    p_path in varchar2,
+    p_filename in varchar2);
 
-    function read_file(
-      p_path in varchar2,
-      p_filename in varchar2)
-      return clob;
-  $END
+  function read_file(
+    p_path in varchar2,
+    p_filename in varchar2)
+    return clob;
 
 end oos_util_lob;
 /
