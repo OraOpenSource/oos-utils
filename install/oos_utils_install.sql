@@ -285,6 +285,8 @@ as
 
 
   /**
+   * **TODO**: This will probably be renamed in final 1.1.0 release
+   *
    * Converts an Associated Array to Nested Table
    * See https://oracle-base.com/articles/8i/collections-8i for different array types and how to leverage Nested Tables for things like Multiset and Member functions.
    *
@@ -395,7 +397,7 @@ end oos_util;
 prompt oos_util_apex
 create or replace package oos_util_apex
 as
-
+  $IF $$APEX $THEN
   function is_developer
     return boolean;
 
@@ -427,11 +429,17 @@ as
     p_item_name in apex_application_page_items.item_name%type)
     return boolean;
 
+  $ELSE
+    -- Need to have this here for no APEX installatipn
+    gc_do_not_use constant varchar(1) := '';
+  $END
+
 end oos_util_apex;
 /
 
 create or replace package body oos_util_apex
 as
+  $IF $$APEX $THEN
 
   /**
    * Returns true/false if APEX developer is enable
@@ -894,6 +902,7 @@ as
     return l_return;
   end is_page_item_rendered;
 
+  $END
 end oos_util_apex;
 /
 
@@ -3864,17 +3873,15 @@ as
     p_replace in clob)
     return clob;
 
-  $IF $$UTL_FILE $THEN
-    procedure write_file(
-      p_text in clob,
-      p_path in varchar2,
-      p_filename in varchar2);
+  procedure write_file(
+    p_text in clob,
+    p_path in varchar2,
+    p_filename in varchar2);
 
-    function read_file(
-      p_path in varchar2,
-      p_filename in varchar2)
-      return clob;
-  $END
+  function read_file(
+    p_path in varchar2,
+    p_filename in varchar2)
+    return clob;
 
 end oos_util_lob;
 /
@@ -4164,9 +4171,9 @@ as
     return l_return;
   end replace_clob;
 
-  $IF $$UTL_FILE $THEN
+
   /**
-   * **Note**: this method is only available if user has access to `sys.utl_file`
+   * **Note**: this method will return an error if user does not has access to `sys.utl_file`
    *
    * Write a clob (p_text) into a file (p_filename) located in a database
    * server file system directory (p_path). p_path is an Oracle directory
@@ -4188,56 +4195,58 @@ as
     l_tmp_lob blob;
   begin
 
-    -- exit if any parameter is null
-    oos_util.assert(p_text is not null, 'p_text required parameter');
-    oos_util.assert(p_path is not null, 'p_path required parameter');
-    oos_util.assert(p_filename is not null, 'p_filename required parameter');
+    $IF NOT $$UTL_FILE $THEN
+      oos_util.assert(false, 'Permission to sys.utl_file is required to run this method');
+    $ELSE
+      -- exit if any parameter is null
+      oos_util.assert(p_text is not null, 'p_text required parameter');
+      oos_util.assert(p_path is not null, 'p_path required parameter');
+      oos_util.assert(p_filename is not null, 'p_filename required parameter');
 
-    -- convert a clob to a blob
-    l_tmp_lob := clob2blob(p_text);
+      -- convert a clob to a blob
+      l_tmp_lob := clob2blob(p_text);
 
-    -- write a blob to a file
-    -- TODO mdsouza: why is this its own procedure?
-    declare
-      l_lob_len pls_integer;
-      l_fh sys.utl_file.file_type;
-      l_pos pls_integer := 1;
-      l_buffer raw(32767);
-      l_amount pls_integer := 32767;
-    begin
-      l_fh := sys.utl_file.fopen(
-        location => p_path,
-        filename => p_filename,
-        open_mode =>'wb',
-        max_linesize => 32767);
+      -- write a blob to a file
+      -- TODO mdsouza: why is this its own procedure?
+      declare
+        l_lob_len pls_integer;
+        l_fh sys.utl_file.file_type;
+        l_pos pls_integer := 1;
+        l_buffer raw(32767);
+        l_amount pls_integer := 32767;
+      begin
+        l_fh := sys.utl_file.fopen(
+          location => p_path,
+          filename => p_filename,
+          open_mode =>'wb',
+          max_linesize => 32767);
 
-      l_lob_len := dbms_lob.getlength(l_tmp_lob);
+        l_lob_len := dbms_lob.getlength(l_tmp_lob);
 
-      while l_pos < l_lob_len loop
-        dbms_lob.read(
-          lob_loc => l_tmp_lob,
-          amount => l_amount,
-          offset => l_pos,
-          buffer => l_buffer);
+        while l_pos < l_lob_len loop
+          dbms_lob.read(
+            lob_loc => l_tmp_lob,
+            amount => l_amount,
+            offset => l_pos,
+            buffer => l_buffer);
 
-        sys.utl_file.put_raw(
-          file => l_fh,
-          buffer => l_buffer,
-          autoflush => false);
+          sys.utl_file.put_raw(
+            file => l_fh,
+            buffer => l_buffer,
+            autoflush => false);
 
-        l_pos := l_pos + l_amount;
-      end loop;
+          l_pos := l_pos + l_amount;
+        end loop;
 
-      sys.utl_file.fclose(l_fh);
-      dbms_lob.freetemporary(l_tmp_lob);
-    end;
-
+        sys.utl_file.fclose(l_fh);
+        dbms_lob.freetemporary(l_tmp_lob);
+      end;
+    $END
   end write_file;
-  $END
 
-  $IF $$UTL_FILE $THEN
+
   /**
-   * **Note**: this method is only available if user has access to `sys.utl_file`
+   * **Note**: this method will return an error if user does not has access to `sys.utl_file`
    *
    * Read a content of a file (p_filename) from a database server file system
    * directory (p_path) and return it as a temporary clob. The caller is
@@ -4265,36 +4274,39 @@ as
     l_lang_context integer := dbms_lob.default_lang_ctx;
     l_warning integer := dbms_lob.no_warning;
   begin
-    -- exit if any parameter is null
-    oos_util.assert(p_path is not null, 'p_path required parameter');
-    oos_util.assert(p_filename is not null, 'p_filename required parameter');
+    $IF NOT $$UTL_FILE $THEN
+      oos_util.assert(false, 'Permission to sys.utl_file is required to run this method');
+    $ELSE
+      -- exit if any parameter is null
+      oos_util.assert(p_path is not null, 'p_path required parameter');
+      oos_util.assert(p_filename is not null, 'p_filename required parameter');
 
-    l_src_bfile := bfilename(upper(p_path), p_filename);
+      l_src_bfile := bfilename(upper(p_path), p_filename);
 
-    dbms_lob.open(l_src_bfile, dbms_lob.lob_readonly);
+      dbms_lob.open(l_src_bfile, dbms_lob.lob_readonly);
 
-    dbms_lob.createtemporary(
-      lob_loc => l_tmp_lob,
-      cache => false);
+      dbms_lob.createtemporary(
+        lob_loc => l_tmp_lob,
+        cache => false);
 
-    dbms_lob.loadclobfromfile(
-      dest_lob     => l_tmp_lob
-     ,src_bfile    => l_src_bfile
-     ,amount       => dbms_lob.lobmaxsize
-     ,dest_offset  => l_dest_offset
-     ,src_offset   => l_src_offset
-     ,bfile_csid   => dbms_lob.default_csid
-     ,lang_context => l_lang_context
-     ,warning      => l_warning
-    );
+      dbms_lob.loadclobfromfile(
+        dest_lob     => l_tmp_lob
+       ,src_bfile    => l_src_bfile
+       ,amount       => dbms_lob.lobmaxsize
+       ,dest_offset  => l_dest_offset
+       ,src_offset   => l_src_offset
+       ,bfile_csid   => dbms_lob.default_csid
+       ,lang_context => l_lang_context
+       ,warning      => l_warning
+      );
 
-    dbms_lob.close(l_src_bfile);
+      dbms_lob.close(l_src_bfile);
 
-    oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to load clob from a file: ' || l_warning);
+      oos_util.assert(l_warning = dbms_lob.no_warning, 'failed to load clob from a file: ' || l_warning);
 
-    return l_tmp_lob;
+      return l_tmp_lob;
+    $END
   end read_file;
-  $END
 
 end oos_util_lob;
 /
@@ -5671,38 +5683,42 @@ declare
   l_loop_counter pls_integer := 1;
 
   l_plsql_ccflags varchar2(4000);
-  l_cnt pls_integer;
 begin
 
   -- Conditional compilation
 
   -- #156: sys.utl_file access
-  select count(1)
-  into l_cnt
+  select listagg(cc_flag, ',') within group (order by 1 desc)
+  into l_plsql_ccflags
   from (
-    select 1
-    from user_tab_privs
+    -- UTL_FILE
+    select 'UTL_FILE:' || decode(count(1), 0, 'FALSE', 'TRUE') cc_flag
+    from (
+      select table_name, owner
+      from user_tab_privs
+      where 1=1
+        and grantee = user
+      union
+      select table_name, owner
+      from role_tab_privs
+      where 1=1
+        and role in (
+          select granted_role
+          from user_role_privs
+          where username = user)
+      )
     where 1=1
-      and grantee = user
       and table_name = 'UTL_FILE'
       and owner = 'SYS'
-    union
-    select 1
-    from role_tab_privs
+    -- APEX
+    union all
+    select 'APEX:' || decode(count(1), 0, 'FALSE', 'TRUE') cc_flag
+    from all_synonyms
     where 1=1
-      and role in (
-        select granted_role
-        from user_role_privs
-        where username = user)
-      and table_name = 'UTL_FILE'
-      and owner = 'SYS'
-  );
-  l_plsql_ccflags := 'UTL_FILE:' ||
-    case
-      when l_cnt > 0 then 'TRUE'
-      else 'FALSE'
-    end || ''
-  ;
+      and owner = 'PUBLIC'
+      and synonym_name = 'APEX_APPLICATION'
+   );
+
 
   dbms_output.put_line('PLSQL_CCFLAGS=' || l_plsql_ccflags);
 

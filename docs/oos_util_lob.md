@@ -227,7 +227,7 @@ Name | Description
 
 
 <p>
-<p><strong>Note</strong>: this method is only available if user has access to <code>sys.utl_file</code></p><p>Write a clob (p_text) into a file (p_filename) located in a database<br />server file system directory (p_path). p_path is an Oracle directory<br />object.</p>
+<p><strong>Note</strong>: this method will return an error if user does not has access to <code>sys.utl_file</code></p><p>Write a clob (p_text) into a file (p_filename) located in a database<br />server file system directory (p_path). p_path is an Oracle directory<br />object.</p>
 </p>
 
 ### Syntax
@@ -256,7 +256,7 @@ Name | Description
 
 
 <p>
-<p><strong>Note</strong>: this method is only available if user has access to <code>sys.utl_file</code></p><p>Read a content of a file (p_filename) from a database server file system<br />directory (p_path) and return it as a temporary clob. The caller is<br />responsible to free the clob (dbms_lob.freetemporary()). p_path is an<br />Oracle directory object.</p>
+<p><strong>Note</strong>: this method will return an error if user does not has access to <code>sys.utl_file</code></p><p>Read a content of a file (p_filename) from a database server file system<br />directory (p_path) and return it as a temporary clob. The caller is<br />responsible to free the clob (dbms_lob.freetemporary()). p_path is an<br />Oracle directory object.</p>
 </p>
 
 ### Syntax
