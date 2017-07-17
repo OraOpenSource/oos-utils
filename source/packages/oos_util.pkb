@@ -116,6 +116,8 @@ as
 
 
   /**
+   * **TODO**: This will probably be renamed in final 1.1.0 release
+   *
    * Converts an Associated Array to Nested Table
    * See https://oracle-base.com/articles/8i/collections-8i for different array types and how to leverage Nested Tables for things like Multiset and Member functions.
    *

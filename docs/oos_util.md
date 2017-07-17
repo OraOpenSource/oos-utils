@@ -136,7 +136,7 @@ end;
 
 
 <p>
-<p>Converts an Associated Array to Nested Table<br />See <a href="https://oracle-base.com/articles/8i/collections-8i">https://oracle-base.com/articles/8i/collections-8i</a> for different array types and how to leverage Nested Tables for things like Multiset and Member functions.</p>
+<p><strong>TODO</strong>: This will probably be renamed in final 1.1.0 release</p><p>Converts an Associated Array to Nested Table<br />See <a href="https://oracle-base.com/articles/8i/collections-8i">https://oracle-base.com/articles/8i/collections-8i</a> for different array types and how to leverage Nested Tables for things like Multiset and Member functions.</p>
 </p>
 
 ### Syntax
