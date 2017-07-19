@@ -1,3 +1,6 @@
+/**
+ * Since APEX is an optional installation this package will contain no code if APEX does not exist. See #60 for more information.
+ */
 create or replace package body oos_util_apex
 as
   $IF $$APEX $THEN
