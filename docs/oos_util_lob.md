@@ -1,6 +1,7 @@
 # OOS_UTIL_LOB
 
 
+
 - [Constants](#constants)
 
 
@@ -85,7 +86,8 @@ Name | Description
 ### Syntax
 ```plsql
 function blob2clob(
-  p_blob in blob)
+  p_blob in blob,
+  p_blob_csid in integer default dbms_lob.default_csid)
   return clob
 ```
 
@@ -93,6 +95,7 @@ function blob2clob(
 Name | Description
 --- | ---
 `p_blob` | blob to be converted to clob
+`p_blob_csid` | Encoding to use. See <a href="https://docs.oracle.com/database/121/NLSPG/ch2charset.htm#NLSPG169">https://docs.oracle.com/database/121/NLSPG/ch2charset.htm#NLSPG169</a> (table 2-4) for different charsets. Can use <code>nls_charset_id(&lt;charset&gt;)</code> to get the clob_csid
 *return* | clob
  
  

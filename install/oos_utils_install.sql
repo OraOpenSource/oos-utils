@@ -143,7 +143,7 @@ as
   -- Version numbers. Useful for anyone writing condtional compilation for OOS Utils
   gc_version_major constant pls_integer := 1;
   gc_version_minor constant pls_integer := 0;
-  gc_version_patch constant pls_integer := 0;
+  gc_version_patch constant pls_integer := 1;
   gc_version constant varchar2(30) := gc_version_major || '.' || gc_version_minor || '.' || gc_version_patch;
 
 
@@ -3729,7 +3729,8 @@ as
     return blob;
 
   function blob2clob(
-    p_blob in blob)
+    p_blob in blob,
+    p_blob_csid in integer default dbms_lob.default_csid)
     return clob;
 
   function get_file_size(
@@ -3837,10 +3838,12 @@ as
    * @author Martin D'Souza
    * @created 02-Mar-2014
    * @param p_blob blob to be converted to clob
+   * @param p_blob_csid Encoding to use. See https://docs.oracle.com/database/121/NLSPG/ch2charset.htm#NLSPG169 (table 2-4) for different charsets. Can use `nls_charset_id(<charset>)` to get the clob_csid
    * @return clob
    */
   function blob2clob(
-    p_blob in blob)
+    p_blob in blob,
+    p_blob_csid in integer default dbms_lob.default_csid)
     return clob
   as
     l_clob clob;
@@ -3849,6 +3852,7 @@ as
     l_lang_context integer := dbms_lob.default_lang_ctx;
     l_warning integer;
   begin
+    oos_util.assert(p_blob_csid is not null, 'p_blob_csid is required: ' || p_blob_csid);
     if p_blob is null then
       return null;
     end if;
@@ -3863,7 +3867,7 @@ as
       amount => dbms_lob.lobmaxsize,
       dest_offset => l_dest_offset,
       src_offset => l_src_offset,
-      blob_csid => dbms_lob.default_csid,
+      blob_csid => p_blob_csid,
       lang_context => l_lang_context,
       warning => l_warning);
 

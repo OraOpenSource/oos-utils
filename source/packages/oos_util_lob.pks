@@ -39,7 +39,8 @@ as
     return blob;
 
   function blob2clob(
-    p_blob in blob)
+    p_blob in blob,
+    p_blob_csid in integer default dbms_lob.default_csid)
     return clob;
 
   function get_file_size(
