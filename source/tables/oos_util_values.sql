@@ -5,6 +5,7 @@ declare
 begin
   l_table_name := lower('oos_util_values');
 
+  -- 1.0.0
   select count(1)
   into l_count
   from user_tables
