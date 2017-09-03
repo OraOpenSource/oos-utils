@@ -589,38 +589,33 @@ as
    * @author Zach Wilcox
    * @created 13-Jul-2017
    * @param p_str String
-   * @param p_replace_str String should be in the format (find1,replace1,find2,replace2,...) If an odd number of strings are passed the last one is ignored ano no replacement is done for it.
+   * @param p_search_str oos_util.tab_vc2
+   * @param p_replace_str oos_util.tab_vc2
    * @param p_delim Delimiter default ","
    * @return String
    */
-  function multi_replace(
-    p_str in varchar2,
-    p_replace_str in varchar2,
-    p_delim in varchar2 default ',')
-    return varchar2
-  as
-    $IF not DBMS_DB_VERSION.VER_LE_11 $THEN
-      -- 12c and above
-      pragma udf;
-    $END
-
-    l_return varchar2(32767);
-    l_arr oos_util.tab_vc2_arr;
-  begin
-    if p_replace_str is null then
-      return p_str;
-    end if;
-
-    l_return := p_str;
-    l_arr := string_to_table(p_replace_str,p_delim);
-
-    -- mod handles even/odd number of replacement srings, ignores the last item if odd
-    for i in 1..((l_arr.count/2)-mod(l_arr.count,2)) loop
-      l_return := replace(l_return,l_arr(2*i-1),l_arr(2*i));
-    end loop;
-
-    return l_return;
-  end multi_replace;
+   function multi_replace(
+     p_test_str in varchar2,
+     p_search_str in oos_util.tab_vc2,
+     p_replace_str in oos_util.tab_vc2,
+     p_delim in varchar2 default ',')
+     return varchar2
+   as
+     l_return varchar2(32767);
+     l_search_arr oos_util.tab_vc2;
+     l_replace_arr oos_util.tab_vc2;
+   begin
+     if p_replace_str is null then
+         return p_test_str;
+     end if;
+     l_return := p_test_str;
+     l_search_arr := p_search_str;
+     l_replace_arr := p_replace_str;
+     for i in 1..(l_replace_arr.count) loop
+         l_return := replace(l_return,l_search_arr(i),l_replace_arr(i));
+     end loop;
+     return l_return;
+ end multi_replace;
 
 end oos_util_string;
 /

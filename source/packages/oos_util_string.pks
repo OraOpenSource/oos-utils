@@ -94,8 +94,9 @@ as
     return varchar2;
 
   function multi_replace(
-    p_str in varchar2,
-    p_replace_str in varchar2,
+    p_test_str in varchar2,
+    p_search_str in oos_util.tab_vc2,
+    p_replace_str in oos_util.tab_vc2,
     p_delim in varchar2 default ',')
     return varchar2;
 
