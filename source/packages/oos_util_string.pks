@@ -64,6 +64,20 @@ as
     p_s9 in varchar2 default null,
     p_s10 in varchar2 default null)
     return varchar2;
+    
+  function sprintf(
+    p_str in varchar2,
+    p_key_values in t_tab_key_value,
+    p_left_pattern in varchar2 default '{',
+    p_right_pattern in varchar2 default '}')
+    return varchar2;
+    
+  function sprintf(
+    p_str in varchar2,
+    p_tab_vc2 in t_tab_vc2,
+    p_left_pattern in varchar2 default '{',
+    p_right_pattern in varchar2 default '}')
+    return varchar2;
 
   function string_to_table(
     p_str in clob,
