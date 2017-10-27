@@ -22,7 +22,7 @@ The following development standards are used for this project:
 
 Example script to test your code while developing:
 
-`alter session set plsql_ccflags = 'UTL_FILE:TRUE';`
+`alter session set plsql_ccflags = 'UTL_FILE:TRUE,APEX:TRUE';`
 
 The following Conditional Compilation flags are used:
 

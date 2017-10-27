@@ -181,6 +181,7 @@ as
    *
    * @issue #7
    * @issue #49 ensure page and user exist
+   * @issue #146 added p_preserve_case
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -188,12 +189,14 @@ as
    * @param p_user_name
    * @param p_page_id Page to try and register for post login. Recommended to leave null
    * @param p_session_id Session to re-join. Recommended leave null
+   * @param p_preserve_case Preserves username case
    */
   procedure create_session(
     p_app_id in apex_applications.application_id%type,
     p_user_name in apex_workspace_sessions.user_name%type,
     p_page_id in apex_application_pages.page_id%type default null,
-    p_session_id in apex_workspace_sessions.apex_session_id%type default null)
+    p_session_id in apex_workspace_sessions.apex_session_id%type default null,
+    p_preserve_case in boolean default false)
   as
     l_workspace_id apex_applications.workspace_id%TYPE;
     l_cgivar_name sys.owa.vc_arr;
@@ -263,7 +266,8 @@ as
     apex_custom_auth.post_login(
       p_uname => p_user_name,
       p_session_id => null, -- could use APEX_CUSTOM_AUTH.GET_NEXT_SESSION_ID
-      p_app_page => apex_application.g_flow_id || ':' || l_page_id);
+      p_app_page => apex_application.g_flow_id || ':' || l_page_id,
+      p_preserve_case => p_preserve_case);
 
     -- Rejoin session
     if p_session_id is not null then
