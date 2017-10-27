@@ -5515,6 +5515,40 @@ as
     return boolean
     deterministic;
 
+  function is_equal(
+    p_vala in varchar2,
+    p_valb in varchar2)
+    return boolean;
+  
+  function is_equal(
+    p_vala in number,
+    p_valb in number)
+    return boolean;
+  
+  function is_equal(
+    p_vala in date,
+    p_valb in date)
+    return boolean;
+
+  function is_equal(
+    p_vala in timestamp,
+    p_valb in timestamp)
+    return boolean;
+
+  function is_equal(
+    p_vala in timestamp with time zone,
+    p_valb in timestamp with time zone)
+    return boolean;
+
+  function is_equal(
+    p_vala in timestamp with local time zone,
+    p_valb in timestamp with local time zone)
+    return boolean;
+
+  function is_equal(
+    p_vala in boolean,
+    p_valb in boolean)
+    return boolean;
 
 end oos_util_validation;
 /
@@ -5612,6 +5646,8 @@ as
   $end
   end is_date;
 
+  -- TODO mdsouza: need to overload this
+  -- TODO mdsouza: But look at example in issue 145) first
   /**
    * Checks if two values are equal. 
    * Overloaded to handle all types
@@ -5631,10 +5667,25 @@ as
    *
    * @example
    *
-   *  TODO
+   * set serveroutput on;
+   *
+   * declare
+   *   l_x number;
+   *   l_y number;
+   * begin
+   *   dbms_output.put_line(oos_util_string.to_char(oos_util_validation.is_equal(1,1)));
+   *   dbms_output.put_line(oos_util_string.to_char(oos_util_validation.is_equal(null,1)));
+   *   -- Note: can't pass in null, null as it will error out for too many overloaded functions
+   *   dbms_output.put_line(oos_util_string.to_char(oos_util_validation.is_equal(l_x,l_y)));
+   * end;
+   * /
+   * 
+   * TRUE
+   * FALSE
+   * TRUE
    *
    * @author Martin D'Souza
-   * @created -- TODO mdsouza: 
+   * @created 26-Oct-2017
    * @param p_vala
    * @param p_valb
    * @return boolean Returns true if both the same or both null
@@ -5644,8 +5695,157 @@ as
     p_valb in varchar2)
     return boolean
   as
+    -- TODO mdsouza: create a yn version and then remove pragma to test 
+    -- TODO mdsouza: how much faster it is
+    $if sys.dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
   begin
     return
+      1=2
+      or p_vala is null and p_valb is null
+      or p_vala = p_valb;
+  end is_equal;
+
+  /**
+   * See first `is_equal`
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_vala
+   * @param p_valb
+   * @return boolean Returns true if both the same or both null
+   */
+  function is_equal(
+    p_vala in number,
+    p_valb in number)
+    return boolean
+  as
+    $if sys.dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
+  begin
+    return 
+      1=2
+      or p_vala is null and p_valb is null
+      or p_vala = p_valb;
+  end is_equal;
+  
+  /**
+   * See first `is_equal`
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_vala
+   * @param p_valb
+   * @return boolean Returns true if both the same or both null
+   */
+  function is_equal(
+    p_vala in date,
+    p_valb in date)
+    return boolean
+  as
+    $if sys.dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
+  begin
+    return 
+      1=2
+      or p_vala is null and p_valb is null
+      or p_vala = p_valb;
+  end is_equal;
+
+  /**
+   * See first `is_equal`
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_vala
+   * @param p_valb
+   * @return boolean Returns true if both the same or both null
+   */
+  function is_equal(
+    p_vala in timestamp,
+    p_valb in timestamp)
+    return boolean
+  as
+    $if sys.dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
+  begin
+    return 
+      1=2
+      or p_vala is null and p_valb is null
+      or p_vala = p_valb;
+  end is_equal;
+
+  /**
+   * See first `is_equal`
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_vala
+   * @param p_valb
+   * @return boolean Returns true if both the same or both null
+   */
+  function is_equal(
+    p_vala in timestamp with time zone,
+    p_valb in timestamp with time zone)
+    return boolean
+  as
+    $if sys.dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
+  begin
+    return 
+      1=2
+      or p_vala is null and p_valb is null
+      or p_vala = p_valb;
+  end is_equal;
+
+  /**
+   * See first `is_equal`
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_vala
+   * @param p_valb
+   * @return boolean Returns true if both the same or both null
+   */
+  function is_equal(
+    p_vala in timestamp with local time zone,
+    p_valb in timestamp with local time zone)
+    return boolean
+  as
+    $if sys.dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
+  begin
+    return 
+      1=2
+      or p_vala is null and p_valb is null
+      or p_vala = p_valb;
+  end is_equal;
+
+  /**
+   * See first `is_equal`
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_vala
+   * @param p_valb
+   * @return boolean Returns true if both the same or both null
+   */
+  function is_equal(
+    p_vala in boolean,
+    p_valb in boolean)
+    return boolean
+  as
+    $if sys.dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
+  begin
+    return 
       1=2
       or p_vala is null and p_valb is null
       or p_vala = p_valb;
