@@ -91,6 +91,52 @@ as
   $end
   end is_date;
 
+  -- TODO mdsouza: need to overload this
+  -- TODO mdsouza: But look at example in issue 145) first
+  /**
+   * Checks if two values are equal. 
+   * Overloaded to handle all types
+   * 
+   * Truth Table
+   *
+   * A | B | Result
+   * --- | --- | ---
+   * `null` | `null` | `true`
+   * `1` | `null` | `false`
+   * `null` | `1` | `false`
+   * `1` | `2` | `false`
+   * `1` | `1` | `true`
+   * 
+   *
+   * @issue 145
+   *
+   * @example
+   *
+   *  TODO
+   *
+   * @author Martin D'Souza
+   * @created -- TODO mdsouza: 
+   * @param p_vala
+   * @param p_valb
+   * @return boolean Returns true if both the same or both null
+   */
+  function is_equal(
+    p_vala in varchar2,
+    p_valb in varchar2)
+    return boolean
+  as
+    -- TODO mdsouza: create a yn version and then remove pragma to test 
+    -- TODO mdsouza: how much faster it is
+    $if sys.dbms_db_version.version >= 12 $then
+      pragma udf;
+    $end
+  begin
+    return
+      1=2
+      or p_vala is null and p_valb is null
+      or p_vala = p_valb;
+  end is_equal;
+
 
 end oos_util_validation;
 /

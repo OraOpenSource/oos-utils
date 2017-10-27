@@ -1,6 +1,7 @@
 # OOS_UTIL_STRING
 
 
+
 - [Constants](#constants)
 
 
@@ -20,6 +21,7 @@
 - [REVERSE Function](#reverse)
 - [ORDINAL Function](#ordinal)
 - [MULTI_REPLACE Function](#multi_replace)
+- [CONVERT_EOL Function](#convert_eol)
 
 
 
@@ -33,6 +35,8 @@ gc_default_delimiter | <pre>gc_default_delimiter constant varchar2(1) := ',';</p
 gc_cr | <pre>gc_cr constant varchar2(1) := chr(13);</pre> | Carriage Return
 gc_lf | <pre>gc_lf constant varchar2(1) := chr(10);</pre> | Line Feed
 gc_crlf | <pre>gc_crlf constant varchar2(2) := gc_cr || gc_lf;</pre> | Use for new lines.
+gc_eol_unix | <pre>gc_eol_unix constant varchar2(1) := gc_lf;</pre> | EOL for Unix
+gc_eol_windows | <pre>gc_eol_windows constant varchar2(2) := gc_cr || gc_lf;</pre> | EOL for Windows
 
 
 
@@ -644,6 +648,40 @@ from dual;
 DEMO
 ------------------------------
 Hello, world!
+```
+
+
+
+ 
+## CONVERT_EOL Function<a name="convert_eol"></a>
+
+
+<p>
+<p>EOL conversion (clob)</p><p>Changes EOL to desired format (regardless of current state)</p>
+</p>
+
+### Syntax
+```plsql
+function convert_eol(
+  p_str in clob,
+  p_eol in varchar2)
+return clob
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_str` | clob
+`p_eol` | Use <code>oos_util_string.gc_eol_unix</code> or <code>oos_util_string.gc_eol_windows</code>
+*return* | clob with converted EOL
+ 
+ 
+
+
+### Example
+```plsql
+
+-- See above
 ```
 
 

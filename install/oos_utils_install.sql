@@ -82,6 +82,7 @@ declare
 begin
   l_table_name := lower('oos_util_values');
 
+  -- 1.0.0
   select count(1)
   into l_count
   from user_tables
@@ -141,7 +142,7 @@ as
 
   -- Version numbers. Useful for anyone writing condtional compilation for OOS Utils
   gc_version_major constant pls_integer := 1;
-  gc_version_minor constant pls_integer := 0;
+  gc_version_minor constant pls_integer := 1;
   gc_version_patch constant pls_integer := 0;
   gc_version constant varchar2(30) := gc_version_major || '.' || gc_version_minor || '.' || gc_version_patch;
 
@@ -416,7 +417,8 @@ as
     p_app_id in apex_applications.application_id%type,
     p_user_name in apex_workspace_sessions.user_name%type,
     p_page_id in apex_application_pages.page_id%type default null,
-    p_session_id in apex_workspace_sessions.apex_session_id%type default null);
+    p_session_id in apex_workspace_sessions.apex_session_id%type default null,
+    p_preserve_case in boolean default false);
 
   procedure join_session(
     p_session_id in apex_workspace_sessions.apex_session_id%type,
@@ -437,6 +439,9 @@ as
 end oos_util_apex;
 /
 
+/**
+ * Since APEX is an optional installation this package will contain no code if APEX does not exist. See #60 for more information.
+ */
 create or replace package body oos_util_apex
 as
   $IF $$APEX $THEN
@@ -617,6 +622,7 @@ as
    *
    * @issue #7
    * @issue #49 ensure page and user exist
+   * @issue #146 added p_preserve_case
    *
    * @author Martin Giffy D'Souza
    * @created 29-Dec-2015
@@ -624,12 +630,14 @@ as
    * @param p_user_name
    * @param p_page_id Page to try and register for post login. Recommended to leave null
    * @param p_session_id Session to re-join. Recommended leave null
+   * @param p_preserve_case Preserves username case
    */
   procedure create_session(
     p_app_id in apex_applications.application_id%type,
     p_user_name in apex_workspace_sessions.user_name%type,
     p_page_id in apex_application_pages.page_id%type default null,
-    p_session_id in apex_workspace_sessions.apex_session_id%type default null)
+    p_session_id in apex_workspace_sessions.apex_session_id%type default null,
+    p_preserve_case in boolean default false)
   as
     l_workspace_id apex_applications.workspace_id%TYPE;
     l_cgivar_name sys.owa.vc_arr;
@@ -699,7 +707,8 @@ as
     apex_custom_auth.post_login(
       p_uname => p_user_name,
       p_session_id => null, -- could use APEX_CUSTOM_AUTH.GET_NEXT_SESSION_ID
-      p_app_page => apex_application.g_flow_id || ':' || l_page_id);
+      p_app_page => apex_application.g_flow_id || ':' || l_page_id,
+      p_preserve_case => p_preserve_case);
 
     -- Rejoin session
     if p_session_id is not null then
@@ -3729,7 +3738,7 @@ as
     p_date in date)
     return number
   as
-    $if dbms_db_version.version >= 12 $then
+    $if sys.dbms_db_version.version >= 12 $then
       pragma udf;
     $end
   begin
@@ -4323,11 +4332,18 @@ as
    * @constant gc_cr Carriage Return
    * @constant gc_lf Line Feed
    * @constant gc_crlf Use for new lines.
+   * @constant gc_eol_unix EOL for Unix
+   * @constant gc_eol_windows EOL for Windows
    */
   gc_default_delimiter constant varchar2(1) := ',';
   gc_cr constant varchar2(1) := chr(13);
   gc_lf constant varchar2(1) := chr(10);
   gc_crlf constant varchar2(2) := gc_cr || gc_lf;
+
+  -- #170
+  gc_eol_unix constant varchar2(1) := gc_lf;
+  gc_eol_windows constant varchar2(2) := gc_cr || gc_lf;
+
 
   function to_char(
     p_val in number)
@@ -4412,6 +4428,16 @@ as
     p_replace_str in varchar2,
     p_delim in varchar2 default ',')
     return varchar2;
+
+  function convert_eol(
+     p_str in varchar2,
+     p_eol in varchar2)
+   return varchar2;
+
+  function convert_eol(
+    p_str in clob,
+    p_eol in varchar2)
+  return clob;
 
 end oos_util_string;
 /
@@ -4609,7 +4635,7 @@ as
 
     l_max_length pls_integer := p_length - length(p_ellipsis); -- This is the max that the string can be without an ellipsis appended to it.
 
-    $if dbms_db_version.version >= 12 $then
+    $if sys.dbms_db_version.version >= 12 $then
       pragma udf;
     $end
   begin
@@ -4801,13 +4827,13 @@ as
 
       while true loop
         l_pos := l_pos + 1;
-        l_pos := dbms_lob.instr(p_str, p_delim, l_pos, 1);
+        l_pos := sys.dbms_lob.instr(p_str, p_delim, l_pos, 1);
 
         if l_pos = 0 then
           l_return(l_return.count + 1) := substr(p_str, l_last_pos + l_delimiter_len); -- Get everything to the end.
           exit;
         else
-          l_return(l_return.count + 1) := dbms_lob.substr(p_str, l_pos - (l_last_pos+l_delimiter_len), l_last_pos + l_delimiter_len);
+          l_return(l_return.count + 1) := sys.dbms_lob.substr(p_str, l_pos - (l_last_pos+l_delimiter_len), l_last_pos + l_delimiter_len);
         end if; -- l_pos = 0
 
         l_last_pos := l_pos;
@@ -5017,7 +5043,7 @@ as
     p_delim in varchar2 default ',')
     return varchar2
   as
-    $IF not DBMS_DB_VERSION.VER_LE_11 $THEN
+    $IF not SYS.DBMS_DB_VERSION.VER_LE_11 $THEN
       -- 12c and above
       pragma udf;
     $END
@@ -5039,6 +5065,128 @@ as
 
     return l_return;
   end multi_replace;
+
+  /**
+   * EOL conversion
+   *
+   * Changes EOL to desired format (regardless of current state)
+   *
+   * @issue 170
+   *
+   * @example
+   *
+   *-- This example only works in 12c and up since using inline functions
+   * with
+   *   function get_eol(p_eol_str in varchar2)
+   *     return varchar2
+   *   as
+   *   begin
+   *     return 
+   *       case
+   *         when p_eol_str = 'unix' then oos_util_string.gc_eol_unix
+   *         else oos_util_string.gc_eol_windows
+   *       end;
+   *   end get_eol;
+   * select
+   *   d.unix_eol,
+   *   d.win_eol,
+   *   oos_util_string.convert_eol(p_str => d.unix_eol, p_eol => get_eol('win')) unix_to_win,
+   *   oos_util_string.convert_eol(p_str => d.win_eol, p_eol => get_eol('unix')) win_to_unix
+   * from 
+   *   (
+   *     select 
+   *       'abc' || get_eol('unix') || 'def' unix_eol,
+   *       'abc' || get_eol('win') || 'def' win_eol
+   *     from dual
+   *   ) d;
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_str
+   * @param p_eol Use `oos_util_string.gc_eol_unix` or `oos_util_string.gc_eol_windows`
+   * @return string with converted EOL
+   */
+  -- TODO mdsouza: better name?
+  function convert_eol(
+    p_str in varchar2,
+    p_eol in varchar2
+  )
+  return varchar2
+  as
+  begin
+    -- Any changes to this code should replicated below
+    oos_util.assert(p_eol in (gc_eol_unix,gc_eol_windows), 'Invalid EOL option. Use oos_util_string.gc_eol_unix or oos_util_string.gc_eol_windows.');
+    -- Can use regexp_replace(p_str, '[' || gc_cr || gc_lf || ']+', p_eol); however
+    -- on larger clobs this does not perform well
+
+    -- This code will change all EOL combinations to gc_lf
+    -- Then convert the gc_lf to the desired p_eol
+    -- This won't work if there is two EOLs in a row. Ex gc_lfgc_lf (though this shouldn't happen)
+    return 
+      replace(
+        replace(
+          replace(
+            replace(
+              p_str, 
+              gc_crlf, 
+              gc_lf
+            ), 
+            gc_lf || gc_cr, -- Note this is not a common EOL sequence but may happen
+            gc_lf
+          ), 
+          gc_cr, 
+          gc_lf
+        ), 
+        gc_lf, 
+        p_eol
+      );
+  end convert_eol;
+
+
+  /**
+   * EOL conversion (clob)
+   *
+   * Changes EOL to desired format (regardless of current state)
+   *
+   * @issue 170
+   *
+   * @example
+   *
+   * -- See above
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_str clob
+   * @param p_eol Use `oos_util_string.gc_eol_unix` or `oos_util_string.gc_eol_windows`
+   * @return clob with converted EOL
+   */
+  function convert_eol(
+    p_str in clob,
+    p_eol in varchar2)
+  return clob
+  as
+  begin
+    -- Any changes to this code should be made above and then copied here
+    oos_util.assert(p_eol in (gc_eol_unix,gc_eol_windows), 'Invalid EOL option. Use oos_util_string.gc_eol_unix or oos_util_string.gc_eol_windows.');
+    return 
+      replace(
+        replace(
+          replace(
+            replace(
+              p_str, 
+              gc_crlf, 
+              gc_lf
+            ), 
+            gc_lf || gc_cr, -- Note this is not a common EOL sequence but may happen
+            gc_lf
+          ), 
+          gc_cr, 
+          gc_lf
+        ), 
+        gc_lf, 
+        p_eol
+    );
+  end convert_eol;
 
 end oos_util_string;
 /
@@ -5132,7 +5280,7 @@ as
     l_secret varchar2(32767);
   begin
     for i in 1..p_length loop
-      l_secret := l_secret || substr(gc_base32, dbms_random.value(1, (length(gc_base32) - 1)), 1);
+      l_secret := l_secret || substr(gc_base32, sys.dbms_random.value(1, (length(gc_base32) - 1)), 1);
     end loop;
 
     return l_secret;
@@ -5381,6 +5529,7 @@ as
    * Checks if string is numeric
    *
    * @issue #15
+   * @issue #131 Using 12cRc validation if available
    *
    * @example
    * begin
@@ -5402,12 +5551,18 @@ as
     deterministic
   as
     l_num number;
-  begin
-    l_num := to_number(p_str);
-    return true;
-  exception
-    when value_error then
-      return false;
+  $if sys.dbms_db_version.ver_le_12_1 $then
+    begin
+      l_num := to_number(p_str);
+      return true;
+    exception
+      when value_error then
+        return false;
+  $else
+    -- 12.2 onwards
+    begin
+      return validate_conversion(p_str as number) = 1;
+  $end
   end is_number;
 
 
@@ -5415,6 +5570,7 @@ as
    * Checks if string is a valid date
    *
    * @issue #20
+   * @issue #131 Using 12cRc validation if available
    *
    * @example
    * begin
@@ -5440,14 +5596,60 @@ as
     return boolean
     deterministic
   as
+  
+  $if sys.dbms_db_version.ver_le_12_1 $then
     l_date date;
-  begin
-    l_date := to_date(p_str, p_date_format);
-    return true;
-  exception
-    when others then -- Using a when others since date format could also be invalid
-      return false;
+    begin
+      l_date := to_date(p_str, p_date_format);
+      return true;
+    exception
+      when others then -- Using a when others since date format could also be invalid
+        return false;
+  $else
+    -- 12.2 onwards
+    begin
+      return validate_conversion(p_str as date, p_date_format) = 1;
+  $end
   end is_date;
+
+  /**
+   * Checks if two values are equal. 
+   * Overloaded to handle all types
+   * 
+   * Truth Table
+   *
+   * A | B | Result
+   * --- | --- | ---
+   * `null` | `null` | `true`
+   * `1` | `null` | `false`
+   * `null` | `1` | `false`
+   * `1` | `2` | `false`
+   * `1` | `1` | `true`
+   * 
+   *
+   * @issue 145
+   *
+   * @example
+   *
+   *  TODO
+   *
+   * @author Martin D'Souza
+   * @created -- TODO mdsouza: 
+   * @param p_vala
+   * @param p_valb
+   * @return boolean Returns true if both the same or both null
+   */
+  function is_equal(
+    p_vala in varchar2,
+    p_valb in varchar2)
+    return boolean
+  as
+  begin
+    return
+      1=2
+      or p_vala is null and p_valb is null
+      or p_vala = p_valb;
+  end is_equal;
 
 
 end oos_util_validation;
@@ -5594,8 +5796,8 @@ as
     sys.owa_util.mime_header(
       ccontent_type => l_mime_type,
       bclose_header => false );
-
-    sys.htp.p('Content-length: ' || dbms_lob.getlength(p_blob));
+  
+    sys.htp.p('Content-length: ' || sys.dbms_lob.getlength(p_blob));
 
     sys.htp.p(
       oos_util_string.sprintf(

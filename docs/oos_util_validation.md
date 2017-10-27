@@ -4,8 +4,10 @@
 
 
 
+
 - [IS_NUMBER Function](#is_number)
 - [IS_DATE Function](#is_date)
+- [IS_EQUAL Function](#is_equal)
 
 
 
@@ -95,6 +97,76 @@ end;
 
 TRUE
 FALSE
+```
+
+
+
+ 
+## IS_EQUAL Function<a name="is_equal"></a>
+
+
+<p>
+<p>Checks if two values are equal.<br />Overloaded to handle all types</p><p>Truth Table</p><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>null</code></td>
+<td><code>null</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>null</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td><code>1</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>2</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td><code>true</code></td>
+</tr>
+</tbody>
+</table>
+
+</p>
+
+### Syntax
+```plsql
+function is_equal(
+  p_vala in varchar2,
+  p_valb in varchar2)
+  return boolean
+```
+
+### Parameters
+Name | Description
+--- | ---
+`p_vala` | 
+`p_valb` | 
+*return* | boolean Returns true if both the same or both null
+ 
+ 
+
+
+### Example
+```plsql
+
+ TODO
 ```
 
 

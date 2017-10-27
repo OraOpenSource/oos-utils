@@ -11,6 +11,10 @@ as
     return boolean
     deterministic;
 
+  function is_equal(
+    p_vala in varchar2,
+    p_valb in varchar2)
+    return boolean;
 
 end oos_util_validation;
 /

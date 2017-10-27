@@ -1,5 +1,8 @@
 # OOS_UTIL_APEX
 
+## Package Description
+<p>Since APEX is an optional installation this package will contain no code if APEX does not exist. See #60 for more information.</p>
+
 
 
 
@@ -197,7 +200,8 @@ procedure create_session(
   p_app_id in apex_applications.application_id%type,
   p_user_name in apex_workspace_sessions.user_name%type,
   p_page_id in apex_application_pages.page_id%type default null,
-  p_session_id in apex_workspace_sessions.apex_session_id%type default null)
+  p_session_id in apex_workspace_sessions.apex_session_id%type default null,
+  p_preserve_case in boolean default false)
 ```
 
 ### Parameters
@@ -207,6 +211,7 @@ Name | Description
 `p_user_name` | 
 `p_page_id` | Page to try and register for post login. Recommended to leave null
 `p_session_id` | Session to re-join. Recommended leave null
+`p_preserve_case` | Preserves username case
  
  
 
