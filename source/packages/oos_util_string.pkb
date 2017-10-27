@@ -599,10 +599,10 @@ as
     p_delim in varchar2 default ',')
     return varchar2
   as
-    $IF not SYS.DBMS_DB_VERSION.VER_LE_11 $THEN
+    $if not sys.dbms_db_version.ver_le_11 $then
       -- 12c and above
       pragma udf;
-    $END
+    $end
 
     l_return varchar2(32767);
     l_arr oos_util.tab_vc2_arr;
