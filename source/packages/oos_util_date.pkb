@@ -28,7 +28,7 @@ as
     p_date in date)
     return number
   as
-    $if dbms_db_version.version >= 12 $then
+    $if sys.dbms_db_version.version >= 12 $then
       pragma udf;
     $end
   begin

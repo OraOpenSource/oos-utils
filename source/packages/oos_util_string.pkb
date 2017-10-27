@@ -191,7 +191,7 @@ as
 
     l_max_length pls_integer := p_length - length(p_ellipsis); -- This is the max that the string can be without an ellipsis appended to it.
 
-    $if dbms_db_version.version >= 12 $then
+    $if sys.dbms_db_version.version >= 12 $then
       pragma udf;
     $end
   begin
@@ -383,13 +383,13 @@ as
 
       while true loop
         l_pos := l_pos + 1;
-        l_pos := dbms_lob.instr(p_str, p_delim, l_pos, 1);
+        l_pos := sys.dbms_lob.instr(p_str, p_delim, l_pos, 1);
 
         if l_pos = 0 then
           l_return(l_return.count + 1) := substr(p_str, l_last_pos + l_delimiter_len); -- Get everything to the end.
           exit;
         else
-          l_return(l_return.count + 1) := dbms_lob.substr(p_str, l_pos - (l_last_pos+l_delimiter_len), l_last_pos + l_delimiter_len);
+          l_return(l_return.count + 1) := sys.dbms_lob.substr(p_str, l_pos - (l_last_pos+l_delimiter_len), l_last_pos + l_delimiter_len);
         end if; -- l_pos = 0
 
         l_last_pos := l_pos;
@@ -599,7 +599,7 @@ as
     p_delim in varchar2 default ',')
     return varchar2
   as
-    $IF not DBMS_DB_VERSION.VER_LE_11 $THEN
+    $IF not SYS.DBMS_DB_VERSION.VER_LE_11 $THEN
       -- 12c and above
       pragma udf;
     $END

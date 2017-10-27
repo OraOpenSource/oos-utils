@@ -53,7 +53,7 @@ as
     l_secret varchar2(32767);
   begin
     for i in 1..p_length loop
-      l_secret := l_secret || substr(gc_base32, dbms_random.value(1, (length(gc_base32) - 1)), 1);
+      l_secret := l_secret || substr(gc_base32, sys.dbms_random.value(1, (length(gc_base32) - 1)), 1);
     end loop;
 
     return l_secret;

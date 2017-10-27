@@ -106,8 +106,8 @@ as
     sys.owa_util.mime_header(
       ccontent_type => l_mime_type,
       bclose_header => false );
-
-    sys.htp.p('Content-length: ' || dbms_lob.getlength(p_blob));
+  
+    sys.htp.p('Content-length: ' || sys.dbms_lob.getlength(p_blob));
 
     sys.htp.p(
       oos_util_string.sprintf(
