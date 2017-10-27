@@ -8,6 +8,7 @@ as
    * Checks if string is numeric
    *
    * @issue #15
+   * @issue #131 Using 12cRc validation if available
    *
    * @example
    * begin
@@ -29,12 +30,18 @@ as
     deterministic
   as
     l_num number;
-  begin
-    l_num := to_number(p_str);
-    return true;
-  exception
-    when value_error then
-      return false;
+  $if sys.dbms_db_version.ver_le_12_1 $then
+    begin
+      l_num := to_number(p_str);
+      return true;
+    exception
+      when value_error then
+        return false;
+  $else
+    -- 12.2 onwards
+    begin
+      return validate_conversion(p_str as number) = 1;
+  $end
   end is_number;
 
 
@@ -42,6 +49,7 @@ as
    * Checks if string is a valid date
    *
    * @issue #20
+   * @issue #131 Using 12cRc validation if available
    *
    * @example
    * begin
@@ -67,13 +75,20 @@ as
     return boolean
     deterministic
   as
+  
+  $if sys.dbms_db_version.ver_le_12_1 $then
     l_date date;
-  begin
-    l_date := to_date(p_str, p_date_format);
-    return true;
-  exception
-    when others then -- Using a when others since date format could also be invalid
-      return false;
+    begin
+      l_date := to_date(p_str, p_date_format);
+      return true;
+    exception
+      when others then -- Using a when others since date format could also be invalid
+        return false;
+  $else
+    -- 12.2 onwards
+    begin
+      return validate_conversion(p_str as date, p_date_format) = 1;
+  $end
   end is_date;
 
 
