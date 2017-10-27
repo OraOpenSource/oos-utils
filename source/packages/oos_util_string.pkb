@@ -622,5 +622,127 @@ as
     return l_return;
   end multi_replace;
 
+  /**
+   * EOL conversion
+   *
+   * Changes EOL to desired format (regardless of current state)
+   *
+   * @issue 170
+   *
+   * @example
+   *
+   *-- This example only works in 12c and up since using inline functions
+   * with
+   *   function get_eol(p_eol_str in varchar2)
+   *     return varchar2
+   *   as
+   *   begin
+   *     return 
+   *       case
+   *         when p_eol_str = 'unix' then oos_util_string.gc_eol_unix
+   *         else oos_util_string.gc_eol_windows
+   *       end;
+   *   end get_eol;
+   * select
+   *   d.unix_eol,
+   *   d.win_eol,
+   *   oos_util_string.convert_eol(p_str => d.unix_eol, p_eol => get_eol('win')) unix_to_win,
+   *   oos_util_string.convert_eol(p_str => d.win_eol, p_eol => get_eol('unix')) win_to_unix
+   * from 
+   *   (
+   *     select 
+   *       'abc' || get_eol('unix') || 'def' unix_eol,
+   *       'abc' || get_eol('win') || 'def' win_eol
+   *     from dual
+   *   ) d;
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_str
+   * @param p_eol Use `oos_util_string.gc_eol_unix` or `oos_util_string.gc_eol_windows`
+   * @return string with converted EOL
+   */
+  -- TODO mdsouza: better name?
+  function convert_eol(
+    p_str in varchar2,
+    p_eol in varchar2
+  )
+  return varchar2
+  as
+  begin
+    -- Any changes to this code should replicated below
+    oos_util.assert(p_eol in (gc_eol_unix,gc_eol_windows), 'Invalid EOL option. Use oos_util_string.gc_eol_unix or oos_util_string.gc_eol_windows.');
+    -- Can use regexp_replace(p_str, '[' || gc_cr || gc_lf || ']+', p_eol); however
+    -- on larger clobs this does not perform well
+
+    -- This code will change all EOL combinations to gc_lf
+    -- Then convert the gc_lf to the desired p_eol
+    -- This won't work if there is two EOLs in a row. Ex gc_lfgc_lf (though this shouldn't happen)
+    return 
+      replace(
+        replace(
+          replace(
+            replace(
+              p_str, 
+              gc_crlf, 
+              gc_lf
+            ), 
+            gc_lf || gc_cr, -- Note this is not a common EOL sequence but may happen
+            gc_lf
+          ), 
+          gc_cr, 
+          gc_lf
+        ), 
+        gc_lf, 
+        p_eol
+      );
+  end convert_eol;
+
+
+  /**
+   * EOL conversion (clob)
+   *
+   * Changes EOL to desired format (regardless of current state)
+   *
+   * @issue 170
+   *
+   * @example
+   *
+   * -- See above
+   *
+   * @author Martin D'Souza
+   * @created 26-Oct-2017
+   * @param p_str clob
+   * @param p_eol Use `oos_util_string.gc_eol_unix` or `oos_util_string.gc_eol_windows`
+   * @return clob with converted EOL
+   */
+  function convert_eol(
+    p_str in clob,
+    p_eol in varchar2)
+  return clob
+  as
+  begin
+    -- Any changes to this code should be made above and then copied here
+    oos_util.assert(p_eol in (gc_eol_unix,gc_eol_windows), 'Invalid EOL option. Use oos_util_string.gc_eol_unix or oos_util_string.gc_eol_windows.');
+    return 
+      replace(
+        replace(
+          replace(
+            replace(
+              p_str, 
+              gc_crlf, 
+              gc_lf
+            ), 
+            gc_lf || gc_cr, -- Note this is not a common EOL sequence but may happen
+            gc_lf
+          ), 
+          gc_cr, 
+          gc_lf
+        ), 
+        gc_lf, 
+        p_eol
+    );
+  end convert_eol;
+
 end oos_util_string;
 /

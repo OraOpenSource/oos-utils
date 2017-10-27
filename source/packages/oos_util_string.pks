@@ -9,11 +9,18 @@ as
    * @constant gc_cr Carriage Return
    * @constant gc_lf Line Feed
    * @constant gc_crlf Use for new lines.
+   * @constant gc_eol_unix EOL for Unix
+   * @constant gc_eol_windows EOL for Windows
    */
   gc_default_delimiter constant varchar2(1) := ',';
   gc_cr constant varchar2(1) := chr(13);
   gc_lf constant varchar2(1) := chr(10);
   gc_crlf constant varchar2(2) := gc_cr || gc_lf;
+
+  -- #170
+  gc_eol_unix constant varchar2(1) := gc_lf;
+  gc_eol_windows constant varchar2(2) := gc_cr || gc_lf;
+
 
   function to_char(
     p_val in number)
@@ -98,6 +105,16 @@ as
     p_replace_str in varchar2,
     p_delim in varchar2 default ',')
     return varchar2;
+
+  function convert_eol(
+     p_str in varchar2,
+     p_eol in varchar2)
+   return varchar2;
+
+  function convert_eol(
+    p_str in clob,
+    p_eol in varchar2)
+  return clob;
 
 end oos_util_string;
 /
