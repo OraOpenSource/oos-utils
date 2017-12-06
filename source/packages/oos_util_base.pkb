@@ -25,7 +25,8 @@ as
    */
   function to_base(
     p_int in pls_integer,
-    p_base in pls_integer)
+    p_base in pls_integer,
+    p_alphabet in varchar2 default gc_symbols)
     return varchar2
   as
     l_str varchar2(256 char) default null;
@@ -33,9 +34,12 @@ as
     l_truncated pls_integer;
     l_remainder pls_integer;
   begin
-    oos_util.assert(p_int >= 0, 'p_int must be a positive number');
-    oos_util.assert(round(p_int, 0) = p_int, 'p_int must be a whole number');
+    oos_util.assert(p_int >=0 and round(p_int, 0) = p_int, 'p_int must be a positive whole number');
     oos_util.assert(p_base between 2 and 62, 'p_base must be between 2 and 62');
+    oos_util.assert(p_base <= length(p_alphabet), 'length of p_alphabet can not be smaller than p_base');
+    for i in 1..length(p_alphabet) loop
+      oos_util.assert(length(regexp_replace(p_alphabet, '[^' || substr(p_alphabet, i, 1) || ']')) = 1, '[' || substr(p_alphabet, i, 1) || '] appears in p_alphabet multiple times');
+    end loop;
     if (p_base = gc_decimal) then
       l_str := sys.standard.to_char(p_int);
     elsif (p_base = gc_hex) then
@@ -45,7 +49,7 @@ as
         l_truncated := trunc(l_quotient / p_base);
         l_remainder := l_quotient - l_truncated * p_base;
         l_quotient := l_truncated;
-        l_str := substr( gc_symbols, l_remainder+1, 1) || l_str;
+        l_str := substr(p_alphabet, l_remainder+1, 1) || l_str;
       end loop;
     end if;
     return l_str;
@@ -164,20 +168,24 @@ as
    */
   function to_decimal(
     p_str in varchar2,
-    p_base in pls_integer)
+    p_base in pls_integer,
+    p_alphabet in varchar2 default gc_symbols)
     return pls_integer
   as
     c_str constant varchar2(256 char) := case when p_base <= 36 then upper(p_str) else p_str end;
-    c_regex_bad_char constant varchar2(38 char) := '[' || substr(gc_symbols, p_base + 1) || ']';
     l_num pls_integer default 0;
   begin
+    oos_util.assert(regexp_replace(c_str, '[' || substr(p_alphabet, 1, p_base) || ']') is null, c_str || ' contains invalid characters for Base' || p_base);
     oos_util.assert(p_base between 2 and 62, 'p_base must be between 2 and 62');
-    oos_util.assert(regexp_instr(c_str, c_regex_bad_char) = 0, c_str || ' contains invalid characters for Base' || p_base);
+    oos_util.assert(p_base <= length(p_alphabet), 'length of p_alphabet can not be smaller than p_base');
+    for i in 1..length(p_alphabet) loop
+      oos_util.assert(length(regexp_replace(p_alphabet, '[^' || substr(p_alphabet, i, 1) || ']')) = 1, '[' || substr(p_alphabet, i, 1) || '] appears in p_alphabet multiple times');
+    end loop;
     if (p_base = gc_hex) then
       l_num := sys.standard.to_number(c_str, rpad('x',63,'x'));
     else
       for i in 1 .. length(c_str) loop
-        l_num := l_num * p_base + instr(gc_symbols,substr(c_str,i,1))-1;
+        l_num := l_num * p_base + instr(p_alphabet,substr(c_str,i,1))-1;
       end loop;
     end if;
     return l_num;

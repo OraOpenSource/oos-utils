@@ -23,7 +23,8 @@ as
   -- METHODS
   function to_base(
     p_int in pls_integer,
-    p_base in pls_integer)
+    p_base in pls_integer,
+    p_alphabet in varchar2 default gc_symbols)
     return varchar2;
 
   function to_binary(
@@ -41,7 +42,8 @@ as
 
   function to_decimal(
     p_str in varchar2,
-    p_base in pls_integer)
+    p_base in pls_integer,
+    p_alphabet in varchar2 default gc_symbols)
     return pls_integer;
 
 end oos_util_base;
