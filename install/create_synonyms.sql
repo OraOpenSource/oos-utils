@@ -1,8 +1,8 @@
--- Grants privileges for OOS Utils objects from current user to a defined user
+-- Creates synonyms from defined user for OOS Utils objects
 -- Use this if storing OOS Utils in its own schema and other schemas reference it.
 
 -- Parameters
-define to_user = '&1' -- This is the user to grant the permissions to
+define from_user = '&1' -- This is the user to reference OOS Utils objects
 
 
 whenever sqlerror exit sql.sqlcode
