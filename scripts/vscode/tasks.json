@@ -1,0 +1,54 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compile: oos-utils",
+      "type": "shell",
+      // Run sqlplus via a batch file
+      "windows": {
+        "command": "scripts/vscode/_run_sqlplus.sh"
+      },
+      "osx": {
+        "command": "scripts/vscode/_run_sqlplus.sh"
+      },
+      "linux": {
+        "command": "scripts/vscode/_run_sqlplus.sh"
+      },
+      // first argument is the database connection string
+      // second argument is the file to execute (ie the current file)
+      // Change the connection string to your oracle connection
+      "args": [
+        "CHANGEME/CHANGEME@localhost:32122/orclpdb514.localdomain",
+        "@\"${file}\"",
+        "${fileBasename}"
+      ],
+      "group": "build",
+      // do not switch to the output pane automatically
+      "presentation": {
+        "reveal": "always", // always, never, silent
+        "panel": "dedicated" // shared, dedicated, new
+      },
+      // use this to get any database errors (from user_errors view) listed in the "Problems" pane in VS Code
+      "problemMatcher": {
+        "owner": "plsql",
+        "fileLocation": [
+          "relative",
+          "${fileDirname}"
+        ],
+        "pattern": [
+          {
+            "regexp": "(.*) (\\d*)\/(\\d*) (.*?) (.*)",
+            "severity": 1,
+            "line": 2,
+            "column": 3,
+            "file": 4,
+            "message": 5,
+            "loop": true
+          }
+        ]
+      }
+    }
+  ]
+}
