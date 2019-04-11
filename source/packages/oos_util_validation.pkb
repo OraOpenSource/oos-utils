@@ -1,6 +1,32 @@
 create or replace package body oos_util_validation
 as
 
+  -- ******** PRIVATE ********
+
+  gc_true_as_vc  constant varchar2(1 char) := 'Y';
+  gc_false_as_vc constant varchar2(1 char) := 'N';
+
+  /**
+   * Helper function to convert boolean to varchar2
+   *
+   * @issue #188
+   *
+   * @author: Moritz Klein
+   * @created: 2019-04-11
+   *
+   * @param: p_bool Boolean value to convert
+   * @return: Varchar2 representation of boolean as defined by constants
+   */
+  function transform_bool_to_vc( p_bool in boolean )
+    return varchar2 deterministic
+  as
+  begin
+    if p_bool then
+      return gc_true_as_vc;
+    else
+      return gc_false_as_vc;
+    end if;
+  end transform_bool_to_vc;
 
   -- ******** PUBLIC ********
 
@@ -9,6 +35,7 @@ as
    *
    * @issue #15
    * @issue #131 Using 12cRc validation if available
+   * @issue #190 deterministic Functions shouldn't raise unhandled exceptions
    *
    * @example
    * begin
@@ -26,8 +53,7 @@ as
    * @return True of p_str is number
    */
   function is_number(p_str in varchar2)
-    return boolean
-    deterministic
+    return boolean deterministic
   as
     l_num number;
   $if sys.dbms_db_version.ver_le_12_1 $then
@@ -37,6 +63,9 @@ as
     exception
       when value_error then
         return false;
+      -- this is on purpose, a deterministic function must not let any exception propagate
+      when others then
+        return false;
   $else
     -- 12.2 onwards
     begin
@@ -44,6 +73,27 @@ as
   $end
   end is_number;
 
+  /**
+  * Checks if string is numeric
+  * Wrapper for the boolean version to allow use directly in SQL
+  *
+  * @issue #188
+  *
+  * Author: Moritz Klein
+  * Created: 2018-06-12
+  *
+  * @param  p_str String to validate
+  * @return Y if p_str is number else N
+  */
+  function is_number_yn(p_str in varchar2)
+    return varchar2 deterministic
+  as
+  $if dbms_db_version.version >= 12 $then
+    pragma udf;
+  $end
+  begin
+    return transform_bool_to_vc( p_bool => is_number(p_str => p_str) );
+  end is_number_yn;
 
   /**
    * Checks if string is a valid date
@@ -65,15 +115,14 @@ as
    *
    * @author Martin D'Souza
    * @created 05-Sep-2015
-   * @param p_str
-   * @param p_date_format
+   * @param p_str String to validate
+   * @param p_date_format The date format to use for testing the conversion
    * @return True if date is valid
    */
   function is_date(
     p_str in varchar2,
     p_date_format in varchar2)
-    return boolean
-    deterministic
+    return boolean deterministic
   as
   
   $if sys.dbms_db_version.ver_le_12_1 $then
@@ -90,6 +139,34 @@ as
       return validate_conversion(p_str as date, p_date_format) = 1;
   $end
   end is_date;
+
+  /**
+  * Checks if string is a valid date
+  * Wrapper for the boolean version to allow use directly in SQL
+  *
+  * @issue #188
+  *
+  * Author: Moritz Klein
+  * Created: 2018-06-12
+  *
+  * @param  p_str String to validate
+  * @param  The date frmat to use for testing the conversion
+  * @return Y if p_str conversion is successful else N
+  */
+  function is_date_yn
+  (
+    p_str in varchar2,
+    p_date_format in varchar2
+  )
+    return varchar2 deterministic
+  as
+  $if dbms_db_version.version >= 12 $then
+    pragma udf;
+  $end
+  begin
+    return transform_bool_to_vc( p_bool => is_date(p_str => p_str, p_date_format => p_date_format) );
+  end is_date_yn;
+
 
   -- TODO mdsouza: need to overload this
   -- TODO mdsouza: But look at example in issue 145) first
@@ -138,19 +215,40 @@ as
   function is_equal(
     p_vala in varchar2,
     p_valb in varchar2)
-    return boolean
+    return boolean deterministic
   as
-    -- TODO mdsouza: create a yn version and then remove pragma to test 
-    -- TODO mdsouza: how much faster it is
-    $if sys.dbms_db_version.version >= 12 $then
-      pragma udf;
-    $end
   begin
     return
       1=2
       or p_vala is null and p_valb is null
       or p_vala = p_valb;
   end is_equal;
+
+  /**
+   * Overload for is_equal function for direct usage in SQL
+   *
+   * @issue #188
+   *
+   * @author: Moritz Klein 
+   * @created: 2019-04-11
+   *
+   * Param: p_vala 
+   * Param: p_valb 
+   * Return: returns 'Y' if both same or both null
+   */
+  function is_equal_yn
+  (
+    p_vala in varchar2,
+    p_valb in varchar2
+  )
+    return varchar2 deterministic
+  as
+  $if sys.dbms_db_version.version >= 12 $then
+    pragma udf;
+  $end
+  begin
+    return transform_bool_to_vc( p_bool => is_equal( p_vala => p_vala, p_valb => p_valb ) );
+  end is_equal_yn;
 
   /**
    * See first `is_equal`
@@ -164,18 +262,41 @@ as
   function is_equal(
     p_vala in number,
     p_valb in number)
-    return boolean
+    return boolean deterministic
   as
-    $if sys.dbms_db_version.version >= 12 $then
-      pragma udf;
-    $end
   begin
     return 
       1=2
       or p_vala is null and p_valb is null
       or p_vala = p_valb;
   end is_equal;
-  
+
+  /**
+   * Overload for is_equal function for direct usage in SQL
+   *
+   * @issue #188
+   *
+   * @author: Moritz Klein 
+   * @created: 2019-04-11
+   *
+   * Param: p_vala 
+   * Param: p_valb 
+   * Return: returns 'Y' if both same or both null
+   */
+  function is_equal_yn
+  (
+    p_vala in number,
+    p_valb in number
+  )
+    return varchar2 deterministic
+  as
+  $if sys.dbms_db_version.version >= 12 $then
+    pragma udf;
+  $end
+  begin
+    return transform_bool_to_vc( p_bool => is_equal( p_vala => p_vala, p_valb => p_valb ) );
+  end is_equal_yn;
+
   /**
    * See first `is_equal`
    *
@@ -190,15 +311,38 @@ as
     p_valb in date)
     return boolean
   as
-    $if sys.dbms_db_version.version >= 12 $then
-      pragma udf;
-    $end
   begin
     return 
       1=2
       or p_vala is null and p_valb is null
       or p_vala = p_valb;
   end is_equal;
+
+  /**
+   * Overload for is_equal function for direct usage in SQL
+   *
+   * @issue #188
+   *
+   * @author: Moritz Klein 
+   * @created: 2019-04-11
+   *
+   * Param: p_vala 
+   * Param: p_valb 
+   * Return: returns 'Y' if both same or both null
+   */
+  function is_equal_yn
+  (
+    p_vala in date,
+    p_valb in date
+  )
+    return varchar2 deterministic
+  as
+  $if sys.dbms_db_version.version >= 12 $then
+    pragma udf;
+  $end
+  begin
+    return transform_bool_to_vc( p_bool => is_equal( p_vala => p_vala, p_valb => p_valb ) );
+  end is_equal_yn;
 
   /**
    * See first `is_equal`
@@ -225,6 +369,32 @@ as
   end is_equal;
 
   /**
+   * Overload for is_equal function for direct usage in SQL
+   *
+   * @issue #188
+   *
+   * @author: Moritz Klein 
+   * @created: 2019-04-11
+   *
+   * Param: p_vala 
+   * Param: p_valb 
+   * Return: returns 'Y' if both same or both null
+   */
+  function is_equal_yn
+  (
+    p_vala in timestamp,
+    p_valb in timestamp
+  )
+    return varchar2 deterministic
+  as
+  $if sys.dbms_db_version.version >= 12 $then
+    pragma udf;
+  $end
+  begin
+    return transform_bool_to_vc( p_bool => is_equal( p_vala => p_vala, p_valb => p_valb ) );
+  end is_equal_yn;
+
+  /**
    * See first `is_equal`
    *
    * @author Martin D'Souza
@@ -236,17 +406,40 @@ as
   function is_equal(
     p_vala in timestamp with time zone,
     p_valb in timestamp with time zone)
-    return boolean
+    return boolean deterministic
   as
-    $if sys.dbms_db_version.version >= 12 $then
-      pragma udf;
-    $end
   begin
     return 
       1=2
       or p_vala is null and p_valb is null
       or p_vala = p_valb;
   end is_equal;
+
+  /**
+   * Overload for is_equal function for direct usage in SQL
+   *
+   * @issue #188
+   *
+   * @author: Moritz Klein 
+   * @created: 2019-04-11
+   *
+   * Param: p_vala 
+   * Param: p_valb 
+   * Return: returns 'Y' if both same or both null
+   */
+  function is_equal_yn
+  (
+    p_vala in timestamp with time zone,
+    p_valb in timestamp with time zone
+  )
+    return varchar2 deterministic
+  as
+  $if sys.dbms_db_version.version >= 12 $then
+    pragma udf;
+  $end
+  begin
+    return transform_bool_to_vc( p_bool => is_equal( p_vala => p_vala, p_valb => p_valb ) );
+  end is_equal_yn;
 
   /**
    * See first `is_equal`
@@ -260,17 +453,40 @@ as
   function is_equal(
     p_vala in timestamp with local time zone,
     p_valb in timestamp with local time zone)
-    return boolean
+    return boolean deterministic
   as
-    $if sys.dbms_db_version.version >= 12 $then
-      pragma udf;
-    $end
   begin
     return 
       1=2
       or p_vala is null and p_valb is null
       or p_vala = p_valb;
   end is_equal;
+
+  /**
+   * Overload for is_equal function for direct usage in SQL
+   *
+   * @issue #188
+   *
+   * @author: Moritz Klein 
+   * @created: 2019-04-11
+   *
+   * Param: p_vala 
+   * Param: p_valb 
+   * Return: returns 'Y' if both same or both null
+   */
+  function is_equal_yn
+  (
+    p_vala in timestamp with local time zone,
+    p_valb in timestamp with local time zone
+  )
+    return varchar2 deterministic
+  as
+  $if sys.dbms_db_version.version >= 12 $then
+    pragma udf;
+  $end
+  begin
+    return transform_bool_to_vc( p_bool => is_equal( p_vala => p_vala, p_valb => p_valb ) );
+  end is_equal_yn;
 
   /**
    * See first `is_equal`
@@ -284,7 +500,7 @@ as
   function is_equal(
     p_vala in boolean,
     p_valb in boolean)
-    return boolean
+    return boolean deterministic
   as
     $if sys.dbms_db_version.version >= 12 $then
       pragma udf;
