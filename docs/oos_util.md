@@ -7,9 +7,13 @@
 
 
 
+ 
 - [ASSERT Procedure](#assert)
+ 
 - [SLEEP Procedure](#sleep)
+ 
 - [ASSOC_ARR2NESTED_TABLE Function](#assoc_arr2nested_table)
+ 
 - [ASSOC_ARR2NESTED_TABLE-1 Function](#assoc_arr2nested_table-1)
 
 ## Types<a name="types"></a>
@@ -68,20 +72,18 @@ Name | Description
 ### Example
 ```plsql
 
-oos_util.assert(1=2, 'this assertion did not pass');
+exec oos_util.assert(1=2, 'this assertion did not pass');
 
 -- Results in
 
-Error starting at line : 1 in command -
-exec oos_util.assert(1=2, 'this assertion did not pass')
+
+Error starting at line : 39 in command -
+BEGIN oos_util.assert(1=2, 'this assertion did not pass'); END;
 Error report -
-ORA-06550: line 1, column 7:
-PLS-00306: wrong number or types of arguments in call to 'ASSERT'
-ORA-06550: line 1, column 7:
-PL/SQL: Statement ignored
-06550. 00000 -  "line %s, column %s:\n%s"
-*Cause:    Usually a PL/SQL compilation error.
-*Action:
+ORA-20000: this assertion did not pass
+ORA-06512: at "GIFFY.OOS_UTIL", line 70
+ORA-06512: at line 1
+20000. 00000 -  "%s"
 ```
 
 
