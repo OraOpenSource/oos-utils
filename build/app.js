@@ -103,7 +103,7 @@ for (package in config.objects.packages){
 
 // Generate Documentation
 // Future make htis generic for others to use (not just martin) - #59
-var cmd = 'node ~/Documents/GitHub/oraopensource/plsql-md-doc/app oos-utils';
+var cmd = 'node ~/git/oraopensource/plsql-md-doc/app oos-utils';
 
 console.log(`*** Generating Documentation ***`);
 exec(cmd, function(error, stdout, stderr) {

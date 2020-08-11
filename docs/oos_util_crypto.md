@@ -6,9 +6,13 @@
 
 
 
+ 
 - [HASH Function](#hash)
+ 
 - [HASH_STR Function](#hash_str)
+ 
 - [MAC Function](#mac)
+ 
 - [MAC_STR Function](#mac_str)
 
 

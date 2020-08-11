@@ -208,21 +208,19 @@ as
    *
    * @example
    *
-   * oos_util.assert(1=2, 'this assertion did not pass');
+   * exec oos_util.assert(1=2, 'this assertion did not pass');
    *
    * -- Results in
    *
-   * Error starting at line : 1 in command -
-   * exec oos_util.assert(1=2, 'this assertion did not pass')
+   * 
+   * Error starting at line : 39 in command -
+   * BEGIN oos_util.assert(1=2, 'this assertion did not pass'); END;
    * Error report -
-   * ORA-06550: line 1, column 7:
-   * PLS-00306: wrong number or types of arguments in call to 'ASSERT'
-   * ORA-06550: line 1, column 7:
-   * PL/SQL: Statement ignored
-   * 06550. 00000 -  "line %s, column %s:\n%s"
-   * *Cause:    Usually a PL/SQL compilation error.
-   * *Action:
-
+   * ORA-20000: this assertion did not pass
+   * ORA-06512: at "GIFFY.OOS_UTIL", line 70
+   * ORA-06512: at line 1
+   * 20000. 00000 -  "%s"
+   *
    * @issue #19
    *
    * @author Martin D'Souza
@@ -4640,6 +4638,7 @@ as
     $end
   begin
 
+    BAD CODE
     -- #122 return null if string is null. Doing first since no need to do extra work if null.
     if l_str is null then
       return null;
@@ -5023,17 +5022,19 @@ as
    * @issue #141
    *
    * @example
-   * select multi_replace('Goodbye, universe','Goodbye,Hello,universe,world!') demo
+   * select oos_util_string.multi_replace(
+   *   'Hello {name} your number is {num}',
+   *   '{name},Martin,{num},6') demo
    * from dual;
    *
    * DEMO
    * ------------------------------
-   * Hello, world!
+   * Hello Martin your number is 6
    *
    * @author Zach Wilcox
    * @created 13-Jul-2017
    * @param p_str String
-   * @param p_replace_str String should be in the format (find1,replace1,find2,replace2,...) If an odd number of strings are passed the last one is ignored ano no replacement is done for it.
+   * @param p_replace_str String should be in the format (find1,replace1,find2,replace2,...) If an odd number of strings are passed the last one is ignored ano no replacement is defined for it.
    * @param p_delim Delimiter default ","
    * @return String
    */
@@ -5043,10 +5044,10 @@ as
     p_delim in varchar2 default ',')
     return varchar2
   as
-    $IF not SYS.DBMS_DB_VERSION.VER_LE_11 $THEN
+    $if not sys.dbms_db_version.ver_le_11 $then
       -- 12c and above
       pragma udf;
-    $END
+    $end
 
     l_return varchar2(32767);
     l_arr oos_util.tab_vc2_arr;
@@ -5063,6 +5064,31 @@ as
       l_return := replace(l_return,l_arr(2*i-1),l_arr(2*i));
     end loop;
 
+    return l_return;
+  end multi_replace;
+
+  -- TODO mdsouza: multireplace
+  -- TODO mdsouza: overload with tables (non indexed)
+  function multi_replace(
+    p_str in varchar2,
+    p_search_arr in oos_util.tab_vc2_arr,
+    p_replace_arr in oos_util.tab_vc2_arr)
+    return varchar2
+  as
+    l_return varchar2(32767) := p_str;
+  begin
+    if 1=2
+      or p_str is null 
+      or (p_search_arr.count = 0 and p_replace_arr.count = 0) then
+      return p_str;
+    end if;
+
+    oos_util.assert(p_search_arr.count = p_replace_arr.count, 'Search and Replace lengths aren''t the same');
+
+    for i in p_search_arr.first .. p_search_arr.last loop
+      l_return := replace(l_return, p_search_arr(i), p_replace_arr(i));
+    end loop;
+    
     return l_return;
   end multi_replace;
 

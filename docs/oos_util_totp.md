@@ -6,9 +6,13 @@
 
 
 
+ 
 - [GENERATE_SECRET Function](#generate_secret)
+ 
 - [FORMAT_KEY_URI Function](#format_key_uri)
+ 
 - [GENERATE_OTP Function](#generate_otp)
+ 
 - [VALIDATE_OTP Function](#validate_otp)
 
 

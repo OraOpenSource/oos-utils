@@ -5,14 +5,23 @@
 
 
 
+ 
 - [IS_NUMBER Function](#is_number)
+ 
 - [IS_DATE Function](#is_date)
+ 
 - [IS_EQUAL Function](#is_equal)
+ 
 - [IS_EQUAL-1 Function](#is_equal-1)
+ 
 - [IS_EQUAL-2 Function](#is_equal-2)
+ 
 - [IS_EQUAL-3 Function](#is_equal-3)
+ 
 - [IS_EQUAL-4 Function](#is_equal-4)
+ 
 - [IS_EQUAL-5 Function](#is_equal-5)
+ 
 - [IS_EQUAL-6 Function](#is_equal-6)
 
 

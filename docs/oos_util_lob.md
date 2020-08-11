@@ -6,13 +6,21 @@
 
 
 
+ 
 - [CLOB2BLOB Function](#clob2blob)
+ 
 - [BLOB2CLOB Function](#blob2clob)
+ 
 - [GET_FILE_SIZE Function](#get_file_size)
+ 
 - [GET_LOB_SIZE Function](#get_lob_size)
+ 
 - [GET_LOB_SIZE-1 Function](#get_lob_size-1)
+ 
 - [REPLACE_CLOB Function](#replace_clob)
+ 
 - [WRITE_FILE Procedure](#write_file)
+ 
 - [READ_FILE Function](#read_file)
 
 

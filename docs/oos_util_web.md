@@ -6,8 +6,11 @@
 
 
 
+ 
 - [GET_MIME_TYPE Function](#get_mime_type)
+ 
 - [DOWNLOAD_FILE Procedure](#download_file)
+ 
 - [DOWNLOAD_FILE-1 Procedure](#download_file-1)
 
 

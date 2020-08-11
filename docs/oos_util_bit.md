@@ -5,11 +5,17 @@
 
 
 
+ 
 - [BITAND Function](#bitand)
+ 
 - [BITOR Function](#bitor)
+ 
 - [BITXOR Function](#bitxor)
+ 
 - [BITNOT Function](#bitnot)
+ 
 - [BITSHIFT_LEFT Function](#bitshift_left)
+ 
 - [BITSHIFT_RIGHT Function](#bitshift_right)
 
 

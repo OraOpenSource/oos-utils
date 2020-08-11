@@ -6,21 +6,37 @@
 
 
 
+ 
 - [TO_CHAR Function](#to_char)
+ 
 - [TO_CHAR-1 Function](#to_char-1)
+ 
 - [TO_CHAR-2 Function](#to_char-2)
+ 
 - [TO_CHAR-3 Function](#to_char-3)
+ 
 - [TO_CHAR-4 Function](#to_char-4)
+ 
 - [TO_CHAR-5 Function](#to_char-5)
+ 
 - [TRUNCATE Function](#truncate)
+ 
 - [SPRINTF Function](#sprintf)
+ 
 - [STRING_TO_TABLE Function](#string_to_table)
+ 
 - [STRING_TO_TABLE-1 Function](#string_to_table-1)
+ 
 - [LISTUNAGG Function](#listunagg)
+ 
 - [LISTUNAGG-1 Function](#listunagg-1)
+ 
 - [REVERSE Function](#reverse)
+ 
 - [ORDINAL Function](#ordinal)
+ 
 - [MULTI_REPLACE Function](#multi_replace)
+ 
 - [CONVERT_EOL Function](#convert_eol)
 
 
@@ -633,7 +649,7 @@ function multi_replace(
 Name | Description
 --- | ---
 `p_str` | String
-`p_replace_str` | String should be in the format (find1,replace1,find2,replace2,...) If an odd number of strings are passed the last one is ignored ano no replacement is done for it.
+`p_replace_str` | String should be in the format (find1,replace1,find2,replace2,...) If an odd number of strings are passed the last one is ignored ano no replacement is defined for it.
 `p_delim` | Delimiter default &quot;,&quot;
 *return* | String
  
@@ -642,12 +658,14 @@ Name | Description
 
 ### Example
 ```plsql
-select multi_replace('Goodbye, universe','Goodbye,Hello,universe,world!') demo
+select oos_util_string.multi_replace(
+  'Hello {name} your number is {num}',
+  '{name},Martin,{num},6') demo
 from dual;
 
 DEMO
 ------------------------------
-Hello, world!
+Hello Martin your number is 6
 ```
 
 
